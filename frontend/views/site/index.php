@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-
+echo "hello world!";
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
