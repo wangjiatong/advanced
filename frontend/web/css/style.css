@@ -199,7 +199,7 @@ h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover,h6 a:hover{color:#0078CF;
 /* -- GRID  https://github.com/mattberridge/Proportional-Grids/
 ------------------------------------------------------------- */
 body{width:100%; background: url(../img/stripes.png) no-repeat 40% 0;}
-.container {width: 90%; margin: 5em auto; max-width: 1100px; min-width: 300px;}
+.container1 {width: 90%; margin: 5em auto; max-width: 1100px; min-width: 300px;}
  
 .grid-wrap {
   margin-left: -3em; /* the same as your gutter */
@@ -506,8 +506,8 @@ ul.page-numbers{float: right;overflow:hidden; display:block;}
 .lt-ie9 .works figure a, .lt-ie9 .works figure a img { filter:inherit} 
 /* jquery filter opacity issue IE8 */
 
-.lt-ie9 .container {min-width: 780px;}
-.lt-ie8 .container {width: 960px;}
+.lt-ie9 .container1 {min-width: 780px;}
+.lt-ie8 .container1 {width: 960px;}
 .lt-ie8 .grid-wrap {margin-left: 0; }
 .lt-ie8 .grid {padding: 0;margin-left: 5%; }
   .lt-ie8 .grid:first-child {margin-left: 0; }

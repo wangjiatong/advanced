@@ -16,6 +16,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <meta charset="UTF-8">
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -57,7 +58,7 @@ AppAsset::register($this);
 //    ]);
 //    NavBar::end();
     ?>
-<div class="container">
+<div class="container1">
     
     <header id="navtop">
             <a href="index.html" class="logo fleft">
@@ -110,6 +111,7 @@ AppAsset::register($this);
     </div>
     
 </div>
+
 <?php $this->endBody() ?>
 </body>
 </html>
