@@ -17,9 +17,9 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
           'js/jquery-1.7.2.min.js',
-          'js/jquery.flexsilder-min.js',
+          'js/jquery.flexslider-min.js',
           'js/jquery.validate.min.js',
-          'js/script.js',
+          'js/scripts.js',
           'js/selectivizr.js',
     ];
     public $depends = [
