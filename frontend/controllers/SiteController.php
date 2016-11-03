@@ -210,4 +210,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    //添加产品页面
+    public function actionProduct()
+    {
+        return $this->render('product');
+    }
 }
