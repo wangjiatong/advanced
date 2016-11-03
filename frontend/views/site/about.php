@@ -4,11 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = '关于我们';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#about").addClass("navactive");});');
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
 <!--    <p>This is the About page. You may modify the following file to customize its content:</p>
 
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <header class="grid col-full">
             <hr>
-                    <p class="fleft">About</p>
+                    <p class="fleft">关于我们</p>
             </header>
 
 

@@ -8,13 +8,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = '联系我们';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#contact").addClass("navactive");});');
 ?>
 <div class="site-contact">
-<!--    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
-    <p>
+<!--    <p>
         If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
     </p>
 
@@ -45,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <header class="grid col-full">
                 <hr>
-                <p class="fleft">Contact</p>
+                <p class="fleft">联系我们</p>
         </header>
 
 

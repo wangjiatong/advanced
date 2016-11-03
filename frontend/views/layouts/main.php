@@ -66,20 +66,21 @@ AppAsset::register($this);
 
             <nav class="fright">
                     <ul>
-                            <li><a href="/" class="navactive">首页</a></li>
-                            <li><a href="index.php?r=site%2Fabout">关于我们</a></li>
+                            <!--<li><a href="/" class="navactive">首页</a></li>-->
+                            <li><a href="/" id="index">首页</a></li>
+                            <li><a href="index.php?r=site%2Fabout" id="about">关于我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fproducts">旗下产品</a></li>
-                            <li><a href="index.php?r=site%2Fbusiness">业务介绍</a></li>
+                            <li><a href="index.php?r=site%2Fproducts" id="products">旗下产品</a></li>
+                            <li><a href="index.php?r=site%2Fbusiness" id="business">业务介绍</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fnews">新闻研报</a></li>
-                            <li><a href="index.php?r=site%2Fcontact">联系我们</a></li>
+                            <li><a href="index.php?r=site%2Fnews" id="news">新闻研报</a></li>
+                            <li><a href="index.php?r=site%2Fcontact" id="contact">联系我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fjoin">加入我们</a></li>
-                            <li><a href="#">登录</a></li>
+                            <li><a href="index.php?r=site%2Fjoin" id="join">加入我们</a></li>
+                            <li><a href="index.php?r=site%2Flogin" id="login">登录</a></li>
                     </ul>
             </nav>
     </header>
@@ -111,7 +112,6 @@ AppAsset::register($this);
     </div>
     
 </div>
-
 <?php $this->endBody() ?>
 </body>
 </html>

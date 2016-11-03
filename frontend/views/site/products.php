@@ -4,16 +4,17 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Products';
+$this->title = '旗下产品';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#products").addClass("navactive");});');
 ?>
 <div class="site-products">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <div class="works-page main grid-wrap">
 
         <header class="grid col-full">
                 <hr>
-                <p class="fleft">Works</p>
+                <p class="fleft">旗下产品</p>
         </header>
 
 
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
-                                <a href="work1.html" >
+                                <a href="#" >
                                         <img src="img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>

@@ -4,23 +4,24 @@
 
 use yii\helpers\Html;
 
-$this->title = 'News';
+$this->title = '新闻研报';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#news").addClass("navactive");});');
 ?>
 <div class="site-news">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     	<div class="blog-page main grid-wrap">
 
             <header class="grid col-full">
                     <hr>
-                    <p class="fleft">Blog</p>
+                    <p class="fleft">新闻研报</p>
             </header>
 
 
             <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
 
                     <article class="post">
-                            <h2><a href="blogpost.html" class="post-title">Blog post page!</a></h2>
+                            <h2><a href="#" class="post-title">Blog post page!</a></h2>
                             <div class="meta">
                                     <p>Posted on <span class="time">November 15, 2011</span> by <a href="#" class="fn">Sylvain Lafitte</a> in <a href="#"class="cat">Other</a> with <a href="#" class="comments-link">42 comments</a>.</p>
                             </div>
@@ -28,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.</p>
                             </div>
                             <footer>
-                                    <a href="blogpost.html" class="more-link">Continue reading…</a>
+                                    <a href="#" class="more-link">Continue reading…</a>
                             </footer>
                     </article>
 

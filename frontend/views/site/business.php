@@ -4,16 +4,17 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Business';
+$this->title = '业务介绍';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#business").addClass("navactive");});');
 ?>
 <div class="site-business">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <div class="services-page main grid-wrap">
 
         <header class="grid col-full">
                 <hr>
-                <p class="fleft">Services</p>
+                <p class="fleft">业务介绍</p>
         </header>
 
 

@@ -2,15 +2,16 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '上海翌银玖德资产管理有限公司——官方网站';
+$this->registerJs('$(document).ready(function(){$("#index").addClass("navactive");});');
 ?>
 <div class="home-page main">
     
 	<section class="grid-wrap" >
 		<header class="grid col-full">
 			<hr>
-			<p class="fleft">Home</p>
-			<a href="about.html" class="arrow fright">see more infos</a>
+<!--			<p class="fleft">Home</p>
+			<a href="about.html" class="arrow fright">see more infos</a>-->
 		</header>
 		
 		<div class="grid col-one-half mq2-col-full">
@@ -56,12 +57,12 @@ $this->title = 'My Yii Application';
 		
         </section>
     
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费网站模板</a></div>
+
     <section class="services grid-wrap">
             <header class="grid col-full">
                     <hr>
-                    <p class="fleft">Services</p>
-                    <a href="services.html" class="arrow fright">see more services</a>
+                    <p class="fleft">新闻研报</p>
+                    <a href="index.php?r=site%2Fnews" class="arrow fright">see more news</a>
             </header>
 
             <article class="grid col-one-third mq3-col-full">
@@ -86,17 +87,17 @@ $this->title = 'My Yii Application';
     <section class="works grid-wrap">
             <header class="grid col-full">
                             <hr>
-                            <p class="fleft">Works</p>
-                            <a href="works.html" class="arrow fright">see more works</a>
+                            <p class="fleft">旗下产品</p>
+                            <a href="index.php?r=site%2Fproducts" class="arrow fright">see more products</a>
                     </header>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
-                                    <a href="work1.html">
+                                    <a href="#">
                                     <img src="img/img.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-                                            <a href="work1.html" class="arrow">Project page!</a>
+                                            <a href="#" class="arrow">Project page!</a>
                                             <p>Lorem ipsum dolor set amet</p>
                                     </figcaption>
                             </figure>

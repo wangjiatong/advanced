@@ -4,16 +4,17 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Join Us';
+$this->title = '加入我们';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).ready(function(){$("#join").addClass("navactive");});');
 ?>
 <div class="site-join us">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     	<div class="about-page main grid-wrap">
 
             <header class="grid col-full">
             <hr>
-                    <p class="fleft">About</p>
+                    <p class="fleft">加入我们</p>
             </header>
 
 
