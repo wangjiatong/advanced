@@ -215,4 +215,9 @@ class SiteController extends Controller
     {
         return $this->render('product');
     }
+    //添加服务页面
+    public function actionBusiness()
+    {
+        return $this->render('business');
+    }
 }
