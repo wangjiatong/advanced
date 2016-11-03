@@ -226,8 +226,8 @@ class SiteController extends Controller
         return $this->render('news');
     }
     //添加加入我们页面
-    public function actionJoinUs()
+    public function actionJoin()
     {
-        return $this->render('joinUs');
+        return $this->render('join');
     }
 }
