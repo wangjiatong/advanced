@@ -211,9 +211,9 @@ class SiteController extends Controller
         ]);
     }
     //添加产品页面
-    public function actionProduct()
+    public function actionProducts()
     {
-        return $this->render('product');
+        return $this->render('products');
     }
     //添加服务页面
     public function actionBusiness()
