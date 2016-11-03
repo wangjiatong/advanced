@@ -77,6 +77,10 @@ AppAsset::register($this);
                             <li><a href="index.php?r=site%2Fnews">News</a></li>
                             <li><a href="index.php?r=site%2Fcontact">Contact</a></li>
                     </ul>
+                    <ul>
+                            <li><a href="index.php?r=site%2joinUs">Join Us</a></li>
+                            <li><a href="#">Login</a></li>
+                    </ul>
             </nav>
     </header>
 
