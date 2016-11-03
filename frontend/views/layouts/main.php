@@ -16,7 +16,6 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="UTF-8">
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -67,8 +66,8 @@ AppAsset::register($this);
 
             <nav class="fright">
                     <ul>
-                            <li><a href="index.html" class="navactive">Home</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="index.php" class="navactive">Home</a></li>
+                            <li><a href="index.php?r=site%2Fabout">About</a></li>
                     </ul>
                     <ul>
                             <li><a href="works.html">Works</a></li>
