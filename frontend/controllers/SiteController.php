@@ -220,4 +220,9 @@ class SiteController extends Controller
     {
         return $this->render('business');
     }
+    //添加新闻页面
+    public function actionNews()
+    {
+        return $this->render('news');
+    }
 }
