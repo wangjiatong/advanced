@@ -60,26 +60,26 @@ AppAsset::register($this);
 <div class="container1">
     
     <header id="navtop">
-            <a href="index.html" class="logo fleft">
-                    <img src="img/logo.png" alt="Designa Studio">
+            <a href="/" class="logo fleft">
+                    <img src="img/logo.png" alt="上海翌银玖德资产管理有限公司">
             </a>
 
             <nav class="fright">
                     <ul>
-                            <li><a href="/" class="navactive">Home</a></li>
-                            <li><a href="index.php?r=site%2Fabout">About</a></li>
+                            <li><a href="/" class="navactive">首页</a></li>
+                            <li><a href="index.php?r=site%2Fabout">关于我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fproducts">Products</a></li>
-                            <li><a href="index.php?r=site%2Fbusiness">Business</a></li>
+                            <li><a href="index.php?r=site%2Fproducts">旗下产品</a></li>
+                            <li><a href="index.php?r=site%2Fbusiness">业务介绍</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fnews">News</a></li>
-                            <li><a href="index.php?r=site%2Fcontact">Contact</a></li>
+                            <li><a href="index.php?r=site%2Fnews">新闻研报</a></li>
+                            <li><a href="index.php?r=site%2Fcontact">联系我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fjoin">Join Us</a></li>
-                            <li><a href="#">Login</a></li>
+                            <li><a href="index.php?r=site%2Fjoin">加入我们</a></li>
+                            <li><a href="#">登录</a></li>
                     </ul>
             </nav>
     </header>
@@ -89,25 +89,22 @@ AppAsset::register($this);
     <div class="divide-top">
             <footer class="grid-wrap">
                     <ul class="grid col-one-third social">
-                            <li><a href="#">RSS</a></li>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="http://www.cssmoban.com/" >免费网站模板</a></li>
-                            <li><a href="http://www.cssmoban.com/" title="模板之家">模板之家</a></li>
+                                    <li><a href="/">首页</a></li>
+                                    <li><a href="index.php?r=site%2Fabout">关于我们</a></li>
+                                    <li><a href="index.php?r=site%2Fproducts">旗下产品</a></li>
+                                    <li><a href="index.php?r=site%2Fbusiness">业务介绍</a></li>
                     </ul>
 
                     <div class="up grid col-one-third ">
-                            <a href="#navtop" title="Go back up">&uarr;</a>
+                            <a href="#navtop" title="Go back up">返回顶部&uarr;</a>
                     </div>
 
                     <nav class="grid col-one-third ">
                             <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="works.html">Works</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="index.php?r=site%2Fnews">新闻研报</a></li>
+                                    <li><a href="index.php?r=site%2Fcontact">联系我们</a></li>
+                                    <li><a href="index.php?r=site%2Fjoin">加入我们</a></li>
+                                    <li><a href="#">登录</a></li>
                             </ul>
                     </nav>
             </footer>
