@@ -2,52 +2,137 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '上海翌银玖德资产管理有限公司——官方网站';
+$this->registerJs('$(document).ready(function(){$("#index").addClass("navactive");});');
 ?>
-<div class="site-index">
+<div class="home-page main">
+    
+	<section class="grid-wrap" >
+		<header class="grid col-full">
+			<hr>
+<!--			<p class="fleft">Home</p>
+			<a href="about.html" class="arrow fright">see more infos</a>-->
+		</header>
+		
+		<div class="grid col-one-half mq2-col-full">
+			<h1>Web design <br>
+			Web Development <br>
+			Graphic Design</h1>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.
+			</p>
+			<p>Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum.
+			</p>
+		</div>
+			
+	
+		 <div class="slider grid col-one-half mq2-col-full">
+		   <div class="flexslider">
+		     <div class="slides">
+		       <div class="slide">
+		           	<figure>
+		                 <img src="img/img2.jpg" alt="">
+		                 <figcaption>
+		                 	<div>
+		                 	<h5>Caption 1</h5>
+		                 	<p>Lorem ipsum dolor set amet, lorem, <a href="#">link text</a></p>
+		                 	</div>
+		                 </figcaption>
+		             	</figure>
+		           </div>
+		           
+		           <div class="slide">
+		               	<figure>
+		                     <img src="img/img.jpg" alt="">
+		                     <figcaption>
+		                     	<div>
+		                     	<h5>Caption 2</h5>
+		                     	<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		                     	</div>
+		                     </figcaption>
+		                 	</figure>
+		               </div>
+		            </div>
+		   </div>
+		 </div>
+		
+        </section>
+    
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <section class="services grid-wrap">
+            <header class="grid col-full">
+                    <hr>
+                    <p class="fleft">新闻研报</p>
+                    <a href="index.php?r=site%2Fnews" class="arrow fright">see more news</a>
+            </header>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+            <article class="grid col-one-third mq3-col-full">
+                    <aside>01</aside>
+                    <h5>Web design</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
+            </article>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+            <article class="grid col-one-third mq3-col-full">
+                    <aside>02</aside>
+                    <h5>Web development</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
+            </article>
 
-    <div class="body-content">
+            <article class="grid col-one-third mq3-col-full">
+                    <aside>03</aside>
+                    <h5>Graphic design</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
+            </article>
+    </section>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <section class="works grid-wrap">
+            <header class="grid col-full">
+                            <hr>
+                            <p class="fleft">旗下产品</p>
+                            <a href="index.php?r=site%2Fproducts" class="arrow fright">see more products</a>
+                    </header>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                            <figure class="grid col-one-quarter mq2-col-one-half">
+                                    <a href="#">
+                                    <img src="img/img.jpg" alt="">
+                                    <span class="zoom"></span>
+                                    </a>
+                                    <figcaption>
+                                            <a href="#" class="arrow">Project page!</a>
+                                            <p>Lorem ipsum dolor set amet</p>
+                                    </figcaption>
+                            </figure>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+                            <figure class="grid col-one-quarter mq2-col-one-half">
+                                    <a href="#">
+                                    <img src="img/img.jpg" alt="">
+                                    <span class="zoom"></span>
+                                    </a>
+                                    <figcaption>
+                                            <a href="#" class="arrow">Project x</a>
+                                            <p>Lorem ipsum dolor set amet</p>
+                                    </figcaption>
+                            </figure>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                            <figure class="grid col-one-quarter mq2-col-one-half">
+                                    <a href="#">
+                                    <img src="img/img.jpg" alt="">
+                                    <span class="zoom"></span>
+                                    </a>
+                                    <figcaption>
+                                            <a href="#" class="arrow">Project x</a>
+                                            <p>Lorem ipsum dolor set amet</p>
+                                    </figcaption>
+                            </figure>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
+                            <figure class="grid col-one-quarter mq2-col-one-half">
+                                    <a href="#">
+                                    <img src="img/img.jpg" alt="">
+                                    <span class="zoom"></span>
+                                    </a>
+                                    <figcaption>
+                                            <a href="#" class="arrow">Project x</a>
+                                            <p>Lorem ipsum dolor set amet</p>
+                                    </figcaption>
+                            </figure>
+            </section>
+</div> <!--main-->

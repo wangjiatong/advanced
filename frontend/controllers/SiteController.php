@@ -210,4 +210,24 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    //添加产品页面
+    public function actionProducts()
+    {
+        return $this->render('products');
+    }
+    //添加服务页面
+    public function actionBusiness()
+    {
+        return $this->render('business');
+    }
+    //添加新闻页面
+    public function actionNews()
+    {
+        return $this->render('news');
+    }
+    //添加加入我们页面
+    public function actionJoin()
+    {
+        return $this->render('join');
+    }
 }
