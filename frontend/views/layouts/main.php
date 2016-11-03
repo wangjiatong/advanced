@@ -70,7 +70,7 @@ AppAsset::register($this);
                             <li><a href="index.php?r=site%2Fabout">About</a></li>
                     </ul>
                     <ul>
-                            <li><a href="works.html">Works</a></li>
+                            <li><a href="index.php?r=site%2Fproduct">Product</a></li>
                             <li><a href="services.html">Services</a></li>
                     </ul>
                     <ul>
