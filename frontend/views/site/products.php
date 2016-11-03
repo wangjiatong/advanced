@@ -4,10 +4,10 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Product';
+$this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-product">
+<div class="site-products">
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="works-page main grid-wrap">
 
