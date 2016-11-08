@@ -12,6 +12,9 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    //预留管理员权限参数
+    public $auth;
+    
 
 
     /**
@@ -33,6 +36,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            //预留管理员权限参数
+            ['auth', 'required'],
+            ['auth', 'string'],
         ];
     }
 

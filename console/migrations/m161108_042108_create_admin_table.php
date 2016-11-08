@@ -14,6 +14,10 @@ class m161108_042108_create_admin_table extends Migration
     {
         $this->createTable('admin', [
             'id' => $this->primaryKey(),
+            'username' => $this->string()->unique(),
+            'email' => $this->string()->unique(),
+            'password' => $this->string(),
+            'auth' => $this->string(),
         ]);
     }
 
