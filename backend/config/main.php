@@ -37,6 +37,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'db' => [
+            'class' => '\yii\db\Connection',
+            'dsn' => 'mysql:host=101.226.179.205;dbname=advanced',
+            'username' => 'root',
+            'password' => 'Ww070101',
+            'charset' => 'utf8',
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
