@@ -9,7 +9,7 @@ use backend\models\LoginForm;
 //为后端管理员添加引用
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
-use backend\models\SignupForm;
+use backend\models\AdminSignupForm;
 
 /**
  * Site controller
