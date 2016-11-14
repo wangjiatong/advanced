@@ -7,13 +7,13 @@ use backend\models\Admin;
 /**
  * Signup form
  */
-class SignupForm extends Model
+class AdminSignupForm extends Model
 {
     public $username;
     public $email;
     public $password;
     //预留管理员权限参数
-    public $auth;
+//    public $auth;
     
 
 
@@ -37,8 +37,8 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
             //预留管理员权限参数
-            ['auth', 'required'],
-            ['auth', 'string'],
+//            ['auth', 'required'],
+//            ['auth', 'string'],
         ];
     }
 

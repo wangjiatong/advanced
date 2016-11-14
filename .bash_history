@@ -474,3 +474,181 @@ git add error.php
 git commit -m "modified the error page"
 git add login.php 
 git commit -m "comment the passwd reset temply"
+ls
+cd backend/
+ls
+cd web/
+ls
+git add css img js
+git commit -m "add the backend template assets that backend needs"
+cd ..
+ls
+cd views/
+ls
+cd site/
+ls
+git add index.php login.php 
+cd ..
+cd layouts/
+git add main.php 
+ cd ..
+ls
+cd ..
+cd assets/
+git add AppAsset.php 
+git commit -m "init the template for backend then do something about backend login next"
+cd ..
+ls
+cd models/
+ls
+git add LoginForm.php User.php 
+git commit -m "add new models for backend users"
+cd ..
+cd config/
+ls
+git add main.php
+cd ..
+cd controllers/
+git add SiteController.php 
+git commit -m "modified the confs for new user models at backend"
+git add SiteController.php 
+cd ..
+cd models/
+git add PasswordResetRequestForm.php ResetPasswordForm.php SignupForm.php 
+cd ..
+cd views/
+cd site/
+git add requestPasswordResetToken.php resetPassword.php signup.php 
+git commit -m "create the models and views for the backend users"
+cd ..
+cd controllers/
+ls
+git add SiteController.php 
+git commit -m "change user to admin"
+cd ..
+cd models/
+git add .
+git commit -m "change the user to admin"
+cd ..
+cd config/
+git add main
+git add main.php
+git commit -m "change the user to admin"
+mysql -u root -p
+msql -u root -p
+mysql -u root -p
+git add main.php 
+git commit -m "add component db"
+yii migrate/create create_admin_table
+cd
+yii migrate/create create_admin_table
+php yii migrate/create create_admin_table
+ls
+cd console/
+ls
+cd migrations/
+ls
+cd
+php yii migrate/create create_admin_table
+cd console/
+cd migrations/
+ls
+git add m161108_042108_create_admin_table.php 
+git commit -m "create a migration"
+git push origin dev
+ls
+vi m161108_042108_create_admin_table.php 
+vi m130524_201442_init.php 
+vi m161108_042108_create_admin_table.php 
+git add m161108_042108_create_admin_table.php 
+cd ..
+ls
+cd backend/
+cd models/
+ls
+git add AdminSignupForm.php 
+git commit -m "add $auth for admin"
+cd
+yii migrate
+php yii migrate
+cd backend/
+php yii migrate
+yii migrate
+cd ..
+cd console/
+yii migrate
+php yii migrate
+cd
+ls
+php yii migrate
+php yii migrate/to m161108_042108_create_admin_table
+service mysqld status
+chkconfig --list mysqld
+mysql -u root -p
+/var/lib/mysql/mysql.sock
+php yii migrate/to m161108_042108_create_admin_table
+cd ..
+ls
+cd /
+cd etc
+ls
+cd mysqld
+cd mysql
+whereis mysql
+cd /usr/share/mysql
+ls
+cd
+ls
+git add .
+git commit -m "the first time conf for db fails, now try again"
+mysql -u root -p
+php yii migrate/to m161108_042108_create_admin_table
+cd
+ls
+init
+yii init
+./init
+php yii migrate/to m161108_042108_create_admin_table
+cd
+git add .
+git commit -m "ran a init for a try, no diff while can see"
+php yii migrate/to m161108_042108_create_admin_table
+mysql -u root -p
+mysql_upgrade -u root -p
+php yii migrate/to m161108_042108_create_admin_table
+mysql -u root -p password
+mysql -u root
+mysql -u root -p
+mysql -u root -p password
+php yii migrate/to m161108_042108_create_admin_table
+git add .
+git commit -m "add validation key in dev conf, which is abc, meaningless"
+yii migrate
+php yii migrate
+git add .
+git commit -m ".."
+php yii migrate
+php yii migrate/to m161108_042108_create_admin_table
+mysql -u root -p
+php yii migrate/to m161108_042108_create_admin_table
+php yii migrate/to
+git add .
+git commit -m "the very working conf file is under /common/config/main-local.php"
+php yii migrate
+git add .
+git commit -m "change the wrong conf file into the original status"
+yii migrate
+php yii migrate
+mysql -u root -p
+php yii migrate
+php yii migrate down
+php yii migrate/down
+mysql -u root -p
+php yii migrate/down 2
+mysql -u root -p
+php yii migrate
+mysql -u root -p
+create table admin select * from user;
+mysql -u root -p
+select * from user;
+mysql -u root -p

@@ -55,7 +55,7 @@ AppAsset::register($this);
 //    ]);
 //    NavBar::end();
     ?>
-    <?php if (!Yii::$app->user->isGuest) { ?>
+    <?php if (!Yii::$app->user->isGuest) {?>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -142,7 +142,7 @@ AppAsset::register($this);
     <hr>
 
     <footer class="well" style="fixed-bottom">
-      &copy; Strass - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+      &copy; <?= date('Y');?> 上海翌银玖德资产管理有限公司
     </footer>
     
 </div>
