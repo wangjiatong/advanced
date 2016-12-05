@@ -64,7 +64,7 @@ AppAsset::register($this);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Strass Administration</a>
+          <a class="brand" href="#">上海翌银玖德资产管理有限公司 —— 网站管理后台</a>
           <div class="btn-group pull-right">
 			<a class="btn" href="my-profile.html"><i class="icon-user"></i> Admin</a>
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -121,13 +121,13 @@ AppAsset::register($this);
         </div>
     <?php } ?>
           
-    <div class="container">
+    <!--<div class="container">-->
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
+    <!--</div>-->
 </div>
 
 <!--<footer class="footer">
@@ -141,7 +141,7 @@ AppAsset::register($this);
 
     <hr>
 
-    <footer class="well" style="fixed-bottom">
+    <footer class="well">
       &copy; <?= date('Y');?> 上海翌银玖德资产管理有限公司
     </footer>
     

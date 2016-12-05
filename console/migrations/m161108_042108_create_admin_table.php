@@ -36,6 +36,6 @@ class m161108_042108_create_admin_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('admin');
+        $this->dropTable('{{%admin}}');
     }
 }

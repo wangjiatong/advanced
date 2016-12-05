@@ -10,6 +10,9 @@ use backend\models\AdminLoginForm;
 use backend\models\PasswordResetRequestForm;
 use backend\models\ResetPasswordForm;
 use backend\models\AdminSignupForm;
+//发布新闻
+use common\models\PostNewsForm;
+//
 //
 
 //use yii\base\InvalidParamException;
@@ -29,11 +32,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'index', 'post-news', 'index', 'admin-signup'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -202,4 +205,30 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    //发布新闻
+    public function actionPostNews()
+    {
+        $model = new PostNewsForm();
+        
+        if($model->load(Yii::$app->request->post()) && $model->validate() && $model->postNews()){
+            
+            echo "post success";
+            
+        }       
+            
+        return $this->render('postNews', [
+                'model' => $model,
+            ]);
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

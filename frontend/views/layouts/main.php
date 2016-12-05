@@ -109,8 +109,8 @@ AppAsset::register($this);
                             </ul>
                     </nav>
             </footer>
-            <footer class="aligncenter">
-                &copy; <?= date('Y');?> 上海翌银玖德资产管理有限公司<a href="#"></a>
+            <footer class="">
+                &copy; <?= date('Y');?> 上海翌银玖德资产管理有限公司    <a href="http://www.shca.gov.cn/">沪ICP备16046837号-1</a>
             </footer>
     </div>
     

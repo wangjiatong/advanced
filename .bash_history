@@ -652,3 +652,68 @@ create table admin select * from user;
 mysql -u root -p
 select * from user;
 mysql -u root -p
+cd
+ls
+php yii migrate
+php yii migrate/down
+mysql -u root -p
+php yii migrate/down 2
+php yii migrate;
+mysql -u root -p
+git add .
+git commit -m "backend login successful now"
+git push origin dev
+ls
+cd backend/
+ls
+cd views/
+ls
+cd s
+cd site/
+ls
+cd /etc/nginx
+ls
+cd conf.d/
+LS
+ls
+vi yii.conf
+ls
+vi yii-test.conf 
+cd
+php yii migrate
+php yii migrate/create
+php yii migrate/create_news_table
+php yii migrate/create create_news_table
+php yii migrate
+mysql -u root -p
+ls
+php yii migrate/down
+mysql -u root -p
+php yii migrate/up
+mysql -u root -p
+cd /
+ls
+cd /etc/nginx
+ls
+cd conf.d/
+ls
+vi yii.conf
+reboot
+mysql -u root -p
+php composer.phar require --prefer-dist yiisoft/yii2-debug
+composer require --prefer-dist yiisoft/yii2-debug
+ls
+vi composer.json
+cd /etc/nginx/conf.d
+ls
+vi yii-test.conf
+cd
+vi composer.json 
+composer update
+composer require --prefer-dist yiisoft/yii2-debug
+mysql -u root -p
+vi /etc/nginx/conf.d/yii-test.conf 
+mysql -u root -p
+vi /etc/nginx/conf.d/yii-test.conf 
+vi /etc/nginx/conf.d/yii.conf 
+mysql -u root -p
