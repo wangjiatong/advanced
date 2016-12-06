@@ -24,10 +24,10 @@ $this->registerJs('$(document).ready(function(){$("#join").addClass("navactive")
                     </p>
                     <menu>
                             <ul>
-                                    <li><a href="#navteam" class="arrow">Our team</a></li>
-                                    <li><a href="#navphilo" class="arrow">Our philosophy</a></li>
+                                    <li><a href="#navteam" class="arrow">销售</a></li>
+<!--                                    <li><a href="#navphilo" class="arrow">Our philosophy</a></li>
                                     <li><a href="#navplace" class="arrow">Our place</a></li>
-                                    <li><a href="#navother" class="arrow">Our lorem</a></li>
+                                    <li><a href="#navother" class="arrow">Our lorem</a></li>-->
                             </ul>
                     </menu>
             </aside>
@@ -36,12 +36,24 @@ $this->registerJs('$(document).ready(function(){$("#join").addClass("navactive")
                     <img src="img/team.jpg" alt="" >
 
                     <article id="navteam">
-                    <h2>Our team</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
+                    <h2>销售</h2>
+                    <p>岗位职责：<br />
+
+1）35周岁（含）以下，原则上全日制本科及以上学历毕业； <br />
+
+2）具有高度责任心与事业心，具备良好的金融、经济知识背景与学习能力；<br />
+
+3）性格外向，吃苦耐劳，具有良好沟通能力、自律能力、团队协作能力、主动营销意识；<br />
+
+4）银行/证券/保险等相关金融工作经验者优先。 </p>
+                    <p>岗位要求： <br />
+
+1）拓展和维护高净值客户； <br />
+
+2）主动积极向潜在客户营销公司产品，为客户提供专业化咨询、建议与方案。</p>
                     </article>
 
-                    <article id="navphilo">
+<!--                    <article id="navphilo">
                     <h2>Our philosophy</h2>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
@@ -57,7 +69,7 @@ $this->registerJs('$(document).ready(function(){$("#join").addClass("navactive")
                     <h2>Our lorem</h2>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-                    </article>
+                    </article>-->
 
             </section>
 		
