@@ -14,7 +14,7 @@ $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive")
 
             <header class="grid col-full">
                     <hr>
-                    <p class="fleft">新闻研报</p>
+                    <p class="fleft">新闻动态</p>
             </header>
 
 

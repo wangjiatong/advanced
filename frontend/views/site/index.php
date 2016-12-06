@@ -61,7 +61,7 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
     <section class="services grid-wrap">
             <header class="grid col-full">
                     <hr>
-                    <p class="fleft">新闻研报</p>
+                    <p class="fleft">新闻动态</p>
                     <a href="index.php?r=site%2Fnews" class="arrow fright">see more news</a>
             </header>
 

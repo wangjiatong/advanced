@@ -717,3 +717,44 @@ mysql -u root -p
 vi /etc/nginx/conf.d/yii-test.conf 
 vi /etc/nginx/conf.d/yii.conf 
 mysql -u root -p
+ls
+git add .
+git commit -m "post fails, before change the frontend text"
+git push origin dev
+ls
+cd ..
+ls
+cd advanced
+git pull
+cd
+ls
+cd ..
+cd
+ls
+cd
+git branch
+git push origin dev
+ls
+pwd
+cd ..
+ls
+cd advanced
+git pull
+pwd
+cd /etc/nginx
+ls
+cd conf.d/
+ls
+vi yii.conf 
+cd
+git add .
+git commit -m "something left"
+git push origin dev
+cd ..
+cd advanced
+git pull
+pwd
+git pull
+git branch
+cd
+git branch

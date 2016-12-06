@@ -75,7 +75,7 @@ AppAsset::register($this);
                             <li><a href="index.php?r=site%2Fbusiness" id="business">业务介绍</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fnews" id="news">新闻研报</a></li>
+                            <li><a href="index.php?r=site%2Fnews" id="news">新闻动态</a></li>
                             <li><a href="index.php?r=site%2Fcontact" id="contact">联系我们</a></li>
                     </ul>
                     <ul>
@@ -102,7 +102,7 @@ AppAsset::register($this);
 
                     <nav class="grid col-one-third ">
                             <ul>
-                                    <li><a href="index.php?r=site%2Fnews">新闻研报</a></li>
+                                    <li><a href="index.php?r=site%2Fnews">新闻动态</a></li>
                                     <li><a href="index.php?r=site%2Fcontact">联系我们</a></li>
                                     <li><a href="index.php?r=site%2Fjoin">加入我们</a></li>
                                     <li><a href="#">登录</a></li>
