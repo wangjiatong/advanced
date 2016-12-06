@@ -66,19 +66,19 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
             </header>
 
             <article class="grid col-one-third mq3-col-full">
-                    <aside>01</aside>
+                    <aside>公司动态</aside>
                     <h5>Web design</h5>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
             </article>
 
             <article class="grid col-one-third mq3-col-full">
-                    <aside>02</aside>
+                    <aside>研究报告</aside>
                     <h5>Web development</h5>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
             </article>
 
             <article class="grid col-one-third mq3-col-full">
-                    <aside>03</aside>
+                    <aside>媒体报道</aside>
                     <h5>Graphic design</h5>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>
             </article>
