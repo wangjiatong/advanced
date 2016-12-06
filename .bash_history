@@ -758,3 +758,10 @@ git pull
 git branch
 cd
 git branch
+ls
+git add .
+git commit -m "frontend static content is done"
+git push origin dev
+cd ..
+cd advanced
+git pull
