@@ -73,9 +73,9 @@ $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactiv
                         <a href="#">Designa Studio on Google+</a>
                 </p>-->
                 <p class="mbottom">
-                        扫描下方二维码，<br />
+                        扫描下方二维码<br />
                         关注我们的微信公众号<br />
-                        <img src="#">
+                <img src="/img/erweima.jpg">
                 </p>
                 <p>
                         <h6>工作时间 </h6>

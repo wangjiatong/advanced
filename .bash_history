@@ -765,3 +765,31 @@ git push origin dev
 cd ..
 cd advanced
 git pull
+git add .
+git commit -m "updated the frontend"
+git push origin dev
+cd ..
+cd advanced
+git pull
+git add .
+git commit -m "beian"
+\git branch
+cd ..
+cd
+git add .
+git commit -m "beian"
+git push origin dev
+git checkout
+git checkout master
+git branch
+git merge dev
+cd ..
+cd advanced
+git pull
+cd 
+git add .
+git checkout dev
+git branch
+git add .
+git commit -m "beian"
+git push origin dev
