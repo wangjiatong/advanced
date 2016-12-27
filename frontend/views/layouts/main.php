@@ -61,26 +61,26 @@ AppAsset::register($this);
     
     <header id="navtop">
             <a href="/" class="logo fleft">
-                    <img src="img/logo.png" alt="上海翌银玖德资产管理有限公司">
+                    <img src="/img/logo.png" alt="上海翌银玖德资产管理有限公司">
             </a>
 
             <nav class="fright">
                     <ul>
                             <!--<li><a href="/" class="navactive">首页</a></li>-->
                             <li><a href="/" id="index">首页</a></li>
-                            <li><a href="index.php?r=site%2Fabout" id="about">关于我们</a></li>
+                            <li><a href="/site/about" id="about">关于我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fproducts" id="products">旗下产品</a></li>
-                            <li><a href="index.php?r=site%2Fbusiness" id="business">业务介绍</a></li>
+                            <li><a href="/site/products" id="products">旗下产品</a></li>
+                            <li><a href="/site/business" id="business">业务介绍</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fnews" id="news">新闻动态</a></li>
-                            <li><a href="index.php?r=site%2Fcontact" id="contact">联系我们</a></li>
+                            <li><a href="/site/news" id="news">新闻动态</a></li>
+                            <li><a href="/site/contact" id="contact">联系我们</a></li>
                     </ul>
                     <ul>
-                            <li><a href="index.php?r=site%2Fjoin" id="join">加入我们</a></li>
-                            <li><a href="index.php?r=site%2Flogin" id="login">登录</a></li>
+                            <li><a href="/site/join" id="join">加入我们</a></li>
+                            <li><a href="/site/login" id="login">登录</a></li>
                     </ul>
             </nav>
     </header>
@@ -91,9 +91,9 @@ AppAsset::register($this);
             <footer class="grid-wrap">
                     <ul class="grid col-one-third social">
                                     <li><a href="/">首页</a></li>
-                                    <li><a href="index.php?r=site%2Fabout">关于我们</a></li>
-                                    <li><a href="index.php?r=site%2Fproducts">旗下产品</a></li>
-                                    <li><a href="index.php?r=site%2Fbusiness">业务介绍</a></li>
+                                    <li><a href="/site/about">关于我们</a></li>
+                                    <li><a href="/site/products">旗下产品</a></li>
+                                    <li><a href="/site/business">业务介绍</a></li>
                     </ul>
 
                     <div class="up grid col-one-third ">
@@ -102,10 +102,10 @@ AppAsset::register($this);
 
                     <nav class="grid col-one-third ">
                             <ul>
-                                    <li><a href="index.php?r=site%2Fnews">新闻动态</a></li>
-                                    <li><a href="index.php?r=site%2Fcontact">联系我们</a></li>
-                                    <li><a href="index.php?r=site%2Fjoin">加入我们</a></li>
-                                    <li><a href="#">登录</a></li>
+                                    <li><a href="/site/news">新闻动态</a></li>
+                                    <li><a href="/site/contact">联系我们</a></li>
+                                    <li><a href="/site/join">加入我们</a></li>
+                                    <li><a href="/site/login">登录</a></li>
                             </ul>
                     </nav>
             </footer>

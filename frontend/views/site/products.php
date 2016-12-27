@@ -35,121 +35,121 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
                                 <a href="#" >
-                                        <img src="img/img.jpg" alt="" >
+                                        <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="work1.html" class="arrow">Project page!</a>
+                                        <a href="/" class="arrow">Project page!</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_2">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_3">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_3">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_3">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_3">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_2">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>
 
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
-                                <a href="#" >
-                                <img src="img/img.jpg" alt="" >
+                                <a href="/" >
+                                <img src="/img/img.jpg" alt="" >
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="#" class="arrow">Project x</a>
+                                        <a href="/" class="arrow">Project x</a>
                                         <p>Lorem ipsum dolor set amet</p>
                                 </figcaption>
                         </figure>

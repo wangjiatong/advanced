@@ -97,7 +97,7 @@ $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactiv
                                 </li>
                                 <li>
                                         <label for="email">邮箱:</label>
-                                        <input type="email" name="email" id="email" required placeholder="YourName@163.com" class="required email">
+                                        <input type="email" name="email" id="email" required placeholder="例如：YourName@163.com" class="required email">
                                 </li>	
                                 <li>
                                         <label for="message">留言:</label>
