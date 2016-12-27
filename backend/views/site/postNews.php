@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
-//use yii\widgets\ActiveForm;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
+//use yii\bootstrap\ActiveForm;
 ?>
 <div class="span9">
           <div class="row-fluid">

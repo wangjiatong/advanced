@@ -66,24 +66,24 @@ AppAsset::register($this);
           </a>
           <a class="brand" href="#">上海翌银玖德资产管理有限公司 —— 网站管理后台</a>
           <div class="btn-group pull-right">
-			<a class="btn" href="my-profile.html"><i class="icon-user"></i> Admin</a>
+			<a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?></a>
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-			  <li><a href="my-profile.html">Profile</a></li>
+			  <li><a href="#">个人资料</a></li>
               <li class="divider"></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="<?= '/site/logout'?>">注销</a></li>
             </ul>
           </div>
-          <div class="nav-collapse">
+<!--          <div class="nav-collapse">
             <ul class="nav">
-			<li><a href="index.html">Home</a></li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+			<li><a href="http://246867.ichengyun.net:83/">后台首页</a></li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">用户 <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="new-user.html">New User</a></li>
+					<li><a href="#">管理员</a></li>
 					<li class="divider"></li>
-					<li><a href="users.html">Manage Users</a></li>
+					<li><a href="#">会员</a></li>
 				</ul>
 			  </li>
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Roles <b class="caret"></b></a>
@@ -95,7 +95,7 @@ AppAsset::register($this);
 			  </li>
 			  <li><a href="stats.html">Stats</a></li>
             </ul>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -105,17 +105,24 @@ AppAsset::register($this);
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header"><i class="icon-wrench"></i> Administration</li>
-              <li class="active"><a href="users.html">Users</a></li>
-              <li><a href="roles.html">Roles</a></li>
-              <li class="nav-header"><i class="icon-signal"></i> Statistics</li>
-              <li><a href="stats.html">General</a></li>
-              <li><a href="user-stats.html">Users</a></li>
-              <li><a href="visitor-stats.html">Visitors</a></li>
-              <li class="nav-header"><i class="icon-user"></i> Profile</li>
-              <li><a href="my-profile.html">My profile</a></li>
-              <li><a href="#">Settings</a></li>
-			  <li><a href="#">Logout</a></li> 
+              <li class="nav-header"><i class="icon-wrench"></i> 管理员</li>
+              <li class="active"><a href="#">添加管理员</a></li>
+              <li class=""><a href="#">管理管理员</a></li>
+              <li class="nav-header"><i class="icon-user"></i> 会员</li>
+              <li class=""><a href="#">添加会员</a></li>
+              <li class=""><a href="#">管理会员</a></li>
+              <li class="nav-header"><i class="icon-signal"></i> 旗下产品</li>
+              <li><a href="#">添加分类</a></li>
+              <li><a href="#">管理分类</a></li>
+              <li><a href="#">添加产品</a></li>
+              <li><a href="#">管理产品</a></li>
+              <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
+              <li><a href="/news/add-column">添加分类</a></li>
+              <li><a href="/news/manage-news-columns">管理分类</a></li>
+              <li><a href="/news/post">添加新闻</a></li>
+              <li><a href="/news/index">管理新闻</a></li>
+              <li class="nav-header"><i class="icon-signal"></i> 联系我们</li>
+              <li><a href="#">查看邮件</a></li>
             </ul>
           </div>
         </div>

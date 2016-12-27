@@ -32,11 +32,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'index', 'post-news', 'index', 'admin-signup'],
+                        'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -206,21 +206,21 @@ class SiteController extends Controller
         ]);
     }
     //发布新闻
-    public function actionPostNews()
-    {
-        $model = new PostNewsForm();
-        
-        if($model->load(Yii::$app->request->post()) && $model->validate() && $model->postNews()){
-            
-            echo "post success";
-            
-        }       
-            
-        return $this->render('postNews', [
-                'model' => $model,
-            ]);
-        
-    }
+//    public function actionPostNews()
+//    {
+//        $model = new PostNewsForm();
+//        
+//        if($model->load(Yii::$app->request->post()) && $model->validate() && $model->postNews()){
+//            
+//            echo "post success";
+//            
+//        }       
+//            
+//        return $this->render('postNews', [
+//                'model' => $model,
+//            ]);
+//        
+//    }
     
     
     

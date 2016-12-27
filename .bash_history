@@ -793,3 +793,23 @@ git branch
 git add .
 git commit -m "beian"
 git push origin dev
+git add .
+git commit -m "update the erweima"
+git push origin dev
+chmod 0600 /usr/share/nginx/html/advanced-test/.ssh/id_rsa
+git push origin dev
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd
+yii migration
+php yii migration
+php yii migrate
+php yii migrate/create
+php yii migrate/create create_news_column_table
+php yii migrate/up
+mysql -u root -p
+cd
+composer require kucha/ueditor "*"
+mysql -u root -p

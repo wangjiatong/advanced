@@ -29,7 +29,7 @@ class PostNewsForm extends Model
         $news->title = $this->title;
         $news->content = $this->content;
         $news->column = $this->column;
-        
+//        $news->save();
         return $news->save() ? $news : null;
     }
 }

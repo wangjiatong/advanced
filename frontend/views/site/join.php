@@ -20,7 +20,7 @@ $this->registerJs('$(document).ready(function(){$("#join").addClass("navactive")
 
 
             <aside class="grid col-one-quarter mq2-col-full">
-                    <p class="mbottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis.
+                    <p class="mbottom">诚邀有志之士与我们共同铸造辉煌。
                     </p>
                     <menu>
                             <ul>
@@ -33,7 +33,7 @@ $this->registerJs('$(document).ready(function(){$("#join").addClass("navactive")
             </aside>
 
             <section class="grid col-three-quarters mq2-col-full">
-                    <img src="img/team.jpg" alt="" >
+                    <img src="/img/team.jpg" alt="" >
 
                     <article id="navteam">
                     <h2>销售</h2>
