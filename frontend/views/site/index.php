@@ -100,7 +100,7 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
                                     </a>
                                     <figcaption>
                                             <a href="#" class="arrow">固定收益</a>
-                                            <p>Lorem ipsum dolor set amet</p>
+                                            <p>可以按照银行定期存款、国库券等金融产<br />品的特性来理解“固定收益”的含义。</p>
                                     </figcaption>
                             </figure>
 
@@ -111,7 +111,7 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
                                     </a>
                                     <figcaption>
                                             <a href="#" class="arrow">定向增发</a>
-                                            <p>Lorem ipsum dolor set amet</p>
+                                            <p>定向增发是指上市公司向符合条件的少数<br />特定投资者非公开发行股份的行为。</p>
                                     </figcaption>
                             </figure>
 
@@ -122,7 +122,7 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
                                     </a>
                                     <figcaption>
                                             <a href="#" class="arrow">股权投资</a>
-                                            <p>Lorem ipsum dolor set amet</p>
+                                            <p>股权投资通常是为长期(至少一年)持有一<br />个公司的股票或长期的投资一个公司。</p>
                                     </figcaption>
                             </figure>
 
@@ -132,8 +132,8 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-                                            <a href="#" class="arrow">Project x</a>
-                                            <p>Lorem ipsum dolor set amet</p>
+<!--                                            <a href="#" class="arrow">Project x</a>
+                                            <p>Lorem ipsum dolor set amet</p>-->
                                     </figcaption>
                             </figure>
             </section>
