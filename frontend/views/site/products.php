@@ -19,12 +19,12 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
 
 
         <aside class="grid col-one-quarter mq2-col-full">
-                <p class="mbottom">Keep the same size ratio for thumbnails to avoid breaking the grid because of the margin-bottom.</p>
+                <!--<p class="mbottom">Keep the same size ratio for thumbnails to avoid breaking the grid because of the margin-bottom.</p>-->
                 <menu>
-                        <a  id="work_all" class="arrow buttonactive">All</a><br>
-                        <a  id="work_1" class="arrow">Web design</a><br>
-                        <a  id="work_2" class="arrow">Web development</a><br>
-                        <a  id="work_3" class="arrow">Graphic design</a>
+                        <a  id="work_all" class="arrow buttonactive">所有</a><br>
+                        <a  id="work_1" class="arrow">固定收益</a><br>
+                        <a  id="work_2" class="arrow">定向增发</a><br>
+                        <a  id="work_3" class="arrow">股权投资</a>
                 </menu>
         </aside>
 

@@ -12,7 +12,9 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+//数据提供器
+use yii\data\ActiveDataProvider;
+use common\models\News;
 /**
  * Site controller
  */
@@ -26,7 +28,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'products'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -36,6 +38,11 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout'],
                         'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['product'],
+                        'allow' => false,
                         'roles' => ['@'],
                     ],
                 ],
@@ -223,7 +230,13 @@ class SiteController extends Controller
     //添加新闻页面
     public function actionNews()
     {
-        return $this->render('news');
+        $dataProvider = new ActiveDataProvider([
+            'query' => News::find(),
+        ]);
+        
+        return $this->render('news', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
     //添加加入我们页面
     public function actionJoin()
