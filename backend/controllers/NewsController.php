@@ -16,6 +16,10 @@ use common\models\PostNewsForm;
 //添加新闻分类
 use common\models\NewsColumnForm;
 use common\models\NewsColumn;
+//数据提供器
+use yii\data\ActiveDataProvider;
+//新闻模型
+use common\models\News;
 
 class NewsController extends Controller
 {
@@ -25,13 +29,27 @@ class NewsController extends Controller
     return [
         'upload' => [
             'class' => 'kucha\ueditor\UEditorAction',
+            'config' => [
+                "imageUrlPrefix"  => "",//图片访问路径前缀
+                "imagePathFormat" => "/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
+                "imageRoot" => Yii::getAlias("@webroot"),
+    ],
         ]
     ];
     }
     //管理新闻
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+            'query' => News::find(),
+            'pagination' =>[
+                'pageSize' => 8,
+                ],
+        ]);
+        
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
     //发布新闻
     public function actionPost()
@@ -62,11 +80,14 @@ class NewsController extends Controller
     //管理新闻分类（查看所有分类）
     public function actionManageNewsColumns()
     {
-        $model = new NewsColumnForm();
+        $dataProvider = new ActiveDataProvider([
+            'query' => NewsColumn::find(),
+        ]);
         
-        $data = $model->getAllNewsColumns();
+        return $this->render('manageColumns', [
+            'dataProvider' => $dataProvider,
+        ]);
         
-        return $this->render('manageColumns', ['data' => $data]);
     }
     
 }

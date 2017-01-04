@@ -813,3 +813,50 @@ mysql -u root -p
 cd
 composer require kucha/ueditor "*"
 mysql -u root -p
+git add .
+git commit -m "static frontend"
+git push origin dev
+cd
+cd ..
+cd advanced
+git pull
+cd
+pwd
+git add .
+git commit -m "update the frontend"
+git push origin dev
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd
+git add .
+git commit -m "before gii"
+git push origin dev
+cd
+cd upload
+cd /web
+ls
+cd backend
+lsa
+ls
+cd web
+ls -a
+ls -l
+chmod 777 upload
+ls -l
+cd upload/
+ls -l
+chmod 777 image
+ls -l
+cd image/
+ls
+ls -l
+cd ..
+ls -l
+pwd
+ls
+cd image/
+ls
+ rm -rf 20170103/
+ls

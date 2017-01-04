@@ -8,7 +8,7 @@ use kucha\ueditor\UEditor;
 <div class="span9">
           <div class="row-fluid">
                 <div class="page-header">
-                        <h1>新闻管理 <small>发布</small></h1>
+                        <h1>新闻 <small>发布</small></h1>
                 </div>
                 <!--<form class="form-horizontal">-->
                         <fieldset>

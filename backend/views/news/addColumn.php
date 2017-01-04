@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 <div class="span9">
           <div class="row-fluid">
                 <div class="page-header">
-                        <h1>新闻管理 <small>发布</small></h1>
+                        <h1>新闻分类 <small>添加</small></h1>
                 </div>
                         <fieldset>
                             <?php $form = ActiveForm::begin();?>
