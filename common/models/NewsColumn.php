@@ -15,6 +15,13 @@ class NewsColumn extends ActiveRecord
     //返回栏目表名
     public static function tableName() 
     {
-        return '{{%news_column}}';
-    }   
+        return 'news_column';
+    }
+    public function rules()
+    {
+        return [
+                    [['news_column'], 'required'],
+               ];
+    }
+    
 }

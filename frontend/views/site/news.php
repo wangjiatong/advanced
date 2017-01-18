@@ -7,6 +7,7 @@ use yii\helpers\Html;
 $this->title = '新闻研报';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive");});');
+
 ?>
 <div class="site-news">
     <!--<h1><?= Html::encode($this->title) ?></h1>-->

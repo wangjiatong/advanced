@@ -227,15 +227,24 @@ class SiteController extends Controller
     {
         return $this->render('business');
     }
-    //添加新闻页面
+//    //添加新闻页面
+//    public function actionNews()
+//    {
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => News::find(),
+//        ]);
+//        
+//        return $this->render('news', [
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
+        //添加新闻页面
     public function actionNews()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => News::find(),
-        ]);
+        $model = News::find()->orderBy('created_at')->all();
         
         return $this->render('news', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
     //添加加入我们页面

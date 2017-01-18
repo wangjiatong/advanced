@@ -30,10 +30,10 @@ class NewsColumnForm extends Model
         return $_news_column->save();
     }
     //管理新闻分类（显示所有）
-    public function getAllNewsColumns()
-    {
-        $res = NewsColumn::find()->select('*')->asArray()->all();
-        
-        return $res;
-    }
+//    public function getAllNewsColumns()
+//    {
+//        $res = NewsColumn::find()->select('*')->asArray()->all();
+//        
+//        return $res;
+//    }
 }

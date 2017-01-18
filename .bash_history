@@ -860,3 +860,36 @@ cd image/
 ls
  rm -rf 20170103/
 ls
+ls -l
+cd backend/
+ls -l
+chmod 777 views
+ls -l
+chmod 755 views
+ls -l
+mysql -u root -p
+cd
+git add .
+git commit -m "temp"
+git push origin dev
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd
+yii migrate/down
+php yii migrate/down
+php yii migrate/down 2
+php yii migrate/up
+mysql -u root -p
+cd
+php yii migrate/down 2
+php yii migrate/up 2
+mysql -u root -p
+cd
+php yii migrate/down
+php yii migrate/down 2
+php yii migrate/down 3
+php yii migrate/down 2
+php yii migrate/up 2
+mysql -u root -p

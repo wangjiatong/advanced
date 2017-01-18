@@ -12,7 +12,7 @@ use kucha\ueditor\UEditor;
                 </div>
                 <!--<form class="form-horizontal">-->
                         <fieldset>
-                            <?php $form = ActiveForm::begin(['method' => 'post', 'action' => ['/news/post'],]);?>
+                            <?php $form = ActiveForm::begin();?>
                                 <div class="control-group">
                                         <!--<label class="control-label" for="name">标题</label>-->
                                         <div class="controls">
