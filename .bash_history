@@ -923,3 +923,10 @@ php yii migrate/create drop_column_column_for_news_tables;
 php yii migrate/up
 use advanced;
 mysql -u root -p
+cd
+git add .
+git commit -m "finished the news function"
+git push origin dev
+cd ..
+ls
+cd advanced
