@@ -15,6 +15,10 @@ use frontend\models\ContactForm;
 //数据提供器
 use yii\data\ActiveDataProvider;
 use common\models\News;
+//分页
+use yii\data\Pagination;
+//新闻分类
+use common\models\NewsColumn;
 /**
  * Site controller
  */
@@ -238,18 +242,65 @@ class SiteController extends Controller
 //            'dataProvider' => $dataProvider,
 //        ]);
 //    }
-        //添加新闻页面
+        //新闻页面
     public function actionNews()
     {
-        $model = News::find()->orderBy('created_at')->all();
+        $query = News::find()->orderBy('created_at DESC');
+        
+        $countQuery = clone $query;
+        
+        $count = $countQuery->count();
+        
+        $pages = new Pagination(['totalCount' => $count,
+//            'pageSize' => 4,
+            'defaultPageSize' => 4,
+//            'validatePage' => false,
+            ]);
+        
+        $models = $query->offset($pages->offset)->limit($pages->limit)->all();
         
         return $this->render('news', [
-            'model' => $model,
+            'models' => $models,
+            'pages' => $pages,
         ]);
     }
     //添加加入我们页面
     public function actionJoin()
     {
         return $this->render('join');
+    }
+    //新闻详情页
+    public function actionArticle($id)
+    {
+        $model = News::findOne($id);
+        return $this->render('article',
+                [
+                    'model' => $model,
+                ]);
+    }
+    //新闻详情页按栏目显示新闻
+    public function actionNewsColumn($id)
+    {
+//        $news = News::find()->orderBy('created_at desc');
+        
+          $news_column = NewsColumn::findOne($id);
+          
+          $news = $news_column->getNews();
+          
+//        $count = $news->count();
+          
+          $count = $news->count();
+          
+        $pages = new Pagination([
+            'totalCount' => $count,
+            'defaultPageSize' => 4,
+        ]);
+        
+        $models = $news->offset($news->offset)->limit($news->limit)->all();
+        
+        return $this->render('newsColumn', [
+            'models' => $models,
+            'pages' => $pages,
+        ]);
     }
 }

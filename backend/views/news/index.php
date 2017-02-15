@@ -14,7 +14,7 @@ use yii\helpers\Html;
                                     ['class' => 'yii\grid\SerialColumn'],
                                     'id',
                                     'title',
-                                    'column',
+                                    'column_id',
                                     'created_at',
                                     [
                                         'class' => 'yii\grid\ActionColumn',

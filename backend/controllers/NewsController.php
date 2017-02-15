@@ -41,7 +41,7 @@ class NewsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => News::find(),
+            'query' => News::find()->orderBy('created_at desc'),
             'pagination' =>[
                 'pageSize' => 8,
                 ],
@@ -57,7 +57,7 @@ class NewsController extends Controller
         $model = new PostNewsForm();
 
         if($model->load(Yii::$app->request->post()) && $model->postNews()){
-            return $this->redirect(['news-view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }else{    
             return $this->render('post', ['model' => $model,]);
         }
@@ -69,7 +69,7 @@ class NewsController extends Controller
         
         if($model->load(Yii::$app->request->post()) && $model->postNewsColumn())
         {
-            echo "post success";
+            return $this->redirect(['manage-news-columns']);
         }
         
         return $this->render('addColumn', ['model'=> $model]);

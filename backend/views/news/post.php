@@ -20,6 +20,12 @@ use kucha\ueditor\UEditor;
                                         </div>
                                 </div>
                                 <div class="control-group">
+                                        <!--<label class="control-label" for="name">标题</label>-->
+                                        <div class="controls">
+                                                <?= $form->field($model, 'summary')->label('摘要（首页及新闻页显示）'); ?>
+                                        </div>
+                                </div>
+                                <div class="control-group">
                                         <!--<label class="control-label" for="email">正文</label>-->
                                         <div class="controls">                                              
                                                 <?= $form->field($model, 'content')->widget('kucha\ueditor\UEditor',[]); ?>
@@ -28,7 +34,7 @@ use kucha\ueditor\UEditor;
                                 <div class="control-group">
                                         <!--<label class="control-label" for="role">栏目</label>-->
                                         <div class="controls">
-                                                <?= $form->field($model, 'column')->label('新闻分类')->dropDownList(NewsColumn::find()->select(['news_column', 'id'])->indexBy('news_column')->column(), ['prompt' => '请选择新闻分类']); ?>
+                                                <?= $form->field($model, 'column_id')->label('新闻分类')->dropDownList(NewsColumn::find()->select(['news_column', 'id'])->indexBy('id')->column(), ['prompt' => '请选择新闻分类']); ?>
                                         </div>
                                 </div>	
                                 <div class="control-group">

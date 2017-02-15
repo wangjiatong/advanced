@@ -23,5 +23,10 @@ class NewsColumn extends ActiveRecord
                     [['news_column'], 'required'],
                ];
     }
+    //与新闻的对应关系
+    public function getNews()
+    {
+        return $this->hasMany(News::className(), ['column_id' => 'id']);
+    }
     
 }

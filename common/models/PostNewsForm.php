@@ -10,16 +10,17 @@ class PostNewsForm extends Model
 {
     public $id;
     public $title;
+    public $summary;
     public $content;
-    public $column;
     public $created_at;
+    public $column_id;
 
 
 
     public function rules()
     {
         return [
-            [['title', 'content', 'column'], 'required'],
+            [['title', 'summary', 'content', 'column_id'], 'required'],
         ];
     }
     
@@ -32,8 +33,9 @@ class PostNewsForm extends Model
         $news = new News();
         $news->id = $this->id;
         $news->title = $this->title;
+        $news->summary = $this->summary;
         $news->content = $this->content;
-        $news->column = $this->column;
+        $news->column_id = $this->column_id;
         $news->created_at = date("Y-m-d");
 //        $news->save();
         return $news->save() ? $news : null;
