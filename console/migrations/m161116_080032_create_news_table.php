@@ -23,6 +23,7 @@ class m161116_080032_create_news_table extends Migration
             'title' => $this->string()->notNull(),
             'content' => $this->text()->notNull(),
             'column' => $this->string()->notNull(),
+            'created_at' => $this->string()->notNull(),
         ], $tableOptions);
     }
 

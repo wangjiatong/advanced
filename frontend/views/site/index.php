@@ -4,6 +4,7 @@
 
 $this->title = '上海翌银玖德资产管理有限公司——官方网站';
 $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive");});');
+use frontend\components\NewsFeed;
 ?>
 <div class="home-page main">
     
@@ -66,24 +67,8 @@ $this->registerJs('$(document).ready(function(){$("#index").addClass("navactive"
                     <p class="fleft">新闻动态</p>
                     <a href="/site/news" class="arrow fright">see more news</a>
             </header>
+            <?=NewsFeed::widget()?>
 
-            <article class="grid col-one-third mq3-col-full">
-                    <aside>公司动态</aside>
-                    <h5>2016翌银玖德高净值客户年终交流会-七彩云南昆明之行集锦2</h5>
-                    <p>由于客户较多，公司本次年终交流会分为2批，我们又于12月8日至12月11日与公司45位高净值客户前往昆明中信嘉丽泽度假村，参加一年一度的年终交流会，相互学习，共同成长。</p>
-            </article>
-
-            <article class="grid col-one-third mq3-col-full">
-                    <aside>研究报告</aside>
-                    <h5>三年期定增专题报告 98.48%解禁项目绝对收益为正收益</h5>
-                    <p>富国大通投研中心统计，今年以来，截至2016年11月30日，三年期定增项目共解禁66宗，解禁规模为1367.17亿元，解禁绝对收益率均值为193.86%，解禁绝对收益率中位数为136.70%。</p>
-            </article>
-
-            <article class="grid col-one-third mq3-col-full">
-                    <aside>媒体报道</aside>
-                    <h5>你有没有想过：为什么私募基金的投资门槛是100万？</h5>
-                    <p>对于私募投资要100万起步，投资者总是会抱怨不停：银行理财产品的门槛才5万元，私募基金凭什么要100万？这不是限制我们投资嘛！那么私募基金到底是什么呢？来我们好好聊聊吧。</p>
-            </article>
     </section>
 
     <section class="works grid-wrap">

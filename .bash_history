@@ -860,3 +860,66 @@ cd image/
 ls
  rm -rf 20170103/
 ls
+ls -l
+cd backend/
+ls -l
+chmod 777 views
+ls -l
+chmod 755 views
+ls -l
+mysql -u root -p
+cd
+git add .
+git commit -m "temp"
+git push origin dev
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd
+yii migrate/down
+php yii migrate/down
+php yii migrate/down 2
+php yii migrate/up
+mysql -u root -p
+cd
+php yii migrate/down 2
+php yii migrate/up 2
+mysql -u root -p
+cd
+php yii migrate/down
+php yii migrate/down 2
+php yii migrate/down 3
+php yii migrate/down 2
+php yii migrate/up 2
+mysql -u root -p
+cd ..
+ls
+cd
+pwd
+git add .
+git commit -m "finished backend news update, then turn to the frontend"
+git push origin dev
+mysql -u root -p
+ls
+php yii migrate/up
+php yii migrate/up 1
+php yii migrate
+php yii migrate/redo
+php yii migrate
+php yii migrate/up
+php yii migrate/down
+php yii migrate/to 161116_080032
+php yii migrate/create add_summary_column_for_news_table;
+php yii migrate
+mysql -u root -p
+cd
+php yii migrate/create add_column_id_for_news_table;
+yii migrate/up
+php yii migrate/up
+mysql -u root -p
+cd
+php yii migrate/create drop_column_column_for_news_tables;
+php yii migrate/up
+use advanced;
+mysql -u root -p

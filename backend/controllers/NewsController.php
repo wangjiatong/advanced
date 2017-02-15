@@ -41,7 +41,7 @@ class NewsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => News::find(),
+            'query' => News::find()->orderBy('created_at desc'),
             'pagination' =>[
                 'pageSize' => 8,
                 ],
@@ -57,13 +57,10 @@ class NewsController extends Controller
         $model = new PostNewsForm();
 
         if($model->load(Yii::$app->request->post()) && $model->postNews()){
-            
-            echo "post success";
-            
-        }       
-            
-        return $this->render('post', ['model' => $model]);
-        
+            return $this->redirect(['index']);
+        }else{    
+            return $this->render('post', ['model' => $model,]);
+        }
     }
     //添加新闻分类
     public function actionAddColumn()
@@ -72,7 +69,7 @@ class NewsController extends Controller
         
         if($model->load(Yii::$app->request->post()) && $model->postNewsColumn())
         {
-            echo "post success";
+            return $this->redirect(['manage-news-columns']);
         }
         
         return $this->render('addColumn', ['model'=> $model]);
@@ -89,5 +86,74 @@ class NewsController extends Controller
         ]);
         
     }
+    //修改新闻分类
+    public function actionNewsColumnUpdate($id)
+    {
+        $model = $this->findColumnModel($id);
+        
+        if($model->load(Yii::$app->request->post()) && $model->save()){
+            return $this->redirect(['manage-news-columns']);
+        }else{
+            return $this->render('newsColumnUpdate', [
+                'model' => $model,
+            ]);
+        }
+    }
+    //删除新闻分类
+    public function actionNewsColumnDelete($id)
+    {
+        $this->findColumnModel($id)->delete();
+
+        return $this->redirect(['manage-news-columns']);
+    }
+    //后台单篇新闻视图控制器
+    public function actionNewsView($id)
+    {
+        return $this->render('newsView', [
+            'model' => $this->findNewsModel($id),
+        ]);
+    }
+    //后台单篇新闻修改控制器
+    public function actionNewsUpdate($id)
+    {
+        $model = $this->findNewsModel($id);
+        
+        if($model->load(Yii::$app->request->post()) && $model->save()){
+            return $this->redirect(['news-view', 'id' => $model->id]);
+        }else{
+            return $this->render('newsUpdate', [
+                'model' => $model,
+            ]);
+        }
+    }
+    //删除单篇新闻控制器
+    public function actionNewsDelete($id)
+    {
+        $this->findNewsModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
     
+    
+    
+    
+    
+    //查询新闻分类模型方法
+    protected function findColumnModel($id)
+   {
+       if (($model = NewsColumn::findOne($id)) !== null) {
+           return $model;
+       } else {
+           throw new NotFoundHttpException('The requested page does not exist.');
+       }
+   }
+    //查询新闻模型方法
+    protected function findNewsModel($id)
+   {
+       if (($model = News::findOne($id)) !== null) {
+           return $model;
+       } else {
+           throw new NotFoundHttpException('The requested page does not exist.');
+       }
+   }
 }

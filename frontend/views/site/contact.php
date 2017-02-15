@@ -58,8 +58,7 @@ $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactiv
                 <address class="mbottom">
                         <h5>上海市 浦东新区 </h5>
                         杨高南路428号 由由世纪广场 <br >
-                        2号楼 7楼 <br >
-                        A/B室<br >
+                        2号楼 7楼 A/B室<br >
                         <a href="http://map.baidu.com/?newmap=1&s=inf%26uid%3Dbf7aa829cad89da716a190fc%26wd%3D%E7%94%B1%E7%94%B1%E4%B8%96%E7%BA%AA%E5%B9%BF%E5%9C%BA%26all%3D1%26c%3D289&from=alamap&tpl=map_singlepoint">从地图中查看</a>
                 </address>
 
