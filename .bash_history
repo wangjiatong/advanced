@@ -1,45 +1,3 @@
-cd html
-ls
-cd advanced-test
-ls
-cd advanced-test
-ls
-rm -rf advanced-test
-ls
-cd ..
-ls
-rm -rf advanced-test
-ls
-git status
-ls
-git branch test
-git status
-git branch
-git checkout test
-git remote -v
-git push origin branch-name
-git pull
-git push origin test
-vi /etc/passwd
-git push origin test
-vi /etc/passwd
-git pull origin
-git branch
-git checkout master
-git branch
-git branch -d test
-git brach
-git branch
-vim ~/.bash_profile
-source ~/.bash_profile
-ls
-cd ..
-ls
-cd advanced-test
-ls
-cd frontend
-ls
-cd views
 ls
 cd site
 ls
@@ -998,3 +956,45 @@ cd config/
 ls
 vi main.php
 vi main-local.php 
+pwd
+git add .
+git commit -m "fixed some bugs for news function"
+git push origin dev
+git checkout master
+git merge dev
+git checkout dev
+cd
+cd ..
+cd advanced
+git pull
+cd
+git checkout
+git checkout master
+git pull
+git merge dev
+git checkout dev
+git pull
+cd ..
+cd advanced
+git pull
+cd
+git branch
+git log
+git push origin dev
+git checkout master
+git merge dev
+git pull
+git merge dev
+git checkout dev
+cd ..
+cd advanced
+git pull
+git bracnh
+git branch
+git log
+cd
+git log
+git checkout master
+git log
+git branch
+git merge dev
