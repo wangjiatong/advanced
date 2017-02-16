@@ -79,34 +79,34 @@ use frontend\components\NewsFeed;
                     </header>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
-                                    <a href="#">
-                                    <img src="img/img.jpg" alt="">
+                                    <a href="/site/fixed-income">
+                                    <img src="img/gdsy.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-                                            <a href="#" class="arrow">固定收益</a>
+                                            <a href="/site/fixed-income" class="arrow">固定收益</a>
                                             <p>可以按照银行定期存款、国库券等金融产<br />品的特性来理解“固定收益”的含义。</p>
                                     </figcaption>
                             </figure>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
-                                    <a href="#">
-                                    <img src="img/img.jpg" alt="">
+                                    <a href="/site/private-placement">
+                                    <img src="img/dxzf.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-                                            <a href="#" class="arrow">定向增发</a>
+                                            <a href="/site/private-placement" class="arrow">定向增发</a>
                                             <p>定向增发是指上市公司向符合条件的少数<br />特定投资者非公开发行股份的行为。</p>
                                     </figcaption>
                             </figure>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
-                                    <a href="#">
-                                    <img src="img/img.jpg" alt="">
+                                    <a href="/site/equity-investment">
+                                    <img src="img/gqtz.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-                                            <a href="#" class="arrow">股权投资</a>
+                                            <a href="/site/equity-investment" class="arrow">股权投资</a>
                                             <p>股权投资通常是为长期(至少一年)持有一<br />个公司的股票或长期的投资一个公司。</p>
                                     </figcaption>
                             </figure>
