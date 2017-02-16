@@ -21,7 +21,7 @@ $this->title = '新闻详情';
 				<article class="post post-single">
 					<h2><?=$model->title?></h2>
 					<div class="meta">
-                                            <p>发布时间： <span class="time"><?=$model->created_at?></span> &nbsp;新闻栏目： <a href="#"class="cat"><?=$model->column_id?></a> </p>
+                                            <p>发布时间： <span class="time"><?=$model->created_at?></span> &nbsp;新闻栏目： <a href="<?=\Yii::$app->urlManager->createUrl(['site/news-column', 'id' => $model['column_id']])?>"class="cat"><?php if($model['column_id']==27){echo "公司动态";}else if($model['column_id']==28){echo "研究报告";}else{echo "媒体报道";}?></a> </p>
 					</div>
 					<div class="entry">
 						<?=$model->content?>

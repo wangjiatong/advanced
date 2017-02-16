@@ -8,18 +8,18 @@
 ?>
             <article class="grid col-one-third mq3-col-full">
                     <aside>公司动态</aside>
-                    <h5><?=$news1['title']?></h5>
+                    <a href="/site/article/<?=$news1['id']?>"><h5><?=$news1['title']?></h5></a>
                     <p><?=$news1['summary']?></p>
             </article>
 
             <article class="grid col-one-third mq3-col-full">
                     <aside>研究报告</aside>
-                    <h5><?=$news2['title']?></h5>
+                    <a href="/site/article/<?=$news2['id']?>"><h5><?=$news2['title']?></h5></a>
                     <p><?=$news2['summary']?></p>
             </article>
 
             <article class="grid col-one-third mq3-col-full">
                     <aside>媒体报道</aside>
-                    <h5><?=$news3['title']?></h5>
+                    <a href="/site/article/<?=$news3['id']?>"><h5><?=$news3['title']?></h5></a>
                     <p><?=$news3['summary']?></p>
             </article>
