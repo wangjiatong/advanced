@@ -1,11 +1,3 @@
-exit
-cd ..
-cd /usr
-ls
-cd share
-ls
-cd html
-cd nginx
 cd html
 ls
 cd advanced-test
@@ -930,3 +922,79 @@ git push origin dev
 cd ..
 ls
 cd advanced
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd /root
+ls
+ls -l
+ls -a
+git log
+cd
+git log
+cd ..
+cd advanced
+git log
+cd
+git add .
+git commit -m "sql1045"
+git push origin dev
+cd
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd
+git add .
+git commit -m "sql problem"
+git push origin dev
+cd ..
+cd advanced
+git merge dev
+git branch
+cd
+git checkout master
+git merge dev
+git checkout dev
+cd ..
+cd advanced
+git pull
+cd
+cd ..
+cd advanced
+git log
+git reset --hard 
+git reset --hard 56ccc9ee88292e9c8f37ca634d93e50e426c202f
+ls
+cd frontend/
+cd web/
+ls
+vi index.php
+pwd
+cd
+cd frontend/
+cd web/
+vi index.php 
+pwd
+vi index.php 
+vi /root/.mysql_secret
+cd
+git add .
+git commit -m "sql problem"
+git push origin dev
+git checkout master
+git merge dev
+git checkout dev
+cd ..
+cd advanced
+git pull
+cd ..
+cd advanced
+ls
+cd common/
+ls
+cd config/
+ls
+vi main.php
+vi main-local.php 
