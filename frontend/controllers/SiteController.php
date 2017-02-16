@@ -303,4 +303,37 @@ class SiteController extends Controller
             'pages' => $pages,
         ]);
     }
+    //首页产品分类-固定收益-静态
+    public function actionFixedIncome()
+    {
+        return $this->render('fixedIncome');
+    }
+    //首页产品分类-定向增发-静态
+    public function actionPrivatePlacement()
+    {
+        return $this->render('privatePlacement');
+    }
+    //首页产品分类-股权投资-静态
+    public function actionEquityInvestment()
+    {
+        return $this->render('equityInvestment');
+    }
+    //首页产品分类--静态
+    public function action()
+    {
+        return $this->render('');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
