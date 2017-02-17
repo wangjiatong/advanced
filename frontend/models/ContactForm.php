@@ -38,7 +38,7 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Verification Code',
+            'verifyCode' => '验证码',
         ];
     }
 
@@ -50,11 +50,20 @@ class ContactForm extends Model
      */
     public function sendEmail($email)
     {
+        //重新拼接邮件内容
+        $content = "<p>姓名：".$this->name."</p><br /><p>邮箱地址：".$this->email."</p><br /><p>主题：".$this->subject."</p><br /><p>正文：".$this->body."</p>";
+        $_email = 'ewinjade@163.com';
         return Yii::$app->mailer->compose()
             ->setTo($email)
-            ->setFrom([$this->email => $this->name])
+            ->setFrom([$_email => $this->name])
             ->setSubject($this->subject)
-            ->setTextBody($this->body)
+            ->setHtmlBody($content)
             ->send();
+//        return Yii::$app->mailer->compose()
+//            ->setTo($email)
+//            ->setFrom([$this->email => $this->name])
+//            ->setSubject($this->subject)
+//            ->setTextBody($this->body)
+//            ->send();
     }
 }

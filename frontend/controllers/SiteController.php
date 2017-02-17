@@ -19,6 +19,8 @@ use common\models\News;
 use yii\data\Pagination;
 //新闻分类
 use common\models\NewsColumn;
+//提示信息
+use yii\bootstrap\Alert;
 /**
  * Site controller
  */
@@ -129,9 +131,21 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', '邮件发送成功！感谢您与我们联系。');
+                echo Alert::widget([
+		'options' => [
+			'class' => 'alert-success', //这里是提示框的class
+		],
+		'body' => Yii::$app->getSession()->getFlash('邮件发送成功！'), //消息体
+                ]);
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+                Yii::$app->session->setFlash('error', '邮件发送失败！');
+                echo Alert::widget([
+		'options' => [
+			'class' => 'alert-error',
+		],
+		'body' => Yii::$app->getSession()->getFlash('邮件发送失败！'),
+                ]);
             }
 
             return $this->refresh();
