@@ -7,41 +7,14 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use yii\bootstrap\Alert;
 
 $this->title = '联系我们';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactive");});');
 ?>
 <div class="site-contact">
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
-<!--    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?= $form->field($model, 'subject') ?>
-
-                <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>-->
     <div class="contact-page main grid-wrap">
 
         <header class="grid col-full">
@@ -65,12 +38,7 @@ $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactiv
                 <p class="mbottom">
                         电话：021-50623509<br >
                         邮编：200127</p>
-<!--                <p class="mbottom">
-                        <a href="#">address@email.com</a><br >
-                        <a href="#">Designa Studio on Facebook</a><br >
-                        <a href="#">@designstudio on Twitter</a><br >
-                        <a href="#">Designa Studio on Google+</a>
-                </p>-->
+
                 <p class="mbottom">
                         扫描下方二维码<br />
                         关注我们的微信公众号<br />
@@ -86,28 +54,49 @@ $this->registerJs('$(document).ready(function(){$("#contact").addClass("navactiv
 
         <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
                 <h2>给我们留言</h2>
-                <!--<p class="warning">Don't forget to put your own email address in the php file!</p>-->
+                    <div>
+                        <?php 
+                        if(Yii::$app->getSession()->getFlash('success'))
+                        {
+                            echo Alert::widget([
+                                'options' => [
+                                        'class' => 'alert-success', //这里是提示框的class
+                                ],
+                                'body' => Yii::$app->getSession()->getFlash('success'), //消息体
+                            ]);
+                        }elseif(Yii::$app->getSession()->getFlash('success'))
+                        {
+                            echo Alert::widget([
+                                'options' => [
+                                        'class' => 'alert-error',
+                                ],
+                                'body' => Yii::$app->getSession()->getFlash('error'),
+                            ]);
+                        }
+                        ?>
+                    </div>   
 
-                <form id="contact_form" class="contact_form" action="contact.php" method="post" name="contact_form">	
-                        <ul>
-                                <li>
-                                        <label for="name">您的姓名:</label>
-                                        <input type="text" name="name" id="name" required class="required" >
-                                </li>
-                                <li>
-                                        <label for="email">邮箱:</label>
-                                        <input type="email" name="email" id="email" required placeholder="例如：YourName@163.com" class="required email">
-                                </li>	
-                                <li>
-                                        <label for="message">留言:</label>
-                                        <textarea name="message" id="message" cols="100" rows="6" required  class="required" ></textarea>
-                                </li>
-                                <li>
-                                        <button type="submit" id="submit" name="submit" class="button fright">提交</button>
-                                </li>	
-                        </ul>			
-                </form>
-        </section>	
+            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+                <?= $form->field($model, 'name')->textInput(['autofocus' => true])->label('您的姓名') ?>
+
+                <?= $form->field($model, 'email')->label('您的邮箱') ?>
+
+                <?= $form->field($model, 'subject')->label('主题') ?>
+
+                <?= $form->field($model, 'body')->textarea(['rows' => 6])->label('正文内容') ?>
+
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
+                ]) ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('提交', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
+        </section>
+
 		
     </div> <!--main-->
 

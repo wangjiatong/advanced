@@ -1,68 +1,3 @@
-ls
-cd site
-ls
-git add index.php
-git status
-git commit -m "hello"
-git status
-git push origin master
-git add index.php
-git commit -m "hello"
-git diff
-git checkout -b dev
-git branch
-git add index.php
-git commit -m "hello"
-git push origin dev
-ssh-keygen -t rsa
-cd ..
-ls
-ls -a
-cd .ssh
-ls
-vi id_rsa.pub
-cd ..
-cd html
-ls
-cd
-ls
-git push origin dev
-git reset --hard 81d5016c75c31c53436aa5e534e1cd6f9cf0a8d1
-git add main.php
-ls
-cd frontend
-ls
-cd views
-ls
-cd layouts
-ls
-git add main.php
-git commit -m "change the footer"
-git push origin dev
-git checkout
-git branch
-git merge dev
-git status
-git add main.php
-git commit -m "change the footer a bit"
-git merge dev
-git push origin master
-git push origin dev
-git merge dev
-git push origin dev
-git pull
-git merge dev
-git add index.php
-git add main.php
-git commit -m "change the footer"
-git add main.php
-git commit
-vi main.php
-git commit
-git commit -m "remove the footer"
-git merge dev
-git push origin dev
-git push --help
 git branch --set-upstream dev origin/dev
 git merge dev
 git pull
@@ -998,3 +933,68 @@ git checkout master
 git log
 git branch
 git merge dev
+git log
+git branch
+git pull
+git checkout dev
+git log
+cd ..
+cd advanced
+git pull
+ls
+vi composer.json 
+php composer.phar require kucha/ueditor "*"
+composer dump-autoload
+composer
+composer update
+composer install
+cd
+git add .
+git commit -m "fix the bug for article"
+git push origin dev
+cd ..
+cd advanced
+git merge dev
+cd
+git branch
+git checkout master
+git pull
+git merge dev
+git checkout dev
+git branch
+cd ..
+cd advanced
+git pull
+cd
+git add .
+git commit -m "fix the bugs for article"
+git push origin dev
+git checkout master
+git merge dev
+git checkout dev
+cd ..
+cd advanced
+git pull
+cd
+git add .
+git commit -m "frontend update"
+git push origin dev
+git checkout master
+git pull
+git merge dev
+git checkout dev
+cd ..
+cd advanced
+git pull
+git pull\
+git pull
+git log
+cd
+git log
+cd
+git add .
+git commit -m "set the favicon"
+git push origin dev
+cd ..
+cd advanced
+git pull
