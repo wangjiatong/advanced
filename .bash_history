@@ -1,209 +1,3 @@
-git branch --set-upstream dev origin/dev
-git merge dev
-git pull
-git merge dev
-git fetch
-vi main.php
-git add main.php
-git status
-git commit -m "modified the main.php"
-git push origin dev
-cd
-cd ..
-cd advanced
-git fetch
-git pull
-cd
-ls
-cd frontend
-ls
-cd views
-ls
-cd layouts
-ls
-vi main.php
-vim main.php
-git add main.php
-git commit -m "translate the nav"
-git push origin dev
-cd
-cd ..
-ls
-cd advanced
-git pull
-git merge dev
-git merge devgit branch
-git branch
-cd
-git merge dev
-git branch
-git merge
-git merge dev
-git fetch
-git pull
-cd
-cd ..
-cd advanced
-git pull
-git branch
-cd
-ls
-cd
-ls
-cd frontend
-ls
-cd assets
-ls
-vi AppAsset.php 
-cd ..
-ls
-cd config
-ls
-vi main.php
-cd ..
-ls
-cd views
-ls
-cd site
-ls
-cd ..
-ls
-cd layouts/
-ls
-cd ..
-ls
-cd site
-ls
-vi index.php 
-ls
-cp index.php index.php.bak
-ls
-vi index.php
-ls
-cd frontend
-ls
-cd views
-ls
-cd layouts
-ls
-vi main.php 
-cd ..
-ls
-cd site
-ls
-vi index.php
-cd
-ls
-cd frontend
-ls
-cd assets
-ls
-git add AppAsset.php 
-cd 
-cd frontend
-cd web
-ls
-cd ..
-ls
-cd views
-ls
-cd site
-ls
-git add index.php
-ls
-cd ..
-ls
-cd layouts/
-ls
-git add main.php
-git commit -m "try a template and turn out successful"
-git branch
-ls
-git add main.php 
-git commit -m "right the js path"
-git push origin dev
-ls
-cd ..
-ls
-cd ..
-ls
-cd web
-ls
-cd assets/
-ls
-cd ..
-ls
-git add css img js
-git commit -m "add the assets that the template needs"
-git push origin dev
-ls
-cd css
-ls
-git add style.css
-cd ..
-ls
-cd ..
-ls
-cd views
-ls
-cd layouts/
-ls
-git add main.php 
-git commit -m "fix the confilt with div container, change it to container1"
-git push origin dev
-ls
-cd ..
-ls
-cd ..
-ls
-cd assets
-ls
-git add AppAsset.php 
-git commit -m "fix the wrong name for flexslider.."
-git push origin dev
-cd ..
-ls
-cd views
-cd layouts
-ls
-git add main.php 
-git commit -m "modified the url for about page"
-cd ..
-ls
-cd site
-ls
-git add about.php 
-git commit -m "change the about page"
-吃的。。
-cd ..
-ls
-cd ..
-ls
-cd controllers
-ls
-git add SiteController.php 
-git commit -m "add product action"
-cd ..
-ls
-cd views
-ls
-cd site
-ls
-git add product.php 
-git commit -m "add product.php"
-cd ..
-ls
-cd layouts/
-ls
-git add main.php
-git commit -m "change the url for product"
-cd ..
-ls
-cd ..
-ls
-cd controllers/
-ls
-git add SiteController.php 
 git commit -m "add business action"
 cd ..
 ls
@@ -998,3 +792,209 @@ git push origin dev
 cd ..
 cd advanced
 git pull
+git add .
+git commit -m "finished the contact function"
+git pushi origin dev
+git push origin dev
+cd ..
+cd advanced
+git pull
+ls
+cd vendor/
+ls
+cd yiisoft/
+ls
+cd yii2
+ls
+cd captcha/
+ls
+vi CaptchaAction.php 
+vi CaptchaValidator.php 
+cd ..
+pwd
+ls
+cd frontend/
+ls
+cd config/
+ls
+vi main.php 
+ls -a
+ls -l
+cd ..
+ls -l
+cd runtime/
+ls -l
+chmod 777 debug
+ls -l
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd models/
+ls
+cd ..
+cd common/
+ls
+cd models/
+ls
+vi PostNewsForm.php 
+cd ..
+cd backend/
+ls
+cd views/
+ls
+cd news/
+ls
+vi newsUpdate.php 
+vi post.php 
+cd ..
+cd controllers/
+ls
+cd NewsController.php 
+vi NewsController.php 
+cd 
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+mkdir upload
+ls
+cd upload/
+cd
+cd backend/
+ls
+cd
+ls
+cd backend/
+ls
+cd web
+ls
+cd ..
+ls
+cd ..
+ls
+cd backend/
+ls
+ls -l
+cd web/
+ls
+cd upload/
+ls
+ls -l
+cd ..
+cd
+cd ..
+cd advanced
+ls
+cd backend/
+cd web/
+ls
+ls -l
+cd upload/
+mkdir image
+ls
+ls -l
+pwd
+cd image/
+ls
+ls -l
+cd ..
+ls -l
+cd ..
+ls -l
+cd
+cd backend/
+ls
+cdc web/
+ls
+cd web/
+ls
+ls -l
+cd upload/
+ls -l
+cd image/
+ls
+cd 20170215/
+ls
+pwd
+ cd ..
+cd ..
+chmod 777 upload
+ls -l
+cd upload/
+ls -l
+chmod 777 image
+ls -l
+cd 
+cd ..
+cd advanced
+ls
+cd backend/
+cd web/
+ls
+chmod 777 upload
+cd upload/
+chmod 777 image
+pwd
+cd image/
+ls
+cd 20170217
+ls -l
+cd ..
+ls -l
+cd
+cd ..
+ls
+cd ..
+ls
+cd etc/
+ls
+cd nginx
+ls
+cd conf.d/
+ls
+vi yii.conf 
+vi yii-test.conf 
+vi yii.conf 
+cd
+ls
+cd backend/
+ls
+cd web/
+ls
+cd upload/
+ls
+cd image/
+ls
+cd 20170215
+ls
+cd ..
+cd 20170217
+ls
+cd ..
+ls
+rm 20170215 -r
+ls
+rm 20170217 -r
+ls
+cd ..
+pwd
+cd
+cd ..
+cd advanced
+cd backend/
+cd web/
+cd upload/
+ls
+cd image/
+ls
+rm 20170215 20170217 -r
+ls
+cd ..
+ls
+cd ..
+ls -l
+cd upload/
+ls -l
