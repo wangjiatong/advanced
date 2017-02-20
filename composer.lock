@@ -301,16 +301,16 @@
         },
         {
             "name": "kucha/ueditor",
-            "version": "1.2",
+            "version": "1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BigKuCha/yii2-ueditor-widget.git",
-                "reference": "b41439ee0c69efc800a53087c20d8bfcea0f9507"
+                "reference": "59e4ab2533bec1b182ce38241a1567e78d57a509"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BigKuCha/yii2-ueditor-widget/zipball/b41439ee0c69efc800a53087c20d8bfcea0f9507",
-                "reference": "b41439ee0c69efc800a53087c20d8bfcea0f9507",
+                "url": "https://api.github.com/repos/BigKuCha/yii2-ueditor-widget/zipball/59e4ab2533bec1b182ce38241a1567e78d57a509",
+                "reference": "59e4ab2533bec1b182ce38241a1567e78d57a509",
                 "shasum": ""
             },
             "type": "library",
@@ -321,7 +321,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "null"
+                "MIT"
             ],
             "authors": [
                 {
@@ -330,7 +330,7 @@
                 }
             ],
             "description": "desc",
-            "time": "2015-02-06 02:01:30"
+            "time": "2017-01-15 06:29:37"
         },
         {
             "name": "swiftmailer/swiftmailer",

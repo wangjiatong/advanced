@@ -113,12 +113,12 @@ use frontend\components\NewsFeed;
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
                                     <a href="#">
-                                    <img src="img/img.jpg" alt="">
+                                    <img src="img/zanwu.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>
                                     <figcaption>
-<!--                                            <a href="#" class="arrow">Project x</a>
-                                            <p>Lorem ipsum dolor set amet</p>-->
+                                            <a href="#" class="arrow">敬请期待</a>
+                                            <p>To be continued...</p>
                                     </figcaption>
                             </figure>
             </section>
