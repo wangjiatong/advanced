@@ -30,9 +30,9 @@ class NewsController extends Controller
         'upload' => [
             'class' => 'kucha\ueditor\UEditorAction',
             'config' => [
-                "imageUrlPrefix"  => "www.ewinjade.com:81",//图片访问路径前缀
+                "imageUrlPrefix"  => "http://www.ewinjade.com",//图片访问路径前缀
                 "imagePathFormat" => "/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
-                "imageRoot" => Yii::getAlias("@webroot"),
+//                "imageRoot" => Yii::getAlias("@webroot"),
     ],
         ]
     ];
