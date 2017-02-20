@@ -1,136 +1,3 @@
-git commit -m "add business action"
-cd ..
-ls
-cd frontend/
-ls
-cd views
-cd site
-ls
-git add business.php 
-git commit -m "add business.php"
-cd ..
-ls
-cd layouts/
-ls
-git add main.php 
-git commit -m "modified the url for business page"
-cd ..
-ls
-cd ..
-ls
-cd controller
-cd controllers/
-ls
-git add SiteController.php 
-git commit -m "change the action product to products"
-cd ..
-ls
-cd views/
-ls
-cd layouts/
-ls
-git add main.php 
-git commit -m "change product to products"
-cd ..
-cd site
-ls
-git add products.php 
-git commit -m "rename product.php to products.php"
-ls
-git add products.php 
-git commit -m "change the wrong title"
-cd ..
-ls
-cd controllers/
-ls
-git add SiteController.php
-git commit -m "add actionNews"
-cd ..
-cd views
-cd layouts/
-ls
-git add main.php 
-git commit -m "add actionNews"
-cd ..
-cd site/
-git add news.php 
-git commit -m "add news.php"
-cd ..
-cd layouts/
-ls
-git add main.php 
-git commit -m "change the url for contact"
-cd ..
-cd site/
-ls
-git add contact.php 
-git commit -m "change the template for contact.php"
-cd ..
-cd controllers/
-git add SiteController.php 
-git commit -m "add actionJoinUs"
-cd ..
-ls
-cd views/
-cd layouts/
-ls
-git add main.php 
-git commit -m "add the url for joinUs and login
-git commit -m "add the url for joinUs and login"
-
-
-
-
-/
-cd
-:q
-git commit -m "add the url for joinUs and login"
-cd ..
-cd site/
-git add joinUs.php 
-git commit -m "add joinUs.php"
-git add join.php 
-git commit -m "rename joinUs.php to join.php"
-cd ..
-cd layouts/
-git add main.php 
-git commit -m "fix the url for index and join"
-cd ..
-cd controllers/
-git add SiteController.php 
-git commit -m "rename the actionJoinUs to Join"
-cd ..
-cd views/
-cd layouts/
-ls
-git add main.php 
-git commit -m "translate it"
-ls
-git add main.php 
-cd ..
-cd site/
-git add .
-git commit -m "fix the <a> color problem"
-cd
-ls
-git add .
-git commit -m "almost finish the frontend template"
-git push origin dev
-cd ..
-ls
-cd advanced
-git pull
-cd
-ls
-cd frontend/
-ls
-cd web/
-ls
-cd img/
-ls
-cd
-ls
-cd frontend/
 cd web/
 ls
 cd img/
@@ -998,3 +865,136 @@ cd ..
 ls -l
 cd upload/
 ls -l
+git add .
+git commit -m "fix the picture problems"
+git push origin dev
+cd
+cd //
+cd
+cd ..
+cd advanced
+git pull
+cd
+git add.
+git add .
+git commit -m "picture"
+git push origin dev
+cd ..
+cd advanced
+git pull
+cd /
+ls
+cd etc/
+cd nginx/
+ls
+cd conf.d/
+ls
+vi yii.conf 
+cd
+git add .
+git commit -m "picture"
+git push origin dev
+cd ..
+cd advanced
+git pull
+ls
+cd frontend/
+ls
+cd web/
+ls
+cd ..
+ls
+cd ..
+ls
+cd backend/
+ls
+cd web/
+ls
+ls -l
+cd upload/
+ls
+ls -l
+cd image/
+ls
+cd
+git add .
+git commit -m "picture"
+git push origin de v
+git push origin dev
+cd ..
+cd advanced
+git pull
+cd
+git update
+composer update
+composer install
+composer require kucha/ueditor "*"
+cd
+cd backend/
+cd web/
+ls
+ls -l
+rm -r upload/
+ls
+cd ..
+ls
+cd views/
+ls
+cd ..
+ls
+cd ..
+ls
+cd frontend/
+ls
+cd web/
+ls
+cd ..
+cd common
+ls
+cd ..
+ls
+cd common/
+ls
+cd ..
+cd a
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd upload/
+ls
+cd .
+ls
+cd ..
+ls
+rm -r upload/
+ls
+cd web/
+ls
+rm -r upload/
+ls
+cd ,,
+cd ..
+ls
+cdw
+ls
+cd
+ls
+cd backend/
+ls
+cd web/
+ls
+mkdir upload
+ls
+ls -l
+chmod 777 upload/
+ls -l
+mysql -u root -p
+cd /
+ls
+cd etc/
+cd nginx/
+cd conf.d/
+ls
+vi yii.conf 
