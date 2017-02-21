@@ -25,6 +25,8 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+    
+    
     public function behaviors()
     {
         return [
@@ -45,7 +47,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -111,6 +113,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+//        $this->layout = false;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

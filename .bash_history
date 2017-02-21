@@ -1,9 +1,3 @@
-cd web/
-ls
-cd img/
-ls
-git add logo.png
-git commit -m "change the logo"
 git push origin dev
 cd
 cd ..
@@ -998,3 +992,9 @@ cd nginx/
 cd conf.d/
 ls
 vi yii.conf 
+git add .
+git commit -m "update the frontend picture, backend picture problems unsolved"
+git push origin dev
+cd ..
+cd advanced
+git pull
