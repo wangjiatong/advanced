@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
-<div class="span9">
+<!--<div class="span9">-->
           <div class="row-fluid">
                 <div class="page-header">
                         <h1>新闻分类 <small>添加</small></h1>
@@ -17,4 +17,4 @@ use yii\widgets\ActiveForm;
                             <?php $form->end();?>
                         </fieldset>
           </div>
-</div>
+<!--</div>-->

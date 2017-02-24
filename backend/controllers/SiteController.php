@@ -38,7 +38,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'admin-signup'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -47,7 +47,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post', 'get'],
+                    'logout' => ['POST', 'GET'],
                 ],
             ],
         ];
@@ -113,7 +113,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-//        $this->layout = false;
+        $this->layout = false;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

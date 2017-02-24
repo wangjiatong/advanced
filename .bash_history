@@ -1,87 +1,3 @@
-git push origin dev
-cd
-cd ..
-ls
-cd advanced
-ls
-git merge dev
-git pull
-cd
-cd frontend/
-cd views/
-cd site/
-git add error.php 
-git commit -m "modified the error page"
-git add login.php 
-git commit -m "comment the passwd reset temply"
-ls
-cd backend/
-ls
-cd web/
-ls
-git add css img js
-git commit -m "add the backend template assets that backend needs"
-cd ..
-ls
-cd views/
-ls
-cd site/
-ls
-git add index.php login.php 
-cd ..
-cd layouts/
-git add main.php 
- cd ..
-ls
-cd ..
-cd assets/
-git add AppAsset.php 
-git commit -m "init the template for backend then do something about backend login next"
-cd ..
-ls
-cd models/
-ls
-git add LoginForm.php User.php 
-git commit -m "add new models for backend users"
-cd ..
-cd config/
-ls
-git add main.php
-cd ..
-cd controllers/
-git add SiteController.php 
-git commit -m "modified the confs for new user models at backend"
-git add SiteController.php 
-cd ..
-cd models/
-git add PasswordResetRequestForm.php ResetPasswordForm.php SignupForm.php 
-cd ..
-cd views/
-cd site/
-git add requestPasswordResetToken.php resetPassword.php signup.php 
-git commit -m "create the models and views for the backend users"
-cd ..
-cd controllers/
-ls
-git add SiteController.php 
-git commit -m "change user to admin"
-cd ..
-cd models/
-git add .
-git commit -m "change the user to admin"
-cd ..
-cd config/
-git add main
-git add main.php
-git commit -m "change the user to admin"
-mysql -u root -p
-msql -u root -p
-mysql -u root -p
-git add main.php 
-git commit -m "add component db"
-yii migrate/create create_admin_table
-cd
-yii migrate/create create_admin_table
 php yii migrate/create create_admin_table
 ls
 cd console/
@@ -998,3 +914,87 @@ git push origin dev
 cd ..
 cd advanced
 git pull
+mysql -u root -p
+cd
+yii migrate/create add_columns_for_user_table
+php yii migrate/create add_columns_for_user_table
+php yii migrate/up
+mysql -u root -p
+cd
+cd common/
+ls
+ls -l models/
+ls -l
+chmod 777 models
+cd
+git add .
+git commit -m "skip the picture problem, modifyed the user table and generated the user model"
+git push origin dev
+ls
+cd backend/
+ls
+chmod 777 controllers models views
+cd
+php yii migrate/create creat_table_product_columns
+cd
+php yii migrate/up
+mysql -u root -p
+php yii migrate/create create_table_product
+php yii migrate/up
+mysql -u root -p
+cd
+php yii migrate/down m170222_041831
+php yii migrate/down to m170222_041831
+php yii migrate/to m170222_041831
+php yii migrate/down 2
+use mysql -u root -p
+mysql -u root -p
+php yii migrate/up 2
+php yii migrate/create create_table_product_column;
+php yii migrate/create create_table_product;
+php yii migrate/up
+mysql -u root -p
+cd /
+cd etc/
+ls
+cd n
+cd nginx/
+cd conf.d/
+ls
+vi yii.conf 
+reboot
+cd /
+cd etc/
+cd nginx/
+cd conf.d/
+ls
+vi yii-test.conf 
+reboot
+ls
+ls -a
+cd ..
+cd advanced
+ls -a
+ls
+cd frontend/
+ls
+cd web/
+ls
+vi robots.txt 
+cd ..
+ls
+cd ..
+cd backend/
+cd web/
+ls
+cd
+cd frontend/
+cd web/
+ls
+vi robots.txt 
+ls
+cd frontend/
+ls
+cd web/
+ls
+ls -l

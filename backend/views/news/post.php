@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use common\models\NewsColumn;
 use kucha\ueditor\UEditor;
 ?>
-<div class="span9">
+<!--<div class="span9">-->
           <div class="row-fluid">
                 <div class="page-header">
                         <h1>新闻 <small>发布</small></h1>
@@ -50,4 +50,4 @@ use kucha\ueditor\UEditor;
                         </fieldset>
                 <!--</form>-->
           </div>
-</div>
+<!--</div>-->

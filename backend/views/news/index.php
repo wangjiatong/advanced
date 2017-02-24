@@ -2,7 +2,7 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 ?>
-<div class="span9">
+<!--<div class="span9">-->
           <div class="row-fluid">
                 <div class="page-header">
                         <h1>新闻 <small>管理</small></h1>
@@ -52,4 +52,4 @@ use yii\helpers\Html;
                             ]);?>
                         </fieldset>
           </div>
-</div>
+<!--</div>-->

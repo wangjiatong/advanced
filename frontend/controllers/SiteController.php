@@ -34,21 +34,14 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'products'],
+                'only' => ['logout', 'products'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
-                        'allow' => true,
+                        'allow' => false,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['product'],
-                        'allow' => false,
                         'roles' => ['@'],
                     ],
                 ],
@@ -56,7 +49,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -238,7 +231,10 @@ class SiteController extends Controller
     //添加产品页面
     public function actionProducts()
     {
-        return $this->render('products');
+        if(!Yii::$app->user->isGuest)
+        {
+            return $this->render('products');
+        }
     }
     //添加服务页面
     public function actionBusiness()

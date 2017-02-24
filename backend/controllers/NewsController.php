@@ -30,11 +30,11 @@ class NewsController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'post', 'add-column', 'manage-news-columns', 'news-column-update', 'news-column-delete', 'news-view', 'news-update', 'news-delete'],
+                'only' => ['*'],
                 'rules' => [
                     [
                         'allow' => false,
-                        'verbs' => ['POST'],
+                        'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
