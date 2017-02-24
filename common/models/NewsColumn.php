@@ -23,6 +23,12 @@ class NewsColumn extends ActiveRecord
                     [['news_column'], 'required'],
                ];
     }
+    public function attributeLabels() {
+        return [
+            'id' => '新闻分类ID',
+            'news_column' => '新闻分类',
+        ];
+    }
     //与新闻的对应关系
     public function getNews()
     {

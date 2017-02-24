@@ -81,7 +81,7 @@ AppAsset::register($this);
                     </ul>
                     <ul>
                             <li><a href="/site/join" id="join">加入我们</a></li>
-                            <li><a href="/site/login" id="login">登录</a></li>
+                            <?php if(Yii::$app->user->isGuest){?><li><a href="/site/login" id="login">登录</a></li><?php }else{ ?><li><a href="/site/logout" id="login">注销<?='('.Yii::$app->user->identity->username.')'?></a></li><?php } ?>
                     </ul>
             </nav>
     </header>

@@ -150,4 +150,24 @@ tr.pending-user:hover span.user-actions, tr.list-users:hover td div.btn-group, t
 	.list-roles td:nth-of-type(3):before { content: "Description"; }
 	.list-roles td:nth-of-type(4):before { content: "Slug"; }
 	.list-roles td:nth-of-type(5):before { content: "Actions"; }
+        
+                    .site-login{
+                display:table;
+                height:100%;
+            }
+
+            .row{
+                display: table-cell;
+                vertical-align: middle;
+            }
+            /* centered columns styles */
+            .row-centered {
+                text-align:center;
+            }
+            .col-centered {
+                display:inline-block;
+                float:none;
+                text-align:left;
+                margin-right:-4px;
+            }
 }

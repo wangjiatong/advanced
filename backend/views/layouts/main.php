@@ -106,23 +106,26 @@ AppAsset::register($this);
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><i class="icon-wrench"></i> 管理员</li>
-              <li class="active"><a href="#">添加管理员</a></li>
-              <li class=""><a href="#">管理管理员</a></li>
+              <!--<li class="active"><a href="#">添加管理员</a></li>-->
+              <li class=""><a href="#">管理员管理</a></li>
               <li class="nav-header"><i class="icon-user"></i> 会员</li>
-              <li class=""><a href="#">添加会员</a></li>
-              <li class=""><a href="#">管理会员</a></li>
+              <!--<li class=""><a href="#">添加会员</a></li>-->
+              <li class=""><a href="/user/index">会员管理</a></li>
               <li class="nav-header"><i class="icon-signal"></i> 旗下产品</li>
-              <li><a href="#">添加分类</a></li>
-              <li><a href="#">管理分类</a></li>
-              <li><a href="#">添加产品</a></li>
-              <li><a href="#">管理产品</a></li>
+              <!--<li><a href="#">添加分类</a></li>-->
+              <li><a href="/product/product-column-index">产品分类管理</a></li>
+              <!--<li><a href="#">添加产品</a></li>-->
+              <li><a href="/product/index">产品管理</a></li>
+              <li class="nav-header"><i class="icon-signal"></i> 合同</li>
+              <!--<li><a href="#">添加分类</a></li>-->
+              <li><a href="#">合同管理</a></li>
               <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
-              <li><a href="/news/add-column">添加分类</a></li>
-              <li><a href="/news/manage-news-columns">管理分类</a></li>
+              <li><a href="/news/add-column">添加新闻分类</a></li>
+              <li><a href="/news/manage-news-columns">新闻分类管理</a></li>
               <li><a href="/news/post">添加新闻</a></li>
-              <li><a href="/news/index">管理新闻</a></li>
-              <li class="nav-header"><i class="icon-signal"></i> 联系我们</li>
-              <li><a href="#">查看邮件</a></li>
+              <li><a href="/news/index">新闻管理</a></li>
+              <!--<li class="nav-header"><i class="icon-signal"></i> 联系我们</li>-->
+              <!--<li><a href="#">查看邮件</a></li>-->
             </ul>
           </div>
         </div>
@@ -133,7 +136,9 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+    <div class="span9">
         <?= $content ?>
+    </div>
     <!--</div>-->
 </div>
 

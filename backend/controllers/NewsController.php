@@ -20,9 +20,30 @@ use common\models\NewsColumn;
 use yii\data\ActiveDataProvider;
 //新闻模型
 use common\models\News;
+//
+use yii\filters\AccessControl;
 
 class NewsController extends Controller
 {
+    public function behaviors() 
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['*'],
+                'rules' => [
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
     //富文本编辑器
     public function actions()
     {

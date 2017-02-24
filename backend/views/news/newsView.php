@@ -3,7 +3,7 @@ use yii\grid\GridView;
 use yii\widgets\DetailView;
 use yii\helpers\Html;
 ?>
-<div class="span9">
+<!--<div class="span9">-->
           <div class="row-fluid">
                 <div class="page-header">
                     <h1><?='标题：'.Html::encode($model->title)?></h1>
@@ -14,4 +14,4 @@ use yii\helpers\Html;
                                 <?=$model->content?>
                         </fieldset>
           </div>
-</div>
+<!--</div>-->
