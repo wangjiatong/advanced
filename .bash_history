@@ -1,11 +1,4 @@
 php yii migrate/create create_admin_table
-ls
-cd console/
-ls
-cd migrations/
-ls
-cd
-php yii migrate/create create_admin_table
 cd console/
 cd migrations/
 ls
@@ -998,3 +991,10 @@ ls
 cd web/
 ls
 ls -l
+git add .
+git commit -m "finished product and user for backend, turn to frontend product"
+git push origin dev
+cd ..
+cd advanced
+git gull
+git pull

@@ -229,13 +229,13 @@ class SiteController extends Controller
         ]);
     }
     //添加产品页面
-    public function actionProducts()
-    {
-        if(!Yii::$app->user->isGuest)
-        {
-            return $this->render('products');
-        }
-    }
+//    public function actionProducts()
+//    {
+//        if(!Yii::$app->user->isGuest)
+//        {
+//            return $this->render('products');
+//        }
+//    }
     //添加服务页面
     public function actionBusiness()
     {
