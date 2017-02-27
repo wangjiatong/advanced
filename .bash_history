@@ -1,17 +1,3 @@
-php yii migrate/create create_admin_table
-cd console/
-cd migrations/
-ls
-git add m161108_042108_create_admin_table.php 
-git commit -m "create a migration"
-git push origin dev
-ls
-vi m161108_042108_create_admin_table.php 
-vi m130524_201442_init.php 
-vi m161108_042108_create_admin_table.php 
-git add m161108_042108_create_admin_table.php 
-cd ..
-ls
 cd backend/
 cd models/
 ls
@@ -998,3 +984,17 @@ cd ..
 cd advanced
 git gull
 git pull
+git add .
+git commit -m "finished the frontend product"
+git push origin dev
+cd ..
+cd advanced
+git pull
+cd
+php yii migrate/create create_table_contract
+mysql -u root -p
+describe product
+mysql -u root -p
+cd
+php yii migrate/up
+mysql -u root -p
