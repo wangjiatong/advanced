@@ -1,0 +1,110 @@
+<?php
+
+namespace common\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "contract".
+ *
+ * @property integer $id
+ * @property string $contract_number
+ * @property integer $capital
+ * @property string $transfered_time
+ * @property string $found_time
+ * @property integer $raise_day
+ * @property integer $raise_interest
+ * @property string $cash_time
+ * @property integer $term_month
+ * @property integer $interest
+ * @property integer $term
+ * @property string $every_time
+ * @property string $every_interest
+ * @property integer $total_interest
+ * @property integer $total
+ * @property string $bank
+ * @property string $bank_number
+ * @property string $source
+ * @property string $created_at
+ * @property string $updated_at
+ * @property integer $product_id
+ * @property integer $user_id
+ * @property integer $status
+ *
+ * @property User $user
+ * @property Product $product
+ */
+class Contract extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'contract';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'created_at', 'updated_at', 'product_id', 'user_id'], 'required'],
+            [['capital', 'raise_day', 'raise_interest', 'term_month', 'interest', 'term', 'total_interest', 'total', 'product_id', 'user_id', 'status'], 'integer'],
+            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
+            [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number', 'source'], 'string', 'max' => 255],
+            [['contract_number'], 'unique'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => '合同ID',
+            'contract_number' => '合同编号',
+            'capital' => '本金',
+            'transfered_time' => '到账时间',
+            'found_time' => '成立时间',
+            'raise_day' => '募集天数',
+            'raise_interest' => '募集期利息',
+            'cash_time' => '兑付时间',
+            'term_month' => '期限（月）',
+            'interest' => '成立期利息',
+            'term' => '分期（月）',
+            'every_time' => '每期到期时间',
+            'every_interest' => '每期应付利息',
+            'total_interest' => '应付利息总额',
+            'total' => '兑付总额',
+            'bank' => '开户行',
+            'bank_number' => '银行账号',
+            'source' => '合同来源',
+            'created_at' => '创建时间',
+            'updated_at' => '修改时间',
+            'product_id' => '产品名称',
+            'user_id' => '客户姓名',
+            'status' => '合同状态',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+    }
+}

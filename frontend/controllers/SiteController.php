@@ -306,7 +306,7 @@ class SiteController extends Controller
             'defaultPageSize' => 4,
         ]);
         
-        $models = $news->offset($news->offset)->limit($news->limit)->all();
+        $models = $news->offset($news->offset)->limit($news->limit)->orderBy('created_at desc')->all();
         
         return $this->render('newsColumn', [
             'models' => $models,

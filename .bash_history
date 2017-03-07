@@ -1,23 +1,3 @@
-cd backend/
-cd models/
-ls
-git add AdminSignupForm.php 
-git commit -m "add $auth for admin"
-cd
-yii migrate
-php yii migrate
-cd backend/
-php yii migrate
-yii migrate
-cd ..
-cd console/
-yii migrate
-php yii migrate
-cd
-ls
-php yii migrate
-php yii migrate/to m161108_042108_create_admin_table
-service mysqld status
 chkconfig --list mysqld
 mysql -u root -p
 /var/lib/mysql/mysql.sock
@@ -998,3 +978,23 @@ mysql -u root -p
 cd
 php yii migrate/up
 mysql -u root -p
+cat /etc/passwd
+useradd
+useradd composer
+passwd composer
+cd
+su composer
+cd
+composer require 2amigos/yii2-date-picker-widget:~1.0
+su composer
+cd
+composer require 2amigos/yii2-date-picker-widget:~1.0
+vi composer.json 
+composer require kartik-v/yii2-widget-datetimepicker "*"
+composer update
+cd
+composer
+compoer remove
+ls
+vi composer.json 
+composer update
