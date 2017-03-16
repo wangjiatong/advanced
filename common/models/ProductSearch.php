@@ -20,7 +20,6 @@ class ProductSearch extends Product
         return [
             [['id', 'product_column_id'], 'integer'],
             [['product_name'], 'safe'],
-            [['raise_interest_year', 'interest_year'], 'number'],
         ];
     }
 
@@ -62,8 +61,7 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'raise_interest_year' => $this->raise_interest_year,
-            'interest_year' => $this->interest_year,
+            'content' => $this->content,
             'product_column_id' => $this->product_column_id,
         ]);
 

@@ -26,8 +26,6 @@ $this->title = '产品管理';
 
             'id',
             'product_name',
-            'raise_interest_year',
-            'interest_year',
             'product_column_id',
 //                [
 //                    'label' => '产品分类',

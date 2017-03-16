@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\components\NewsColumnNav;
 use common\models\NewsColumn;
+use frontend\components\SearchNews;
 
 $this->title = '新闻研报';
 $this->params['breadcrumbs'][] = $this->title;
@@ -133,6 +134,7 @@ $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive")
                     <div class="widget">
                             <input id="search" type="search" name="search" value="点击输入您要搜索的内容" >
                     </div>
+
 
 <!--                    <div class="widget">
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>

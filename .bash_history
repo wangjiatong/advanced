@@ -1,147 +1,3 @@
-chkconfig --list mysqld
-mysql -u root -p
-/var/lib/mysql/mysql.sock
-php yii migrate/to m161108_042108_create_admin_table
-cd ..
-ls
-cd /
-cd etc
-ls
-cd mysqld
-cd mysql
-whereis mysql
-cd /usr/share/mysql
-ls
-cd
-ls
-git add .
-git commit -m "the first time conf for db fails, now try again"
-mysql -u root -p
-php yii migrate/to m161108_042108_create_admin_table
-cd
-ls
-init
-yii init
-./init
-php yii migrate/to m161108_042108_create_admin_table
-cd
-git add .
-git commit -m "ran a init for a try, no diff while can see"
-php yii migrate/to m161108_042108_create_admin_table
-mysql -u root -p
-mysql_upgrade -u root -p
-php yii migrate/to m161108_042108_create_admin_table
-mysql -u root -p password
-mysql -u root
-mysql -u root -p
-mysql -u root -p password
-php yii migrate/to m161108_042108_create_admin_table
-git add .
-git commit -m "add validation key in dev conf, which is abc, meaningless"
-yii migrate
-php yii migrate
-git add .
-git commit -m ".."
-php yii migrate
-php yii migrate/to m161108_042108_create_admin_table
-mysql -u root -p
-php yii migrate/to m161108_042108_create_admin_table
-php yii migrate/to
-git add .
-git commit -m "the very working conf file is under /common/config/main-local.php"
-php yii migrate
-git add .
-git commit -m "change the wrong conf file into the original status"
-yii migrate
-php yii migrate
-mysql -u root -p
-php yii migrate
-php yii migrate down
-php yii migrate/down
-mysql -u root -p
-php yii migrate/down 2
-mysql -u root -p
-php yii migrate
-mysql -u root -p
-create table admin select * from user;
-mysql -u root -p
-select * from user;
-mysql -u root -p
-cd
-ls
-php yii migrate
-php yii migrate/down
-mysql -u root -p
-php yii migrate/down 2
-php yii migrate;
-mysql -u root -p
-git add .
-git commit -m "backend login successful now"
-git push origin dev
-ls
-cd backend/
-ls
-cd views/
-ls
-cd s
-cd site/
-ls
-cd /etc/nginx
-ls
-cd conf.d/
-LS
-ls
-vi yii.conf
-ls
-vi yii-test.conf 
-cd
-php yii migrate
-php yii migrate/create
-php yii migrate/create_news_table
-php yii migrate/create create_news_table
-php yii migrate
-mysql -u root -p
-ls
-php yii migrate/down
-mysql -u root -p
-php yii migrate/up
-mysql -u root -p
-cd /
-ls
-cd /etc/nginx
-ls
-cd conf.d/
-ls
-vi yii.conf
-reboot
-mysql -u root -p
-php composer.phar require --prefer-dist yiisoft/yii2-debug
-composer require --prefer-dist yiisoft/yii2-debug
-ls
-vi composer.json
-cd /etc/nginx/conf.d
-ls
-vi yii-test.conf
-cd
-vi composer.json 
-composer update
-composer require --prefer-dist yiisoft/yii2-debug
-mysql -u root -p
-vi /etc/nginx/conf.d/yii-test.conf 
-mysql -u root -p
-vi /etc/nginx/conf.d/yii-test.conf 
-vi /etc/nginx/conf.d/yii.conf 
-mysql -u root -p
-ls
-git add .
-git commit -m "post fails, before change the frontend text"
-git push origin dev
-ls
-cd ..
-ls
-cd advanced
-git pull
-cd
 ls
 cd ..
 cd
@@ -998,3 +854,147 @@ compoer remove
 ls
 vi composer.json 
 composer update
+git add .
+git commit -m "5th year, and fix a bug for news column"
+git push origin dev
+cd ..
+cd advanced
+git pull
+reboot
+su composer
+php composer.phar require --prefer-dist yiisoft/yii2-jui
+su composer
+composer require --prefer-dist yiisoft/yii2-jui
+ls
+vi composer.json 
+su composer
+vi composer.json 
+su composer
+vi composer.json 
+composer update
+composer require --prefer-dist yiisoft/yii2-jui
+vi composer.json 
+composer require --prefer-dist yiisoft/yii2-jui
+vi composer.json 
+composer update
+cd
+vi composer.json 
+composer install
+vi composer.json 
+composer install
+vi composer.json 
+composer require --prefer-dist yiisoft/yii2-jui
+vi composer.json 
+composer global require "fxp/composer-asset-plugin:1.0.0-beta3"
+composer global require "fxp/composer-asset-plugin:~1.0"
+composer update
+composer require --prefer-dist yiisoft/yii2-jui
+vi composer.json 
+ls
+cd vendor/
+ls
+cd yiisoft/
+ls
+cd yii2-jui/
+ls
+cd
+composer install
+composer require --prefer-dist yiisoft/yii2-jui
+vi composer.json 
+composer global require "fxp/composer-asset-plugin:~1.0.3"
+composer self-update
+composer update
+cd
+ls
+vi composer.json 
+composer install
+composer global require "fxp/composer-asset-plugin"
+cd
+ls
+ls -a
+cd .composer/
+composer global require "fxp/composer-asset-plugin"
+php composer.phar global update fxp/composer-asset-plugin --no-plugins
+composer global update fxp/composer-asset-plugin --no-plugins
+cd
+composer update
+composer
+require "fxp/composer-asset-plugin:~1.0.0"
+composer require "fxp/composer-asset-plugin:~1.0.0"
+cd
+ls
+vi composer.json 
+composer require "fxp/composer-asset-plugin:~1.0.0"
+composer global require fxp/composer-asset-plugin --no-plugins
+composer update
+vi composer.json 
+composer install
+composer remove
+vi composer.json 
+composer update
+composer config repo.packagist composer https://packagist.phpcomposer.com
+vi composer.json 
+su composer
+chmod 777 composer.json 
+su composer
+chmod 644 composer.json 
+ls -l
+cd
+vi composer.json 
+composer require "fxp/composer-asset-plugin:~1.0"
+composer update
+composer require --prefer-dist yiisoft/yii2-jui
+reboot
+mysql -u root -p
+cd
+ls
+yii migrate/create add_columns_for_contract_table
+php yii migrate/create add_columns_for_contract_table
+
+php yii migrate/create add_columns_for_contract_table
+mysql -u root -p
+php yii migrate/down m170223_025032
+php yii migrate/down m170223
+php yii migrate/down 025032
+./yii migrate/down 3
+./yii migrate/down 2
+mysql -u root -p
+./yii migrate/create create_table_product
+./yii migrate/up 1
+./yii migrate/up 170314_025146
+./yii migrate/create create_table_contract
+./yii migrate/up 2
+mysql -u root -p
+cd
+./yii migrate/up 2
+./yii migrate/up
+mysql -u root -p
+./yii migrate/up
+./yii migrate/up 2
+./yii migrate/redo
+mysql -u root -p
+./ yii migrate
+./ yii migrate/
+./yii migrate
+./yii migrate/redo
+./yii migrate/down
+./yii migrate/create create_table_product
+./yii migrate/create create_table_contract
+cd
+./yii migrate
+mysql -u root -p
+./yii migrate/create add_columns_for_table_contract
+./yii migrate
+mysql -u root -p
+ls
+cd frontend/
+ls
+cd controllers/
+cd ..
+chmod 777 controllers/
+ls -l
+chmod 755 controllers/
+ls -l
+chmod 777 views/
+ls -l
+chmod 755 views/

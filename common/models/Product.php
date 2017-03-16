@@ -30,10 +30,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['product_name'], 'required'],
-            [['raise_interest_year', 'interest_year'], 'number'],
             [['product_column_id'], 'integer'],
             [['product_name'], 'string', 'max' => 255],
             [['product_name'], 'unique'],
+            ['content', 'required'],
         ];
     }
 
@@ -45,8 +45,7 @@ class Product extends \yii\db\ActiveRecord
         return [
             'id' => '产品ID',
             'product_name' => '产品名称',
-            'raise_interest_year' => '募集期年利率',
-            'interest_year' => '年利率',
+            'content' => '产品内容',
             'product_column_id' => '产品分类ID',
         ];
     }

@@ -34,7 +34,7 @@ use kucha\ueditor\UEditor;
                                 <div class="control-group">
                                         <!--<label class="control-label" for="role">栏目</label>-->
                                         <div class="controls">
-                                                <?= $form->field($model, 'column_id')->label('新闻分类')->dropDownList(NewsColumn::find()->select(['news_column', 'id'])->indexBy('id')->column(), ['prompt' => '请选择新闻分类']); ?>
+                                                <?= $form->field($model, 'column_id')->label('新闻分类')->dropDownList(NewsColumn::find()->select(['news_column'])->indexBy('id')->column(), ['prompt' => '请选择新闻分类']); ?>
                                         </div>
                                 </div>	
                                 <div class="control-group">

@@ -26,7 +26,7 @@ class ProductController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                    ]
+                    ],
                 ],
             ],
         ];

@@ -81,7 +81,7 @@ AppAsset::register($this);
                             <li><a href="/site/contact" id="contact">联系我们</a></li>
                     </ul>
                     <ul>
-                            <?php if(Yii::$app->user->isGuest){?><li><a href="/site/join" id="join">加入我们</a></li><?php }else{ ?><li><a href="/" id="login">个人中心</a></li><?php } ?>
+                            <?php if(Yii::$app->user->isGuest){?><li><a href="/site/join" id="join">加入我们</a></li><?php }else{ ?><li><a href="/member" id="login">个人中心</a></li><?php } ?>
                             <?php if(Yii::$app->user->isGuest){?><li><a href="/site/login" id="login">登录</a></li><?php }else{ ?><li><a href="/site/logout" id="login">注销<?='('.Yii::$app->user->identity->username.')'?></a></li><?php } ?>
                     </ul>
             </nav>
@@ -94,7 +94,7 @@ AppAsset::register($this);
                     <ul class="grid col-one-third social">
                                     <li><a href="/">首页</a></li>
                                     <li><a href="/site/about">关于我们</a></li>
-                                    <li><a href="/site/products">旗下产品</a></li>
+                                    <li><a href="/product">旗下产品</a></li>
                                     <li><a href="/site/business">业务介绍</a></li>
                     </ul>
 
@@ -106,7 +106,7 @@ AppAsset::register($this);
                             <ul>
                                     <li><a href="/site/news">新闻动态</a></li>
                                     <li><a href="/site/contact">联系我们</a></li>
-                                    <?php if(Yii::$app->user->isGuest){?><li><a href="/site/join" id="join">加入我们</a></li><?php }else{ ?><li><a href="/" id="login">个人中心</a></li><?php } ?>
+                                    <?php if(Yii::$app->user->isGuest){?><li><a href="/site/join" id="join">加入我们</a></li><?php }else{ ?><li><a href="/member" id="login">个人中心</a></li><?php } ?>
                                     <?php if(Yii::$app->user->isGuest){?><li><a href="/site/login" id="login">登录</a></li><?php }else{ ?><li><a href="/site/logout" id="login">注销<?='('.Yii::$app->user->identity->username.')'?></a></li><?php } ?>
                             </ul>
                     </nav>

@@ -38,8 +38,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                     <article id="navteam">
                     <h2><?="产品名称：".$model->product_name?></h2>
                     <p><?="产品分类：".$model->productColumn['product_column']?></p>
-                    <p><?="募集期利率：".$model->raise_interest_year?></p>
-                    <p><?="年利率：".$model->interest_year?></p>
+                    <p><?="产品内容：".$model->content?></p>
                     </article>
 <!--                    <article id="navphilo">
                     <h2>组织架构</h2>

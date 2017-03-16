@@ -33,8 +33,7 @@ $this->title = $model->id;
         'attributes' => [
             'id',
             'product_name',
-            'raise_interest_year',
-            'interest_year',
+            'content',
 //            'product_column_id', 
                 [
                     'label' => '产品分类',
