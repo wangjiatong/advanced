@@ -78,7 +78,7 @@ class Contract extends ActiveRecord
             'cash_time' => '兑付时间',
             'term_month' => '期限（月）',
             'interest' => '成立期利息',
-            'term' => '分期（月）',
+            'term' => '付款方式',
             'every_time' => '每期到期时间',
             'every_interest' => '每期应付利息',
             'total_interest' => '应付利息总额',
@@ -91,6 +91,8 @@ class Contract extends ActiveRecord
             'product_id' => '产品名称',
             'user_id' => '客户姓名',
             'status' => '合同状态',
+            'raise_interest_year' => '募集期年利率（%）',
+            'interest_year' => '年利率（%）',
         ];
     }
 

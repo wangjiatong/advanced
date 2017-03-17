@@ -2,6 +2,7 @@
 use yii\grid\GridView;
 use yii\widgets\DetailView;
 use yii\helpers\Html;
+$this->title = '新闻详情';
 ?>
 <!--<div class="span9">-->
           <div class="row-fluid">

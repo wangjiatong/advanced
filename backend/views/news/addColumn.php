@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+$this->title = '添加新闻分类';
 ?>
 <!--<div class="span9">-->
           <div class="row-fluid">

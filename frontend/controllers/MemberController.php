@@ -6,6 +6,8 @@ use Yii;
 use yii\web\Controller;
 use common\models\Contract;
 use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
+use common\models\UserModel;
 
 class MemberController extends Controller
 {
@@ -35,12 +37,30 @@ class MemberController extends Controller
         {
             return null;
         }
+        $user = UserModel::findOne($user_id);
         
-        $model = Contract::find()->where(['user_id' => $user_id])->all();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $user->getContracts(),
+        ]);
         
         return $this->render('index', [
-            'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
+    }
+    
+    public function actionView($id)
+    {
+        if(!Yii::$app->user->isGuest)
+        {
+            return $this->render('view', [
+                'model' => Contract::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->one(),
+            ]);
+        }
+    }
+    
+    public function actionPersonal()
+    {
+        return $this->render('personal');
     }
 
 }

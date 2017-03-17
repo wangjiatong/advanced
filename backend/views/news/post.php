@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 //use yii\bootstrap\ActiveForm;
 use common\models\NewsColumn;
 use kucha\ueditor\UEditor;
+$this->title = '发布新闻';
 ?>
 <!--<div class="span9">-->
           <div class="row-fluid">

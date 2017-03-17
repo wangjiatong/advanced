@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\models\Contract;
 
 /**
  * This is the model class for table "user".
@@ -211,6 +212,31 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    //获取客户姓名
+    public function getName($id)
+    {
+        $arr = UserModel::findOne($id);
+        $name = $arr['name'];
+        return $name;
+    }
+    //获取客户性别
+    public function getSex($id)
+    {
+        $arr = UserModel::findOne($id);
+        $sex = $arr['sex'];
+        if($sex == 0)
+        {
+            return "先生";
+        }else{
+            return "女士";
+        }
+    }
+    
+    //通过客户获取对应合同
+    public function getContracts()
+    {
+        return $this->hasMany(Contract::className(), ['user_id' => 'id']);
     }
 
 }

@@ -30,7 +30,7 @@ $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive")
                         <article class="post">
                             <h2><a href="/site/article/<?=$model['id']?>" class="post-title"><?=$model['title']?></a></h2>
                             <div class="meta">
-                                <p>发布时间： <span class="time"><?=$model['created_at']?></span> &nbsp;新闻栏目： <a href="<?=\Yii::$app->urlManager->createUrl(['site/news-column', 'id' => $model['column_id']])?>"class="cat"><?php if($model['column_id']==27){echo "公司动态";}else if($model['column_id']==28){echo "研究报告";}else{echo "媒体报道";}?></a> </p>
+                                <p>发布时间： <span class="time"><?=$model['created_at']?></span> &nbsp;新闻栏目： <a href="<?=\Yii::$app->urlManager->createUrl(['site/news-column', 'id' => $model['column_id']])?>"class="cat"><?= $model->newsColumn['news_column']?></a> </p>
                             </div>
                             <div class="entry">
                                 <?=$model['summary']?>
@@ -134,7 +134,6 @@ $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive")
                     <div class="widget">
                             <input id="search" type="search" name="search" value="点击输入您要搜索的内容" >
                     </div>
-
 
 <!--                    <div class="widget">
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.</p>

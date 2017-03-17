@@ -71,7 +71,7 @@ class ContractForm extends Model
             'cash_time' => '兑付时间',
             'term_month' => '期限（月）',
             'interest' => '成立期利息（元）',
-            'term' => '分期',
+            'term' => '付款方式',
             'every_time' => '每期到期时间',
             'every_interest' => '每期应付利息（元）',
             'total_interest' => '应付利息总额（元）',

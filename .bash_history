@@ -1,7 +1,4 @@
 ls
-cd ..
-cd
-ls
 cd
 git branch
 git push origin dev
@@ -998,3 +995,6 @@ ls -l
 chmod 777 views/
 ls -l
 chmod 755 views/
+git add .
+git commit -m "just finished the contract function"
+git push origin dev
