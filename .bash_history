@@ -1,145 +1,3 @@
-ls -l
-cd upload/
-mkdir image
-ls
-ls -l
-pwd
-cd image/
-ls
-ls -l
-cd ..
-ls -l
-cd ..
-ls -l
-cd
-cd backend/
-ls
-cdc web/
-ls
-cd web/
-ls
-ls -l
-cd upload/
-ls -l
-cd image/
-ls
-cd 20170215/
-ls
-pwd
- cd ..
-cd ..
-chmod 777 upload
-ls -l
-cd upload/
-ls -l
-chmod 777 image
-ls -l
-cd 
-cd ..
-cd advanced
-ls
-cd backend/
-cd web/
-ls
-chmod 777 upload
-cd upload/
-chmod 777 image
-pwd
-cd image/
-ls
-cd 20170217
-ls -l
-cd ..
-ls -l
-cd
-cd ..
-ls
-cd ..
-ls
-cd etc/
-ls
-cd nginx
-ls
-cd conf.d/
-ls
-vi yii.conf 
-vi yii-test.conf 
-vi yii.conf 
-cd
-ls
-cd backend/
-ls
-cd web/
-ls
-cd upload/
-ls
-cd image/
-ls
-cd 20170215
-ls
-cd ..
-cd 20170217
-ls
-cd ..
-ls
-rm 20170215 -r
-ls
-rm 20170217 -r
-ls
-cd ..
-pwd
-cd
-cd ..
-cd advanced
-cd backend/
-cd web/
-cd upload/
-ls
-cd image/
-ls
-rm 20170215 20170217 -r
-ls
-cd ..
-ls
-cd ..
-ls -l
-cd upload/
-ls -l
-git add .
-git commit -m "fix the picture problems"
-git push origin dev
-cd
-cd //
-cd
-cd ..
-cd advanced
-git pull
-cd
-git add.
-git add .
-git commit -m "picture"
-git push origin dev
-cd ..
-cd advanced
-git pull
-cd /
-ls
-cd etc/
-cd nginx/
-ls
-cd conf.d/
-ls
-vi yii.conf 
-cd
-git add .
-git commit -m "picture"
-git push origin dev
-cd ..
-cd advanced
-git pull
-ls
-cd frontend/
-ls
 cd web/
 ls
 cd ..
@@ -998,3 +856,145 @@ vi composer.json
 vi UEditorAction.php 
 vi UEditor.php 
 vi Uploader.php 
+cd /
+cd etc/
+cd nginx/
+ls
+cd conf.d/
+ls
+vi yii-test.conf 
+/etc/init.d/nginx restart
+vi yii-test.conf 
+cd
+ cd frontend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+cd
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+cd news/
+ls
+cd 20170426/
+ls
+cd ..
+ls
+cd ..
+ls
+cd ..
+ls
+ls -l
+cd uploads/
+ls -l
+cd news/
+ls
+ls -l
+cd 20170426/
+ls -l
+cd ..
+ls
+cd ..
+ls
+cd news/
+rm -rf
+ls
+rm - rf .
+lls
+ls
+rm -rf 20170426/
+ls
+cd 
+cd v
+ls
+cd vendor/
+ls
+cd kucha/
+ls
+cd ueditor/
+ls
+vi Uploader.php 
+vi UEditor
+ls
+vi UEditor.php 
+vi config.php 
+cd /
+cd etc/
+cd nginx/
+cd conf.d/
+ls
+vi yii-test.conf 
+/etc/init.d/nginx restart
+cd
+git add .
+git commit -m "finished the product pic and news pic function"
+git push origin dev
+cd
+cd ..
+cd advanced
+ls
+git pull
+cd backend/
+ls
+cd web/
+ls
+pwd
+mkdir uploads
+ls
+ls -l
+chmod 777 uploads/
+ls -l
+ls
+vi index.php 
+cd /
+cd etc/
+cd nginx/
+ls
+cd conf.d/
+vi yii.conf 
+/etc/init.d/nginx restart
+cd
+cd ..
+cd advanced
+cd frontend/
+ls
+cd web/
+ls
+mkdir uploads
+chmod 777 uploads
+ls
+pwd
+cd ..
+cd b
+cd ..
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+mkdir news
+ls
+cd ..
+ls
+ls -l
+cd uploads/
+ls
+ls -l
+cd ..
+ls
+cd uploads/
+rm news/
+rm -r news/
+ls
+cd ..
+cd /
+cd etc/
+cd nginx/
+cd conf.d/
+ls
+vi yii.conf 
+/etc/init.d/nginx restart
