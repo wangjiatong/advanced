@@ -28,7 +28,7 @@ $this->registerJs('$(document).ready(function(){$("#news").addClass("navactive")
                         <article class="post">
                             <h2><a href="/site/article/<?=$model['id']?>" class="post-title"><?=$model['title']?></a></h2>
                             <div class="meta">
-                                <p>发布时间： <span class="time"><?=$model['created_at']?></span> &nbsp;新闻栏目： <a href="<?=\Yii::$app->urlManager->createUrl(['site/news-column', 'id' => $model['column_id']])?>"class="cat"><?php if($model['column_id']==27){echo "公司动态";}else if($model['column_id']==28){echo "研究报告";}else{echo "媒体报道";}?></a> </p>
+                                <p>发布时间： <span class="time"><?=$model['created_at']?></span> &nbsp;新闻栏目： <a href="<?=\Yii::$app->urlManager->createUrl(['site/news-column', 'id' => $model['column_id']])?>"class="cat"><?= $model->newsColumn['news_column']?></a> </p>
                             </div>
                             <div class="entry">
                                 <?=$model['summary']?>

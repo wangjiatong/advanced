@@ -13,6 +13,11 @@ use yii\filters\AccessControl;
 //产品
 use common\models\Product;
 use common\models\ProductSearch;
+//产品图片上传
+use yii\web\UploadedFile;
+//产品表单
+use backend\models\ProductForm;
+
 
 
 /**
@@ -172,10 +177,31 @@ class ProductController extends Controller
      */
         public function actionCreate()
         {
-            $model =new Product();
-            if($model->load(Yii::$app->request->post()) && $model->save())
+            $model = new ProductForm();
+            
+            if($model->load(Yii::$app->request->post()))
             {
-                return $this->redirect(['view', 'id' => $model->id]);
+                $model->img = UploadedFile::getInstance($model, 'img');
+                
+                $name = date('Y-m-d') . '-' . rand(9, 99);
+        
+                $ext = $model->img->extension;
+                
+                $file = $name . '.' . $ext;
+        
+                $uploadPath = '../../frontend/web/uploads/' . $file;
+                
+                $model->img->saveAs($uploadPath);
+                
+                $path = '/uploads/' . $file;
+                
+                $model->img = $path;
+        
+                $model->upload();
+                
+//                var_dump($_POST);
+                return $this->redirect(['index']);
+
             }else{
                 return $this->render('create', [
                     'model' => $model,
@@ -191,7 +217,7 @@ class ProductController extends Controller
      */
         public function actionUpdate($id)
         {
-            $model=$this->findProductModel($id);
+            $model = $this->findProductModel($id);
 
             if($model->load(Yii::$app->request->post()) && $model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -210,8 +236,23 @@ class ProductController extends Controller
      */
             public function actionDelete($id)
             {
-                $this->findProductModel($id)->delete();
-                return $this->redirect(['index']);
+//                $this->findProductModel($id)->delete();
+                $product = $this->findProductModel($id);
+                
+                $img = $product->getImg($id);
+                
+                var_dump($img);
+                
+                if(is_file($img) && $product->delete())
+                {
+                    unlink($img);
+//                    $this->findProductModel($id)->delete();
+//                    $product->delete();
+                                    return $this->redirect(['index']);
+                }else{
+                    echo "fail";
+                }
+//                return $this->redirect(['index']);
             }
 
         /**

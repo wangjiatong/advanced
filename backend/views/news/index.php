@@ -1,6 +1,7 @@
 <?php
 use yii\grid\GridView;
 use yii\helpers\Html;
+$this->title = '新闻管理';
 ?>
 <!--<div class="span9">-->
           <div class="row-fluid">
@@ -15,7 +16,7 @@ use yii\helpers\Html;
                                     'id',
                                     'title',
                                     'column_id',
-                                    'created_at',
+                                    'created_at:date',
                                     [
                                         'class' => 'yii\grid\ActionColumn',
                                         'template' => '{news-view}{news-update}{news-delete}',

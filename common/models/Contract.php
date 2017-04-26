@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use \yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "contract".
@@ -34,7 +35,7 @@ use Yii;
  * @property User $user
  * @property Product $product
  */
-class Contract extends \yii\db\ActiveRecord
+class Contract extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -50,9 +51,10 @@ class Contract extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'created_at', 'updated_at', 'product_id', 'user_id'], 'required'],
-            [['capital', 'raise_day', 'raise_interest', 'term_month', 'interest', 'term', 'total_interest', 'total', 'product_id', 'user_id', 'status'], 'integer'],
-            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
+            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'product_id', 'user_id', 'interest_year', 'raise_interest_year'], 'required'],
+            [['capital', 'raise_day', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
+//            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
+            [['transfered_time', 'found_time', 'cash_time'], 'default', 'value' => null],//时间插件设置要求
             [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number', 'source'], 'string', 'max' => 255],
             [['contract_number'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -76,7 +78,7 @@ class Contract extends \yii\db\ActiveRecord
             'cash_time' => '兑付时间',
             'term_month' => '期限（月）',
             'interest' => '成立期利息',
-            'term' => '分期（月）',
+            'term' => '付款方式',
             'every_time' => '每期到期时间',
             'every_interest' => '每期应付利息',
             'total_interest' => '应付利息总额',
@@ -89,6 +91,8 @@ class Contract extends \yii\db\ActiveRecord
             'product_id' => '产品名称',
             'user_id' => '客户姓名',
             'status' => '合同状态',
+            'raise_interest_year' => '募集期年利率（%）',
+            'interest_year' => '年利率（%）',
         ];
     }
 

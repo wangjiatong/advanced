@@ -107,7 +107,7 @@ AppAsset::register($this);
             <ul class="nav nav-list">
               <li class="nav-header"><i class="icon-wrench"></i> 管理员</li>
               <!--<li class="active"><a href="#">添加管理员</a></li>-->
-              <li class=""><a href="#">管理员管理</a></li>
+              <li class=""><a href="/admin">管理员管理</a></li>
               <li class="nav-header"><i class="icon-user"></i> 会员</li>
               <!--<li class=""><a href="#">添加会员</a></li>-->
               <li class=""><a href="/user">会员管理</a></li>

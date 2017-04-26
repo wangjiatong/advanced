@@ -16,11 +16,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
     
-    <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'password')->textInput() ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sex')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sex')->dropDownList([
+        '0' => '男',
+        '1' => '女',
+    ]) ?>
 
     <?= $form->field($model, 'birthday')->textInput(['maxlength' => true]) ?>
 

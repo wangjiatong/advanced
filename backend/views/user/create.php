@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $model common\models\UserModel */
 
 $this->title = '用户注册';
-$this->params['breadcrumbs'][] = ['label' => 'User Models', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = ['label' => 'User Models', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-model-create">
 

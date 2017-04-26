@@ -12,6 +12,7 @@ $this->title = $model->id;
 //$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 //print_r($model->productColumn);
+$imgUrl = constant('FRONTEND') . $model->img;
 ?>
 <div class="product-view">
 
@@ -33,12 +34,17 @@ $this->title = $model->id;
         'attributes' => [
             'id',
             'product_name',
-            'raise_interest_year',
-            'interest_year',
+            'content:html',
+//            'img:html',
 //            'product_column_id', 
                 [
                     'label' => '产品分类',
                     'value' => $model->productColumn['product_column'],
+                ],
+                [
+                'label' => '产品图片',
+                'value' => "<img src='$imgUrl'>",
+                'format' => 'html',
                 ],
         ],
     ]) ?>

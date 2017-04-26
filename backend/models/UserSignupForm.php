@@ -47,6 +47,17 @@ class UserSignupForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
+    public function attributeLabels() {
+        return [
+            'username' => '账户',
+            'email' => '电子邮箱',
+            'password' => '密码',
+            'name' => '客户姓名',
+            'sex' => '性别',
+            'birthday' => '生日（格式：XXXX-XX-XX）',
+            'phone_number' => '电话号码',
+        ];
+    }
     public function signup()
     {
         if (!$this->validate()) {

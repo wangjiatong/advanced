@@ -1,6 +1,7 @@
 <?php
 use yii\grid\GridView;
 use yii\helpers\Html;
+$this->title = '新闻分类管理';
 ?>
 <!--<div class="span9">-->
           <div class="row-fluid">

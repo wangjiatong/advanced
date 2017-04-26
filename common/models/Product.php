@@ -1,8 +1,5 @@
 <?php
-
 namespace common\models;
-
-use Yii;
 
 /**
  * This is the model class for table "product".
@@ -18,6 +15,7 @@ class Product extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
     public static function tableName()
     {
         return 'product';
@@ -30,10 +28,12 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['product_name'], 'required'],
-            [['raise_interest_year', 'interest_year'], 'number'],
             [['product_column_id'], 'integer'],
             [['product_name'], 'string', 'max' => 255],
             [['product_name'], 'unique'],
+            [['content'], 'required'],
+            [['img'], 'required'],
+
         ];
     }
 
@@ -45,14 +45,23 @@ class Product extends \yii\db\ActiveRecord
         return [
             'id' => '产品ID',
             'product_name' => '产品名称',
-            'raise_interest_year' => '募集期年利率',
-            'interest_year' => '年利率',
+            'content' => '产品内容',
             'product_column_id' => '产品分类ID',
+            'img' => '产品图片',
         ];
     }
-    
+
     public function getProductColumn()
     {
         return $this->hasOne(ProductColumn::className(), ['id' => 'product_column_id'])->asArray();
+    }
+    
+    public function getImg($id)
+    {
+        $img = $this->find()->select('img')->where(['id' => $id])->one();
+        $img = $img['img'];
+//        $img = constant('FRONTEND') . $img;
+        $img = '../../frontend/web' . $img;
+        return $img;
     }
 }

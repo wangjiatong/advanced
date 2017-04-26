@@ -8,7 +8,7 @@ use frontend\components\NewsFeed;
 ?>
 <div class="home-page main">
     
-<?=frontend\components\SpecialFront::widget()?>
+<?= frontend\components\NormalFront::widget()?>
     
 
     <section class="services grid-wrap">
@@ -25,7 +25,7 @@ use frontend\components\NewsFeed;
             <header class="grid col-full">
                             <hr>
                             <p class="fleft">旗下产品</p>
-                            <a href="/site/products" class="arrow fright">see more products</a>
+                            <a href="/product" class="arrow fright">see more products</a>
                     </header>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
@@ -62,7 +62,7 @@ use frontend\components\NewsFeed;
                             </figure>
 
                             <figure class="grid col-one-quarter mq2-col-one-half">
-                                    <a href="#">
+                                    <a href="/">
                                     <img src="img/zanwu.jpg" alt="">
                                     <span class="zoom"></span>
                                     </a>

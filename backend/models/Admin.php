@@ -186,4 +186,12 @@ class Admin extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    public function attributeLabels() {
+        return [
+            'id' => '管理员ID',
+            'username' => '账号',
+            'status' => '权限',
+        ];
+    }
 }
