@@ -22,15 +22,16 @@ $this->title = $name;
 
             <section class="grid col-three-quarters mq2-col-full">
                 <div class="alert alert-danger">
-                    <?= nl2br(Html::encode($message)) ?>
+                    <?= nl2br(Html::encode('您所访问的页面不存在！')) ?>
                 </div>
 
                 <p>
-                The above error occurred while the Web server was processing your request.
+                上述错误在您发出请求时产生。
                 </p>
                 <p>
-                Please contact us if you think this is a server error. Thank you.
+                如果您认为是服务器问题请与我们取得联系，谢谢！
                 </p>
+                <a href="/">点击此处，返回首页。</a>
             </section>
 
     </div> <!--main-->

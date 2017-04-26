@@ -33,10 +33,10 @@ class MemberController extends Controller
     {
         $user_id = Yii::$app->user->id;
         
-        if(Yii::$app->user->isGuest)
-        {
-            return null;
-        }
+//        if(Yii::$app->user->isGuest)
+//        {
+//            return null;
+//        }
         $user = UserModel::findOne($user_id);
         
         $dataProvider = new ActiveDataProvider([
@@ -50,12 +50,15 @@ class MemberController extends Controller
     
     public function actionView($id)
     {
-        if(!Yii::$app->user->isGuest)
-        {
+        try{
             return $this->render('view', [
                 'model' => Contract::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->one(),
             ]);
+        } catch (\Exception $e)
+        {
+            return $this->redirect(['/site/error']);
         }
+            
     }
     
     public function actionPersonal()

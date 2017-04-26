@@ -36,9 +36,10 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                     <section class="grid col-three-quarters mq2-col-full">
                     <!--<p style="text-align: center"><img src="/img/guanyuwomen.jpg" alt="" ></p>-->      
                     <article id="navteam">
-                    <h2><?="产品名称：".$model->product_name?></h2>
+                    <h2><?=$model->product_name?></h2>
                     <p><?="产品分类：".$model->productColumn['product_column']?></p>
-                    <p><?="产品内容：".$model->content?></p>
+                    <p></p>
+                    <p><?=$model->content?></p>
                     </article>
 <!--                    <article id="navphilo">
                     <h2>组织架构</h2>

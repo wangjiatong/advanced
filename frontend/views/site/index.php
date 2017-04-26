@@ -8,7 +8,7 @@ use frontend\components\NewsFeed;
 ?>
 <div class="home-page main">
     
-<?=frontend\components\SpecialFront::widget()?>
+<?= frontend\components\NormalFront::widget()?>
     
 
     <section class="services grid-wrap">

@@ -285,8 +285,8 @@ nav a, menu a { text-decoration: none; color: #555; }
 ------------------------------------------------------------- */
 .main > section { margin-bottom: 7em; }
 .main header{ color: #555; margin-bottom: 3em; }
-.main header hr{border-top-color:#a30022;}/*五周年庆皮肤*/
-/*.main header hr{border-top-color:#999;}*/
+/*.main header hr{border-top-color:#a30022;}五周年庆皮肤*/
+.main header hr{border-top-color:#999;}
 .arrow:after {content:" \27F6"; /* html unicode: &#10230; */ } 
 header .arrow {color: #999; font-style: italic;}
 .arrow:hover {color: #0078CF; }
