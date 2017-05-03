@@ -23,7 +23,16 @@ class PostNewsForm extends Model
             [['title', 'summary', 'content', 'column_id'], 'required'],
         ];
     }
-    
+    public function attributeLabels() {
+        return [
+            'id' => '新闻ID',
+            'title' => '新闻标题',
+            'summary' => '新闻摘要',
+            'content' => '新闻内容',
+            'column_id' => '新闻分类ID',
+            'created_at' => '发布时间',
+        ];
+    }
     public function postNews()
     {     
         if(!$this->validate())

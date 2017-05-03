@@ -14,6 +14,7 @@ use yii\filters\AccessControl;
 use backend\models\ContractForm;
 //
 //use common\models\Product;
+use yii\web\UploadedFile;
 
 /**
  * ContractController implements the CRUD actions for Contract model.

@@ -54,6 +54,21 @@ class ProductController extends Controller
             ],
         ];
     }
+    
+    //富文本编辑器
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'kucha\ueditor\UEditorAction',
+                'config' => [
+                    'imageUrlPrefix' => constant('FRONTEND_UPLOADS'),
+                    'imagePathFormat' => '/uploads/products/{yyyy}{mm}/{time}{rand:6}',
+                    'autoHeightEnabled' => false,
+                ],
+            ]
+        ];
+    }
 
     /**
      * Lists all ProductColumns models.

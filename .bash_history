@@ -1,254 +1,3 @@
-cd web/
-ls
-cd ..
-ls
-cd ..
-ls
-cd backend/
-ls
-cd web/
-ls
-ls -l
-cd upload/
-ls
-ls -l
-cd image/
-ls
-cd
-git add .
-git commit -m "picture"
-git push origin de v
-git push origin dev
-cd ..
-cd advanced
-git pull
-cd
-git update
-composer update
-composer install
-composer require kucha/ueditor "*"
-cd
-cd backend/
-cd web/
-ls
-ls -l
-rm -r upload/
-ls
-cd ..
-ls
-cd views/
-ls
-cd ..
-ls
-cd ..
-ls
-cd frontend/
-ls
-cd web/
-ls
-cd ..
-cd common
-ls
-cd ..
-ls
-cd common/
-ls
-cd ..
-cd a
-cd ..
-cd advanced
-ls
-cd backend/
-ls
-cd upload/
-ls
-cd .
-ls
-cd ..
-ls
-rm -r upload/
-ls
-cd web/
-ls
-rm -r upload/
-ls
-cd ,,
-cd ..
-ls
-cdw
-ls
-cd
-ls
-cd backend/
-ls
-cd web/
-ls
-mkdir upload
-ls
-ls -l
-chmod 777 upload/
-ls -l
-mysql -u root -p
-cd /
-ls
-cd etc/
-cd nginx/
-cd conf.d/
-ls
-vi yii.conf 
-git add .
-git commit -m "update the frontend picture, backend picture problems unsolved"
-git push origin dev
-cd ..
-cd advanced
-git pull
-mysql -u root -p
-cd
-yii migrate/create add_columns_for_user_table
-php yii migrate/create add_columns_for_user_table
-php yii migrate/up
-mysql -u root -p
-cd
-cd common/
-ls
-ls -l models/
-ls -l
-chmod 777 models
-cd
-git add .
-git commit -m "skip the picture problem, modifyed the user table and generated the user model"
-git push origin dev
-ls
-cd backend/
-ls
-chmod 777 controllers models views
-cd
-php yii migrate/create creat_table_product_columns
-cd
-php yii migrate/up
-mysql -u root -p
-php yii migrate/create create_table_product
-php yii migrate/up
-mysql -u root -p
-cd
-php yii migrate/down m170222_041831
-php yii migrate/down to m170222_041831
-php yii migrate/to m170222_041831
-php yii migrate/down 2
-use mysql -u root -p
-mysql -u root -p
-php yii migrate/up 2
-php yii migrate/create create_table_product_column;
-php yii migrate/create create_table_product;
-php yii migrate/up
-mysql -u root -p
-cd /
-cd etc/
-ls
-cd n
-cd nginx/
-cd conf.d/
-ls
-vi yii.conf 
-reboot
-cd /
-cd etc/
-cd nginx/
-cd conf.d/
-ls
-vi yii-test.conf 
-reboot
-ls
-ls -a
-cd ..
-cd advanced
-ls -a
-ls
-cd frontend/
-ls
-cd web/
-ls
-vi robots.txt 
-cd ..
-ls
-cd ..
-cd backend/
-cd web/
-ls
-cd
-cd frontend/
-cd web/
-ls
-vi robots.txt 
-ls
-cd frontend/
-ls
-cd web/
-ls
-ls -l
-git add .
-git commit -m "finished product and user for backend, turn to frontend product"
-git push origin dev
-cd ..
-cd advanced
-git gull
-git pull
-git add .
-git commit -m "finished the frontend product"
-git push origin dev
-cd ..
-cd advanced
-git pull
-cd
-php yii migrate/create create_table_contract
-mysql -u root -p
-describe product
-mysql -u root -p
-cd
-php yii migrate/up
-mysql -u root -p
-cat /etc/passwd
-useradd
-useradd composer
-passwd composer
-cd
-su composer
-cd
-composer require 2amigos/yii2-date-picker-widget:~1.0
-su composer
-cd
-composer require 2amigos/yii2-date-picker-widget:~1.0
-vi composer.json 
-composer require kartik-v/yii2-widget-datetimepicker "*"
-composer update
-cd
-composer
-compoer remove
-ls
-vi composer.json 
-composer update
-git add .
-git commit -m "5th year, and fix a bug for news column"
-git push origin dev
-cd ..
-cd advanced
-git pull
-reboot
-su composer
-php composer.phar require --prefer-dist yiisoft/yii2-jui
-su composer
-composer require --prefer-dist yiisoft/yii2-jui
-ls
-vi composer.json 
-su composer
-vi composer.json 
-su composer
-vi composer.json 
-composer update
-composer require --prefer-dist yiisoft/yii2-jui
-vi composer.json 
-composer require --prefer-dist yiisoft/yii2-jui
-vi composer.json 
 composer update
 cd
 vi composer.json 
@@ -998,3 +747,254 @@ cd conf.d/
 ls
 vi yii.conf 
 /etc/init.d/nginx restart
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+cd ..
+cd backend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+cd
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd web/
+ls
+vi index.php 
+pwd
+cd ..
+ls
+cd .
+cd ..
+ls
+pwd
+git pull
+cd vendor/
+ls
+cd
+cd vendor/
+ls
+cd ..
+ls
+ls -l
+cd vendor/
+ls
+cd ..
+pwd
+cd ..
+ls
+cd advanced
+ls
+git stash
+git pull
+git reset --hard
+git pull
+git reset --hard HEAD
+git clean -f -d
+ git pull
+cd vendor/
+ls
+mv ./autoload.php autoload.php1
+ls
+cd ..
+git pull
+cd ..
+cd advanced
+cd vendor/
+ls
+mv autoload.php1 autoload.php
+ls
+cdcd ..
+pwd
+cd ..
+wpd
+pwd
+ls
+ls -a
+vi .gitignore 
+cd
+git add .
+git commit -m "fix the .gitignore problem"
+git push origin dev
+cd ..
+cd advanced
+git pull
+git log
+git status
+git log --graph
+git reflog
+git diff
+git reset --hard 21d7778f8eccaa7d75c39c2421c2dd1096eabfaa
+git pull
+cd backend/
+cd w
+cd web/
+ls
+cd upload
+cd ..
+ls -l
+chmod 777 uploads
+ls -l
+cd upload
+mkdir news
+ls -l
+chmod 777 news/
+cd ..
+ls
+cd
+cd backend/
+ls
+cd web/
+ls
+cd
+cd backend/
+ls
+cd web/
+ls
+cd
+cd ..
+cd advanced
+cd backend/
+cd web/
+ls
+cd upload
+ls
+cd news/
+cd ..
+ls
+cd ..
+ls
+rm -rf upload
+ls
+cd uploads/
+ls
+rm news/
+rm -rf news/
+ls
+cd /
+cd etc/
+cd nginx/
+cd conf.d/
+vi yii.conf 
+cd
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd web/
+ls
+cd uploads/
+cd ..
+cd i
+cd img/
+ls
+cd ..
+cd uploads/
+cd ..
+vi index.php 
+cd
+git status
+ls
+cd
+git add .
+git commit -m "test"
+git push origin dev
+cd
+ls
+ls -a
+ls
+ls -a
+vi .gitignore 
+ls
+cd
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+cd news/
+ls
+cd 20170426/
+ls
+cd
+cd ..
+ls
+cd advanced
+ls
+cd frontend/
+ls
+cd web/
+ls
+ls -l
+cd uploads/
+ls
+cd ..
+ls
+cd uploads/
+ls
+rm 2017-04-20-76.jpg 
+ls
+cd ..
+chmod 777 uploads/
+ls -l
+pwd
+cd ..
+cd backend/
+ls
+cd web/
+ls
+chmod uploads/
+ls -l
+cd uploads/
+ls
+cd news/
+ls
+cd 20170426/
+ls
+cd ..
+ls
+ rm -rf 20170426/
+ls
+cd ..
+cd frontend/
+ls
+ls -l
+cd web/
+ls
+chmod uploads/
+ls -l
+pwd
+ls
+ cd uploads/
+ls
+ls -l
+mysql -u root -p
+ls
+rm 2017-04-26-29.jpg 
+ls
+pwd
+cd ..
+cd..
+cd ..
+ls
+cd web/
+ls
+vi index.php 
+cd ..
+cd backend/
+ls
+cd web/
+ls
+vi index.php 

@@ -56,12 +56,12 @@ class Product extends \yii\db\ActiveRecord
         return $this->hasOne(ProductColumn::className(), ['id' => 'product_column_id'])->asArray();
     }
     
-    public function getImg($id)
-    {
-        $img = $this->find()->select('img')->where(['id' => $id])->one();
-        $img = $img['img'];
-//        $img = constant('FRONTEND') . $img;
-        $img = '../../frontend/web' . $img;
-        return $img;
-    }
+//    public function getImg($id)
+//    {
+//        $img = $this->find()->select('img')->where(['id' => $id])->one();
+//        $img = $img['img'];
+////        $img = constant('FRONTEND') . $img;
+//        $img = '../../frontend/web' . $img;
+//        return $img;
+//    }
 }

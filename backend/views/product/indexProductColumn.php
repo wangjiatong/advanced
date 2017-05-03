@@ -24,7 +24,7 @@ $this->title = '产品分类管理';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'product_column',
 
             [

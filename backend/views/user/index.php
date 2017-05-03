@@ -34,7 +34,14 @@ $this->title = '会员管理';
             // 'created_at',
             // 'updated_at',
              'name',
-             'sex',
+//             'sex',
+            [
+                'label' => '性别',
+                'attribute' => 'sex',
+                'value' => function($data){
+                    return common\models\UserModel::getSex($data->sex);
+                }
+            ],
              'birthday',
              'phone_number',
 

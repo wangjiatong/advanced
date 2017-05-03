@@ -24,9 +24,16 @@ $this->title = '产品管理';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'product_name',
-            'product_column_id',
+//            'product_column_id',
+            [
+                'label' => '产品分类',
+                'attribute' => 'product_column_id',
+                'value' => function($data){
+                    return common\models\ProductColumn::findOne($data)->product_column;
+                }
+            ],
 //                [
 //                    'label' => '产品分类',
 //                    'value' => $model->productColumn['product_column'],

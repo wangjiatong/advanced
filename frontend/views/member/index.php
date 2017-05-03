@@ -24,8 +24,8 @@ $id = Yii::$app->user->id;
 			</p>
 			<menu>
 				<ul>
-					<li><a href="/member" class="arrow">我的合同</a></li>
-					<li><a href="/member/personal" class="arrow">个人信息</a></li>
+					<li><a href="/member">我的合同</a></li>
+					<!--<li><a href="/member/personal" class="arrow">个人信息</a></li>-->
 <!--					<li><a href="#navplace" class="arrow">Our place</a></li>
 					<li><a href="#navother" class="arrow">Our lorem</a></li>-->
 				</ul>

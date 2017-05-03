@@ -26,6 +26,7 @@ class ContractForm extends Model
     public $source;
     public $raise_interest_year;//新增募集期年利率
     public $interest_year;//新增年利率
+    public $pdf;//合同扫描件
     
 
 
@@ -86,6 +87,7 @@ class ContractForm extends Model
             'status' => '合同状态',
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
+            'pdf' => '合同扫描件',
         ];
     }
 
@@ -127,7 +129,7 @@ class ContractForm extends Model
         
         $contract->contract_number = $this->contract_number;//合同编号
         
-        $contract->capital = $this->capital;//本金
+        $contract->capital = round($this->capital, 2);//本金
         
         $contract->transfered_time = $this->transfered_time;//到账时间
         
@@ -137,7 +139,7 @@ class ContractForm extends Model
         
         $contract->raise_interest_year = $this->raise_interest_year; //募集期年利率
         
-        $contract->raise_interest = $contract->capital * $contract->raise_day / 365 * $contract->raise_interest_year / 100;//募集期利息
+        $contract->raise_interest = round($contract->capital * $contract->raise_day / 365 * $contract->raise_interest_year / 100, 2);//募集期利息
         
         $contract->cash_time = $this->cash_time;//兑付时间
         
@@ -145,17 +147,17 @@ class ContractForm extends Model
         
         $contract->interest_year = $this->interest_year;//年利率
         
-        $contract->interest = $contract->capital * $contract->interest_year / 100 * $contract->term_month / 12;//成立期利息
+        $contract->interest = round($contract->capital * $contract->interest_year / 100 * $contract->term_month / 12, 2);//成立期利息
         
         $contract->term = $this->term;//分期
         
-        $every_interest = $contract->interest * $contract->term / $contract->term_month;//非特殊情况下每期应付利息
+        $every_interest = round($contract->interest * $contract->term / $contract->term_month, 2);//非特殊情况下每期应付利息
         
-        $first_interest = $every_interest + $contract->raise_interest;//加上募集期利息的第一期应付利息
+        $first_interest = round($every_interest + $contract->raise_interest, 2);//加上募集期利息的第一期应付利息
         
-        $contract->total_interest = $contract->raise_interest + $contract->interest;//应付利息总额（募集+成立）
+        $contract->total_interest = round($contract->raise_interest + $contract->interest, 2);//应付利息总额（募集+成立）
         
-        $contract->total = $contract->capital + $contract->total_interest;//兑付总额（本金+利息）
+        $contract->total = round($contract->capital + $contract->total_interest, 2);//兑付总额（本金+利息）
         
         $contract->bank = $this->bank;//开户行
         
@@ -166,6 +168,8 @@ class ContractForm extends Model
         $contract->user_id = $this->user_id;//用户id
         
         $contract->product_id = $this->product_id;//产品id
+        
+        $contract->created_at = date('Y-m-d');
         
         $date = new \DateTime(".$contract->found_time.");
         
@@ -213,7 +217,7 @@ class ContractForm extends Model
                 
                 $every_time[$l] = $end;
                 
-                $_every_interest[$l] = $mod / $contract->term_month * $contract->interest + $contract->capital;
+                $_every_interest[$l] = round($mod / $contract->term_month * $contract->interest + $contract->capital, 2);
             }     
             
             $contract->every_time = $this->arrtostr($every_time);
@@ -224,7 +228,7 @@ class ContractForm extends Model
         case 1:
             $contract->every_time = $contract->cash_time;
             
-            $contract->every_interest = $contract->total;
+            $contract->every_interest = round($contract->total, 2);
         break;
         }
         

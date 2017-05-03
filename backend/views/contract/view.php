@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contract */
 
-$this->title = $model->id;
+$this->title = '合同详情：'.$model->contract_number;
 //$this->params['breadcrumbs'][] = ['label' => 'Contracts', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -48,9 +48,30 @@ $this->title = $model->id;
             'source',
             'created_at',
             'updated_at',
-            'product_id',
-            'user_id',
-            'status',
+//            'product_id',
+            [
+                'label' => '产品名称',
+                'attribute' => 'product_id',
+                'value' => function($data){
+                    return \common\models\Product::findOne($data)->product_name;
+                }
+            ],
+//            'user_id',
+            [
+                'label' => '客户姓名',
+                'attribute' => 'user_id',
+                'value' => function($data){
+                    return common\models\UserModel::findOne($data)->name;
+                }
+            ],
+//            'status',
+            [
+                'label' => '合同状态',
+                'attribute' => 'status',
+                'value' => function($data){
+                    return common\models\Contract::contractValidation($data->status);
+                }
+            ],
         ],
     ]) ?>
 

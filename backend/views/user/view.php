@@ -38,7 +38,14 @@ $this->title = $model->name;
             'created_at',
             'updated_at',
             'name',
-            'sex',
+//            'sex',
+            [
+                'label' => '性别',
+                'attribute' => 'sex',
+                'value' => function($data){
+                    return common\models\UserModel::getSex($data->sex);
+                }
+            ],
             'birthday',
             'phone_number',
         ],

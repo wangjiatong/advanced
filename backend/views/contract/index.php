@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\models\ProductColumn;
+use common\models\UserModel;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,7 +26,7 @@ $this->title = '合同管理';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'contract_number',
             'capital',
             'transfered_time:date',
@@ -44,10 +46,55 @@ $this->title = '合同管理';
             // 'source',
             // 'created_at',
             // 'updated_at',
-             'product_id',
-             'user_id',
-             'status',
-
+//             'product_id',
+            [
+                'label' => '产品名称',
+                'attribute' => 'product_id',
+                'value' => function($data){
+                    if($data){
+                        return ProductColumn::findOne($data)->product_column;
+                    }else{
+                        return '不存在的';
+                    }
+                }
+            ],
+//             'user_id',
+            [
+                'label' => '客户姓名',
+                'attribute' => 'user_id',
+                'value' => function($data){
+                   if($data){
+                       return UserModel::findOne($data)->name;
+                   }else{
+                       return '不存在的';
+                   }
+                }
+            ],
+//             'status',
+//            [
+//                'label' => '合同状态',
+//                'attribute' => 'status',
+//                'value' => function($data){
+//                    switch ($data->status)
+//                    {
+//                    case 1: 
+//                        return '生效中';
+//                        break;
+//                    case 0:
+//                        return '已过期';
+//                        break;
+//                    default:
+//                        return '错误';
+//                    }
+//                }
+//            ],
+            [
+                'label' => '合同状态',
+                'attribute' => 'status',
+                'value' => function($data){
+                    return common\models\Contract::contractValidation($data->status);
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

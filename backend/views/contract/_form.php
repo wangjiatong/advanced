@@ -52,6 +52,8 @@ use common\models\UserModel;
     <?= $form->field($model, 'product_id')->dropDownList(Product::find()->select('product_name')->indexBy('id')->column(), ['prompt' => '请选择产品名称']) ?>
 
     <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
+    
+    <?= $form->field($model, 'pdf')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('创建合同', ['class' => 'btn btn-success']) ?>

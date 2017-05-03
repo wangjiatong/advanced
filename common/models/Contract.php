@@ -111,4 +111,14 @@ class Contract extends ActiveRecord
     {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
+    
+    public function contractValidation($status)
+    {
+        switch ($status)
+        {
+            case 1: return '生效中';                break;
+            case 0: return '已过期';                break;
+            default : return '不存在的';
+        }
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 use yii\grid\GridView;
 use yii\helpers\Html;
+use common\models\News;
+
 $this->title = '新闻管理';
 ?>
 <!--<div class="span9">-->
@@ -13,9 +15,16 @@ $this->title = '新闻管理';
                                 'dataProvider' => $dataProvider,
                                 'columns' => [
                                     ['class' => 'yii\grid\SerialColumn'],
-                                    'id',
+//                                    'id',
                                     'title',
-                                    'column_id',
+                                    [
+                                        'label'=> '新闻分类',
+                                        'attribute' => 'column_id',
+                                        'value' => function($data){
+                                            return News::findOne($data)->newsColumn['news_column'];
+                                        },
+                                    ],
+//                                    'column_id',
                                     'created_at:date',
                                     [
                                         'class' => 'yii\grid\ActionColumn',

@@ -71,8 +71,8 @@ AppAsset::register($this);
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-			  <li><a href="#">个人资料</a></li>
-              <li class="divider"></li>
+			  <!--<li><a href="#">个人资料</a></li>-->
+              <!--<li class="divider"></li>-->
               <li><a href="<?= '/site/logout'?>">注销</a></li>
             </ul>
           </div>
@@ -122,7 +122,7 @@ AppAsset::register($this);
               <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
               <li><a href="/news/add-column">添加新闻分类</a></li>
               <li><a href="/news/manage-news-columns">新闻分类管理</a></li>
-              <li><a href="/news/post">添加新闻</a></li>
+              <li><a href="/news/post">发布新闻</a></li>
               <li><a href="/news/index">新闻管理</a></li>
               <!--<li class="nav-header"><i class="icon-signal"></i> 联系我们</li>-->
               <!--<li><a href="#">查看邮件</a></li>-->

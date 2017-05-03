@@ -30,6 +30,7 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
     /**
      * @inheritdoc
      */
@@ -237,6 +238,11 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
     public function getContracts()
     {
         return $this->hasMany(Contract::className(), ['user_id' => 'id']);
+    }
+    //获取客户姓名
+    public function getCustomerName()
+    {
+        return $this->name;
     }
 
 }
