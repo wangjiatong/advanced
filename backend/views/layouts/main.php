@@ -64,7 +64,7 @@ AppAsset::register($this);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">上海翌银玖德资产管理有限公司 —— 网站管理后台</a>
+          <a class="brand" href="#">网站管理后台</a>
           <div class="btn-group pull-right">
 			<a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?></a>
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

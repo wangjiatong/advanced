@@ -16,7 +16,7 @@ $this->title = '会员管理';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('新建用户', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增会员', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,

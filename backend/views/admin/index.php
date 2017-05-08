@@ -14,7 +14,7 @@ $this->title = '管理员管理';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('创建管理员', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增管理员', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?=GridView::widget([
         'dataProvider' => $dataProvider,

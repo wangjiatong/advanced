@@ -63,7 +63,7 @@ class ProductController extends Controller
                 'class' => 'kucha\ueditor\UEditorAction',
                 'config' => [
                     'imageUrlPrefix' => constant('FRONTEND_UPLOADS'),
-                    'imagePathFormat' => '/uploads/products/{yyyy}{mm}/{time}{rand:6}',
+                    'imagePathFormat' => '/uploads/products/{yyyy}{mm}{dd}/{time}{rand:6}',
                     'autoHeightEnabled' => false,
                 ],
             ]
@@ -208,7 +208,7 @@ class ProductController extends Controller
                 
                 $model->img->saveAs($uploadPath);
                 
-                $path = '/uploads/' . $file;
+                $path = 'uploads/' . $file;
                 
                 $model->img = $path;
         
@@ -254,7 +254,7 @@ class ProductController extends Controller
 //                $this->findProductModel($id)->delete();
                 $product = $this->findProductModel($id);
                 
-                $img = $product->getImg($id);
+                $img = $product->img;
                 
                 var_dump($img);
                 
@@ -279,10 +279,10 @@ class ProductController extends Controller
      */
         protected function findProductModel($id)
         {
-            if(($model=Product::findOne($id)) !== null){
+            if(($model = Product::findOne($id)) !== null){
                 return $model;
             }else{
-                throw new NotFoundHttpException('The requested page does not exist.');
+                throw new NotFoundHttpException('The requested page does not exist.');
             }
         }
     

@@ -52,7 +52,7 @@ class ContactForm extends Model
     {
         //重新拼接邮件内容
         $content = "<p>姓名：".$this->name."</p><br /><p>邮箱地址：".$this->email."</p><br /><p>主题：".$this->subject."</p><br /><p>正文：".$this->body."</p>";
-        $_email = 'ewinjade@163.com';
+        $_email = 'mail@ewinjade.com';
         return Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([$_email => $this->name])

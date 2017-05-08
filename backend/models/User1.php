@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class Admin extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -32,7 +32,7 @@ class Admin extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%admin}}';
+        return '{{%user}}';
     }
 
     /**
@@ -185,13 +185,5 @@ class Admin extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-    
-    public function attributeLabels() {
-        return [
-            'id' => '管理员ID',
-            'username' => '账号',
-            'status' => '账号状态',
-        ];
     }
 }

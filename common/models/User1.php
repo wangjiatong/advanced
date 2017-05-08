@@ -1,5 +1,4 @@
 <?php
-
 namespace common\models;
 
 use Yii;
@@ -7,84 +6,57 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use common\models\Contract;
 
 /**
- * This is the model class for table "user".
+ * User model
  *
  * @property integer $id
  * @property string $username
- * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
+ * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $name
- * @property string $sex
- * @property string $birthday
- * @property string $phone_number
+ * @property string $password write-only password
  */
-class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'user';
+        return '{{%user}}';
     }
-    
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             TimestampBehavior::className(),
         ];
     }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-//            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'name', 'sex', 'birthday', 'phone_number'], 'required'],
-//            [['status', 'created_at', 'updated_at'], 'integer'],
-//            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'sex', 'birthday', 'phone_number'], 'string', 'max' => 255],
-//            [['auth_key'], 'string', 'max' => 32],
-//            [['username'], 'unique'],
-//            [['email'], 'unique'],
-//            [['password_reset_token'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
     /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => '用户ID',
-            'username' => '用户账号',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => '电子邮箱',
-            'status' => '账号状态',
-            'created_at' => '创建时间',
-            'updated_at' => '修改时间',
-            'name' => '姓名',
-            'sex' => '性别',
-            'birthday' => '生日',
-            'phone_number' => '联系电话',
-        ];
-    }
-     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
@@ -214,35 +186,4 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-    //获取客户姓名
-    public function getName($id)
-    {
-        $arr = UserModel::findOne($id);
-        $name = $arr['name'];
-        return $name;
-    }
-    //获取客户性别
-    public function getSex($id)
-    {
-        $arr = UserModel::findOne($id);
-        $sex = $arr['sex'];
-        if($sex == 0)
-        {
-            return "先生";
-        }else{
-            return "女士";
-        }
-    }
-    
-    //通过客户获取对应合同
-    public function getContracts()
-    {
-        return $this->hasMany(Contract::className(), ['user_id' => 'id']);
-    }
-    //获取客户姓名
-    public function getCustomerName()
-    {
-        return $this->name;
-    }
-
 }

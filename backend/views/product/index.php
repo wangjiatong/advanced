@@ -16,7 +16,7 @@ $this->title = '产品管理';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('创建产品', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增产品', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,

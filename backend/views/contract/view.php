@@ -3,6 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+//echo "<embed width='1000' height='750' src='$model->pdf'></embed>";
+$pdfUrl = "<embed width='1000' height='750' src='/$model->pdf'></embed>";
+
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Contract */
 
@@ -71,6 +75,12 @@ $this->title = '合同详情：'.$model->contract_number;
                 'value' => function($data){
                     return common\models\Contract::contractValidation($data->status);
                 }
+            ],
+//            'pdf',
+            [
+                'label' => '合同扫描件',
+                'value' => $pdfUrl,
+                'format' => 'raw',
             ],
         ],
     ]) ?>

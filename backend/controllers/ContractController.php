@@ -86,8 +86,26 @@ class ContractController extends Controller
     {
         $model = new ContractForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) 
+        {       
+            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+            
+            $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '-' .rand(9, 99);
+            
+            $ext = $model->pdf->extension;
+            
+            $file = $name . '.' . $ext;
+            
+            $uploadPath = 'uploads/contracts/' . $file;
+            
+            $model->pdf->saveAs($uploadPath);
+            
+            $path = 'uploads/contracts/' . $file;
+            
+            $model->pdf = $path;
+            
+            $model->save();
+            
             return $this->redirect(['/contract']);
         } else {
             return $this->render('create', [
@@ -123,9 +141,27 @@ class ContractController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $contract = $this->findModel($id);
+        
+        $pdf = $contract->pdf;
+        
+//        $pdf = 'uploads/contracts/c4-2017-05-04-78.pdf';
+        
+//        echo $pdf;
+//        
+//        var_dump(is_file($pdf));
+        
+        if(is_file($pdf) && $contract->delete())
+        {
+            unlink($pdf);
+            
+            return $this->redirect(['index']);
+            
+        }else{
+            echo '删除失败！';
+        }
 
-        return $this->redirect(['index']);
+//        return $this->redirect(['index']);
     }
 
     /**

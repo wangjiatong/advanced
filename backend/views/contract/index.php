@@ -18,7 +18,7 @@ $this->title = '合同管理';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('创建合同', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增合同', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -53,6 +53,7 @@ class ContractForm extends Model
             [['contract_number'], 'unique', 'targetClass' => Contract::className()],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['pdf'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
         ];
     }
 
@@ -176,6 +177,8 @@ class ContractForm extends Model
         $every_time = [];//每期到期时间
         
         $_every_interest = [];//每期应付利息
+        
+        $contract->pdf = $this->pdf;
         
         switch ($contract->term)
         {

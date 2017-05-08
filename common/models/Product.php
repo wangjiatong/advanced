@@ -64,4 +64,8 @@ class Product extends \yii\db\ActiveRecord
 //        $img = '../../frontend/web' . $img;
 //        return $img;
 //    }
+    public function getImg()
+    {
+        return $this->img;
+    }
 }

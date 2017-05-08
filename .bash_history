@@ -1,287 +1,3 @@
-composer update
-cd
-vi composer.json 
-composer install
-vi composer.json 
-composer install
-vi composer.json 
-composer require --prefer-dist yiisoft/yii2-jui
-vi composer.json 
-composer global require "fxp/composer-asset-plugin:1.0.0-beta3"
-composer global require "fxp/composer-asset-plugin:~1.0"
-composer update
-composer require --prefer-dist yiisoft/yii2-jui
-vi composer.json 
-ls
-cd vendor/
-ls
-cd yiisoft/
-ls
-cd yii2-jui/
-ls
-cd
-composer install
-composer require --prefer-dist yiisoft/yii2-jui
-vi composer.json 
-composer global require "fxp/composer-asset-plugin:~1.0.3"
-composer self-update
-composer update
-cd
-ls
-vi composer.json 
-composer install
-composer global require "fxp/composer-asset-plugin"
-cd
-ls
-ls -a
-cd .composer/
-composer global require "fxp/composer-asset-plugin"
-php composer.phar global update fxp/composer-asset-plugin --no-plugins
-composer global update fxp/composer-asset-plugin --no-plugins
-cd
-composer update
-composer
-require "fxp/composer-asset-plugin:~1.0.0"
-composer require "fxp/composer-asset-plugin:~1.0.0"
-cd
-ls
-vi composer.json 
-composer require "fxp/composer-asset-plugin:~1.0.0"
-composer global require fxp/composer-asset-plugin --no-plugins
-composer update
-vi composer.json 
-composer install
-composer remove
-vi composer.json 
-composer update
-composer config repo.packagist composer https://packagist.phpcomposer.com
-vi composer.json 
-su composer
-chmod 777 composer.json 
-su composer
-chmod 644 composer.json 
-ls -l
-cd
-vi composer.json 
-composer require "fxp/composer-asset-plugin:~1.0"
-composer update
-composer require --prefer-dist yiisoft/yii2-jui
-reboot
-mysql -u root -p
-cd
-ls
-yii migrate/create add_columns_for_contract_table
-php yii migrate/create add_columns_for_contract_table
-
-php yii migrate/create add_columns_for_contract_table
-mysql -u root -p
-php yii migrate/down m170223_025032
-php yii migrate/down m170223
-php yii migrate/down 025032
-./yii migrate/down 3
-./yii migrate/down 2
-mysql -u root -p
-./yii migrate/create create_table_product
-./yii migrate/up 1
-./yii migrate/up 170314_025146
-./yii migrate/create create_table_contract
-./yii migrate/up 2
-mysql -u root -p
-cd
-./yii migrate/up 2
-./yii migrate/up
-mysql -u root -p
-./yii migrate/up
-./yii migrate/up 2
-./yii migrate/redo
-mysql -u root -p
-./ yii migrate
-./ yii migrate/
-./yii migrate
-./yii migrate/redo
-./yii migrate/down
-./yii migrate/create create_table_product
-./yii migrate/create create_table_contract
-cd
-./yii migrate
-mysql -u root -p
-./yii migrate/create add_columns_for_table_contract
-./yii migrate
-mysql -u root -p
-ls
-cd frontend/
-ls
-cd controllers/
-cd ..
-chmod 777 controllers/
-ls -l
-chmod 755 controllers/
-ls -l
-chmod 777 views/
-ls -l
-chmod 755 views/
-git add .
-git commit -m "just finished the contract function"
-git push origin dev
-mysql -u root -p
-cd
-git add .
-git commit -m "before generating admin fucntion"
-git push origin dev
-ls
-cd backend/
-ls
-cd web/
-ls
-cd upload/
-ls
-cd image/
-ls
-cd ..
-rm -rf upload
-ls
-cd ..
-ls
-cd ..
-ls
-cd co
-cd common/
-ls
-cd ..
-cd frontend/
-ls
-cd web/
-ls
-cd /
-ls
-cd
-cd ..
-cd advanced
-ls
-cd backend/
-ls
-cd web/
-ls
-rm -rf upload
-ls
-cd ..
-ls
-cd ..
-ls
-cd common/
-ls
-cd ..
-cd frontend/
-ls
-cd web/
-ls
-pwd
-mysql -u root -p
-cd
-ls
-cd frontend/
-ls
-cd web/
-ls
-mkdir uploads
-ls
-pwd
-ls
-pwd
-rm -rf uploads/
-ls
-pwd
-cd 
-cd backend/
-cd web/
-ls
-mkdir uploads
-ls
-ls -l
-chmod 777 uploads
-ls -l
-cd uploads/
-ls
-mysql -u root -p
-ls
-rm -rf
-ls
-rm 1.jpg 2.jpg
-ls
-rm 1.jpg 2.jpg 
-ls
-mysql -u root -p
-ls
-rm -rf 1.jpg 
-ls
-cd backend/
-cd web/
-ls
-cd uploads/
-ls
-mysql -u root -p
-ls
-cd backend/
-cd web/
-cd uploads/
-ls
-rm 1.jpg 
-ls
-mysql -u root -p
-ls
-rm 1.jpg 
-ls
-rm 2.jpg 
-ls
-cd backend/
-cd web/
-cd uploads/
-ls
-ls -l 2.jpg 
-rm 2.jpg 
-ls
-cd backend/
-cd web/
-cd uploads/
-ls
-rm 1.jpg 
-cd backend/
-ls
-cd web/
-ls
-ls -l
-cd uploads/
-ls
-rm 1.jpg 
-ls
-mysql -u root -p
-cd backend/
-cd web/
-cd uploads/
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-mysql -u root -p
-ls
-rm 1.jpg 
-ls
-rm 2.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
-rm 1.jpg 
-ls
 cd backend/
 cd web/
 cd uploads/
@@ -998,3 +714,287 @@ ls
 cd web/
 ls
 vi index.php 
+mysql -u root -p
+cd
+php yii/migrate create modify_table_contract_for_date_columns
+yii migrate/create modify_table_contract_for_date_columns
+php yii migrate/create modify_table_contract_for_date_columns
+php yii migrate/up
+mysql -u root -p
+cd
+php yii migrate/create add_pdf_column_for_contract
+php yii migrate/up
+cd
+git commit -m "before add pdf for contract"
+git add .
+git commit -m "before add pdf for contract"
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+cd products/
+ls
+cd 201705/
+ls
+cd ..
+ls
+cd ..
+ls ..
+cd u
+mkdir contracts
+ls
+ls -l
+chown nginx /contracts
+chown nginx ./contracts
+ls -l
+chgrp nginx ./contracts
+ls -l
+ls
+cd contracts/
+ls
+rm c4-2017-05-03-72.pdf 
+rm c4-2017-05-03-87.pdf 
+ls
+mysql -u root -p
+ls
+pwd
+ls -l
+cd ..
+ls -l
+cd products/
+ls
+cd ..
+cd contracts/
+ls
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+cd contracts/
+ls
+pwd
+ls
+rm c4-2017-05-03-14.pdf 
+ls
+ls -l
+cd ..
+ls
+cd news/
+ls
+cd ..
+cd products/
+ls
+ls -l
+cd 201705/
+ls -l
+cd ..
+ls
+cd 201705/
+ls
+cd ..
+ls
+cd ..
+ls
+cd contracts/
+la
+ls 
+cd ..
+cd news/
+ls
+cd 20170426/
+ls
+cd ..
+cd 201700426
+cd 201700426/
+cd 20170503/
+ls
+cdcd
+cd f
+cd 
+cd frontend/
+cd web/
+ls
+cd uploads/
+ls
+cd
+cd backend/
+cd web/
+cd uploads/
+ls
+cd contracts/
+ls
+mysql -u root -p
+ls
+cd ..
+ls
+cd products/
+ls
+cd 
+cd -
+cd 201705/
+ls
+cd ..
+ls
+cd ..
+ls
+cd news/
+ls
+cd ..
+ls
+cd contracts/
+ls
+cd ..
+cd news/
+ls
+cd ..
+cd products/
+ls
+cd 201705/
+ls
+cd
+cd frontend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+rm 2017-04-20-76.jpg 
+rm 2017-05-03-98.jpg 
+ls
+./yii/checkContracts/checkContracts
+php yii/checkContracts/checkContracts
+./yii/checkContracts/checkContracts
+./yii /checkContracts/checkContracts
+./yii cons/checkContracts/checkContracts
+php ./yii cons/checkContracts/checkContracts
+php yii cons/checkContracts/checkContracts
+./yii
+./yii checkContracts/checkContracts
+./yii checkContracts/check-contracts
+./yii cons/checkContracts/check-contracts
+./yii cons/checkContracts/checkContracts
+./yii cons/test/my
+php yii cons/test/my
+php cons/test/my
+./yii
+./yii test/my
+./yii checkContracts/checkContracts
+./yii checkContracts/check-contracts
+./yii check-contracts/check-contracts
+./yii check-contracts/collect
+./yii checkContracts/collect
+./yii check-contracts/collect
+mysql -u root -p
+cd
+./yii check-contracts/collect
+php yii check-contracts/collect
+./yii check-contracts/collect
+./yii /check-contracts/collect
+./yii check-contracts/collect
+cd /
+cd etc/
+cd crontab 
+ls
+cd crontab 
+vi crontab 
+cd
+pwd
+mysql -u root -p
+yum -y install postfix
+yum remove sendmail
+ls
+alternatives --config mta
+alternatives --display mta
+cd /etc/
+cd postfix/
+vi main.cf 
+/etc/rc.d/init.d/postfix start
+chkconfig postfix on
+yum -y install dovecot
+vi /etc/dovecot/dovecot.conf
+vi /etc/dovecot/conf.d/10-auth.conf
+vi /etc/dovecot/conf.d/10-mail.conf
+vi /etc/dovecot/conf.d/10-master.conf
+/etc/rc.d/init.d/dovecot start
+chkconfig dovecot on
+useradd mail
+passwd -s mail
+passwd -S mail
+Passwd -S mail
+passwd mail
+reboot
+dig -t txt mail.ewinjade.com
+nslookup
+alternatives --display mta
+yum install opendkim
+vi /etc/opendkim.conf
+mkdir /etc/opendkim/keys/YourDomain.com
+opendkim-genkey -D /etc/opendkim/keys/mail.ewinjade.com/ -d mail.ewinjade.com -s default 
+default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.private
+default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
+cd /etc/opendkim/keys/
+ls
+rm -r YourDomain.com/
+ls
+mkdir /etc/opendkim/keys/mail.ewinjade.com
+default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
+ls
+opendkim-genkey -D /etc/opendkim/keys/mail.ewinjade.com/ -d mail.ewinjade.com -s default 
+default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
+ls
+wpd
+pwd
+cd ..
+ls
+cd KeyTable 
+vi KeyTable 
+vi SigningTable 
+vi TrustedHosts 
+cd keys/
+ls
+cd mail.ewinjade.com/
+ls
+vi default.txt 
+cd /etc/
+cd postfix/
+ls
+vi main.cf 
+service opendkim start
+postfix reload
+reboot
+nslookup
+ls
+cd
+tail -f /var/log/maillog
+vi /etc/dovecot/conf.d/10-mail.conf 
+tail -f /var/log/maillog
+reboot
+Passwd -S mail
+passwd -s mail
+passwd -S mail
+passwd mail
+tail -f /var/log/maillog
+nslookup -qt=txt ewinjade.com
+dig -t txt ewinjade.com
+dig -t txt mail.ewinjade.com
+host ewinjade.com
+dig txt hotmal.com
+dig txt ewinjade.com
+dig txt  dkim._domainkey.mail.ewinjade.com
+chkconfig --list
+php yii /check-contracts collect
+php yii check-contracts/collect
+cd
+ls
+cd uploads/
+ls
+ls -l
+cd ..
+ls -l
+cd uploads/
+ls
+cd ..
+rm -r uploads/
+ls

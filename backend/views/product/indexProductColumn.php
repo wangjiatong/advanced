@@ -16,7 +16,7 @@ $this->title = '产品分类管理';
     <?php // echo $this->render('_searchProductColumns', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('创建产品分类', ['product-column-create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增产品分类', ['product-column-create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
