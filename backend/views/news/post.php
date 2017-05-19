@@ -41,7 +41,7 @@ $this->title = '发布新闻';
                                 <div class="control-group">
                                         <!--<label class="control-label" for="active"></label>-->
                                         <div class="controls">
-                                            <?= Html::submitButton('发布', ['class' => 'btn btn-primary']); ?>
+                                            <?= Html::submitButton('确定', ['class' => 'btn btn-primary']); ?>
                                         </div>
                                 </div>
 <!--                                <div class="form-actions">

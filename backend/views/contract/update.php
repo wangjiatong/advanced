@@ -6,9 +6,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Contract */
 
 $this->title = '修改合同 ' . $model->id;
-//$this->params['breadcrumbs'][] = ['label' => 'Contracts', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-//$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="contract-update">
 

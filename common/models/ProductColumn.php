@@ -42,4 +42,9 @@ class ProductColumn extends \yii\db\ActiveRecord
             'product_column' => '产品分类',
         ];
     }
+    
+//    public function getProductColumn()
+//    {
+//        return $this->product_column;
+//    }
 }

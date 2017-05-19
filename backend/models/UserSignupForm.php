@@ -3,6 +3,7 @@ namespace backend\models;
 
 use yii\base\Model;
 use common\models\UserModel;
+use Yii;
 
 /**
  * Signup form
@@ -38,7 +39,9 @@ class UserSignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
             
-            [['name', 'sex', 'birthday', 'phone_number'], 'required'],
+            [['name', 'sex', 'birthday'], 'required'],
+            
+            [['phone_number'], 'safe'],
         ];
     }
 
@@ -60,9 +63,9 @@ class UserSignupForm extends Model
     }
     public function signup()
     {
-        if (!$this->validate()) {
-            return null;
-        }
+//        if (!$this->validate()) {
+//            return null;
+//        }
         
         $user = new UserModel();
         $user->username = $this->username;
@@ -72,8 +75,9 @@ class UserSignupForm extends Model
         $user->name = $this->name;
         $user->sex = $this->sex;
         $user->birthday = $this->birthday;
-        $user->phone_number = $this->phone_number;
-        
+        $user->phone_number = isset($this->phone_number) ? $this->phone_number : null;
+        $user->source = Yii::$app->user->identity->id;
+
         return $user->save() ? $user : null;
     }
 }

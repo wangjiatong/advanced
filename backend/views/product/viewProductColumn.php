@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\ProductColumns */
 
-$this->title = $model->id;
+$this->title = '产品分类——'.$model->product_column;
 //$this->params['breadcrumbs'][] = ['label' => '产品分类', 'url' => ['index-product-columns']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,7 +28,7 @@ $this->title = $model->id;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'product_column',
         ],
     ]) ?>

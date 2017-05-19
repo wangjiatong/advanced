@@ -55,10 +55,12 @@ class Contract extends ActiveRecord
             [['capital', 'raise_day', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
 //            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
             [['transfered_time', 'found_time', 'cash_time'], 'default', 'value' => null],//时间插件设置要求
-            [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number', 'source'], 'string', 'max' => 255],
+            [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number'], 'string', 'max' => 255],
             [['contract_number'], 'unique'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            ['source', 'required'],
+            ['source', 'integer'],
         ];
     }
 
@@ -93,6 +95,7 @@ class Contract extends ActiveRecord
             'status' => '合同状态',
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
+            'pdf' => '合同扫描件',
         ];
     }
 
@@ -110,5 +113,15 @@ class Contract extends ActiveRecord
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
+    }
+    
+    public function contractValidation($status)
+    {
+        switch ($status)
+        {
+            case 1: return '生效中';                break;
+            case 0: return '已过期';                break;
+            default : return '不存在的';
+        }
     }
 }

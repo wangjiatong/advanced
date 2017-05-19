@@ -1,8 +1,10 @@
 <?php
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use backend\models\Admin;
+use backend\models\UserRole;
 
 /**
  * Signup form
@@ -12,8 +14,8 @@ class AdminSignupForm extends Model
     public $username;
     public $email;
     public $password;
-    //预留管理员权限参数
-//    public $auth;
+    public $name;
+    
     
 
 
@@ -36,9 +38,18 @@ class AdminSignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-            //预留管理员权限参数
-//            ['auth', 'required'],
-//            ['auth', 'string'],
+
+            ['name', 'required'],
+        ];
+    }
+    
+    public function attributeLabels() {
+        return [
+            'username' => '账号',
+            'password' => '密码',
+            'email' => '电子邮箱',
+            'name' => '姓名',
+            'role_id' => '用户角色',
         ];
     }
 
@@ -58,6 +69,7 @@ class AdminSignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->name = $this->name;
         
         return $user->save() ? $user : null;
     }

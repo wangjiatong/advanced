@@ -23,7 +23,7 @@ use kucha\ueditor\UEditor;
     <?= $form->field($model, 'img')->fileInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('创建', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -1,24 +1,25 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
 use common\models\Contract;
 use common\models\ContractSearch;
-use yii\web\Controller;
+use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//
+//加入权限控制
 use yii\filters\AccessControl;
-//
+//新建合同表单
 use backend\models\ContractForm;
-//
-//use common\models\Product;
+//上传文件
+use yii\web\UploadedFile;
+//销售查看个人客户合同
+use common\models\MyContractSearch;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
-class ContractController extends Controller
+class ContractController extends BaseController
 {
     /**
      * @inheritdoc
@@ -63,6 +64,16 @@ class ContractController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionMyContract()
+    {
+        $searchModel = new MyContractSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);        
+    }
 
     /**
      * Displays a single Contract model.
@@ -75,6 +86,13 @@ class ContractController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    
+    public function actionMyView($id)
+    {
+        return $this->render('View', [
+            'model' => $this->findMyModel($id),
+        ]);
+    }
 
     /**
      * Creates a new Contract model.
@@ -85,8 +103,26 @@ class ContractController extends Controller
     {
         $model = new ContractForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) 
+        {       
+            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+            
+            $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '-' .rand(9, 99);
+            
+            $ext = $model->pdf->extension;
+            
+            $file = $name . '.' . $ext;
+            
+            $uploadPath = 'uploads/contracts/' . $file;
+            
+            $model->pdf->saveAs($uploadPath);
+            
+            $path = 'uploads/contracts/' . $file;
+            
+            $model->pdf = $path;
+            
+            $model->save();
+            
             return $this->redirect(['/contract']);
         } else {
             return $this->render('create', [
@@ -113,6 +149,18 @@ class ContractController extends Controller
             ]);
         }
     }
+    public function actionMyUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing Contract model.
@@ -122,9 +170,35 @@ class ContractController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $contract = $this->findMyModel($id);
+        
+        $pdf = $contract->pdf;
+        
+        if(is_file($pdf) && $contract->delete())
+        {
+            unlink($pdf);
+            
+            return $this->redirect(['index']);
+            
+        }else{
+            echo '删除失败！';
+        }
+    }
+    public function actionMyDelete($id)
+    {
+        $contract = $this->findMyModel($id);
+        
+        $pdf = $contract->pdf;
+        
+        if(is_file($pdf) && $contract->delete())
+        {
+            unlink($pdf);
+            
+            return $this->redirect(['index']);
+            
+        }else{
+            echo '删除失败！';
+        }
     }
 
     /**
@@ -139,6 +213,17 @@ class ContractController extends Controller
         if (($model = Contract::findOne($id)) !== null) {
             return $model;
         } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    protected function findMyModel($id)
+    {
+        $my_id = Yii::$app->user->identity->id;
+        if (($model = Contract::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
+        {
+            return $model;
+        }else{
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
