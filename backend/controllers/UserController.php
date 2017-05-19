@@ -176,6 +176,18 @@ class UserController extends BaseController
             ]);
         }
     }
+    public function actionMyUpdate($id)
+    {
+        $model = $this->findMyModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing UserModel model.
@@ -186,6 +198,12 @@ class UserController extends BaseController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+    public function actionMyDelete($id)
+    {
+        $this->findMyModel($id)->delete();
 
         return $this->redirect(['index']);
     }

@@ -47,13 +47,29 @@ $this->title = '客户列表';
 //             'phone_number',
             'source',
 
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['class' => 'yii\grid\ActionColumn'],
             [
-                'label' => '更多操作',
+                'label' => '',
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
                     return Html::a('详情', $url."?id=".$data->id);
+                },
+            ],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function($data){
+                    $url = BaseController::checkUrlAccess('user/update', 'user/my-update');
+                    return Html::a('修改', $url."?id=".$data->id);
+                },
+            ],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function($data){
+                    $url = BaseController::checkUrlAccess('user/delete', 'user/my-delete');
+                    return Html::a('删除', $url."?id=".$data->id);
                 },
             ],
         ],

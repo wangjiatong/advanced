@@ -45,9 +45,16 @@ $this->title = '角色列表';
                     return null;
                 },
             ],
-            'status',
-            'created_at',
-            'updated_at',
+            [
+                'label' => '撤销权限',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Html::a('编辑', ['access/manage', 'id' => $data->id]);
+                },
+            ],
+//            'status',
+//            'created_at',
+//            'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

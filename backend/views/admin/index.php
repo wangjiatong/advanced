@@ -24,7 +24,7 @@ $this->title = '管理员列表';
             'id',
             'name',
             'email',
-            'status',
+//            'status',
             [
                 'label' => '用户角色',
                 'value' => function($data){

@@ -11,6 +11,8 @@ use yii\bootstrap\Html;
 
 <?=$form->field($model, 'username')?>
 
+<?=$form->field($model, 'newPasswd')?>
+
 <?=$form->field($model, 'email')?>
 
 <?=$form->field($model, 'name') ?>

@@ -96,13 +96,29 @@ $this->title = '合同管理';
 //                    return common\models\Contract::contractValidation($data->status);
 //                }
 //            ],
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['class' => 'yii\grid\ActionColumn'],
             [
-                'label' => '更多操作',
+                'label' => '',
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('contract/view', 'contract/my-view');
                     return Html::a('详情', $url."?id=".$data->id);
+                },
+            ],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function($data){
+                    $url = BaseController::checkUrlAccess('contract/update', 'contract/my-update');
+                    return Html::a('修改', $url."?id=".$data->id);
+                },
+            ],
+            [
+                'label' => '',
+                'format' => 'raw',
+                'value' => function($data){
+                    $url = BaseController::checkUrlAccess('contract/delete', 'contract/my-delete');
+                    return Html::a('删除', $url."?id=".$data->id);
                 },
             ],
         ],

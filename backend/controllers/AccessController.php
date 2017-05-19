@@ -89,6 +89,17 @@ class AccessController extends BaseController
             'model' => $model,
         ]);
     }
+    public function actionUnset($id)
+    {
+        $role_accesses = RoleAccess::find()->select('id')->where(['']);
+    }
+    public function actionManage($id)
+    {
+        $model = RoleAccess::find()->where(['role_id' => $id])->all();
+        return $this->render('manage', [
+            'model' => $model
+        ]);
+    }
     
 
     protected function findModel($id)

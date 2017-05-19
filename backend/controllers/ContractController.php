@@ -149,6 +149,18 @@ class ContractController extends BaseController
             ]);
         }
     }
+    public function actionMyUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing Contract model.
@@ -158,7 +170,23 @@ class ContractController extends BaseController
      */
     public function actionDelete($id)
     {
-        $contract = $this->findModel($id);
+        $contract = $this->findMyModel($id);
+        
+        $pdf = $contract->pdf;
+        
+        if(is_file($pdf) && $contract->delete())
+        {
+            unlink($pdf);
+            
+            return $this->redirect(['index']);
+            
+        }else{
+            echo '删除失败！';
+        }
+    }
+    public function actionMyDelete($id)
+    {
+        $contract = $this->findMyModel($id);
         
         $pdf = $contract->pdf;
         
