@@ -1,13 +1,12 @@
 <?php
-
 namespace common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use common\models\Contract;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -25,8 +24,9 @@ use common\models\Contract;
  * @property string $sex
  * @property string $birthday
  * @property string $phone_number
+ * @property string $source
  */
-class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
+class UserModel extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -51,15 +51,17 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-//            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'name', 'sex', 'birthday', 'phone_number'], 'required'],
+//            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'name', 'sex', 'birthday'], 'required'],
 //            [['status', 'created_at', 'updated_at'], 'integer'],
-//            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'sex', 'birthday', 'phone_number'], 'string', 'max' => 255],
+//            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'sex', 'birthday'], 'string', 'max' => 255],
 //            [['auth_key'], 'string', 'max' => 32],
 //            [['username'], 'unique'],
 //            [['email'], 'unique'],
 //            [['password_reset_token'], 'unique'],
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+//            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+//            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+//            [['phone_number'], 'safe'],
+//            ['source', 'integer'],
         ];
     }
 
@@ -82,6 +84,7 @@ class UserModel extends \yii\db\ActiveRecord implements IdentityInterface
             'sex' => '性别',
             'birthday' => '生日',
             'phone_number' => '联系电话',
+            'source' => '客户来源',
         ];
     }
      /**

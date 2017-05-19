@@ -1,49 +1,3 @@
-cd backend/
-cd web/
-cd uploads/
-ls
-rm 4743.jpg 4867.jpg 5684.jpg 
-ls
-rm 14925935121420.jpg 
-ls
-rm -rf
-ls
-rm 14925936593030.jpg 
-rm 14925936992475.jpg 
-rm 14925937059741.jpg 
-rm 14925939713989.jpg 
-rm 14925940445422.jpg 
-ls
-cd backend/
-cd web/
-ls
-cd uploads/
-ls
-cd ..
-ls -l
-cd uploads/
-ls
-cd
-ls
-mkdir uploads
-ls
-ls -l
-chmod 777 uploads/
-ls -l
-cd /
-cd etc/
-ls
-cd nginx/
-ls
-cd conf.d/
-ls
-cd yii-test.conf 
-vi yii-test.conf 
-ls -l
-vi yii-test.conf 
-reboot
-cd backend/
-cd web/
 cd uploads/
 ls
 cd ..
@@ -998,3 +952,49 @@ ls
 cd ..
 rm -r uploads/
 ls
+git add .
+git commit -m "完成了到期前提醒demo，接下来将做RBAC"
+git push origin dev
+mysql -u root -p
+cd
+php yii migrate/create add_name_column_for_table_admin
+php yii migrate/up
+php yii migrate/create create_table_role
+php yii migrate/up
+php yii migrate/create create_table_user_role
+yii migrate/up
+php yii migrate/up
+php yii migrate/create create_table_access
+php yii migrate/up
+php yii migrate/create create_table_role_access
+php yii migrate/up
+php yii migrate/create create_table_user_access_log
+php yii migrate/up
+mysql -u root -p
+cd backend/
+ls -l
+pwd
+cd views/
+ls -l
+chmod 777 role/
+ls -l
+rm -rf role/
+ls
+mysql -u root -p
+cd
+php yii/migrate create add_source_column_for_table_user;
+yii/migrate create add_source_column_for_table_user;
+yii migrate create add_source_column_for_table_user;
+php yii migrate create add_source_column_for_table_user;
+php yii migrate/create add_source_column_for_table_user;
+php yii migrate/up
+select * from user;
+mysql -u root -p
+php yii migrate/create change_column_source_and_phone_for_table_user
+./yii migrate/up
+mysql -u root -p
+cd
+./yii migrate/create fix_table_user;
+./yii migrate/up1
+./yii migrate/up
+mysql -u root -p

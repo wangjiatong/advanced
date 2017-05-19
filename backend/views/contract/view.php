@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-//echo "<embed width='1000' height='750' src='$model->pdf'></embed>";
 $pdfUrl = "<embed width='1000' height='750' src='/$model->pdf'></embed>";
 
 
@@ -11,8 +10,7 @@ $pdfUrl = "<embed width='1000' height='750' src='/$model->pdf'></embed>";
 /* @var $model common\models\Contract */
 
 $this->title = '合同详情：'.$model->contract_number;
-//$this->params['breadcrumbs'][] = ['label' => 'Contracts', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="contract-view">
 

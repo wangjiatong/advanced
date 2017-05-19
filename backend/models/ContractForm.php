@@ -23,22 +23,9 @@ class ContractForm extends Model
     public $bank_number;
     public $product_id;
     public $user_id;
-    public $source;
     public $raise_interest_year;//新增募集期年利率
     public $interest_year;//新增年利率
     public $pdf;//合同扫描件
-    
-
-
-
-
-    /**
-     * @inheritdoc
-     */
-//    public static function tableName()
-//    {
-//        return 'contract';
-//    }
 
     /**
      * @inheritdoc
@@ -49,7 +36,7 @@ class ContractForm extends Model
             [['contract_number', 'capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year'], 'required'],
             [['capital', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
             [['transfered_time', 'found_time', 'cash_time'], 'safe'],
-            [['contract_number', 'bank', 'bank_number', 'source'], 'string', 'max' => 255],
+            [['contract_number', 'bank', 'bank_number'], 'string', 'max' => 255],
             [['contract_number'], 'unique', 'targetClass' => Contract::className()],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
@@ -80,7 +67,6 @@ class ContractForm extends Model
             'total' => '兑付总额（元）',
             'bank' => '开户行',
             'bank_number' => '银行账号',
-            'source' => '合同来源（选填）',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
             'product_id' => '产品名称',
@@ -164,7 +150,7 @@ class ContractForm extends Model
         
         $contract->bank_number = $this->bank_number;//银行账号
         
-        $contract->source = $this->source;//合同来源
+        $contract->source = Yii::$app->user->identity->id;//合同来源
         
         $contract->user_id = $this->user_id;//用户id
         
@@ -234,9 +220,6 @@ class ContractForm extends Model
             $contract->every_interest = round($contract->total, 2);
         break;
         }
-        
-//        print_r($this->arrtostr($every_time));
-//        print_r($_every_interest);
         
         return $contract->save() ? $contract : null;
         

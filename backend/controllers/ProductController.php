@@ -1,17 +1,17 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
 use common\models\ProductColumn;
 use common\models\ProductColumnSearch;
-use yii\web\Controller;
+use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//权限
+//权限控制
 use yii\filters\AccessControl;
-//产品
+//产品实体
 use common\models\Product;
+//查询产品实体
 use common\models\ProductSearch;
 //产品图片上传
 use yii\web\UploadedFile;
@@ -23,7 +23,7 @@ use backend\models\ProductForm;
 /**
  * ProductController implements the CRUD actions for ProductColumns model.
  */
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * @inheritdoc
@@ -213,8 +213,7 @@ class ProductController extends Controller
                 $model->img = $path;
         
                 $model->upload();
-                
-//                var_dump($_POST);
+
                 return $this->redirect(['index']);
 
             }else{
@@ -251,23 +250,18 @@ class ProductController extends Controller
      */
             public function actionDelete($id)
             {
-//                $this->findProductModel($id)->delete();
                 $product = $this->findProductModel($id);
                 
                 $img = $product->img;
                 
-                var_dump($img);
-                
                 if(is_file($img) && $product->delete())
                 {
                     unlink($img);
-//                    $this->findProductModel($id)->delete();
-//                    $product->delete();
-                                    return $this->redirect(['index']);
+                    
+                    return $this->redirect(['index']);
                 }else{
                     echo "fail";
                 }
-//                return $this->redirect(['index']);
             }
 
         /**

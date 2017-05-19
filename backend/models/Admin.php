@@ -190,7 +190,9 @@ class Admin extends ActiveRecord implements IdentityInterface
     public function attributeLabels() {
         return [
             'id' => '管理员ID',
+            'name' => '姓名',
             'username' => '账号',
+            'email' => '电子邮箱',
             'status' => '账号状态',
         ];
     }

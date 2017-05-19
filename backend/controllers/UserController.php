@@ -1,22 +1,23 @@
 <?php
-
 namespace backend\controllers;
 
 use Yii;
 use common\models\UserModel;
 use backend\models\UserSearch;
-use yii\web\Controller;
+use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//
+//行为控制
 use yii\filters\AccessControl;
-//
+//会员用户注册表单
 use backend\models\UserSignupForm;
+//销售查看个人客户
+use backend\models\MyUserSearch;
 
 /**
  * UserController implements the CRUD actions for UserModel model.
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * @inheritdoc
@@ -62,6 +63,16 @@ class UserController extends Controller
         ]);
     }
 
+    public function actionMyUser()
+    {
+        $searchModel = new MyUserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]); 
+    }
     /**
      * Displays a single UserModel model.
      * @param integer $id
@@ -71,6 +82,13 @@ class UserController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+    
+    public function actionMyView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findMyModel($id), 
         ]);
     }
 
@@ -139,22 +157,6 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
-//    //用户注册模板
-//    public function actionSignup()
-//    {
-//        $model = new SignupForm();
-//        if ($model->load(Yii::$app->request->post())) {
-//            if ($user = $model->signup()) {
-//                if (Yii::$app->getUser()->login($user)) {
-//                    return $this->goHome();
-//                }
-//            }
-//        }
-//
-//        return $this->render('signup', [
-//            'model' => $model,
-//        ]);
-//    }
 
     /**
      * Updates an existing UserModel model.
@@ -200,6 +202,17 @@ class UserController extends Controller
         if (($model = UserModel::findOne($id)) !== null) {
             return $model;
         } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    protected function findMyModel($id)
+    {
+        $my_id = Yii::$app->user->identity->id;
+        if(($model = UserModel::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
+        {
+            return $model;
+        }else{
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }

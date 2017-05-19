@@ -1,29 +1,27 @@
 <?php
-
+namespace backend\controllers;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-namespace backend\controllers;
 
 use Yii;
-use yii\web\Controller;
-//use yii\filters\VerbFilter;
-//use yii\filters\AccessControl;
-//发布新闻
+use backend\controllers\common\BaseController;
+//发布新闻表单
 use common\models\PostNewsForm;
-//添加新闻分类
+//添加新闻分类表单
 use common\models\NewsColumnForm;
+//新闻分类实体
 use common\models\NewsColumn;
 //数据提供器
 use yii\data\ActiveDataProvider;
 //新闻模型
 use common\models\News;
-//
+//权限控制
 use yii\filters\AccessControl;
 
-class NewsController extends Controller
+class NewsController extends BaseController
 {
     public function behaviors() 
     {
@@ -53,8 +51,6 @@ class NewsController extends Controller
             'config' => [
                 "imageUrlPrefix"  => constant('FRONTEND_UPLOADS'),//图片访问路径前缀
                 "imagePathFormat" => "/uploads/news/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
-                //"imagePathFormat" => "../../frontend/web/uploads/news/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
-//                "imageRoot" => Yii::getAlias("@webroot"),
                 'autoHeightEnabled' => false,
             ],
         ]
@@ -156,11 +152,6 @@ class NewsController extends Controller
 
         return $this->redirect(['index']);
     }
-    
-    
-    
-    
-    
     //查询新闻分类模型方法
     protected function findColumnModel($id)
    {
