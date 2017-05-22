@@ -11,7 +11,7 @@ $this->title = '修改合同 ' . $model->id;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('__form', [
+    <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 

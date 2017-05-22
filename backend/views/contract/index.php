@@ -10,7 +10,7 @@ use backend\controllers\common\BaseController;
 /* @var $searchModel common\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '合同管理';
+$this->title = '合同列表';
 
 ?>
 <div class="contract-index">
@@ -44,7 +44,7 @@ $this->title = '合同管理';
             // 'total',
             // 'bank',
             // 'bank_number',
-             'source',
+//             'source',
             // 'created_at',
             // 'updated_at',
 //             'product_id',
@@ -62,10 +62,10 @@ $this->title = '合同管理';
 //             'user_id',
             [
                 'label' => '客户姓名',
-                'attribute' => 'user_id',
+//                'attribute' => 'user_id',
                 'value' => function($data){
                    if($data){
-                       return UserModel::findOne($data)->name;
+                       return UserModel::findOne($data->user_id)->name;
                    }else{
                        return '不存在的';
                    }
@@ -105,22 +105,22 @@ $this->title = '合同管理';
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
-            [
-                'label' => '',
-                'format' => 'raw',
-                'value' => function($data){
-                    $url = BaseController::checkUrlAccess('contract/update', 'contract/my-update');
-                    return Html::a('修改', $url."?id=".$data->id);
-                },
-            ],
-            [
-                'label' => '',
-                'format' => 'raw',
-                'value' => function($data){
-                    $url = BaseController::checkUrlAccess('contract/delete', 'contract/my-delete');
-                    return Html::a('删除', $url."?id=".$data->id);
-                },
-            ],
+//            [
+//                'label' => '',
+//                'format' => 'raw',
+//                'value' => function($data){
+//                    $url = BaseController::checkUrlAccess('contract/update', 'contract/my-update');
+//                    return Html::a('修改', $url."?id=".$data->id);
+//                },
+//            ],
+//            [
+//                'label' => '',
+//                'format' => 'raw',
+//                'value' => function($data){
+//                    $url = BaseController::checkUrlAccess('contract/delete', 'contract/my-delete');
+//                    return Html::a('删除', $url."?id=".$data->id);
+//                },
+//            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

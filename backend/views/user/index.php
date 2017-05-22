@@ -45,7 +45,7 @@ $this->title = '客户列表';
 //            ],
 //             'birthday',
 //             'phone_number',
-            'source',
+//            'source',
 
 //            ['class' => 'yii\grid\ActionColumn'],
             [
@@ -56,22 +56,22 @@ $this->title = '客户列表';
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
-            [
-                'label' => '',
-                'format' => 'raw',
-                'value' => function($data){
-                    $url = BaseController::checkUrlAccess('user/update', 'user/my-update');
-                    return Html::a('修改', $url."?id=".$data->id);
-                },
-            ],
-            [
-                'label' => '',
-                'format' => 'raw',
-                'value' => function($data){
-                    $url = BaseController::checkUrlAccess('user/delete', 'user/my-delete');
-                    return Html::a('删除', $url."?id=".$data->id);
-                },
-            ],
+//            [
+//                'label' => '',
+//                'format' => 'raw',
+//                'value' => function($data){
+//                    $url = BaseController::checkUrlAccess('user/update', 'user/my-update');
+//                    return Html::a('修改', $url."?id=".$data->id);
+//                },
+//            ],
+//            [
+//                'label' => '',
+//                'format' => 'raw',
+//                'value' => function($data){
+//                    $url = BaseController::checkUrlAccess('user/delete', 'user/my-delete');
+//                    return Html::a('删除', $url."?id=".$data->id);
+//                },
+//            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

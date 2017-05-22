@@ -1,58 +1,3 @@
-cd uploads/
-ls
-cd ..
-rm -rf uploads/
-ls
-cd
-cd frontend/
-cd web/
-ls
-mkdir uploads
-ls
-chmod 777 uploads/
-ls
-pwd
-ls
-ls -l uploads/
-ls -l 
-pwd
-cd /
-cd etc/
-cd nginx/
-cd conf.d/
-ls
-vi yii-test.conf 
-/etc/init.d/nginx configtest
-nginx restart
-/etc/init.d/nginx restart
-vi yii-test.conf 
-cd
-cd frontend/
-cd web/
-cd u
-ls
-cd uploads/
-vi index.php
-vi index.html
-ls
-rm index.php 
-ls
-cd /
-cd etc/
-cd n
-cd nginx/
-cd conf.d/
-vi yii-test.conf 
-/etc/init.d/nginx restart
-cd
-cd frontend/
-cd web/
-cd uploads/
-ls
-rm index.html 
-ls
-cd ..
-ls
 pwd
  rm uploads/
 rm -rf uploads/
@@ -998,3 +943,58 @@ cd
 ./yii migrate/up1
 ./yii migrate/up
 mysql -u root -p
+git add .
+git commit -m "完成RBAC"
+git push origin dev
+git add .
+git commit -m "设置了默认后台用户权限，接下来跟正式环境同步"
+git push origin dev
+cd..
+cd ..
+cd advanced
+ls
+git pull
+./yii migrate/up
+cd frontend/
+cd config/
+ls
+vi main-local.php 
+cd ..
+cd console/
+ls
+cd config/
+ls
+vi main-local.php 
+mysql -u root -p
+cd ..
+pwd
+./yii migrate/up
+./yii migrate/up 11
+./yii migrate/up 10
+mysql -u root -p
+./yii migrate/up
+cd frontend/
+cd web/
+vi index.php 
+cd /
+cd etc/
+cd nginx/
+ls
+cd conf.d/
+ls
+vi yii.conf 
+cd
+cd ..
+cd advanced
+cd frontend/
+cd web/
+vi index.php 
+cd ..
+cd backend/
+cd web/
+vi index.php 
+cd ..
+cd controllers/
+ls
+cd common/
+vi BaseController.php 

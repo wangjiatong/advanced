@@ -6,7 +6,7 @@ use yii\jui\DatePicker;
 use common\models\Product;
 use common\models\UserModel;
 
-
+$my_id = Yii::$app->user->identity->id;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contract */
 /* @var $form yii\widgets\ActiveForm */
@@ -49,7 +49,7 @@ use common\models\UserModel;
 
     <?= $form->field($model, 'product_id')->dropDownList(Product::find()->select('product_name')->indexBy('id')->column(), ['prompt' => '请选择产品名称']) ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
+    <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->where(['source' => $my_id])->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
     
     <?= $form->field($model, 'pdf')->fileInput() ?>
 
