@@ -15,8 +15,8 @@ $this->title = $model->name;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('删除', ['delete', 'id' => $model->id], [
+        <?= Html::a('修改', ['my-update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['my-delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -35,8 +35,8 @@ $this->title = $model->name;
 //            'password_reset_token',
             'email:email',
             'status',
-            'created_at',
-            'updated_at',
+            'created_at:date',
+            'updated_at:date',
             'name',
 //            'sex',
             [

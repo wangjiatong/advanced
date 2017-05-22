@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = '管理后台登录';
+$this->title = '网站管理后台';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -26,7 +26,7 @@ $this->title = '管理后台登录';
                 <?= $form->field($model, 'rememberMe')->checkbox()->label('记住登录') ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

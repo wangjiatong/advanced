@@ -89,7 +89,7 @@ class ContractController extends BaseController
     
     public function actionMyView($id)
     {
-        return $this->render('View', [
+        return $this->render('view', [
             'model' => $this->findMyModel($id),
         ]);
     }
