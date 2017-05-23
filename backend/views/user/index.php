@@ -49,7 +49,7 @@ $this->title = '客户列表';
 
 //            ['class' => 'yii\grid\ActionColumn'],
             [
-                'label' => '',
+                'label' => '操作',
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
