@@ -1,7 +1,3 @@
-pwd
- rm uploads/
-rm -rf uploads/
-ls
 cd
 cd backend/
 cd web/
@@ -998,3 +994,7 @@ cd controllers/
 ls
 cd common/
 vi BaseController.php 
+mysql -u root -p
+git add .
+git commit -m "日志功能有点问题，准备在本地同步"
+git push origin dev
