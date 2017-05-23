@@ -134,7 +134,7 @@ class BaseController extends Controller{
         }elseif(in_array($urlTo, Yii::$app->session['allowed_urls'])){
             return Url::to([$urlTo]);
         }else{
-            return null;
+            return Url::to(['error/index']);
         }
     }
     
