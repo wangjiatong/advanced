@@ -107,7 +107,7 @@ class ContractController extends BaseController
         {       
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             
-            $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '-' .rand(9, 99);
+            $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
             
             $ext = $model->pdf->extension;
             

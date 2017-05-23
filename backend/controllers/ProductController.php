@@ -198,7 +198,7 @@ class ProductController extends BaseController
             {
                 $model->img = UploadedFile::getInstance($model, 'img');
                 
-                $name = date('Y-m-d') . '-' . rand(9, 99);
+                $name = 'p-' . date('Y-m-d') . '-' . rand(0, 9999);
         
                 $ext = $model->img->extension;
                 
