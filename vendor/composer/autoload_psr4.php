@@ -14,6 +14,7 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'scotthuangzl\\export2excel\\' => array($vendorDir . '/scotthuangzl/yii2-export2excel'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'kucha\\ueditor\\' => array($vendorDir . '/kucha/ueditor'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),

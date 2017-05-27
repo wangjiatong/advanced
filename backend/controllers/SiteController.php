@@ -7,11 +7,12 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\AdminLoginForm;
 //为后端管理员添加引用
-//use backend\models\PasswordResetRequestForm;
-//use backend\models\ResetPasswordForm;
+use backend\models\AdminPasswordResetRequestForm;
+use backend\models\AdminResetPasswordForm;
 //use backend\models\AdminSignupForm;
 //发布新闻
 //use common\models\PostNewsForm;
+use common\models\Contract;
 
 /**
  * Site controller
@@ -65,7 +66,46 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
+
+        foreach($contracts as $c)
+        {
+            $every_time_arr = explode(', ', $c['every_time']);//将每期到期时间数组化
+            
+            $lengthOfArr = count($every_time_arr);//分期次数
+            
+            $days = 5;//提前多久提醒
+            
+            $today = strtotime(date('Y-m-d H:i:s'));
+            
+            for($i = 0; $i < $lengthOfArr; $i++)
+            {
+                $timeToCheck = strtotime($every_time_arr[$i]);               
+                
+                if($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
+                    $id_arr[] = $c['id'];
+                }
+
+            }
+        }
+        
+        if(isset($id_arr))
+        {
+            foreach ($id_arr as $i)
+            {
+                $model = Contract::findOne($i);
+                $models[] = $model;
+            }
+        }
+        
+        if(isset($models)){
+            return $this->render('index',[
+                'models' => $models,
+            ]);
+        }else{
+            return $this->render('index');
+        }
+        
     }
 
     /**
@@ -129,23 +169,23 @@ class SiteController extends BaseController
      *
      * @return mixed
      */
-//    public function actionRequestPasswordReset()
-//    {
-//        $model = new PasswordResetRequestForm();
-//        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//            if ($model->sendEmail()) {
-//                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-//
-//                return $this->goHome();
-//            } else {
-//                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-//            }
-//        }
-//
-//        return $this->render('requestPasswordResetToken', [
-//            'model' => $model,
-//        ]);
-//    }
+    public function actionRequestPasswordReset()
+    {
+        $model = new AdminPasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('发送成功', '查收邮箱中的进一步操作');
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('发送失败', '无法为所提供的邮箱修改密码');
+            }
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Resets password.
@@ -154,22 +194,23 @@ class SiteController extends BaseController
      * @return mixed
      * @throws BadRequestHttpException
      */
-//    public function actionResetPassword($token)
-//    {
-//        try {
-//            $model = new ResetPasswordForm($token);
-//        } catch (InvalidParamException $e) {
-//            throw new BadRequestHttpException($e->getMessage());
-//        }
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-//            Yii::$app->session->setFlash('success', 'New password was saved.');
-//
-//            return $this->goHome();
-//        }
-//
-//        return $this->render('resetPassword', [
-//            'model' => $model,
-//        ]);
-//    }  
+    public function actionResetPassword($token)
+    {
+        $this->layout = false;
+        try {
+            $model = new AdminResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('成功', '新的密码已经生效');
+
+            return $this->redirect(['site/login']);
+        }
+
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
+    }  
 }

@@ -26,6 +26,7 @@ class ContractForm extends Model
     public $raise_interest_year;//新增募集期年利率
     public $interest_year;//新增年利率
     public $pdf;//合同扫描件
+    public $bank_user;//开户名
 
     /**
      * @inheritdoc
@@ -33,7 +34,7 @@ class ContractForm extends Model
     public function rules()
     {
         return [
-            [['contract_number', 'capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year'], 'required'],
+            [['contract_number', 'capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user'], 'required'],
             [['capital', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
             [['transfered_time', 'found_time', 'cash_time'], 'safe'],
             [['contract_number', 'bank', 'bank_number'], 'string', 'max' => 255],
@@ -75,6 +76,7 @@ class ContractForm extends Model
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
             'pdf' => '合同扫描件',
+            'bank_user' => '开户名',
         ];
     }
 
@@ -165,6 +167,8 @@ class ContractForm extends Model
         $_every_interest = [];//每期应付利息
         
         $contract->pdf = $this->pdf;
+        
+        $contract->bank_user = $this->bank_user;
         
         switch ($contract->term)
         {

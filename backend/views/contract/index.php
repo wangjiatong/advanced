@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use common\models\ProductColumn;
+use common\models\Product;
 use common\models\UserModel;
 use backend\controllers\common\BaseController;
 /* @var $this yii\web\View */
@@ -20,6 +20,7 @@ $this->title = '合同列表';
 
     <p>
         <?= Html::a('新增合同', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('导出Excel', ['excel'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,7 +35,7 @@ $this->title = '合同列表';
             'found_time:date',
             // 'raise_day',
             // 'raise_interest',
-             'cash_time:date',
+//             'cash_time:date',
             // 'term_month',
             // 'interest',
             // 'term',
@@ -48,17 +49,16 @@ $this->title = '合同列表';
             // 'created_at',
             // 'updated_at',
 //             'product_id',
-//            [
-//                'label' => '产品名称',
-//                'attribute' => 'product_id',
-//                'value' => function($data){
-//                    if($data){
-//                        return ProductColumn::findOne($data)->product_column;
-//                    }else{
-//                        return '不存在的';
-//                    }
-//                }
-//            ],
+            [
+                'label' => '产品名称',
+                'value' => function($data){
+                    if($data->product_id){
+                        return Product::findOne($data->product_id)->product_name;
+                    }else{
+                        return null;
+                    }
+                }
+            ],
 //             'user_id',
             [
                 'label' => '客户姓名',
@@ -67,7 +67,7 @@ $this->title = '合同列表';
                    if($data){
                        return UserModel::findOne($data->user_id)->name;
                    }else{
-                       return '不存在的';
+                       return null;
                    }
                 }
             ],

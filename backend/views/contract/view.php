@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use backend\models\Admin;
+use common\models\Product;
+use common\models\UserModel;
+use common\models\Contract;
 
 $pdfUrl = "<embed width='1000' height='750' src='/$model->pdf'></embed>";
 
@@ -37,13 +40,15 @@ $this->title = '合同详情：'.$model->contract_number;
             'transfered_time',
             'found_time',
             'raise_day',
+            'raise_interest_year',
             'raise_interest',
             'cash_time',
             'term_month',
+            'interest_year',
             'interest',
 //            'term',
             [
-                'label' => '付款方式',
+                'label' => '付息频率',
                 'value' => function($data){
                     switch($data->term)
                     {
@@ -58,39 +63,60 @@ $this->title = '合同详情：'.$model->contract_number;
             'total_interest',
             'total',
             'bank',
+            'bank_user',
             'bank_number',
 //            'source',
             [
-                'label' => '合同来源',
+                'label' => '客户经理',
                 'value' => function($data){
-                    return Admin::find()->where(['id' => $data->source])->one()->name;
+                    if($data->source)
+                    {
+                        return Admin::findOne($data->source)->name;
+                    }else{
+                        return null;
+                    }
                 },
             ],
             'created_at',
-            'updated_at',
+//            'updated_at',
 //            'product_id',
             [
                 'label' => '产品名称',
 //                'attribute' => 'product_id',
                 'value' => function($data){
-                    return \common\models\Product::findOne($data->product_id)->product_name;
-                }
+                    if($data->product_id)
+                    {
+                        return Product::findOne($data->product_id)->product_name;
+                    }else{
+                        return null;
+                    }
+                },
             ],
 //            'user_id',
             [
                 'label' => '客户姓名',
 //                'attribute' => 'user_id',
                 'value' => function($data){
-                    return common\models\UserModel::findOne($data->user_id)->name;
-                }
+                    if($data->user_id)
+                    {
+                        return UserModel::findOne($data->user_id)->name;
+                    }else{
+                        return null;
+                    }
+                },
             ],
 //            'status',
             [
                 'label' => '合同状态',
 //                'attribute' => 'status',
                 'value' => function($data){
-                    return common\models\Contract::contractValidation($data->status);
-                }
+                    if($data->status)
+                    {
+                        return Contract::contractValidation($data->status);
+                    }else{
+                        return null;
+                    }
+                },
             ],
 //            'pdf',
             [

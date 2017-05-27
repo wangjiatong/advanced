@@ -25,6 +25,7 @@ $id = Yii::$app->user->id;
 			<menu>
 				<ul>
 					<li><a href="/member">我的合同</a></li>
+                                        <li><a href="/site/request-password-reset">修改密码</a></li>
 					<!--<li><a href="/member/personal" class="arrow">个人信息</a></li>-->
 <!--					<li><a href="#navplace" class="arrow">Our place</a></li>
 					<li><a href="#navother" class="arrow">Our lorem</a></li>-->
