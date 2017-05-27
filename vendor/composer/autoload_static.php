@@ -4,14 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
+class ComposerStaticInit30485690b837f9b7584c6139c1e59e86
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
+        '36795dc0cc588020fda3680dffb905a4' => __DIR__ . '/..' . '/codeception/base/shim.php',
+        '4a08784919981e29eb0c6f44a2f7a0af' => __DIR__ . '/..' . '/codeception/base/phpunit5-loggers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -25,6 +27,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        's' => 
+        array (
+            'scotthuangzl\\export2excel\\' => 26,
         ),
         'p' => 
         array (
@@ -53,6 +59,7 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 49,
         ),
         'P' => 
         array (
@@ -113,11 +120,15 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'scotthuangzl\\export2excel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/scotthuangzl/yii2-export2excel',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'kucha\\ueditor\\' => 
         array (
@@ -167,6 +178,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
+        'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stecman/symfony-console-completion/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -211,6 +226,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
             ),
         ),
         'H' => 
@@ -704,10 +723,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitece7de1a5c19a97d3834906ac7fff413::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitece7de1a5c19a97d3834906ac7fff413::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitece7de1a5c19a97d3834906ac7fff413::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitece7de1a5c19a97d3834906ac7fff413::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit30485690b837f9b7584c6139c1e59e86::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit30485690b837f9b7584c6139c1e59e86::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit30485690b837f9b7584c6139c1e59e86::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit30485690b837f9b7584c6139c1e59e86::$classMap;
 
         }, null, ClassLoader::class);
     }
