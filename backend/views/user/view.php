@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\Admin;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UserModel */
@@ -44,6 +45,17 @@ $this->title = $model->name;
                 'attribute' => 'sex',
                 'value' => function($data){
                     return common\models\UserModel::getSex($data->sex);
+                }
+            ],
+            [
+                'label' => '客户经理',
+                'value' => function($data){
+                    if($data->source)
+                    {
+                        return Admin::find()->where(['id' => $data->source])->one()->name;
+                    }else{
+                        return null;
+                    }
                 }
             ],
             'birthday',

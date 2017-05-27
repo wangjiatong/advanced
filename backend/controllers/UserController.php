@@ -102,7 +102,7 @@ class UserController extends BaseController
         $model = new UserSignupForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->signup() ) {
-            return $this->redirect(['index']);
+            return $this->redirect([parent::checkUrlAccess('user/index', 'user/my-user')]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -164,18 +164,18 @@ class UserController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
     public function actionMyUpdate($id)
     {
         $model = $this->findMyModel($id);
@@ -195,12 +195,12 @@ class UserController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
+//    public function actionDelete($id)
+//    {
+//        $this->findModel($id)->delete();
+//
+//        return $this->redirect(['index']);
+//    }
     public function actionMyDelete($id)
     {
         $this->findMyModel($id)->delete();

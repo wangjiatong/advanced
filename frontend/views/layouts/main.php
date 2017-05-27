@@ -107,7 +107,7 @@ AppAsset::register($this);
                                     <li><a href="/site/news">新闻动态</a></li>
                                     <li><a href="/site/contact">联系我们</a></li>
                                     <?php if(Yii::$app->user->isGuest){?><li><a href="/site/join" id="join">加入我们</a></li><?php }else{ ?><li><a href="/member" id="login">个人中心</a></li><?php } ?>
-                                    <?php if(Yii::$app->user->isGuest){?><li><a href="/site/login" id="login">登录</a></li><?php }else{ ?><li><a href="/site/logout" id="login">注销<?='('.Yii::$app->user->identity->username.')'?></a></li><?php } ?>
+                                    <?php if(Yii::$app->user->isGuest){?><li><a href="/site/login" id="login">登录</a></li><?php }else{ ?><li><a href="/site/logout" id="login">注销</a></li><?php } ?>
                             </ul>
                     </nav>
             </footer>

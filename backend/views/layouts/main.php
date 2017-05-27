@@ -10,8 +10,10 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use backend\controllers\common\BaseController;
+use backend\models\Admin;
 
 AppAsset::register($this);
+$my_id = Yii::$app->user->identity->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,9 +38,9 @@ AppAsset::register($this);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">网站管理后台</a>
+          <a class="brand" href="/">网站管理后台</a>
           <div class="btn-group pull-right">
-			<a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?></a>
+              <a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?>(<?= Admin::findOne($my_id)->name ?>)</a>
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <span class="caret"></span>
             </a>
@@ -84,6 +86,7 @@ AppAsset::register($this);
               <li class=""><a href="/role/set">设置角色</a></li>
               <li class=""><a href="/access">权限列表</a></li>
               <li class=""><a href="/access/set">设置权限</a></li>
+              <li class=""><a href="/site/request-password-reset">修改密码</a></li>
               <li class="nav-header"><i class="icon-user"></i> 客户管理</li>
               <!--<li class=""><a href="#">添加会员</a></li>-->
               <li class=""><a href="<?= BaseController::checkUrlAccess('user/index', 'user/my-user') ?>">客户列表</a></li>

@@ -11,14 +11,17 @@
 
 namespace Fxp\Composer\AssetPlugin\Tests\Repository;
 
+use Composer\Config;
 use Composer\DependencyResolver\Pool;
 use Composer\Downloader\TransportException;
 use Composer\EventDispatcher\EventDispatcher;
 use Composer\IO\IOInterface;
-use Composer\Config;
 use Composer\Repository\RepositoryManager;
+use Fxp\Composer\AssetPlugin\Config\Config as AssetConfig;
 use Fxp\Composer\AssetPlugin\Repository\AbstractAssetsRepository;
+use Fxp\Composer\AssetPlugin\Repository\AssetRepositoryManager;
 use Fxp\Composer\AssetPlugin\Repository\AssetVcsRepository;
+use Fxp\Composer\AssetPlugin\Repository\VcsPackageFilter;
 
 /**
  * Abstract class for Tests of assets repository.
@@ -41,6 +44,11 @@ abstract class AbstractAssetsRepositoryTest extends \PHPUnit_Framework_TestCase
      * @var RepositoryManager
      */
     protected $rm;
+
+    /**
+     * @var AssetRepositoryManager
+     */
+    protected $assetRepositoryManager;
 
     /**
      * @var AbstractAssetsRepository
@@ -66,10 +74,13 @@ abstract class AbstractAssetsRepositoryTest extends \PHPUnit_Framework_TestCase
                 'cache-repo-dir' => sys_get_temp_dir().'/composer-test-cache-repo',
             ),
         ));
+        /* @var VcsPackageFilter $filter */
+        $filter = $this->getMockBuilder(VcsPackageFilter::class)->disableOriginalConstructor()->getMock();
         $rm = new RepositoryManager($io, $config);
         $rm->setRepositoryClass($this->getType().'-vcs', 'Fxp\Composer\AssetPlugin\Tests\Fixtures\Repository\MockAssetRepository');
+        $this->assetRepositoryManager = new AssetRepositoryManager($io, $rm, new AssetConfig(array()), $filter);
         $repoConfig = array_merge(array(
-            'repository-manager' => $rm,
+            'asset-repository-manager' => $this->assetRepositoryManager,
             'asset-options' => array(
                 'searchable' => true,
             ),
@@ -279,7 +290,7 @@ abstract class AbstractAssetsRepositoryTest extends \PHPUnit_Framework_TestCase
     public function testSearchWithSearchDisabled()
     {
         $repoConfig = array(
-            'repository-manager' => $this->rm,
+            'asset-repository-manager' => $this->assetRepositoryManager,
             'asset-options' => array(
                 'searchable' => false,
             ),

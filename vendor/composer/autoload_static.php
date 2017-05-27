@@ -26,6 +26,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        's' => 
+        array (
+            'scotthuangzl\\export2excel\\' => 26,
+        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -112,6 +116,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'scotthuangzl\\export2excel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/scotthuangzl/yii2-export2excel',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -211,6 +219,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
             ),
         ),
         'H' => 

@@ -1,269 +1,3 @@
-cd
-cd backend/
-cd web/
-ls
-cd..
-cd ..
-ls
-cd ..
-ls
-cd common/
-ls
-cd
-cd frontend/
-ls
-cd web/
-ls
-mkdir uploads
-chmod 777 uploads/
-cd uploads/
-ls -l
-ls、
-ls
-wpd
-pwd
-ls
-rm 2017-04-20-57.jpg 
-rm 2017-04-20-72.jpg 
-ls
-mysql -u root -p
-ls
-pwd
-cd ..
-cd common
-cd ..
-cd common/
-ls
-cd ..
-cd
- cd backend/
-ls
-cd web/
-ls
-pwd
-cd ..
-cd frontend/
-cd web/
-ls
-cd uploads/
-ls
-mkdir news
-chmod 777 news/
-ls
-cd news/
-ls
-cd 20170420/
-ls
-cd ..
-ls
-rm -rf 20170420/
-ls
-cd ..
-ls
-cd news/
-ls
-cd
-ls
-cd /
-cd usr/
-cd local/
-ls
-cd bin/
-ls
-cd
-ls
-mysqldump -u root -p -d advanced > advanced.sql
-ls
-mysql -u root -p
-mysql -u root -p advanced_test <advanced.sql
-mysql -u root -p
-ls
-rm advanced.sql 
-ls
-mysql -u root -p
-cd
-mysqldump -u root -p advanced >advanced.sql
-mysql -u root -p
-mysql -u root -p advanced_test < advanced.sql
-mysql -u root -p
-reboot
-ls
-cd backend/
-ls
-cd web/
-ls
-cd
-cd frontend/
-ls
-cd web/
-ls
-cd uploads/
-ls
-cd news/
-ls
-cd ..
-ls
-cd news/
-ls
-cd 20170421/
-ls
-cd ..
-ls
-rm -rf 20170421/
-ls
-cd 
-cd ~
-ls
-cd -
-cd
-cd frontend/
-cd web/
-ls
-cd uploads/
-ls
-cd news/
-ls
-cd 20170421/
-ls
-cd ..
-ls
-cd 20170421/
-ls
-cd ..
-ls
-cd ..
-ls
-rm -r news/
-ls
-cd
-cd backend/
-cd web/
-ls
-pwd
-mkdir uploads
-ls
-chmod 777 uploads/
-ls
-cd
-cd frontend/
-cd web/
-ls
-cd uploads/
-ls
-cd vendor/
-ls
-cd kucha/
-ls
-cd ueditor/
-ls
-vi Uploader.php 
-cd backend/
-ls
-cd web/
-ls
-cd uploads/
-ls
-cd
-cd co
-cd common/
-ls
-cd ..
-cd frontend/
-cd web/
-ls
-cd uploads/
-ls
-cd news/
-ls
-cd 20170421/
-ls
-cd ..
-ls
-cd ..
-ls
-rm -rf news/
-ls
-cd ..
-ls
-cd
-ls
-cd vendor/
-ls
-cd kucha/
-ls
-cd ueditor/
-ls
-vi config.php 
-vi UEditorA
-ls
-vi UEditorAction.php 
-vi Uploader.php 
-vi config.php 
-cd vendor/
-cd kucha/
-ls
-cd ueditor/
-ls
-vi composer.json 
-cd assets/
-ls
-cd ..
-vi config.php 
-ls
-vi config.php 
-ls
-vi composer.json 
-vi UEditorAction.php 
-vi UEditor.php 
-vi Uploader.php 
-cd /
-cd etc/
-cd nginx/
-ls
-cd conf.d/
-ls
-vi yii-test.conf 
-/etc/init.d/nginx restart
-vi yii-test.conf 
-cd
- cd frontend/
-ls
-cd web/
-ls
-cd uploads/
-ls
-cd
-cd backend/
-cd web/
-ls
-cd uploads/
-ls
-cd news/
-ls
-cd 20170426/
-ls
-cd ..
-ls
-cd ..
-ls
-cd ..
-ls
-ls -l
-cd uploads/
-ls -l
-cd news/
-ls
-ls -l
-cd 20170426/
-ls -l
-cd ..
-ls
-cd ..
-ls
-cd news/
-rm -rf
-ls
-rm - rf .
 lls
 ls
 rm -rf 20170426/
@@ -998,3 +732,269 @@ mysql -u root -p
 git add .
 git commit -m "日志功能有点问题，准备在本地同步"
 git push origin dev
+cd ..
+cd advanced
+ls
+cd backend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+mkdir contracts
+ls
+chmod 777 contracts/
+ls
+cd
+cd ..
+cd advanced
+ls
+./yii migrate/up
+mysql -u root -p
+cd backend/
+cd co
+cd controllers/
+ls
+vi ContractController.php 
+cd ..
+cd common/
+ls
+cd models/
+ls
+cd ..
+ls
+cd backend/
+cd models/
+ls
+vi ContractForm.php 
+cd
+cd ..
+cd advanced
+./yii migrate/up
+./yii migrate/up m170315_030429
+mysql -u root -p
+cd common/
+cd config/
+vi main-local.php 
+vi test-local.php 
+cd ..
+cd console/
+ls
+cd config/
+vi main-local.php 
+cd ..
+cd frontend/
+ls
+cd config/
+ls
+vi main-local.php 
+vi test-local.php 
+reboot
+mysql -u root -p
+cd
+git add .
+git commit -m "合同视图文件写错为大写"
+git push origin dev
+cd ..
+cd advanced
+ls
+git pull
+cd backend/
+ls
+cd web/
+ls
+cd uploads/
+ls
+cd contracts/
+ls
+mysql -u root -p
+cd
+cd ..
+ cd advanced
+cd backend/
+ls
+cd controllers/
+ls
+pwd
+vi ContractController.php 
+cd ..
+ cd views/
+ls
+cd contract/
+ls
+vi view.php 
+ls
+cd ..
+cd m
+cd ..
+cd models/
+ls
+pwd
+ls
+cd ..
+ls
+cd ..
+pwd
+ls
+cd backend/
+ls
+cd views/
+cd contract/
+ls
+vi view.php 
+ls
+cd ..
+cd controllers/
+ls
+cd common/
+ls
+vi BaseController.php 
+ls
+cd ..
+cd web/
+ls
+cd uploads/
+ls -l
+cd contracts/
+ls
+rm c3-2017-05-23-70.pdf 
+rm c3-2017-05-23-80.pdf 
+rm c3-2017-05-23-96.pdf 
+rm c3-2017-05-23-99.pdf 
+rm c3-2017-05-23-34.pdf 
+rm c6-2017-05-23-34.pdf 
+rm c6-2017-05-23-36.pdf 
+ls
+cd
+cd ..
+cd advanced
+ls
+cd frontend/
+cd web/
+ls
+cd uploads/
+ls
+cd ..
+ls -l
+cd
+git add .
+git commit -m "视图详情有问题"
+git push orgin dev
+git push origin dev
+cd
+cd ..
+cd advanced
+git pull
+mysql -u root -p
+cd /
+cd etc/
+cd nginx/
+cd conf.d/
+ls
+vi yii.conf 
+vi yii-test.conf
+ls
+pwd
+useradd -d /usr/share/nginx/html/advanced-test
+useradd -d /usr/share/nginx/html/advanced prod
+passwd prod
+usermod -s /sbin/nologin prod
+service vsftpd restart
+userdel -r prod
+cd
+cd ..
+cd advanced
+cd backend/
+cd views/
+ls
+cd user/
+ls
+vi view.php 
+vi index.php 
+mysql -u root -p
+cd ..
+cd advanced
+cd backend/
+cd config/
+ls
+vi main-local.php 
+cd
+cd ..
+cd advanced
+composer update
+cd ..
+cd advanced
+composer update
+composer install
+composer update
+ls
+composer
+composer show
+composer update yiisoft/yii2
+cd backend/
+cd views/
+ls
+cd user/
+ls
+vi view.php 
+mysql -u root -p
+cd ..
+cd advanced
+cd backend/
+cd web/
+ls
+vi index.php 
+reboot
+cd ..
+cd advanced
+composer config -g repo.packagist composer https://packagist.phpcomposer.com
+ls
+vi composer.json 
+ls
+composer install
+composer update
+composer update config.fxp-asset.installer-paths
+cd ..
+cd advanced
+composer update
+composer global require fxp/composer-asset-plugin:^1.2.0
+composer update
+compoesr show
+composer show
+composer global require "fxp/composer-asset-plugin:*"
+composer install
+ls
+rm -rf vendor/
+rm composer.lock 
+composer install
+cd
+cd ..
+cd advanced
+cd backend/
+cd config/
+ls
+vi main-local.php 
+cd
+cd ..
+cd advanced
+ls
+./yii init
+init
+./init
+cd
+pwd
+/usr/share/nginx/html/advanced-test
+crontab -e 00 09 * * * /usr/share/nginx/html/advanced-test/yii check-contracts/collect
+crontab -e
+composer require scotthuangzl/yii2-export2excel "dev-master"
+compoesr update
+composer update
+cd /
+cd etc/
+ls
+cd php.d/
+ls
+cd ..
+vi php.ini
+reboot
+git add .

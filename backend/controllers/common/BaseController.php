@@ -13,6 +13,7 @@ use backend\models\Access;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use backend\models\UserAccessLog;
+use backend\models\Admin;
 
 class BaseController extends Controller{
     
@@ -22,7 +23,9 @@ class BaseController extends Controller{
         'site/login',
         'site/logout',
         'error/index',
+        'site/reset-password',
     ];
+    
     
     public function beforeAction($action) 
     {
@@ -56,7 +59,7 @@ class BaseController extends Controller{
 //                var_dump($access_ids_arr);
             $urls_all = $this->getUrlsByAccess($access_ids_arr);
 //                var_dump($urls_all);
-            $this->allowActions = array_merge($this->allowActions, $urls_all);
+            $this->allowActions = array_merge($this->allowActions, $urls_all, ['site/index', 'site/request-password-reset']);
 //                var_dump($this->allowActions);
 //                var_dump($action->uniqueId);
 //                var_dump(in_array($action->uniqueId, $this->allowActions));
@@ -136,6 +139,16 @@ class BaseController extends Controller{
         }else{
             return Url::to(['error/index']);
         }
+    }
+    
+    public function getUserId()
+    {
+        return Yii::$app->user->identity->id;
+    }
+    public function getUserName()
+    {
+        $my_id = Yii::$app->user->identity->id;
+        return Admin::findOne($my_id)->name;
     }
     
 //    public function AccessLog()
