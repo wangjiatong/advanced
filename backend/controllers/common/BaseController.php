@@ -35,7 +35,7 @@ class BaseController extends Controller{
         }
         if(Yii::$app->user->isGuest)
         {
-            return $this->redirect(['site/login']);
+            return $this->redirect(['site/login'])->send();
         }
         if(Yii::$app->session['allowed_urls'] !== null)
         {
@@ -143,12 +143,18 @@ class BaseController extends Controller{
     
     public function getUserId()
     {
-        return Yii::$app->user->identity->id;
+//        if(!Yii::$app->user->isGuest)
+//        {
+            return Yii::$app->user->identity->id;
+//        }
     }
     public function getUserName()
     {
-        $my_id = Yii::$app->user->identity->id;
-        return Admin::findOne($my_id)->name;
+//        if(!Yii::$app->user->isGuest)
+//        {
+            $my_id = Yii::$app->user->identity->id;
+            return Admin::findOne($my_id)->name;
+//        }
     }
     
 //    public function AccessLog()
