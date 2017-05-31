@@ -15,6 +15,9 @@ use backend\models\ContractForm;
 use yii\web\UploadedFile;
 //销售查看个人客户合同
 use common\models\MyContractSearch;
+//导出excel
+use backend\models\ExcelForm;
+use scotthuangzl\export2excel\Export2ExcelBehavior;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
@@ -47,9 +50,19 @@ class ContractController extends BaseController
                     'delete' => ['POST'],
                 ],
             ],
+            'export2excel' => [
+            'class' => Export2ExcelBehavior::className(),
+            ],
         ];
     }
-
+    public function actions()
+    {
+        return [
+            'download' => [
+                'class' => 'scotthuangzl\export2excel\DownloadAction',
+            ],
+        ];
+    }
     /**
      * Lists all Contract models.
      * @return mixed
@@ -123,7 +136,7 @@ class ContractController extends BaseController
             
             $model->save();
             
-            return $this->redirect(['/contract']);
+            return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -198,6 +211,113 @@ class ContractController extends BaseController
             
         }else{
             echo '删除失败！';
+        }
+    }
+    
+    public function actionExcel()
+    {
+        $excel_form = new ExcelForm();
+        if($excel_form->load(Yii::$app->request->post()))
+        {
+            $model = Yii::$app->request->post()['ExcelForm'];
+//            print_r($model);
+            $product_id = $model['product_id'];
+            $start_time = $model['start_time'];
+            $end_time = $model['end_time'];
+            $ids = [];
+//            if($product_id)
+//            {
+                $by_product = Contract::find()->select(['id', 'every_time'])->where(['product_id' => $product_id])->all();
+                foreach ($by_product as $b)
+                {
+                    $every_time = $b['every_time'];
+//                    print_r($every_time);
+                    $every_time_arr = explode(', ', $every_time);
+                    foreach ($every_time_arr as $e)
+                    {
+                        $e = strtotime($e);
+                        $start_time_str = strtotime($start_time);
+                        $end_time_str = strtotime($end_time);
+                        if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
+                        {
+                            $ids[] = $b['id'];
+                        }
+                    }                  
+                }
+//                $res = Contract::find()->asArray()->where(['id' => $ids])->all();
+//            print_r($ids);
+//            exit();
+                $res =[];
+                foreach ($ids as $id)
+                {
+                    $res[] = Contract::find()->asArray()->where(['id' => $id])->one();
+                }
+//            }else{
+//                $by_date = Contract::find()->select(['id', 'every_time'])->all();
+//                foreach ($by_product as $b)
+//                {
+//                    $every_time = $b['every_time'];
+//                    $every_time_arr = explode(', ', $every_time);
+//                    foreach ($every_time_arr as $e)
+//                    {
+//                        $e = strtotime($e);
+//                        $start_time_str = strtotime($start_time);
+//                        $end_time_str = strtotime($end_time);
+//                        if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
+//                        {
+//                            $ids = $b['id'];
+//                        }
+//                    }                  
+//                }
+//                $res = Contract::find()->asArray()->where(['id' => $ids])->all();
+//            }
+//            print_r($res);
+            if($res)
+            {
+            $excel_data = Export2ExcelBehavior::excelDataFormat($res);
+            $excel_title = $excel_data['excel_title'];
+            $excel_ceils = $excel_data['excel_ceils'];
+            $excel_content = [
+                [
+                    'sheet_name' => '待付合同信息',
+                    'sheet_title' => $excel_title,
+                    'ceils' => $excel_ceils,
+                    'freezePane' => 'B2',
+                    'headerColor' => Export2ExcelBehavior::getCssClass('header'),
+                    'headerColumnCssClass' => [
+                        'id' => Export2ExcelBehavior::getCssClass('blue'),
+                        'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+                    ],
+                    'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
+                    'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
+                ],
+                [
+                    'sheet_name' => '重要通知',
+                    'sheet_title' => ['重要通知123'],
+                    'ceils' => [
+                        [
+                            'id'
+                        ],
+                        [
+                            'contract_number'
+                        ],
+                        [
+                            '3'
+                        ],
+                    ],
+                ],
+            ];
+            $excel_file = $start_time.'至'.$end_time.'待付合同信息';
+            $this->export2excel($excel_content, $excel_file);         
+            }else{
+                print_r('无符合查询条件的合同！');
+                echo \yii\helpers\Html::a('点击返回', ['contract/index']);
+            }
+//            print_r($by_product);
+        }else{
+            return $this->render('excel', [
+                'model' => $excel_form,
+            ]);
         }
     }
 

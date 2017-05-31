@@ -52,11 +52,11 @@ class MemberController extends Controller
     {
         try{
             return $this->render('view', [
-                'model' => Contract::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->one(),
+                'model' => Contract::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->identity->id])->one(),
             ]);
         } catch (\Exception $e)
         {
-            return $this->redirect(['/site/error']);
+            return $this->redirect(['site/error']);
         }
             
     }

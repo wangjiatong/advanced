@@ -3,6 +3,8 @@ namespace console\controllers;
 use Yii;
 use yii\console\Controller;
 use common\models\Contract;
+use backend\models\Admin;
+use common\models\UserModel;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +12,7 @@ use common\models\Contract;
  */
 class CheckContractsController extends Controller
 {
-    public $timeToEmail = '2018-2-28 17:30:00';
+//    public $timeToEmail = '2018-2-28 17:30:00';
 
     public function actionCollect()
     {
@@ -36,9 +38,9 @@ class CheckContractsController extends Controller
         //计算合同即将到期
 //        var_dump(Contract::find()->select(['id', 'every_time'])->asArray()->all());
         
-        $res = Contract::find()->select(['id', 'every_time'])->asArray()->all();//每项合同数组化
+        $res = Contract::find()->select(['id', 'every_time', 'contract_number', 'user_id', 'every_interest'])->asArray()->all();//每项合同数组化
                 
-        print_r($res);
+//        print_r($res);
         
         foreach($res as $r)
         {
@@ -48,41 +50,46 @@ class CheckContractsController extends Controller
             
 //            echo $lengthOfArr;
             
-            $days = 5;//提前多久发送邮件
+            $days = 5;//提前多久发送邮件（天）
             
             for($i = 0; $i < $lengthOfArr; $i++)
             {
                 $timeToCheck = strtotime($every_time_arr[$i]);
                 
-                $today = strtotime($this->timeToEmail);
+//                $today = strtotime($this->timeToEmail);
+                $today = strtotime(date('Y-m-d H:i:s'));
                 
                 if($today > $timeToCheck)
                 {
-                    echo $every_time_arr[$i] . '该期已付！';
+//                    echo $every_time_arr[$i] . '该期已付！';
                 }elseif($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
 //                    Contract::findOne($r['id']);
                     $mail = Yii::$app->mailer->compose();
                     
-                    $mail->setTo('11228463@qq.com');
+                    $sale_id = Contract::findOne($r['id'])->source;
                     
-                    $mail->setSubject('hello');
+                    $sale = Admin::findOne($sale_id);
+                    
+                    $mail->setTo($sale->email);
+                    
+                    $mail->setSubject('客户待付提醒：'.UserModel::findOne($r['user_id'])->name);
                     
                     $mail->setFrom(['mail@ewinjade.com' => '翌银玖德']);
                     
-                    $mail->setHtmlBody('test');
+                    $mail->setHtmlBody('合同编号：'.Contract::findOne($r['id'])->contract_number);
                     
-                    if($mail->send()){
-                        
-                        echo "发送成功！";
-                        
-                    }else{
-                        
-                        echo "发送失败！";
-                        
-                    }
+//                    if($mail->send()){
+//                        
+//                        echo "发送成功！";
+//                        
+//                    }else{
+//                        
+//                        echo "发送失败！";
+//                        
+//                    }
                 }else{
                     
-                    echo "最近没有需要付款的！";
+//                    echo "最近没有需要付款的！";
                     
                 }
                         

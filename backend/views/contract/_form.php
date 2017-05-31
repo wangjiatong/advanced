@@ -44,6 +44,8 @@ $my_id = Yii::$app->user->identity->id;
     ]) ?>
 
     <?= $form->field($model, 'bank')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'bank_user')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'bank_number')->textInput(['maxlength' => true]) ?>
 

@@ -164,21 +164,21 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
+//    public function actionSignup()
+//    {
+//        $model = new SignupForm();
+//        if ($model->load(Yii::$app->request->post())) {
+//            if ($user = $model->signup()) {
+//                if (Yii::$app->getUser()->login($user)) {
+//                    return $this->goHome();
+//                }
+//            }
+//        }
+//
+//        return $this->render('signup', [
+//            'model' => $model,
+//        ]);
+//    }
 
     /**
      * Requests password reset.
@@ -221,7 +221,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('success', 'New password was saved.');
 
-            return $this->goHome();
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('resetPassword', [

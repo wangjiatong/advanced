@@ -28,9 +28,10 @@ class SemverConverter implements VersionConverterInterface
         }
 
         $version = str_replace('–', '-', $version);
-        $prefix = preg_match('/^[a-z]/', $version) ? substr($version, 0, 1) : '';
+        $prefix = preg_match('/^[a-z]/', $version) && 0 !== strpos($version, 'dev-') ? substr($version, 0, 1) : '';
         $version = substr($version, strlen($prefix));
         $version = SemverUtil::convertVersionMetadata($version);
+        $version = SemverUtil::convertDateVersion($version);
 
         return $prefix.$version;
     }
@@ -54,13 +55,15 @@ class SemverConverter implements VersionConverterInterface
      */
     protected function cleanRange($range)
     {
-        foreach (array('<', '>', '=', '~', '^', '||') as $character) {
+        foreach (array('<', '>', '=', '~', '^', '||', '&&') as $character) {
             $range = str_replace($character.' ', $character, $range);
         }
 
         $range = preg_replace('/(?:[vV])(\d+)/', '${1}', $range);
+        $range = str_replace(' ||', '||', $range);
+        $range = str_replace(array(' &&', '&&'), ',', $range);
 
-        return str_replace(' ||', '||', $range);
+        return $range;
     }
 
     /**
@@ -102,7 +105,7 @@ class SemverConverter implements VersionConverterInterface
     protected function matchRangeToken($i, $match, array &$matches, &$special, &$replace)
     {
         if (' - ' === $match) {
-            $matches[$i - 1] = '>='.$matches[$i - 1];
+            $matches[$i - 1] = '>='.str_replace(array('*', 'x', 'X'), '0', $matches[$i - 1]);
 
             if (false !== strpos($matches[$i + 1], '.') && strpos($matches[$i + 1], '*') === false
                     && strpos($matches[$i + 1], 'x') === false && strpos($matches[$i + 1], 'X') === false) {
@@ -129,6 +132,7 @@ class SemverConverter implements VersionConverterInterface
     {
         if (in_array($match, array('', '<', '>', '=', ','))) {
             $replace = in_array($match, array('<', '>')) ? $match : $replace;
+            $matches[$i] = '~' === $special && in_array($replace, array('<', '>')) ? '' : $matches[$i];
         } elseif ('~' === $match) {
             $special = $match;
         } elseif (in_array($match, array('EQUAL', '^'))) {
@@ -178,10 +182,12 @@ class SemverConverter implements VersionConverterInterface
             $match .= (false === strpos($match, '.') ? '.x' : '');
             $version = explode('.', $match);
             $change = count($version) - 2;
-            $version[$change] = intval($version[$change]) + 1;
+            $version[$change] = (int) ($version[$change]) + 1;
             $match = str_replace(array('*', 'x', 'X'), '0', implode('.', $version));
         } elseif (null === $special && $i === 0 && false === strpos($match, '.') && is_numeric($match)) {
-            $match = '~'.$match;
+            $match = isset($matches[$i + 1]) && (' - ' === $matches[$i + 1] || '-' === $matches[$i + 1])
+                ? $match
+                : '~'.$match;
         } else {
             $match = '~' === $special ? str_replace(array('*', 'x', 'X'), '0', $match) : $match;
         }
@@ -204,6 +210,9 @@ class SemverConverter implements VersionConverterInterface
         $matches[$i] = $replace
             ? SemverUtil::replaceAlias($matches[$i], $replace)
             : $matches[$i];
+        $matches[$i] .= '~' === $special && in_array($replace, array('<', '>'))
+            ? ','.$replace.$matches[$i]
+            : '';
         $special = null;
         $replace = null;
     }

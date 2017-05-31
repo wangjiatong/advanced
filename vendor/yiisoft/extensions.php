@@ -66,4 +66,13 @@ return array (
       '@scotthuangzl/export2excel' => $vendorDir . '/scotthuangzl/yii2-export2excel',
     ),
   ),
+  'scotthuangzl/yii2-export2excel' => 
+  array (
+    'name' => 'scotthuangzl/yii2-export2excel',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@scotthuangzl/export2excel' => $vendorDir . '/scotthuangzl/yii2-export2excel',
+    ),
+  ),
 );

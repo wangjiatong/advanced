@@ -51,7 +51,7 @@ class Contract extends ActiveRecord
     public function rules()
     {
         return [
-            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'product_id', 'user_id', 'interest_year', 'raise_interest_year'], 'required'],
+            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'product_id', 'user_id', 'interest_year', 'raise_interest_year', 'bank_user'], 'required'],
             [['capital', 'raise_day', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
 //            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
             [['transfered_time', 'found_time', 'cash_time'], 'default', 'value' => null],//时间插件设置要求
@@ -80,7 +80,7 @@ class Contract extends ActiveRecord
             'cash_time' => '兑付时间',
             'term_month' => '期限（月）',
             'interest' => '成立期利息',
-            'term' => '付款方式',
+            'term' => '付款频率',
             'every_time' => '每期到期时间',
             'every_interest' => '每期应付利息',
             'total_interest' => '应付利息总额',
@@ -96,6 +96,7 @@ class Contract extends ActiveRecord
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
             'pdf' => '合同扫描件',
+            'bank_user' => '开户名',
         ];
     }
 

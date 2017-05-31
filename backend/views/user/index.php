@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use backend\controllers\common\BaseController;
+use backend\models\Admin;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -46,6 +47,17 @@ $this->title = '客户列表';
 //             'birthday',
 //             'phone_number',
 //            'source',
+            [
+                'label' => '客户经理',
+                'value' => function($data){
+                    if($data->source)
+                    {
+                        return Admin::find()->where(['id' => $data->source])->one()->name;
+                    }else{
+                        return null;
+                    }
+                }
+            ],
 
 //            ['class' => 'yii\grid\ActionColumn'],
             [
