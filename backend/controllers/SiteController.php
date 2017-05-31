@@ -24,28 +24,28 @@ class SiteController extends BaseController
      */
     
     
-//    public function behaviors()
-//    {
-//        return [
-//            'access' => [
-//                'class' => self::className(),
-//                'only' => ['index', 'logout'],
-//                'rules' => [
-//                    [
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'logout'],
+                'rules' => [
+                    [
 //                        'actions' => ['index'],
-//                        'allow' => false,
-//                        'roles' => ['?'],
-//                    ],
-//                ],
-//            ],
-////            'verbs' => [
-////                'class' => VerbFilter::className(),
-////                'actions' => [
-////                    'logout' => ['POST', 'GET'],
-////                ],
-////            ],
-//        ];
-//    }
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['POST', 'GET'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -137,11 +137,11 @@ class SiteController extends BaseController
      */
     public function actionLogout()
     {
-        unset(Yii::$app->session['allowed_urls']);
+//        unset(Yii::$app->session['allowed_urls']);
         Yii::$app->user->logout();
 
 //        return $this->goHome();
-        return $this->redirect(['site/login']);
+//        return $this->redirect(['site/login']);
     }
         /**
      * Signs user up.
