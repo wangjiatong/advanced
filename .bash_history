@@ -1,26 +1,3 @@
-lls
-ls
-rm -rf 20170426/
-ls
-cd 
-cd v
-ls
-cd vendor/
-ls
-cd kucha/
-ls
-cd ueditor/
-ls
-vi Uploader.php 
-vi UEditor
-ls
-vi UEditor.php 
-vi config.php 
-cd /
-cd etc/
-cd nginx/
-cd conf.d/
-ls
 vi yii-test.conf 
 /etc/init.d/nginx restart
 cd
@@ -998,3 +975,26 @@ cd ..
 vi php.ini
 reboot
 git add .
+./yii migrate/create add_column_for_contract
+mysql -u root -p
+./yii migrate/up
+cd
+git add .
+git commit -m "端午节前的最后Push"
+git push origin dev
+cd ..
+cd advanced
+git pull
+composer update
+composer show
+cd ..
+cd advanced
+composer show
+composer require scotthuangzl/yii2-export2excel "dev-master"
+git pull
+git add .
+git commit -m "为正式环境配置做设置"
+git push
+git checkout
+git push origin master
+git pull
