@@ -1,22 +1,3 @@
-vi yii-test.conf 
-/etc/init.d/nginx restart
-cd
-git add .
-git commit -m "finished the product pic and news pic function"
-git push origin dev
-cd
-cd ..
-cd advanced
-ls
-git pull
-cd backend/
-ls
-cd web/
-ls
-pwd
-mkdir uploads
-ls
-ls -l
 chmod 777 uploads/
 ls -l
 ls
@@ -998,3 +979,22 @@ git push
 git checkout
 git push origin master
 git pull
+git add .
+git commit -m "解决beforeaction的登录前验证问题"
+git push origin dev
+cd ..
+cd advanced
+git pull
+git commit -a
+git pull
+cd
+git add .
+git commit -m "解决注销后不跳转登录的问题"
+git push origin dev
+cd
+cd ..
+cd advanced
+git pull
+crontab -e
+cd
+./yii check-contracts/collect
