@@ -36,7 +36,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                                 <div class="grid-wrap works">
 
                         <?php  foreach ($model as $m){?>
-                        <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
+                        <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full">
                                 <a href="/product/view?id=<?=$m->id?>&product_column_id=<?=$m->product_column_id?>" >
                                         <img src="<?=$m->img?>" alt="" >
                                 <span class="zoom"></span>
