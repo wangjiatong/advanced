@@ -6,6 +6,7 @@ use yii\widgets\Pjax;
 use common\models\Product;
 use common\models\UserModel;
 use backend\controllers\common\BaseController;
+use backend\models\Admin;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -31,7 +32,7 @@ $this->title = '合同列表';
 //            'id',
             'contract_number',
 //            'capital',
-            'transfered_time:date',
+//            'transfered_time:date',
             'found_time:date',
             // 'raise_day',
             // 'raise_interest',
@@ -46,7 +47,7 @@ $this->title = '合同列表';
             // 'bank',
             // 'bank_number',
 //             'source',
-            // 'created_at',
+//             'created_at',
             // 'updated_at',
             [
                 'label' => '产品名称',
@@ -78,21 +79,19 @@ $this->title = '合同列表';
 //            ],
 //            ['class' => 'yii\grid\ActionColumn'],
             [
-                'label' => '',
+                'label' => '客户经理',
+                'value' => function($data){
+                    return Admin::findOne($data->source)->name;
+                }
+            ],
+            [
+                'label' => '操作',
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('contract/view', 'contract/my-view');
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
-//            [
-//                'label' => '',
-//                'format' => 'raw',
-//                'value' => function($data){
-//                    $url = BaseController::checkUrlAccess('contract/delete', 'contract/my-delete');
-//                    return Html::a('删除', $url."?id=".$data->id);
-//                },
-//            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

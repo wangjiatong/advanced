@@ -12,7 +12,7 @@ $this->title = '新闻分类管理';
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'id',
+//                    'id',
                     'news_column',
 
                     [

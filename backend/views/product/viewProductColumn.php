@@ -28,7 +28,7 @@ $this->title = '产品分类——'.$model->product_column;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-//            'id',
+            'id',
             'product_column',
         ],
     ]) ?>

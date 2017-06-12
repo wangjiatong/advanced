@@ -46,7 +46,7 @@ class Product extends \yii\db\ActiveRecord
             'id' => '产品ID',
             'product_name' => '产品名称',
             'content' => '产品内容',
-            'product_column_id' => '产品分类ID',
+            'product_column_id' => '产品分类',
             'img' => '产品图片',
         ];
     }
