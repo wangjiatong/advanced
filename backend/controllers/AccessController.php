@@ -24,10 +24,7 @@ class AccessController extends BaseController
             ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-        ]);
-        
-
-        
+        ]);  
     }
     
     public function actionCreate()
@@ -48,7 +45,7 @@ class AccessController extends BaseController
         $model->updated_time = date('Y-m-d H:i:s');
         if($model->load(Yii::$app->request->post()) && $model->save())
         {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $id]);
         }
         return $this->render('update', [
             'model' => $model,
@@ -89,10 +86,7 @@ class AccessController extends BaseController
             'model' => $model,
         ]);
     }
-    public function actionUnset($id)
-    {
-        $role_accesses = RoleAccess::find()->select('id')->where(['']);
-    }
+
     public function actionManage($id)
     {
         $model = RoleAccess::find()->where(['role_id' => $id])->all();
@@ -101,7 +95,6 @@ class AccessController extends BaseController
         ]);
     }
     
-
     protected function findModel($id)
     {
         if(($model = Access::findOne($id)) !== null)
@@ -111,6 +104,5 @@ class AccessController extends BaseController
             throw new NotFoundHttpException;
         }
     }
-    
 
 }

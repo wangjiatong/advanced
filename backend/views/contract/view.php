@@ -21,11 +21,10 @@ $this->title = '合同详情：'.$model->contract_number;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('修改', ['my-update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('删除', ['my-delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '你确定要删除该合同吗？',
                 'method' => 'post',
             ],
         ]) ?>
@@ -120,7 +119,7 @@ $this->title = '合同详情：'.$model->contract_number;
             ],
 //            'pdf',
             [
-                'label' => '合同扫描件',
+                'label' => '确认函扫描件',
                 'value' => $pdfUrl,
                 'format' => 'raw',
             ],

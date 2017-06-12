@@ -17,7 +17,6 @@ class AppAsset extends AssetBundle
         'css/bootstrap-responsive.css',
     ];
     public $js = [
-//        'js/jquery.js',
         'js/bootstrap.min.js',
     ];
     public $depends = [

@@ -9,9 +9,6 @@ use backend\models\AdminLoginForm;
 //为后端管理员添加引用
 use backend\models\AdminPasswordResetRequestForm;
 use backend\models\AdminResetPasswordForm;
-//use backend\models\AdminSignupForm;
-//发布新闻
-//use common\models\PostNewsForm;
 use common\models\Contract;
 
 /**
@@ -22,31 +19,6 @@ class SiteController extends BaseController
     /**
      * @inheritdoc
      */
-    
-    
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'logout'],
-                'rules' => [
-                    [
-//                        'actions' => ['index'],
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['POST', 'GET'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @inheritdoc
      */
@@ -137,10 +109,7 @@ class SiteController extends BaseController
      */
     public function actionLogout()
     {
-//        unset(Yii::$app->session['allowed_urls']);
         Yii::$app->user->logout();
-
-//        return $this->goHome();
         return $this->redirect(['site/login']);
     }
         /**

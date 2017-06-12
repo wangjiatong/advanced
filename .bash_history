@@ -1,12 +1,3 @@
-chmod 777 uploads/
-ls -l
-ls
-vi index.php 
-cd /
-cd etc/
-cd nginx/
-ls
-cd conf.d/
 vi yii.conf 
 /etc/init.d/nginx restart
 cd
@@ -998,3 +989,12 @@ git pull
 crontab -e
 cd
 ./yii check-contracts/collect
+git add .
+git commit -m "检查是否有未同步"
+git push origin dev
+cd ..
+cd advanced
+git pull
+./yii migrate
+mysql -u root -p]
+mysql -u root -p

@@ -28,16 +28,16 @@ class UserSignupForm extends Model
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\UserModel', 'message' => '该账号已被占用！'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 6, 'max' => 30],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
+            ['email', 'string', 'max' => 40],
             ['email', 'unique', 'targetClass' => '\common\models\UserModel', 'message' => '该邮箱已被注册！'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 6, 'max' => 20],
             
             [['name', 'sex', 'birthday'], 'required'],
             
@@ -52,13 +52,13 @@ class UserSignupForm extends Model
      */
     public function attributeLabels() {
         return [
-            'username' => '账户',
-            'email' => '电子邮箱',
-            'password' => '密码',
+            'username' => '用户账户（*用户名不可存在相同的）',
+            'email' => '电子邮箱（*输入必须为正确的邮箱格式，如AAAA@BB.CC）',
+            'password' => '用户密码（*做好登记）',
             'name' => '客户姓名',
             'sex' => '性别',
-            'birthday' => '生日（格式：XXXX-XX-XX）',
-            'phone_number' => '电话号码',
+            'birthday' => '生日（*格式：AAAA-BB-CC，个位数则用0补齐到两位）',
+            'phone_number' => '电话号码（*非必填）',
         ];
     }
     public function signup()
