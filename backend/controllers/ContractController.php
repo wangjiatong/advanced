@@ -6,9 +6,6 @@ use common\models\Contract;
 use common\models\ContractSearch;
 use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-//加入权限控制
-use yii\filters\AccessControl;
 //新建合同表单
 use backend\models\ContractForm;
 //上传文件
@@ -27,34 +24,6 @@ class ContractController extends BaseController
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['*'],
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'export2excel' => [
-            'class' => Export2ExcelBehavior::className(),
-            ],
-        ];
-    }
     public function actions()
     {
         return [
@@ -150,30 +119,30 @@ class ContractController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-    public function actionMyUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
+//    public function actionMyUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Deletes an existing Contract model.
@@ -181,97 +150,68 @@ class ContractController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $contract = $this->findMyModel($id);
-        
-        $pdf = $contract->pdf;
-        
-        if(is_file($pdf) && $contract->delete())
-        {
-            unlink($pdf);
-            
-            return $this->redirect(['index']);
-            
-        }else{
-            echo '删除失败！';
-        }
-    }
+//    public function actionDelete($id)
+//    {
+//        $contract = $this->findMyModel($id);
+//        
+//        $pdf = $contract->pdf;
+//        
+//        if(is_file($pdf) && $contract->delete())
+//        {
+//            unlink($pdf);
+//            
+//            return $this->redirect(['index']);
+//            
+//        }else{
+//            echo '删除失败！';
+//        }
+//    }
     public function actionMyDelete($id)
     {
         $contract = $this->findMyModel($id);
-        
+
         $pdf = $contract->pdf;
-        
+
         if(is_file($pdf) && $contract->delete())
         {
             unlink($pdf);
-            
-            return $this->redirect(['index']);
-            
-        }else{
-            echo '删除失败！';
-        }
+
+            return $this->redirect([parent::checkUrlAccess('my-contract', 'index')]);
+
+        }       
     }
-    
+    //按产品和时间范围导出合同excel
     public function actionExcel()
     {
         $excel_form = new ExcelForm();
         if($excel_form->load(Yii::$app->request->post()))
         {
             $model = Yii::$app->request->post()['ExcelForm'];
-//            print_r($model);
             $product_id = $model['product_id'];
             $start_time = $model['start_time'];
             $end_time = $model['end_time'];
             $ids = [];
-//            if($product_id)
-//            {
-                $by_product = Contract::find()->select(['id', 'every_time'])->where(['product_id' => $product_id])->all();
-                foreach ($by_product as $b)
+            $by_product = Contract::find()->select(['id', 'every_time'])->where(['product_id' => $product_id])->all();
+            foreach ($by_product as $b)
+            {
+                $every_time = $b['every_time'];
+                $every_time_arr = explode(', ', $every_time);
+                foreach ($every_time_arr as $e)
                 {
-                    $every_time = $b['every_time'];
-//                    print_r($every_time);
-                    $every_time_arr = explode(', ', $every_time);
-                    foreach ($every_time_arr as $e)
+                    $e = strtotime($e);
+                    $start_time_str = strtotime($start_time);
+                    $end_time_str = strtotime($end_time);
+                    if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
                     {
-                        $e = strtotime($e);
-                        $start_time_str = strtotime($start_time);
-                        $end_time_str = strtotime($end_time);
-                        if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
-                        {
-                            $ids[] = $b['id'];
-                        }
-                    }                  
-                }
-//                $res = Contract::find()->asArray()->where(['id' => $ids])->all();
-//            print_r($ids);
-//            exit();
-                $res =[];
-                foreach ($ids as $id)
-                {
-                    $res[] = Contract::find()->asArray()->where(['id' => $id])->one();
-                }
-//            }else{
-//                $by_date = Contract::find()->select(['id', 'every_time'])->all();
-//                foreach ($by_product as $b)
-//                {
-//                    $every_time = $b['every_time'];
-//                    $every_time_arr = explode(', ', $every_time);
-//                    foreach ($every_time_arr as $e)
-//                    {
-//                        $e = strtotime($e);
-//                        $start_time_str = strtotime($start_time);
-//                        $end_time_str = strtotime($end_time);
-//                        if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
-//                        {
-//                            $ids = $b['id'];
-//                        }
-//                    }                  
-//                }
-//                $res = Contract::find()->asArray()->where(['id' => $ids])->all();
-//            }
-//            print_r($res);
+                        $ids[] = $b['id'];
+                    }
+                }                  
+            }
+            $res =[];
+            foreach ($ids as $id)
+            {
+                $res[] = Contract::find()->asArray()->where(['id' => $id])->one();
+            }
             if($res)
             {
             $excel_data = Export2ExcelBehavior::excelDataFormat($res);
@@ -291,21 +231,6 @@ class ContractController extends BaseController
                     'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
                     'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
                 ],
-                [
-                    'sheet_name' => '重要通知',
-                    'sheet_title' => ['重要通知123'],
-                    'ceils' => [
-                        [
-                            'id'
-                        ],
-                        [
-                            'contract_number'
-                        ],
-                        [
-                            '3'
-                        ],
-                    ],
-                ],
             ];
             $excel_file = $start_time.'至'.$end_time.'待付合同信息';
             $this->export2excel($excel_content, $excel_file);         
@@ -313,7 +238,6 @@ class ContractController extends BaseController
                 print_r('无符合查询条件的合同！');
                 echo \yii\helpers\Html::a('点击返回', ['contract/index']);
             }
-//            print_r($by_product);
         }else{
             return $this->render('excel', [
                 'model' => $excel_form,
@@ -344,7 +268,7 @@ class ContractController extends BaseController
         {
             return $model;
         }else{
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('该合同不属于您，您无权操作！');
         }
     }
 }

@@ -6,13 +6,12 @@ use common\models\UserModel;
 use backend\models\UserSearch;
 use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-//行为控制
-use yii\filters\AccessControl;
 //会员用户注册表单
 use backend\models\UserSignupForm;
 //销售查看个人客户
 use backend\models\MyUserSearch;
+//更改客户用户信息
+use common\models\ChangeUserInfo;
 
 /**
  * UserController implements the CRUD actions for UserModel model.
@@ -22,32 +21,6 @@ class UserController extends BaseController
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['*'],
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all UserModel models.
      * @return mixed
@@ -158,35 +131,20 @@ class UserController extends BaseController
         ]);
     }
 
-    /**
-     * Updates an existing UserModel model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-//    public function actionUpdate($id)
-//    {
-//        $model = $this->findModel($id);
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        } else {
-//            return $this->render('update', [
-//                'model' => $model,
-//            ]);
-//        }
-//    }
+    //更新客户用户信息（不包括密码）
+    //缺陷是更新是不能检查唯一性
     public function actionMyUpdate($id)
     {
-        $model = $this->findMyModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $model = new ChangeUserInfo();
+        $old = $this->findMyModel($id);
+        if($model->load(Yii::$app->request->post()) && $model->change($id))
+        {
+            return $this->redirect(['view', 'id' => $id]);
         }
+        return $this->render('change', [
+            'model' => $model,
+            'old' => $old,
+        ]);
     }
 
     /**
@@ -231,7 +189,7 @@ class UserController extends BaseController
         {
             return $model;
         }else{
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('该客户不属于您，您无权操作！');
         }
     }
 }

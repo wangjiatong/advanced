@@ -21,6 +21,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
         <aside class="grid col-one-quarter mq2-col-full">
                 <!--<p class="mbottom">Keep the same size ratio for thumbnails to avoid breaking the grid because of the margin-bottom.</p>-->
                 <menu>
+                    <p>产品分类</p>
                     <a  id="work_all" class="arrow buttonactive" href="/product">所有</a><br>
                         <?php foreach ($column as $c){?>
                         <a  id="work_1" class="arrow" href="/product/product-column?id=<?=$c->id?>"><?= $c->product_column ?></a><br>

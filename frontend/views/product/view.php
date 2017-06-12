@@ -23,11 +23,8 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                 <!--<p class="mbottom">Keep the same size ratio for thumbnails to avoid breaking the grid because of the margin-bottom.</p>-->
                 <menu>
                         <!--<a  id="work_all" class="arrow buttonactive">所有</a><br>-->
-                        <a  id="work_1" href="<?=$prevPageUrl?>">上一页</a><br />
+                        <a  id="work_1" href="<?=$prevPageUrl?>">返回</a><br />
                         <a  id="work_1" href="/product">产品主页</a><br /><br />
-                        <?php foreach ($rest as $r){?>
-                        <a  id="work_1" class="arrow" href="/product/view?id=<?=$r->id?>&product_column_id=<?=$r->product_column_id?>"><?= $r->product_name ?></a><br>
-                        <?php } ?>
 <!--                        <a  id="work_2" class="arrow">定向增发</a><br>
                         <a  id="work_3" class="arrow">股权投资</a>-->
                 </menu>
@@ -37,8 +34,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                     <!--<p style="text-align: center"><img src="/img/guanyuwomen.jpg" alt="" ></p>-->      
                     <article id="navteam">
                     <h2><?=$model->product_name?></h2>
-                    <p><?="产品分类：".$model->productColumn['product_column']?></p>
-                    <p></p>
+                    <br />
                     <p><?=$model->content?></p>
                     </article>
 <!--                    <article id="navphilo">

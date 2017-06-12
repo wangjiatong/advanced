@@ -25,10 +25,6 @@ class Admin extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-    
-    public $newPasswd; //修改密码用
-
-
     /**
      * @inheritdoc
      */
@@ -197,22 +193,11 @@ class Admin extends ActiveRecord implements IdentityInterface
             'email' => '电子邮箱',
             'status' => '账号状态',
             'newPasswd' => '新密码',
+            'created_at' => '创建时间',
+            'updated_at' => '修改时间',
         ];
     }
+
     
-//    public function updateAdmin()
-//    {
-//        if (!$this->validate()) 
-//        {
-//            return null;
-//        }
-//        
-//        $model->username = $this->username;
-//        $model->email = $this->email;
-//        $model->setPassword($this->newPasswd);
-////        $model->generateAuthKey();
-//        $model->name = $this->name;
-//        
-//        return $model->update() ? $model : null;
-//    }
+
 }

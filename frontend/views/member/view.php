@@ -1,5 +1,7 @@
 <?php
 use yii\widgets\DetailView;
+use common\models\UserModel;
+use common\models\Product;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,31 +39,71 @@ $this->title = '合同详情';
                             <?=DetailView::widget([
                                 'model' => $model,
                                 'attributes' => [
-                                    'id',
-                                    'contract_number',
-                                    'capital',
-                                    'transfered_time',
-                                    'found_time',
-                                    'raise_day',
-                                    'raise_interest',
-                                    'cash_time',
-                                    'term_month',
-                                    'interest',
-                                    'term',
-                                    'every_time',
-                                    'every_interest',
-                                    'total_interest',
-                                    'total',
-                                    'bank',
-                                    'bank_number',
-                                    'source',
-                                    'created_at',
-                                    'updated_at',
-                                    'product_id',
-                                    'user_id',
-                                    'status',
-                                    'raise_interest_year',
-                                    'interest_year',
+//                                    'id',
+//                                    'contract_number',
+//                                    'capital',
+//                                    'transfered_time',
+//                                    'found_time',
+//                                    'raise_day',
+//                                    'raise_interest',
+//                                    'cash_time',
+//                                    'term_month',
+//                                    'interest',
+//                                    'term',
+//                                    'every_time',
+//                                    'every_interest',
+//                                    'total_interest',
+//                                    'total',
+//                                    'bank',
+//                                    'bank_number',
+//                                    'source',
+//                                    'created_at',
+//                                    'updated_at',
+//                                    'product_id',
+//                                    'user_id',
+//                                    'status',
+//                                    'raise_interest_year',
+//                                    'interest_year',
+                                    [
+                                        'label' => '客户姓名',
+                                        'value' => function($data){
+                                            return UserModel::findOne($data->user_id)->name;
+                                        }                                     
+                                    ],
+                                    [
+                                        'label' => '产品名称',
+                                        'value' => function($data){
+                                        return Product::findOne($data->product_id)->product_name;
+                                        }
+                                    ],
+                                    [
+                                        'label' => '认购金额(元)',
+                                        'attribute' => 'capital',
+                                    ],
+                                    [
+                                        'label' => '成立时间',
+                                        'format' => 'date',
+                                        'attribute' => 'found_time',
+                                    ],
+                                    [
+                                        'label' => '到期时间',
+                                        'format' => 'date',
+                                        'attribute' => 'cash_time',
+                                    ],
+                                    [
+                                        'label' => '业绩比较基准（年化%）',
+                                        'attribute' => 'interest_year',
+                                    ],
+                                    [
+                                        'label' => '合同状态',
+                                        'value' => function($data){
+                                            switch ($data->status)
+                                            {
+                                                case 1: return '运作中'; break;
+                                                case 0: return '已结束'; break;
+                                            }
+                                        }
+                                    ],
                                 ],
                             ])?>
 			</article>
