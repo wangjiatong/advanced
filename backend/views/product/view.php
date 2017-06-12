@@ -32,7 +32,7 @@ $imgUrl = constant('FRONTEND') . '/' . $model->img;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-//            'id',
+            'id',
             'product_name',
             'content:html',
 //            'img:html',
