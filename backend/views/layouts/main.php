@@ -98,10 +98,11 @@ $my_id = Yii::$app->user->identity->id;
                 <!--<li><a href="#">添加分类</a></li>-->
                 <li><a href="/product/product-column-index">产品分类列表</a></li>
                 <!--<li><a href="#">添加产品</a></li>-->
-                <li><a href="/product">产品列表</a></li>
+                <li><a href="/product/index">产品列表</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 合同管理</li>
                 <!--<li><a href="#">添加分类</a></li>-->
                 <li><a href="<?= BaseController::checkUrlAccess('contract/index', 'contract/my-contract') ?>">合同列表</a></li>
+                <li><a href="/contract/my-contract">我的合同</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
                 <li><a href="/news/add-column">新增新闻分类</a></li>
                 <li><a href="/news/manage-news-columns">新闻分类列表</a></li>

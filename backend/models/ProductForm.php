@@ -18,9 +18,9 @@ class ProductForm extends Model
     public function rules() 
     {
         return [
-            [['product_name'], 'required'],
+            [['product_name', 'product_column_id', 'content'], 'required'],
+            [['product_name'], 'string'],
             [['product_column_id'], 'integer'],
-            [['content'], 'required'],
             [['img'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg'],
         ];
     }
@@ -30,8 +30,8 @@ class ProductForm extends Model
         return [
             'product_name' => '产品名称',
             'content' => '产品内容',
-            'product_column_id' => '产品分类ID',
-            'img' => '产品图片（上传前请裁剪成800x511）',
+            'product_column_id' => '产品分类',
+            'img' => '产品图片（*上传前请裁剪成800px（宽）X 511px（高））',
         ];
     }
     public function upload()

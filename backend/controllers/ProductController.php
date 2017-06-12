@@ -203,8 +203,28 @@ class ProductController extends BaseController
         {
             $model = $this->findProductModel($id);
 
-            if($model->load(Yii::$app->request->post()) && $model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+            if($model->load(Yii::$app->request->post()))
+            {
+                $model->img = UploadedFile::getInstance($model, 'img');
+                
+                $name = 'p-' . date('Y-m-d') . '-' . rand(0, 9999);
+        
+                $ext = $model->img->extension;
+                
+                $file = $name . '.' . $ext;
+        
+                $uploadPath = '../../frontend/web/uploads/' . $file;
+                
+                $model->img->saveAs($uploadPath);
+                
+                $path = 'uploads/' . $file;
+                
+                $model->img = $path;
+        
+                if($model->save())
+                {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }else{
                 return $this->render('update', [
                     'model'=>$model,

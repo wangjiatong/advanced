@@ -26,8 +26,8 @@ $this->title = '客户列表';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
+//            'id',
+//            'username',
 //            'auth_key',
 //            'password_hash',
 //            'password_reset_token',
@@ -41,7 +41,7 @@ $this->title = '客户列表';
 //                'label' => '性别',
 //                'attribute' => 'sex',
 //                'value' => function($data){
-//                    return common\models\UserModel::getSex($data->sex);
+//                    return common\models\UserModel::getSex($data->id);
 //                }
 //            ],
 //             'birthday',
@@ -58,8 +58,6 @@ $this->title = '客户列表';
                     }
                 }
             ],
-
-//            ['class' => 'yii\grid\ActionColumn'],
             [
                 'label' => '操作',
                 'format' => 'raw',
@@ -68,22 +66,6 @@ $this->title = '客户列表';
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
-//            [
-//                'label' => '',
-//                'format' => 'raw',
-//                'value' => function($data){
-//                    $url = BaseController::checkUrlAccess('user/update', 'user/my-update');
-//                    return Html::a('修改', $url."?id=".$data->id);
-//                },
-//            ],
-//            [
-//                'label' => '',
-//                'format' => 'raw',
-//                'value' => function($data){
-//                    $url = BaseController::checkUrlAccess('user/delete', 'user/my-delete');
-//                    return Html::a('删除', $url."?id=".$data->id);
-//                },
-//            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

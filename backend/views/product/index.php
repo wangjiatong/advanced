@@ -23,7 +23,6 @@ $this->title = '产品管理';
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
 //            'id',
             'product_name',
 //            'product_column_id',
@@ -31,14 +30,9 @@ $this->title = '产品管理';
                 'label' => '产品分类',
                 'attribute' => 'product_column_id',
                 'value' => function($data){
-                    return common\models\ProductColumn::findOne($data)->product_column;
+                    return common\models\ProductColumn::findOne($data->product_column_id)->product_column;
                 }
             ],
-//                [
-//                    'label' => '产品分类',
-//                    'value' => $model->productColumn['product_column'],
-//                ],
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
