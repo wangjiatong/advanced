@@ -48,7 +48,6 @@ $this->title = '合同列表';
 //             'source',
             // 'created_at',
             // 'updated_at',
-//             'product_id',
             [
                 'label' => '产品名称',
                 'value' => function($data){
@@ -59,10 +58,8 @@ $this->title = '合同列表';
                     }
                 }
             ],
-//             'user_id',
             [
                 'label' => '客户姓名',
-//                'attribute' => 'user_id',
                 'value' => function($data){
                    if($data){
                        return UserModel::findOne($data->user_id)->name;
@@ -72,23 +69,6 @@ $this->title = '合同列表';
                 }
             ],
 //             'status',
-//            [
-//                'label' => '合同状态',
-//                'attribute' => 'status',
-//                'value' => function($data){
-//                    switch ($data->status)
-//                    {
-//                    case 1: 
-//                        return '生效中';
-//                        break;
-//                    case 0:
-//                        return '已过期';
-//                        break;
-//                    default:
-//                        return '错误';
-//                    }
-//                }
-//            ],
 //            [
 //                'label' => '合同状态',
 //                'attribute' => 'status',
@@ -105,14 +85,6 @@ $this->title = '合同列表';
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
-//            [
-//                'label' => '',
-//                'format' => 'raw',
-//                'value' => function($data){
-//                    $url = BaseController::checkUrlAccess('contract/update', 'contract/my-update');
-//                    return Html::a('修改', $url."?id=".$data->id);
-//                },
-//            ],
 //            [
 //                'label' => '',
 //                'format' => 'raw',

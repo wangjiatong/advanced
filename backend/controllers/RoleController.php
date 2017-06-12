@@ -7,7 +7,6 @@ use backend\models\RoleForm;
 use backend\models\RoleSearch;
 use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use backend\models\UserRole;
 use backend\models\UserRoleForm;
 use backend\models\RoleAccess;
@@ -20,18 +19,6 @@ class RoleController extends BaseController
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Role models.
      * @return mixed
@@ -131,7 +118,7 @@ class RoleController extends BaseController
         $model = new UserRoleForm();
         if($model->load(Yii::$app->request->post()) && $model->set())
         {
-            return $this->redirect(['admin/']);
+            return $this->redirect(['admin/index']);
         }else{
             return $this->render('setRole', [
                 'model' => $model

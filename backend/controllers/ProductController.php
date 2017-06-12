@@ -6,9 +6,6 @@ use common\models\ProductColumn;
 use common\models\ProductColumnSearch;
 use backend\controllers\common\BaseController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-//权限控制
-use yii\filters\AccessControl;
 //产品实体
 use common\models\Product;
 //查询产品实体
@@ -28,33 +25,6 @@ class ProductController extends BaseController
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['*'],
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' =>true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'product-column-delete' => ['POST'],
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-    
     //富文本编辑器
     public function actions()
     {

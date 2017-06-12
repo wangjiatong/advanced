@@ -11,8 +11,7 @@ use backend\models\UserRole;
 use backend\models\RoleAccess;
 use backend\models\Access;
 use yii\helpers\Url;
-use yii\filters\AccessControl;
-use backend\models\UserAccessLog;
+//use backend\models\UserAccessLog;
 use backend\models\Admin;
 
 class BaseController extends Controller{
@@ -21,7 +20,6 @@ class BaseController extends Controller{
     
     protected $allowActions = [
         'site/login',
-        'site/logout',
         'error/index',
         'site/reset-password',
     ];
@@ -39,47 +37,39 @@ class BaseController extends Controller{
         }
         if(Yii::$app->session['allowed_urls'] !== null)
         {
-//            $this->allowActions = Yii::$app->session['allowed_urls'];
-//            var_dump($this->allowActions);
             if(in_array($action->uniqueId, Yii::$app->session['allowed_urls']))
             {
-//                $this->AccessLog();
                 return true;
             }else{
-//                $this->AccessLog();
                 return $this->redirect(['error/index']);                 
             }
         }
         if($this->user_id = Yii::$app->user->identity->id)
         {
-//            var_dump($this->user_id);
             $role_ids = $this->getRoleByUser($this->user_id);
-//                var_dump($role_ids);
             $access_ids_arr = $this->getAccessByRole($role_ids);
-//                var_dump($access_ids_arr);
             $urls_all = $this->getUrlsByAccess($access_ids_arr);
-//                var_dump($urls_all);
-            $this->allowActions = array_merge($this->allowActions, $urls_all, ['site/index', 'site/request-password-reset']);
-//                var_dump($this->allowActions);
-//                var_dump($action->uniqueId);
-//                var_dump(in_array($action->uniqueId, $this->allowActions));
+            $this->allowActions = array_merge($this->allowActions, $urls_all, ['site/index', 'site/request-password-reset', 'site/logout']);
             Yii::$app->session['allowed_urls'] = $this->allowActions;
             if(in_array($action->uniqueId, $this->allowActions))
             {
-//                $this->AccessLog();
                 return true;
             }else{
-//                $this->AccessLog();
                 return $this->redirect(['error/index']); 
             }
         }
-//        return true;
     }
     
     public function getRoleByUser($user_id)
     {
-        $role_ids = UserRole::find()->select('role_id')->where(['user_id' => $user_id])->asArray()->all();
-
+        if($role_ids_ = UserRole::find()->select('role_id')->where(['user_id' => $user_id])->asArray()->all())
+        {
+            foreach($role_ids_ as $r_i_)
+            {
+                $role_ids[] = $r_i_['role_id'];
+            }
+        }
+        
         if($role_ids !== null)
         {
             return $role_ids;
@@ -96,7 +86,8 @@ class BaseController extends Controller{
             foreach($role_ids as $r_i)
             {
                 $access_ids = RoleAccess::find()->select('access_id')->where(['role_id' => $r_i])->asArray()->all();
-                $access_ids_arr = array_merge($access_ids_arr, $access_ids);
+                $access_ids = $access_ids[0]['access_id'];
+                $access_ids_arr[] = $access_ids;
             }
             if($access_ids_arr !==null)
             {
@@ -143,18 +134,12 @@ class BaseController extends Controller{
     
     public function getUserId()
     {
-//        if(!Yii::$app->user->isGuest)
-//        {
-            return Yii::$app->user->identity->id;
-//        }
+        return Yii::$app->user->identity->id;
     }
     public function getUserName()
     {
-//        if(!Yii::$app->user->isGuest)
-//        {
-            $my_id = Yii::$app->user->identity->id;
-            return Admin::findOne($my_id)->name;
-//        }
+        $my_id = Yii::$app->user->identity->id;
+        return Admin::findOne($my_id)->name;
     }
     
 //    public function AccessLog()

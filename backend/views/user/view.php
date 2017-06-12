@@ -20,7 +20,7 @@ $this->title = $model->name;
         <?= Html::a('删除', ['my-delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '你确定要删除该客户吗？',
                 'method' => 'post',
             ],
         ]) ?>
@@ -42,9 +42,8 @@ $this->title = $model->name;
 //            'sex',
             [
                 'label' => '性别',
-                'attribute' => 'sex',
                 'value' => function($data){
-                    return common\models\UserModel::getSex($data->sex);
+                    return common\models\UserModel::getSex($data->id);
                 }
             ],
             [

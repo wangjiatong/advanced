@@ -7,7 +7,6 @@ $this->title = '修改新闻分类';
  * and open the template in the editor.
  */
 ?>
-
-                                <?=$this->render('addColumn', [
-                                    'model' => $model,
-                                ])?>
+<?=$this->render('addColumn', [
+    'model' => $model,
+])?>

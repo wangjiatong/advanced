@@ -7,33 +7,16 @@ namespace backend\controllers;
  */
 use Yii;
 use backend\controllers\common\BaseController;
-use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 use backend\models\Admin;
 use backend\models\AdminSignupForm;
 use yii\web\NotFoundHttpException;
 use backend\models\UserRole;
+use backend\models\ChangeAdminInfo;//修改管理员账号、邮箱及姓名
+use backend\models\ChangePasswd;//修改管理员密码
 
 class AdminController extends BaseController
 {
-    public function behaviors() {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['*'],
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
     //展示管理员用户列表
     public function actionIndex()
     {
@@ -67,18 +50,36 @@ class AdminController extends BaseController
             'model' => $model
         ]);
     }
-    //更新管理员用户信息（不包括密码）
-    public function actionUpdate($id)
+    //更新管理员个人用户信息（不包括密码）
+    //缺陷是更新是不能检查唯一性
+    public function actionMyUpdate()
     {
-        $model = $this->findModel($id);
-        if($model->load(Yii::$app->request->post()) && $model->save())
+        $my_id = Yii::$app->user->identity->id;
+        $model = new ChangeAdminInfo();
+        $old = $this->findModel($my_id);
+        if($model->load(Yii::$app->request->post()) && $model->change($my_id))
         {
-            return $this->redirect(['index']);
-        }else{
-            return $this->render('update', [
-                'model' => $model
-            ]);
+            return $this->redirect(['view', 'id' => $my_id]);
         }
+        return $this->render('change', [
+            'model' => $model,
+            'old' => $old,
+        ]);
+    }
+    //更新管理员用户信息（不包括密码）
+    //缺陷是更新是不能检查唯一性
+     public function actionUpdate($id)
+    {
+        $model = new ChangeAdminInfo();
+        $old = $this->findModel($id);
+        if($model->load(Yii::$app->request->post()) && $model->change($id))
+        {
+            return $this->redirect(['view', 'id' => $id]);
+        }
+        return $this->render('change', [
+            'model' => $model,
+            'old' => $old,
+        ]);
     }
     //删除管理员用户
     public function actionDelete($id)
@@ -94,6 +95,20 @@ class AdminController extends BaseController
             }
             return $this->redirect(['index']);
         }
+    }
+    public function actionResetPasswd()
+    {
+        $model = new ChangePasswd();
+        
+        if($model->load(Yii::$app->request->post()) && $model->resetPasswd())
+        {
+            var_dump($model->load(Yii::$app->request->post()));
+            var_dump($model->resetPasswd());
+            return $this->redirect('site/index');
+        }  
+        return $this->render('resetPasswd', [
+            'model' => $model,
+        ]);
     }
     //通过id查找某个管理员用户实例
     protected function findModel($id)

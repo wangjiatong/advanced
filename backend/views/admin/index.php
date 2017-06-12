@@ -50,6 +50,13 @@ $this->title = '管理员列表';
                 },
             ],
             ['class' => 'yii\grid\ActionColumn'],
+//            [
+//                'label' => '修改密码',
+//                'format' => 'raw',
+//                'value' => function($data){
+//                    return Html::a('修改', ['admin/reset-passwd', 'id' => $data->id]);
+//                },
+//            ],
         ],
     ])?>
 

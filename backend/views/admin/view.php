@@ -15,5 +15,7 @@ use yii\widgets\DetailView;
         'name',
         'email',
         'status',
+        'created_at:datetime',
+        'updated_at:datetime',
     ],
 ]); ?>

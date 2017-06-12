@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 $this->title = '添加新闻分类';
 ?>
-<!--<div class="span9">-->
           <div class="row-fluid">
                 <div class="page-header">
                         <h1>新闻分类 <small>新增</small></h1>
@@ -18,4 +17,3 @@ $this->title = '添加新闻分类';
                             <?php $form->end();?>
                         </fieldset>
           </div>
-<!--</div>-->
