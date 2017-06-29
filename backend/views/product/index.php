@@ -34,6 +34,13 @@ $this->title = '产品管理';
                 }
             ],
             ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => '查看合同',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Html::a('查看', ['product/contract-by-product', 'id' => $data->id]);
+                },
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

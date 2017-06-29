@@ -92,7 +92,7 @@ $my_id = Yii::$app->user->identity->id;
                 <li class=""><a href="/admin/my-update">修改信息</a></li>
                 <li class="nav-header"><i class="icon-user"></i> 客户管理</li>
                 <!--<li class=""><a href="#">添加会员</a></li>-->
-                <li class=""><a href="<?= BaseController::checkUrlAccess('user/index', 'user/my-user') ?>">客户列表</a></li>
+                <li class=""><a href="/user/index">客户列表</a></li>
                 <li class=""><a href="/user/my-user">我的客户</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 旗下产品</li>
                 <!--<li><a href="#">添加分类</a></li>-->
@@ -101,7 +101,7 @@ $my_id = Yii::$app->user->identity->id;
                 <li><a href="/product/index">产品列表</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 合同管理</li>
                 <!--<li><a href="#">添加分类</a></li>-->
-                <li><a href="<?= BaseController::checkUrlAccess('contract/index', 'contract/my-contract') ?>">合同列表</a></li>
+                <li><a href="/contract/index">合同列表</a></li>
                 <li><a href="/contract/my-contract">我的合同</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
                 <li><a href="/news/add-column">新增新闻分类</a></li>

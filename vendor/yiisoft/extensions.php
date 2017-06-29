@@ -21,15 +21,6 @@ return array (
       '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
     ),
   ),
-  'yiisoft/yii2-swiftmailer' => 
-  array (
-    'name' => 'yiisoft/yii2-swiftmailer',
-    'version' => '2.0.6.0',
-    'alias' => 
-    array (
-      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
-    ),
-  ),
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',
@@ -64,6 +55,15 @@ return array (
     'alias' => 
     array (
       '@scotthuangzl/export2excel' => $vendorDir . '/scotthuangzl/yii2-export2excel',
+    ),
+  ),
+  'yiisoft/yii2-swiftmailer' => 
+  array (
+    'name' => 'yiisoft/yii2-swiftmailer',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
     ),
   ),
 );

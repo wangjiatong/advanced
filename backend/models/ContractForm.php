@@ -35,6 +35,7 @@ class ContractForm extends Model
     {
         return [
             [['contract_number', 'capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user'], 'required'],
+//            ['contract_number', 'default', 'value' => 'none'],
             [['capital', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
             [['transfered_time', 'found_time', 'cash_time'], 'safe'],
             [['contract_number', 'bank', 'bank_number'], 'string', 'max' => 255],
@@ -172,7 +173,7 @@ class ContractForm extends Model
         
         switch ($contract->term)
         {
-        case 3 || 6:
+        case 3 || 6 || 1:
             
             $y = $contract->term_month / $contract->term;
             
@@ -218,7 +219,7 @@ class ContractForm extends Model
             $contract->every_interest = $this->arrtostr($_every_interest);
         break;
     
-        case 1:
+        case 0:
             $contract->every_time = $contract->cash_time;
             
             $contract->every_interest = round($contract->total, 2);
@@ -226,11 +227,7 @@ class ContractForm extends Model
         }
         
         return $contract->save() ? $contract : null;
-        
-        
-        
-        
-        
+   
     }
     
     public function arrtostr($arr)

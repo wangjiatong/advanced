@@ -51,9 +51,10 @@ $this->title = '合同详情：'.$model->contract_number;
                 'value' => function($data){
                     switch($data->term)
                     {
+                        case 1: return '按月';                            break;
                         case 3: return '季度';                            break;
                         case 6: return '半年';                            break;
-                        case 1: return '一次性';                            break;
+                        case 0: return '一次性';                          break;
                     }
                 },
             ],
