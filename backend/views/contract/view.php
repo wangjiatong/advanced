@@ -120,9 +120,19 @@ $this->title = '合同详情：'.$model->contract_number;
             ],
 //            'pdf',
             [
-                'label' => '确认函扫描件',
-                'value' => $pdfUrl,
+                'label' => '删除确认函扫描件',
                 'format' => 'raw',
+                'value' => $model->pdf !== null ? Html::a('删除', ['contract/delete-confirmation', 'id' => $model->id], [
+                                'class' => 'btn btn-danger', 
+                                'data' => [
+                                        'confirm' => '您确定要删除该确认函吗？',
+                                ],
+                            ]) : '暂未上传，无法删除。',
+            ],
+            [
+                'label' => '确认函扫描件',
+                'format' => 'raw',
+                'value' => $model->pdf == null ? '暂未上传'.' '.Html::a('上传', ['contract/upload-confirmation', 'id' => $model->id], ['class' => 'btn btn-primary btn-xs']) : $pdfUrl,
             ],
         ],
     ]) ?>

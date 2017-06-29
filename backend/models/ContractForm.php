@@ -34,8 +34,8 @@ class ContractForm extends Model
     public function rules()
     {
         return [
-            [['contract_number', 'capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user'], 'required'],
-//            ['contract_number', 'default', 'value' => 'none'],
+            [['capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user'], 'required'],
+            ['contract_number', 'safe'],
             [['capital', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
             [['transfered_time', 'found_time', 'cash_time'], 'safe'],
             [['contract_number', 'bank', 'bank_number'], 'string', 'max' => 255],
@@ -53,7 +53,7 @@ class ContractForm extends Model
     {
         return [
             'id' => '合同ID',
-            'contract_number' => '合同编号',
+            'contract_number' => '合同编号（如不填则会自动生成）',
             'capital' => '本金（元）',
             'transfered_time' => '到账时间',
             'found_time' => '成立时间',
@@ -76,7 +76,7 @@ class ContractForm extends Model
             'status' => '合同状态',
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
-            'pdf' => '合同扫描件',
+            'pdf' => '合同扫描件（可补传）',
             'bank_user' => '开户名',
         ];
     }
@@ -116,8 +116,12 @@ class ContractForm extends Model
         }
         
         $contract = new Contract();
-        
-        $contract->contract_number = $this->contract_number;//合同编号
+        if($this->contract_number == null)
+        {
+            $contract->contract_number = Yii::$app->user->identity->id.$this->user_id.\Date('YmdHis');
+        }else{
+            $contract->contract_number = $this->contract_number;//合同编号
+        }
         
         $contract->capital = round($this->capital, 2);//本金
         

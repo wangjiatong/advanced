@@ -32,11 +32,11 @@ class UserAccessLog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'integer'],
-            [['query_params'], 'required'],
-            [['query_params'], 'string'],
-            ['created_time', 'safe'],
-            [['target_url', 'ua', 'ip', 'note'], 'string', 'max' => 255],
+//            [['user_id'], 'integer'],
+//            [['query_params'], 'required'],
+//            [['query_params'], 'string'],
+//            ['created_time', 'safe'],
+//            [['target_url', 'ua', 'ip', 'note'], 'string', 'max' => 255],
         ];
     }
 

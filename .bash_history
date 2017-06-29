@@ -1,20 +1,3 @@
-ls
-cd news/
-ls
-cd ..
-cd products/
-ls
-ls -l
-cd 201705/
-ls -l
-cd ..
-ls
-cd 201705/
-ls
-cd ..
-ls
-cd ..
-ls
 cd contracts/
 la
 ls 
@@ -998,3 +981,20 @@ mysql -u root -p
 cd
 ls
 pwd
+cd backend/
+cd web/
+ls
+cd uploads/
+ls
+pwd
+cd
+composer require scotthuangzl/yii2-export2excel "dev-master"
+composer require "fxp/composer-asset-plugin:~1.0"
+composer require scotthuangzl/yii2-export2excel "dev-master"
+ls
+vi composer.json 
+vi composer.lock 
+composer
+composer status
+composer list
+composer show
