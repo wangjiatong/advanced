@@ -15,12 +15,27 @@ use common\models\MyContractSearch;
 //导出excel
 use backend\models\ExcelForm;
 use scotthuangzl\export2excel\Export2ExcelBehavior;
+use common\models\UserModel;
+use backend\models\Admin;
+use common\models\Product;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
 class ContractController extends BaseController
 {
+    public function behaviors()
+    {
+        return [
+        //above is your existing behaviors
+        //new add export2excel behaviors
+            'export2excel' => [
+                    'class' => Export2ExcelBehavior::className(),
+        //            'prefixStr' => yii::$app->user->identity->username,
+        //            'suffixStr' => date('Ymd-His'),
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -89,19 +104,22 @@ class ContractController extends BaseController
         {       
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             
-            $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
+            if($model->pdf !== null)
+            {       
+                $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
 
-            $ext = $model->pdf->extension;
+                $ext = $model->pdf->extension;
 
-            $file = $name . '.' . $ext;
+                $file = $name . '.' . $ext;
 
-            $uploadPath = 'uploads/contracts/' . $file;
+                $uploadPath = 'uploads/contracts/' . $file;
 
-            $model->pdf->saveAs($uploadPath);
+                $model->pdf->saveAs($uploadPath);
 
-            $path = 'uploads/contracts/' . $file;
+                $path = 'uploads/contracts/' . $file;
 
-            $model->pdf = $path;
+                $model->pdf = $path;
+            }
 
             if($model->save())
             {
@@ -211,11 +229,31 @@ class ContractController extends BaseController
             $res =[];
             foreach ($ids as $id)
             {
-                $res[] = Contract::find()->asArray()->where(['id' => $id])->one();
+                $res[] = Contract::find()->select('id, user_id, source, product_id, capital, every_time, every_interest, bank, bank_user, bank_number, transfered_time, found_time, cash_time, raise_interest_year, raise_day, raise_interest, interest_year, interest, term_month, term, total_interest, total')->asArray()->where(['id' => $id])->one();
             }
             if($res)
             {
-            $excel_data = Export2ExcelBehavior::excelDataFormat($res);
+            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）' ];
+            //对数组的键值进行处理从而输出中文
+            $i = 0;
+            foreach($res as $r)
+            {
+                $x = 0;
+                foreach($r as $k => $v)
+                {
+                    switch ($k)
+                    {
+                        case 'user_id': $new_res[$i][$res_key[$x]] = UserModel::findOne($v)->name; break;
+                        case 'source': $new_res[$i][$res_key[$x]] = Admin::findOne($v)->name; break;
+                        case 'product_id': $new_res[$i][$res_key[$x]] = Product::findOne($v)->product_name; break;
+                        default : $new_res[$i][$res_key[$x]] = $v; break;
+                   
+                    }                       
+                    $x++;
+                }
+                $i++;
+            }
+            $excel_data = Export2ExcelBehavior::excelDataFormat($new_res);
             $excel_title = $excel_data['excel_title'];
             $excel_ceils = $excel_data['excel_ceils'];
             $excel_content = [
@@ -245,7 +283,60 @@ class ContractController extends BaseController
             ]);
         }
     }
+    //上传确认函扫描件
+    public function actionUploadConfirmation($id)
+    {
+        $model = $this->findMyModel($id);
+        
+        if ($model->load(Yii::$app->request->post())) 
+        {       
+            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+            
+            if($model->pdf !== null)
+            {       
+                $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
 
+                $ext = $model->pdf->extension;
+
+                $file = $name . '.' . $ext;
+
+                $uploadPath = 'uploads/contracts/' . $file;
+
+                $model->pdf->saveAs($uploadPath);
+
+                $path = 'uploads/contracts/' . $file;
+
+                $model->pdf = $path;
+            }
+
+            if($model->save())
+            {
+                return $this->redirect([parent::checkUrlAccess('contract/view', 'contract/my-view'), 'id' => $model->id]);
+            }
+        }
+        return $this->render('uploadConfirmation', [
+            'model' => $model,
+        ]);
+    }
+    
+    //删除确认函
+    public function actionDeleteConfirmation($id)
+    {
+        $contract = $this->findMyModel($id);
+
+        $pdf = $contract->pdf;
+
+        if(is_file($pdf))
+        {
+            unlink($pdf);
+            
+            $contract->pdf = null;
+            $contract->save();
+
+            return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);
+
+        }          
+    }
     /**
      * Finds the Contract model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
