@@ -11,7 +11,7 @@ use backend\models\UserRole;
 use backend\models\RoleAccess;
 use backend\models\Access;
 use yii\helpers\Url;
-//use backend\models\UserAccessLog;
+use backend\models\UserAccessLog;
 use backend\models\Admin;
 
 class BaseController extends Controller{
@@ -39,6 +39,13 @@ class BaseController extends Controller{
         {
             if(in_array($action->uniqueId, Yii::$app->session['allowed_urls']))
             {
+                //操作记录
+                $this->AccessLog();
+                $user_access_log = UserAccessLog::find()->all();
+                if(count($user_access_log) > 1000)
+                {
+                    UserAccessLog::deleteAll();
+                }
                 return true;
             }else{
                 return $this->redirect(['error/index']);                 
@@ -142,30 +149,31 @@ class BaseController extends Controller{
         return Admin::findOne($my_id)->name;
     }
     
-//    public function AccessLog()
-//    {
-//        $get_params = Yii::$app->request->get()?Yii::$app->request->get():array();
-//        var_dump($get_params);
-//        $post_params = Yii::$app->request->post()?Yii::$app->request->post():array();
-//        var_dump($post_params);
-//        $model_log = new UserAccessLog();
-//        var_dump($model_log);
-//        $model_log->user_id = Yii::$app->user->identity->id?Yii::$app->user->identity->id:0;
-//        var_dump($model_log->user_id);
-//        $model_log->target_url = isset( $_SERVER['REQUEST_URI'] )?$_SERVER['REQUEST_URI']:'';
-//        var_dump($model_log->target_url);
-//        $model_log->query_params = json_encode( array_merge( $post_params,$get_params ) );
-//        var_dump($model_log->query_params);
-//        $model_log->ua = isset( $_SERVER['HTTP_USER_AGENT'] )?$_SERVER['HTTP_USER_AGENT']:'';
-//        var_dump($model_log->ua);
-//        $model_log->ip = isset( $_SERVER['REMOTE_ADDR'] )?$_SERVER['REMOTE_ADDR']:'';
-//        var_dump($model_log->ip);
-//        $model_log->created_time = date("Y-m-d H:i:s");
-//        var_dump($model_log->created_time);
-//        $model_log->note = '';
-//        $model_log->save()?true:false;
-//        var_dump($model_log->errors);
-//    }
+    public function AccessLog()
+    {
+        $get_params = Yii::$app->request->get() ? Yii::$app->request->get() : array();
+
+        $post_params = Yii::$app->request->post() ? Yii::$app->request->post() : array();
+
+        $model_log = new UserAccessLog();
+
+        $model_log->user_id = Yii::$app->user->identity->id?Yii::$app->user->identity->id:0;
+
+        $model_log->target_url = isset( $_SERVER['REQUEST_URI'] )?$_SERVER['REQUEST_URI']:'';
+
+        $model_log->query_params = json_encode( array_merge( $post_params,$get_params ) );
+
+        $model_log->ua = isset( $_SERVER['HTTP_USER_AGENT'] )?$_SERVER['HTTP_USER_AGENT']:'';
+
+        $model_log->ip = isset( $_SERVER['REMOTE_ADDR'] )?$_SERVER['REMOTE_ADDR']:'';
+
+        $model_log->created_time = date("Y-m-d H:i:s");
+
+        $model_log->note = '';
+        
+        $model_log->save() ? true : false;
+
+    }
     
     
     

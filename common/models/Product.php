@@ -32,7 +32,7 @@ class Product extends \yii\db\ActiveRecord
             [['product_name'], 'string', 'max' => 255],
             [['product_name'], 'unique'],
             [['content'], 'required'],
-            [['img'], 'required'],
+            [['img'], 'safe'],
 
         ];
     }

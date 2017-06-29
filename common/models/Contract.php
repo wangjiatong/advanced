@@ -95,7 +95,7 @@ class Contract extends ActiveRecord
             'status' => '合同状态',
             'raise_interest_year' => '募集期年利率（%）',
             'interest_year' => '年利率（%）',
-            'pdf' => '合同扫描件',
+            'pdf' => '确认函扫描件',
             'bank_user' => '开户名',
         ];
     }

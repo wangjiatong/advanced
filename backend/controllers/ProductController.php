@@ -204,24 +204,37 @@ class ProductController extends BaseController
         public function actionUpdate($id)
         {
             $model = $this->findProductModel($id);
+            
+            $old_img = $model->img;
 
             if($model->load(Yii::$app->request->post()))
             {
                 $model->img = UploadedFile::getInstance($model, 'img');
                 
-                $name = 'p-' . date('Y-m-d') . '-' . rand(0, 9999);
-        
-                $ext = $model->img->extension;
-                
-                $file = $name . '.' . $ext;
-        
-                $uploadPath = '../../frontend/web/uploads/' . $file;
-                
-                $model->img->saveAs($uploadPath);
-                
-                $path = 'uploads/' . $file;
-                
-                $model->img = $path;
+                if($model->img !== null)
+                {
+
+                    $name = 'p-' . date('Y-m-d') . '-' . rand(0, 9999);
+
+                    $ext = $model->img->extension;
+
+                    $file = $name . '.' . $ext;
+
+                    $uploadPath = '../../frontend/web/uploads/' . $file;
+
+                    $model->img->saveAs($uploadPath);
+
+                    $path = 'uploads/' . $file;
+
+                    $model->img = $path;
+                    
+                    if(is_file($old_img))
+                    {
+                        unlink($old_img);
+                    }
+                }else{
+                    $model->img = $old_img;
+                }
         
                 if($model->save())
                 {
@@ -245,10 +258,10 @@ class ProductController extends BaseController
                 $product = $this->findProductModel($id);
                 
                 $img = $product->img;
-                
-                if(is_file($img) && $product->delete())
+
+                if(is_file('../../frontend/web/'.$img) && $product->delete())
                 {
-                    unlink($img);
+                    unlink('../../frontend/web/'.$img);
                     
                     return $this->redirect(['index']);
                 }else{

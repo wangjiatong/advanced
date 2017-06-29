@@ -16,7 +16,7 @@ use backend\controllers\common\BaseController;
     'class' => 'btn btn-primary',
 ])?>
 <p></p>
-<table class="table table-hover">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>本金</th>
