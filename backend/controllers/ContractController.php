@@ -90,22 +90,23 @@ class ContractController extends BaseController
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             
             $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
-            
+
             $ext = $model->pdf->extension;
-            
+
             $file = $name . '.' . $ext;
-            
+
             $uploadPath = 'uploads/contracts/' . $file;
-            
+
             $model->pdf->saveAs($uploadPath);
-            
+
             $path = 'uploads/contracts/' . $file;
-            
+
             $model->pdf = $path;
-            
-            $model->save();
-            
-            return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+
+            if($model->save())
+            {
+                return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

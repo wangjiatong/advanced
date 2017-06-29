@@ -59,38 +59,24 @@ class CheckContractsController extends Controller
 //                $today = strtotime($this->timeToEmail);
                 $today = strtotime(date('Y-m-d H:i:s'));
                 
-                if($today > $timeToCheck)
-                {
-//                    echo $every_time_arr[$i] . '该期已付！';
-                }elseif($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
+                if($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
 //                    Contract::findOne($r['id']);
                     $mail = Yii::$app->mailer->compose();
-                    
+
                     $sale_id = Contract::findOne($r['id'])->source;
-                    
+
                     $sale = Admin::findOne($sale_id);
-                    
+
                     $mail->setTo($sale->email);
-                    
+
                     $mail->setSubject('客户待付提醒：'.UserModel::findOne($r['user_id'])->name);
-                    
+
                     $mail->setFrom(['mail@ewinjade.com' => '翌银玖德']);
-                    
+
                     $mail->setHtmlBody('合同编号：'.Contract::findOne($r['id'])->contract_number);
-                    
-//                    if($mail->send()){
-//                        
-//                        echo "发送成功！";
-//                        
-//                    }else{
-//                        
-//                        echo "发送失败！";
-//                        
-//                    }
-                }else{
-                    
-//                    echo "最近没有需要付款的！";
-                    
+
+                    $mail->send();
+
                 }
                         
             }

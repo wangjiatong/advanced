@@ -12,6 +12,8 @@ use backend\models\UserSignupForm;
 use backend\models\MyUserSearch;
 //更改客户用户信息
 use common\models\ChangeUserInfo;
+use yii\data\Pagination;
+use common\models\Contract;
 
 /**
  * UserController implements the CRUD actions for UserModel model.
@@ -164,6 +166,30 @@ class UserController extends BaseController
         $this->findMyModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    //查看所有用户名下的合同
+    public function actionAllContractByUser($id)
+    {
+        $data = Contract::find()->where(['user_id' => $id]);
+        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
+        $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+        
+        return $this->render('contractByUser', [
+            'model' => $model,
+            'pages' => $pages,
+        ]);
+    }
+    //销售查看自己名下客户的合同
+    public function actionMyContractByUser($id)
+    {
+        $data = Contract::find()->where(['user_id' => $id, 'source' => Yii::$app->user->identity->id]);
+        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
+        $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+        
+        return $this->render('contractByUser', [
+            'model' => $model,
+            'pages' => $pages,
+        ]);
     }
 
     /**

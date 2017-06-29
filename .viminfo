@@ -7,13 +7,19 @@
 
 # hlsearch on (H) or off (h):
 ~H
+# Last Search Pattern:
+~Msle0~/]
+
 # Command Line History (newest to oldest):
 :q
-:w
-:set nu
 :wq
+:set nu
+:q!
+:r /usr/share/nginx/html/advanced_test/install.json
+:w
 
 # Search String History (newest to oldest):
+? ]
 
 # Expression History (newest to oldest):
 
@@ -24,16 +30,129 @@
 # Registers:
 
 # File marks:
-'0  40  30  ~/frontend/views/layouts/main.php
-'1  1  0  ~/.bash_profile
+'0  1794  8  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'1  1843  4  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'2  1784  3  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'3  1783  5  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'4  1854  12  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'5  1851  8  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'6  3769  4  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'7  3770  0  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+'8  40  30  ~/frontend/views/layouts/main.php
+'9  1  0  ~/.bash_profile
 
 # Jumplist (newest first):
+-'  1794  8  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1843  4  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1784  3  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1783  4  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1854  12  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1851  8  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  3769  4  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  3768  8  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  3770  0  /usr/share/nginx/html/advanced/vendor/composer/installed.json
+-'  1  0  /usr/share/nginx/html/advanced/vendor/composer/installed.json
 -'  40  30  ~/frontend/views/layouts/main.php
 -'  1  0  ~/frontend/views/layouts/main.php
 -'  1  0  ~/.bash_profile
 -'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  40  30  ~/frontend/views/layouts/main.php
+-'  1  0  ~/frontend/views/layouts/main.php
+-'  1  0  ~/.bash_profile
 
 # History of marks within files (newest to oldest):
+
+> /usr/share/nginx/html/advanced/vendor/composer/installed.json
+	"	1794	8
+	^	1784	5
+	.	1784	4
+	+	1	0
+	+	3770	1
+	+	1851	40
+	+	1852	0
+	+	1851	40
+	+	1783	6
+	+	1784	4
 
 > ~/frontend/views/layouts/main.php
 	"	40	30

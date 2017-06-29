@@ -66,6 +66,14 @@ $this->title = '客户列表';
                     return Html::a('详情', $url."?id=".$data->id);
                 },
             ],
+            [
+                'label' => '查看合同',
+                'format' => 'raw',
+                'value' => function($data){
+                    $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
+                    return Html::a('查看', [$url, 'id' => $data->id]);
+                },
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

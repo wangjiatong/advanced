@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b1d4f2441a2331ec257e363ee2e5dfaf",
-    "content-hash": "6a9a87aec87b664cce0d9614acbbaa6e",
+    "content-hash": "d8cfa3cd067b8f3972df3e38de5e7a01",
     "packages": [
         {
             "name": "fxp/composer-asset-plugin",
-            "version": "v1.3.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/composer-asset-plugin.git",
-                "reference": "0bfdd307d2cddbc42c634b14247f3f3a8525b836"
+                "reference": "31bc3f2f4566ae850867e738cf5c8af4bd49cbd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/fxpio/composer-asset-plugin/0bfdd307d2cddbc42c634b14247f3f3a8525b836.zip",
-                "reference": "0bfdd307d2cddbc42c634b14247f3f3a8525b836",
+                "url": "https://files.phpcomposer.com/files/fxpio/composer-asset-plugin/31bc3f2f4566ae850867e738cf5c8af4bd49cbd4.zip",
+                "reference": "31bc3f2f4566ae850867e738cf5c8af4bd49cbd4",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +31,7 @@
             "extra": {
                 "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -64,13 +63,15 @@
                 "npm",
                 "package"
             ],
-            "time": "2017-04-09 11:49:10"
+            "time": "2017-06-15 10:11:38"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "fxp/composer-asset-plugin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

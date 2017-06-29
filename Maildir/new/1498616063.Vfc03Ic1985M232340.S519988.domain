@@ -1,0 +1,76 @@
+Return-Path: <>
+X-Original-To: mail@ewinjade.com
+Delivered-To: mail@ewinjade.com
+Received: by mail.ewinjade.com (Postfix)
+	id 1A35DE19E0; Wed, 28 Jun 2017 10:14:23 +0800 (CST)
+Date: Wed, 28 Jun 2017 10:14:23 +0800 (CST)
+From: MAILER-DAEMON@ewinjade.com (Mail Delivery System)
+Subject: Undelivered Mail Returned to Sender
+To: mail@ewinjade.com
+Auto-Submitted: auto-replied
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="BB19BE18CD.1498616063/mail.ewinjade.com"
+Message-Id: <20170628021423.1A35DE19E0@mail.ewinjade.com>
+
+This is a MIME-encapsulated message.
+
+--BB19BE18CD.1498616063/mail.ewinjade.com
+Content-Description: Notification
+Content-Type: text/plain; charset=us-ascii
+
+This is the mail system at host mail.ewinjade.com.
+
+I'm sorry to have to inform you that your message could not
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to postmaster.
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+                   The mail system
+
+<test2@test2.com>: Host or domain name not found. Name service error for
+    name=test2.com type=A: Host found but no data record of requested type
+
+--BB19BE18CD.1498616063/mail.ewinjade.com
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; mail.ewinjade.com
+X-Postfix-Queue-ID: BB19BE18CD
+X-Postfix-Sender: rfc822; mail@ewinjade.com
+Arrival-Date: Wed, 28 Jun 2017 10:14:19 +0800 (CST)
+
+Final-Recipient: rfc822; test2@test2.com
+Original-Recipient: rfc822;test2@test2.com
+Action: failed
+Status: 5.4.4
+Diagnostic-Code: X-Postfix; Host or domain name not found. Name service error
+    for name=test2.com type=A: Host found but no data record of requested type
+
+--BB19BE18CD.1498616063/mail.ewinjade.com
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+
+Return-Path: <mail@ewinjade.com>
+Received: from progress.test.ewinjade.com (unknown [180.173.71.188])
+	by mail.ewinjade.com (Postfix) with ESMTPA id BB19BE18CD
+	for <test2@test2.com>; Wed, 28 Jun 2017 10:14:19 +0800 (CST)
+Message-ID: <b5d64e55d955d68919f1f50addf9414d@progress.test.ewinjade.com>
+Date: Wed, 28 Jun 2017 10:14:10 +0800
+Subject: =?UTF-8?Q?=E7=BF=8C=E9=93=B6=E7=8E=96=E5=BE=B7?=
+ =?UTF-8?Q?=EF=BC=9A=E6=82=A8=E5=B7=B2=E5=8F=82?=
+ =?UTF-8?Q?=E4=B8=8E=E5=88=B0=E7=94=B1=5Btest2=5D=E5=8F=91=E8=B5=B7?=
+ =?UTF-8?Q?=E7=9A=84=5Bddd=5D=E9=A1=B9=E7=9B=AE=E4=B8=AD=E3=80=82?=
+From: =?UTF-8?Q?=E7=BF=8C=E9=93=B6=E7=8E=96=E5=BE=B7?= <mail@ewinjade.com>
+To: test2@test2.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=E6=82=A8=E5=B7=B2=E5=8F=82=E4=B8=8E=E5=88=B0=E7=94=B1[test2=
+]=E5=8F=91=E8=B5=B7=E7=9A=84[ddd]=E9=A1=B9=E7=9B=AE=E4=B8=AD=E3=80=82
+
+--BB19BE18CD.1498616063/mail.ewinjade.com--

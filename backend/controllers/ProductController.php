@@ -14,6 +14,8 @@ use common\models\ProductSearch;
 use yii\web\UploadedFile;
 //产品表单
 use backend\models\ProductForm;
+use yii\data\Pagination;
+use common\models\Contract;
 
 
 
@@ -252,6 +254,18 @@ class ProductController extends BaseController
                 }else{
                     echo "fail";
                 }
+            }
+            
+            //查看某产品下的合同
+            public function actionContractByProduct($id)
+            {
+                $data = Contract::find()->where(['product_id' => $id])->orderBy('id desc');
+                $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
+                $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+                return $this->render('contractByProduct', [
+                    'model' => $model,
+                    'pages' => $pages,
+                ]);
             }
 
         /**
