@@ -112,6 +112,7 @@ class TraceableEventDispatcherTest extends TestCase
      */
     public function testGetCalledListeners($isWrapped)
     {
+<<<<<<< HEAD
         $dispatcher = new EventDispatcher();
         $stopWatch = new Stopwatch();
         $tdispatcher = new TraceableEventDispatcher($dispatcher, $stopWatch);
@@ -119,17 +120,26 @@ class TraceableEventDispatcherTest extends TestCase
         $listener = function () {};
 
         $tdispatcher->addListener('foo', $listener, 5);
+=======
+        $tdispatcher = new TraceableEventDispatcher(new EventDispatcher(), new Stopwatch());
+        $tdispatcher->addListener('foo', function () {}, 5);
+>>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
 
         $listeners = $tdispatcher->getNotCalledListeners();
-        $this->assertArrayHasKey('data', $listeners['foo.closure']);
-        unset($listeners['foo.closure']['data']);
+        $this->assertArrayHasKey('stub', $listeners['foo.closure']);
+        unset($listeners['foo.closure']['stub']);
         $this->assertEquals(array(), $tdispatcher->getCalledListeners());
         $this->assertEquals(array('foo.closure' => array('event' => 'foo', 'pretty' => 'closure', 'priority' => 5)), $listeners);
 
         $tdispatcher->dispatch('foo');
 
         $listeners = $tdispatcher->getCalledListeners();
+<<<<<<< HEAD
         unset($listeners['foo.closure']['data']);
+=======
+        $this->assertArrayHasKey('stub', $listeners['foo.closure']);
+        unset($listeners['foo.closure']['stub']);
+>>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
         $this->assertEquals(array('foo.closure' => array('event' => 'foo', 'pretty' => 'closure', 'priority' => 5)), $listeners);
         $this->assertEquals(array(), $tdispatcher->getNotCalledListeners());
     }

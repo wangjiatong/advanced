@@ -38,9 +38,10 @@ $my_id = Yii::$app->user->identity->id;
     <?= $form->field($model, 'term_month')->textInput() ?>
 
     <?= $form->field($model, 'term')->dropDownList([
+        '1' => '按月',
         '3' => '季度',
         '6' => '半年',
-        '1' => '一次性兑付',
+        '0' => '一次性兑付',
     ]) ?>
 
     <?= $form->field($model, 'bank')->textInput(['maxlength' => true]) ?>

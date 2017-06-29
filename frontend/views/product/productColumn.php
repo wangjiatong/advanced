@@ -33,7 +33,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
 
         <section class="grid col-three-quarters mq2-col-full">
 
-                                <div class="grid-wrap works">
+                <div class="grid-wrap works">
 
                         <?php  foreach ($model as $m){?>
                         <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full">
