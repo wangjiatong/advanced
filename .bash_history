@@ -1,59 +1,3 @@
-cd contracts/
-la
-ls 
-cd ..
-cd news/
-ls
-cd 20170426/
-ls
-cd ..
-cd 201700426
-cd 201700426/
-cd 20170503/
-ls
-cdcd
-cd f
-cd 
-cd frontend/
-cd web/
-ls
-cd uploads/
-ls
-cd
-cd backend/
-cd web/
-cd uploads/
-ls
-cd contracts/
-ls
-mysql -u root -p
-ls
-cd ..
-ls
-cd products/
-ls
-cd 
-cd -
-cd 201705/
-ls
-cd ..
-ls
-cd ..
-ls
-cd news/
-ls
-cd ..
-ls
-cd contracts/
-ls
-cd ..
-cd news/
-ls
-cd ..
-cd products/
-ls
-cd 201705/
-ls
 cd
 cd frontend/
 ls
@@ -998,3 +942,59 @@ composer
 composer status
 composer list
 composer show
+composer show
+cd
+git add .
+git commit -m "增加按客户，产品浏览合同，紧急增加按月付息"
+git push origin dev
+cd ..
+cd advanced
+git pull
+git stash
+git pull
+cd vendor/
+ls
+cd yiisoft/
+ls
+cd yii2
+ls
+cd ..
+ls
+cd yii2-composer/
+ls
+vi composer.json 
+cd ..
+vi extensions.php 
+rm extensions.php 
+ls
+cd
+ls
+cd vendor/
+ls
+cd yiisoft/
+ls
+pwd
+cp ./extensions.php /usr/share/nginx/html/advanced-test/vendor/yiisoft
+cp ./extensions.php /usr/share/nginx/html/advanced/vendor/yiisoft
+cd
+cd ..
+ls
+cd advanced
+git add .
+git commit -m "替换产品环境发生错误的vendor/yiisoft/extension.php"
+git push orgin dev
+composer require scotthuangzl/yii2-export2excel "dev-master"
+cd
+composer require scotthuangzl/yii2-export2excel "dev-master"
+mysql -u root -p
+ls
+composer show
+cd
+git add .
+git commit -m "改善了若干问题"
+git push origin dev
+cd ..
+cd advanced
+ls
+git pull
+mysql -u root -p
