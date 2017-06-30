@@ -207,10 +207,14 @@ class ContractController extends BaseController
         {
             $model = Yii::$app->request->post()['ExcelForm'];
             $product_id = $model['product_id'];
+            $user_id = $model['user_id'];
             $start_time = $model['start_time'];
             $end_time = $model['end_time'];
+            //将查询条件组成数组
+            $searchArr = ['product_id' => $product_id, 'user_id' => $user_id];
+            $search = $this->excelSearchArr($searchArr);//获取查询条件数组
             $ids = [];
-            $by_product = Contract::find()->select(['id', 'every_time'])->where(['product_id' => $product_id])->all();
+            $by_product = Contract::find()->select(['id', 'every_time'])->where($search)->all();
             foreach ($by_product as $b)
             {
                 $every_time = $b['every_time'];
@@ -271,12 +275,16 @@ class ContractController extends BaseController
                     'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
                 ],
             ];
-            $product_name = Product::findOne($product_id)->product_name;
-            $excel_file = $product_name.'-'.$start_time.'至'.$end_time.'待付合同';
+            $excel_file = ($product_id ? Product::findOne($product_id)->product_name . '-' : '所有产品-').
+                    ($user_id ? UserModel::findOne($user_id)->name . '-' : '所有客户-').
+                    $start_time.
+                    '至'.
+                    $end_time.
+                    '待付合同';
             $this->export2excel($excel_content, $excel_file);         
             }else{
                 print_r('无符合查询条件的合同！');
-                echo \yii\helpers\Html::a('点击返回', ['contract/index']);
+                echo \yii\helpers\Html::a('点击返回', ['contract/excel']);
             }
         }else{
             return $this->render('excel', [
@@ -363,5 +371,23 @@ class ContractController extends BaseController
         }else{
             throw new NotFoundHttpException('该合同不属于您，您无权操作！');
         }
+    }
+    
+    //处理excel筛选条件数组
+    protected function excelSearchArr($arr)
+    {
+        $res = [];
+        foreach($arr as $k => $v)
+        {
+            if($v !== '')
+            {
+                $res[$k] = $v;
+            }
+        }
+        if($res == null)
+        {
+            return true;
+        }
+        return $res;
     }
 }

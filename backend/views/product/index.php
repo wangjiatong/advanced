@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\models\Contract;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -38,7 +39,8 @@ $this->title = '产品管理';
                 'label' => '查看合同',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::a('查看', ['product/contract-by-product', 'id' => $data->id]);
+                    $count = Contract::find()->where(['product_id' => $data->id])->count();
+                    return Html::a('查看(共'.$count.'条记录)', ['product/contract-by-product', 'id' => $data->id]);
                 },
             ],
         ],
