@@ -37,6 +37,8 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         'k' => 
         array (
             'kucha\\ueditor\\' => 14,
+            'kartik\\select2\\' => 15,
+            'kartik\\base\\' => 12,
         ),
         'c' => 
         array (
@@ -131,6 +133,14 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         'kucha\\ueditor\\' => 
         array (
             0 => __DIR__ . '/..' . '/kucha/ueditor',
+        ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
         ),
         'cebe\\markdown\\' => 
         array (
