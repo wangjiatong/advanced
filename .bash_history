@@ -1,9 +1,3 @@
-cd
-cd frontend/
-ls
-cd web/
-ls
-cd uploads/
 ls
 rm 2017-04-20-76.jpg 
 rm 2017-05-03-98.jpg 
@@ -998,3 +992,9 @@ cd advanced
 ls
 git pull
 mysql -u root -p
+git add .
+git commit -m "对导出excel名称做了修改，并修改了前端business页内容展示"
+git push origin dev
+cd ..
+cd advanced
+git pull

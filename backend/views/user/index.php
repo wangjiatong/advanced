@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use backend\controllers\common\BaseController;
 use backend\models\Admin;
+use common\models\Contract;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -70,8 +71,9 @@ $this->title = '客户列表';
                 'label' => '查看合同',
                 'format' => 'raw',
                 'value' => function($data){
+                    $count = Contract::find()->where(['user_id' => $data->id])->count();
                     $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
-                    return Html::a('查看', [$url, 'id' => $data->id]);
+                    return Html::a('查看(共'.$count.'条记录）', [$url, 'id' => $data->id]);
                 },
             ],
         ],
