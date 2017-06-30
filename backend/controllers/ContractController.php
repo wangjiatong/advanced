@@ -271,7 +271,8 @@ class ContractController extends BaseController
                     'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
                 ],
             ];
-            $excel_file = $start_time.'至'.$end_time.'待付合同信息';
+            $product_name = Product::findOne($product_id)->product_name;
+            $excel_file = $product_name.'-'.$start_time.'至'.$end_time.'待付合同';
             $this->export2excel($excel_content, $excel_file);         
             }else{
                 print_r('无符合查询条件的合同！');
