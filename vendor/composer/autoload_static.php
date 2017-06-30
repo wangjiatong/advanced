@@ -12,8 +12,6 @@ class ComposerStaticInit30485690b837f9b7584c6139c1e59e86
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
-        '36795dc0cc588020fda3680dffb905a4' => __DIR__ . '/..' . '/codeception/base/shim.php',
-        '4a08784919981e29eb0c6f44a2f7a0af' => __DIR__ . '/..' . '/codeception/base/phpunit5-loggers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -129,8 +127,8 @@ class ComposerStaticInit30485690b837f9b7584c6139c1e59e86
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'kucha\\ueditor\\' => 
         array (
