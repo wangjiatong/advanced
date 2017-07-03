@@ -34,7 +34,7 @@ $this->title = '发布新闻';
                 </div>	
                 <div class="control-group">
                         <div class="controls">
-                            <?= Html::submitButton('确定', ['class' => 'btn btn-primary']); ?>
+                            <?= Html::submitButton('确定', ['class' => 'btn btn-success']); ?>
                         </div>
                 </div>
             <?php ActiveForm::end();?>

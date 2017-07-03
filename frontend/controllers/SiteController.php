@@ -21,6 +21,7 @@ use yii\data\Pagination;
 use common\models\NewsColumn;
 //提示信息
 use yii\bootstrap\Alert;
+use common\models\ChangeUserPasswd;
 /**
  * Site controller
  */
@@ -328,10 +329,19 @@ class SiteController extends Controller
     {
         return $this->render('equityInvestment');
     }
-    //首页产品分类--静态
-    public function action()
+
+    //修改客户的密码
+    public function actionResetPasswd()
     {
-        return $this->render('');
+        $id = Yii::$app->user->identity->id;
+        $model = new ChangeUserPasswd();
+        if($model->load(Yii::$app->request->post()) && $model->resetPasswdLogout($id))
+        {   
+            return $this->redirect(['site/login']);            
+        }
+        return $this->render('resetPasswd', [
+            'model' => $model,
+        ]);
     }
     
     

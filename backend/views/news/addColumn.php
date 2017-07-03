@@ -12,7 +12,7 @@ $this->title = '添加新闻分类';
 
                             <?= $form->field($model, 'news_column')->label('栏目名称');?>
 
-                            <?= Html::submitButton('确定', ['class' => 'btn btn-primary']);?>
+                            <?= Html::submitButton('确定', ['class' => 'btn btn-success']);?>
 
                             <?php $form->end();?>
                         </fieldset>

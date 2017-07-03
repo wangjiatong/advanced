@@ -64,7 +64,7 @@ $this->title = '客户列表';
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
-                    return Html::a('详情', $url."?id=".$data->id);
+                    return Html::a('详情', $url."?id=".$data->id, ['class' => 'btn btn-info']);
                 },
             ],
             [

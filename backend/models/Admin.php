@@ -43,6 +43,11 @@ class Admin extends ActiveRecord implements IdentityInterface
         ];
     }
 
+//    public function scenarios() {
+//        return [
+//            'reset_password' => ['password_hash'],
+//        ];
+//    }
     /**
      * @inheritdoc
      */

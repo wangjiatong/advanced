@@ -46,7 +46,7 @@ $this->title = '管理员列表';
                 'label' => '撤销角色',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::a('编辑', ['role/manage', 'id' => $data->id]);
+                    return Html::a('操作', ['role/manage', 'id' => $data->id], ['class' => 'btn btn-info btn-xs']);
                 },
             ],
             ['class' => 'yii\grid\ActionColumn'],

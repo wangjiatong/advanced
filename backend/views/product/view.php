@@ -43,7 +43,7 @@ $imgUrl = constant('FRONTEND') . '/' . $model->img;
                 ],
                 [
                 'label' => '产品图片',
-                'value' => "<img src='$imgUrl'>",
+                'value' => "<img src='$imgUrl' width='320px' height='100px'>",
                 'format' => 'html',
                 ],
         ],

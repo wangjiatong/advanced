@@ -35,7 +35,7 @@ $this->title = '导出Excel';
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>
 

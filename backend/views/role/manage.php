@@ -13,7 +13,9 @@ use yii\helpers\Html;
     <?php foreach($model as $m): ?>
     <tr>
         <td><?= Role::find()->where(['id' => $m->role_id])->one()->role_name; ?></td>
-        <td><?= Html::a('删除', ['role/unset', 'id' => $m->id]); ?></td>
+        <td><?= Html::a('删除', ['role/unset', 'id' => $m->id], ['class' => 'btn btn-danger btn-xs']); ?></td>
+        <br />
+        <br />
     </tr>
     <?php endforeach; ?>
 </div>

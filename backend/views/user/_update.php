@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\UserModel */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <div class="user-model-form">
 
     <?php $form = ActiveForm::begin(); ?>

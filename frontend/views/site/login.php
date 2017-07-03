@@ -35,7 +35,7 @@ $this->registerJs('$(document).ready(function(){$("#login").addClass("navactive"
 <!--                    <div style="color:#999;margin:1em 0">
                         If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
                     </div>-->
-
+                    <p><?= Html::a('忘记密码？', ['/site/request-password-reset']) ?></p>
                     <div class="form-group">
                         <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                     </div>

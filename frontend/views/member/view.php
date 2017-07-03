@@ -8,6 +8,7 @@ use common\models\Product;
  * and open the template in the editor.
  */
 $this->title = '合同详情';
+$id = Yii::$app->user->id;
 ?>
 <div class="about-page main grid-wrap">
 
@@ -19,14 +20,12 @@ $this->title = '合同详情';
 		
 		
 		<aside class="grid col-one-quarter mq2-col-full">
-                    <p class="mbottom">
+                    <p class="mbottom">欢迎，<?= common\models\UserModel::getName($id)?><?=common\models\UserModel::getSex($id)?>。
 			</p>
 			<menu>
 				<ul>
-<!--					<li><a href="/member" class="arrow">我的合同</a></li>
-					<li><a href="/member/personal" class="arrow">个人信息</a></li>-->
-<!--					<li><a href="#navplace" class="arrow">Our place</a></li>
-					<li><a href="#navother" class="arrow">Our lorem</a></li>-->
+                                        <li><a href="/member" class="arrow">我的合同</a></li>
+                                        <li><a href="/site/reset-passwd" class="arrow">修改密码</a></li>
 				</ul>
 			</menu>
 		</aside>
@@ -34,7 +33,7 @@ $this->title = '合同详情';
 		<section class="grid col-three-quarters mq2-col-full">
 			<!--<img src="img/team.jpg" alt="" >-->
 			
-			<article id="navteam">
+			<!--<article id="navteam">-->
 			<h2></h2>
                             <?=DetailView::widget([
                                 'model' => $model,
@@ -64,12 +63,12 @@ $this->title = '合同详情';
 //                                    'status',
 //                                    'raise_interest_year',
 //                                    'interest_year',
-                                    [
-                                        'label' => '客户姓名',
-                                        'value' => function($data){
-                                            return UserModel::findOne($data->user_id)->name;
-                                        }                                     
-                                    ],
+//                                    [
+//                                        'label' => '客户姓名',
+//                                        'value' => function($data){
+//                                            return UserModel::findOne($data->user_id)->name;
+//                                        }                                     
+//                                    ],
                                     [
                                         'label' => '产品名称',
                                         'value' => function($data){
@@ -77,7 +76,7 @@ $this->title = '合同详情';
                                         }
                                     ],
                                     [
-                                        'label' => '认购金额(元)',
+                                        'label' => '认购金额(单位：元)',
                                         'attribute' => 'capital',
                                     ],
                                     [
@@ -91,7 +90,7 @@ $this->title = '合同详情';
                                         'attribute' => 'cash_time',
                                     ],
                                     [
-                                        'label' => '业绩比较基准（年化%）',
+                                        'label' => '业绩比较基准（年化，单位：%）',
                                         'attribute' => 'interest_year',
                                     ],
                                     [

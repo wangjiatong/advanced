@@ -23,8 +23,8 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                 <!--<p class="mbottom">Keep the same size ratio for thumbnails to avoid breaking the grid because of the margin-bottom.</p>-->
                 <menu>
                         <!--<a  id="work_all" class="arrow buttonactive">所有</a><br>-->
-                        <a  id="work_1" href="<?=$prevPageUrl?>">返回</a><br />
-                        <a  id="work_1" href="/product">产品主页</a><br /><br />
+                        <a  id="work_1" href="<?=$prevPageUrl?>" class="arrow">返回</a><br />
+                        <a  id="work_1" href="/product" class="arrow">产品主页</a><br /><br />
 <!--                        <a  id="work_2" class="arrow">定向增发</a><br>
                         <a  id="work_3" class="arrow">股权投资</a>-->
                 </menu>

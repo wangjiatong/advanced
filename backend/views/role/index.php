@@ -49,7 +49,7 @@ $this->title = '角色列表';
                 'label' => '撤销权限',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::a('编辑', ['access/manage', 'id' => $data->id]);
+                    return Html::a('操作', ['access/manage', 'id' => $data->id], ['class' => 'btn btn-info btn-xs']);
                 },
             ],
 //            'status',

@@ -1,32 +1,3 @@
-ls
-rm 2017-04-20-76.jpg 
-rm 2017-05-03-98.jpg 
-ls
-./yii/checkContracts/checkContracts
-php yii/checkContracts/checkContracts
-./yii/checkContracts/checkContracts
-./yii /checkContracts/checkContracts
-./yii cons/checkContracts/checkContracts
-php ./yii cons/checkContracts/checkContracts
-php yii cons/checkContracts/checkContracts
-./yii
-./yii checkContracts/checkContracts
-./yii checkContracts/check-contracts
-./yii cons/checkContracts/check-contracts
-./yii cons/checkContracts/checkContracts
-./yii cons/test/my
-php yii cons/test/my
-php cons/test/my
-./yii
-./yii test/my
-./yii checkContracts/checkContracts
-./yii checkContracts/check-contracts
-./yii check-contracts/check-contracts
-./yii check-contracts/collect
-./yii checkContracts/collect
-./yii check-contracts/collect
-mysql -u root -p
-cd
 ./yii check-contracts/collect
 php yii check-contracts/collect
 ./yii check-contracts/collect
@@ -998,3 +969,32 @@ git push origin dev
 cd ..
 cd advanced
 git pull
+composer require kartik-v/yii2-widget-select2 "@dev"
+cd
+git add .
+git commit -m "引入select2，为导出excel新增客户筛选条件"
+git push origin dev
+cd ..
+cd advanced
+git pull
+composer install
+cd vendor/composer
+ls
+rm installed.json
+cp /usr/share/nginx/html/advanced-test/vendor/composer/installed.json ./installed.json
+ls
+composer install
+cd ..
+composer install
+ls
+rm composer.lock 
+composer install
+git add .
+git commit -m "从test环境导入installed.json文件"
+git push origin master
+cd
+git add .
+git commit -m "导出excel页，客户姓名筛选增加multiple，即可多选；更改产品名称排列顺序为按产品名称"
+git push origin dev
+crontab -e
+mysql -u root -p
