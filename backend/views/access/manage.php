@@ -13,7 +13,9 @@ use yii\helpers\Html;
     <?php foreach($model as $m): ?>
     <tr>
         <td><?= Access::find()->where(['id' => $m->access_id])->one()->access_name; ?></td>
-        <td><?= Html::a('删除', ['access/unset', 'id' => $m->id]); ?></td>
+        <td><?= Html::a('删除', ['access/unset', 'id' => $m->id], ['class' => 'btn btn-danger']); ?></td>
+        <br />
+        <br />
     </tr>
     <?php endforeach; ?>
 </div>

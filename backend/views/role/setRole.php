@@ -16,6 +16,6 @@ $this->title = '角色设置';
     <?php $form = ActiveForm::begin()?>
     <?= $form->field($model, 'user_id')->dropDownList(Admin::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '请选择一个用户'])?>
     <?= $form->field($model, 'role_id')->inline()->checkboxList(Role::find()->select(['role_name', 'id'])->indexBy('id')->column())?>
-    <?= Html::submitButton('确定') ?>
+    <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
     <?php ActiveForm::end()?>
 </div>

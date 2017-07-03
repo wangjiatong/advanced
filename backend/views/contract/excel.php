@@ -16,12 +16,13 @@ $this->title = '导出Excel';
 
 <?php $form = ActiveForm::begin() ?>
 
-<?= $form->field($model, 'product_id')->dropDownList(Product::find()->select(['product_name', 'id'])->indexBy('id')->column(), ['prompt' => '请选择产品，不选则默认所有产品']) ?>
+<?= $form->field($model, 'product_id')->dropDownList(Product::find()->select(['product_name', 'id'])->orderBy('product_name')->indexBy('id')->column(), ['prompt' => '请选择产品，不选则默认所有产品']) ?>
 
 <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
     'data' => UserModel::find()->select('name, id')->indexBy('id')->column(),
     'options' => [
         'prompt' => '请选择客户，不选则默认所有客户',
+        'multiple' => true,
 //        'placeholder' => '请选择客户，不选则默认所有客户',
     ],
 ]) ?>
@@ -34,7 +35,7 @@ $this->title = '导出Excel';
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>
 

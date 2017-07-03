@@ -20,7 +20,7 @@ $this->title = '权限设置';
 
 <?= $form->field($model, 'access_id')->inline()->checkboxList(Access::find()->select(['access_name', 'id'])->indexBy('id')->column()) ?>
 
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>
 

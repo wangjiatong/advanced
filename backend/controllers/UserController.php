@@ -14,6 +14,7 @@ use backend\models\MyUserSearch;
 use common\models\ChangeUserInfo;
 use yii\data\Pagination;
 use common\models\Contract;
+use common\models\ChangeUserPasswd;
 
 /**
  * UserController implements the CRUD actions for UserModel model.
@@ -189,6 +190,19 @@ class UserController extends BaseController
         return $this->render('contractByUser', [
             'model' => $model,
             'pages' => $pages,
+        ]);
+    }
+    //修改自己客户的密码
+    public function actionResetPasswd($id)
+    {
+        $model = new ChangeUserPasswd();
+        if($model->load(Yii::$app->request->post()) && $model->resetPasswd($id))
+        {   
+            return $this->redirect(['user/view', 'id' => $id]);            
+        }
+        return $this->render('resetPasswd', [
+            'model' => $model,
+            'id' => $id,
         ]);
     }
 

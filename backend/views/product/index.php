@@ -40,7 +40,7 @@ $this->title = '产品管理';
                 'format' => 'raw',
                 'value' => function($data){
                     $count = Contract::find()->where(['product_id' => $data->id])->count();
-                    return Html::a('查看(共'.$count.'条记录)', ['product/contract-by-product', 'id' => $data->id]);
+                    return Html::a('查看', ['product/contract-by-product', 'id' => $data->id], ['class' => 'btn btn-info']).'(共'.$count.'条记录)';
                 },
             ],
         ],

@@ -7,12 +7,13 @@ use yii\helpers\Html;
  * and open the template in the editor.
  */
 ?>
+<h1>新增权限</h1>
 <?php $form = ActiveForm::begin() ?>
 
 <?= $form->field($model, 'access_name')->textInput() ?>
 
 <?= $form->field($model, 'urls')->textarea(['rows' => 5]) ?>
         
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>

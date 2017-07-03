@@ -99,12 +99,9 @@ class AdminController extends BaseController
     public function actionResetPasswd()
     {
         $model = new ChangePasswd();
-        
-        if($model->load(Yii::$app->request->post()) && $model->resetPasswd())
+        if($model->load(Yii::$app->request->post())&& $model->reset())
         {
-            var_dump($model->load(Yii::$app->request->post()));
-            var_dump($model->resetPasswd());
-            return $this->redirect('site/index');
+            return $this->redirect(['user/login']);
         }  
         return $this->render('resetPasswd', [
             'model' => $model,

@@ -8,6 +8,8 @@ use yii\bootstrap\Html;
  * and open the template in the editor.
  */
 ?>
+<h1>修改信息</h1>
+<p>*不建议您修改账户</p>
 <?php $form = ActiveForm::begin()?>
 
 <?=$form->field($model, 'username')->textInput(['value' => $old->username])?>
@@ -16,6 +18,6 @@ use yii\bootstrap\Html;
 
 <?=$form->field($model, 'name')->textInput(['value' => $old->name]) ?>
 
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-primary']) ?>
 
 <?php ActiveForm::end()?>

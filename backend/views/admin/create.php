@@ -8,6 +8,7 @@ use yii\bootstrap\Html;
  * and open the template in the editor.
  */
 ?>
+<h1>新增管理员</h1>
 <?php $form = ActiveForm::begin()?>
 
 <?=$form->field($model, 'username') ?>
@@ -18,6 +19,6 @@ use yii\bootstrap\Html;
 
 <?=$form->field($model, 'name') ?>
 
-<?= Html::submitButton('确定') ?>
+<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end()?>

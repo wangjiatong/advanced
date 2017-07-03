@@ -22,7 +22,7 @@ $this->title = '修改密码';
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('发送', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('确定', ['class' => 'btn btn-primary']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

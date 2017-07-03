@@ -1,6 +1,7 @@
 <?php
 //use Yii;
 use yii\grid\GridView;
+use common\models\Product;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,8 +25,8 @@ $id = Yii::$app->user->id;
 			</p>
 			<menu>
 				<ul>
-					<li><a href="/member">我的合同</a></li>
-                                        <li><a href="/site/request-password-reset">修改密码</a></li>
+					<li><a href="/member" class="arrow">我的合同</a></li>
+                                        <li><a href="/site/reset-passwd" class="arrow">修改密码</a></li>
 					<!--<li><a href="/member/personal" class="arrow">个人信息</a></li>-->
 <!--					<li><a href="#navplace" class="arrow">Our place</a></li>
 					<li><a href="#navother" class="arrow">Our lorem</a></li>-->
@@ -36,13 +37,18 @@ $id = Yii::$app->user->id;
 		<section class="grid col-three-quarters mq2-col-full">
 			<!--<img src="img/team.jpg" alt="" >-->
 			
-			<article id="navteam">
+			<!--<article id="navteam">-->
 			<h2></h2>
                         <?= GridView::widget([                           
                             'dataProvider' => $dataProvider,
                             'columns' => [
                                 ['class' => 'yii\grid\SerialColumn'],
-                                'contract_number',
+                                [
+                                    'label' => '产品名称',
+                                    'value' => function($data){
+                                    return Product::findOne($data->product_id)->product_name;
+                                    }
+                                ],
                                 'capital',
                                 [
                                     'class' => 'yii\grid\ActionColumn',
