@@ -189,13 +189,16 @@ class ContractController extends BaseController
     {
         $contract = $this->findMyModel($id);
 
-        $pdf = $contract->pdf;
+        $pdf = $contract->pdf; 
 
-        if(is_file($pdf) && $contract->delete())
+        if($contract->delete())
         {
-            unlink($pdf);
+            if(is_file($pdf))
+            {
+                unlink($pdf);
+            }
 
-            return $this->redirect([parent::checkUrlAccess('my-contract', 'index')]);
+            return $this->redirect([parent::checkUrlAccess('contract/my-contract', 'contract/index')]);
 
         }       
     }

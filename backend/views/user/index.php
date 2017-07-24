@@ -64,16 +64,16 @@ $this->title = '客户列表';
                 'format' => 'raw',
                 'value' => function($data){
                     $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
-                    return Html::a('详情', $url."?id=".$data->id, ['class' => 'btn btn-info']);
+                    return Html::a('详情', [$url, 'id' => $data->id], ['class' => 'btn btn-info']);
                 },
             ],
             [
-                'label' => '查看合同',
+                'label' => '查看名下合同',
                 'format' => 'raw',
                 'value' => function($data){
                     $count = Contract::find()->where(['user_id' => $data->id])->count();
                     $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
-                    return Html::a('查看(共'.$count.'条记录）', [$url, 'id' => $data->id]);
+                    return Html::a('查看', [$url, 'id' => $data->id], ['class' => 'btn btn-success']) . "(共{$count}条记录）";
                 },
             ],
         ],

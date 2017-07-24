@@ -1,8 +1,4 @@
 ./yii check-contracts/collect
-php yii check-contracts/collect
-./yii check-contracts/collect
-./yii /check-contracts/collect
-./yii check-contracts/collect
 cd /
 cd etc/
 cd crontab 
@@ -997,4 +993,8 @@ git add .
 git commit -m "导出excel页，客户姓名筛选增加multiple，即可多选；更改产品名称排列顺序为按产品名称"
 git push origin dev
 crontab -e
+mysql -u root -p
+ls
+php api.php 
+ls
 mysql -u root -p

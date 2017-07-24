@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = '管理后台';
+$this->title = '网站管理后台';
 use backend\controllers\common\BaseController;
 use common\models\UserModel;
 use common\models\Contract;
