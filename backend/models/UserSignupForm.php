@@ -54,7 +54,7 @@ class UserSignupForm extends Model
         return [
             'username' => '用户账户（*用户名不可存在相同的）',
             'email' => '电子邮箱（*输入必须为正确的邮箱格式，如AAAA@BB.CC）',
-            'password' => '用户密码（*做好登记）',
+            'password' => '用户密码（*建议默认与用户名相同，客户可自行修改。否则请做好登记。）',
             'name' => '客户姓名',
             'sex' => '性别',
             'birthday' => '生日（*格式：AAAA-BB-CC，个位数则用0补齐到两位）',

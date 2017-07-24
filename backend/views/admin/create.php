@@ -13,7 +13,7 @@ use yii\bootstrap\Html;
 
 <?=$form->field($model, 'username') ?>
 
-<?=$form->field($model, 'password')?>
+<?=$form->field($model, 'password')->passwordInput()?>
 
 <?=$form->field($model, 'email')?>
 

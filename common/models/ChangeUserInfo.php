@@ -20,7 +20,7 @@ class ChangeUserInfo extends Model
     public function rules()
     {
         return [
-            [['username', 'email', 'name', 'sex', 'birthday', 'phone_number'], 'required'],
+            [['username', 'email', 'name', 'sex', 'birthday', 'phone_number'], 'safe'],
         ];
     }
     

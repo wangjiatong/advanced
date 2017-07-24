@@ -101,6 +101,7 @@ class AdminController extends BaseController
         $model = new ChangePasswd();
         if($model->load(Yii::$app->request->post())&& $model->reset())
         {
+            Yii::$app->user->logout();
             return $this->redirect(['user/login']);
         }  
         return $this->render('resetPasswd', [
