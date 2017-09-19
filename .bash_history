@@ -1,87 +1,3 @@
-./yii check-contracts/collect
-cd /
-cd etc/
-cd crontab 
-ls
-cd crontab 
-vi crontab 
-cd
-pwd
-mysql -u root -p
-yum -y install postfix
-yum remove sendmail
-ls
-alternatives --config mta
-alternatives --display mta
-cd /etc/
-cd postfix/
-vi main.cf 
-/etc/rc.d/init.d/postfix start
-chkconfig postfix on
-yum -y install dovecot
-vi /etc/dovecot/dovecot.conf
-vi /etc/dovecot/conf.d/10-auth.conf
-vi /etc/dovecot/conf.d/10-mail.conf
-vi /etc/dovecot/conf.d/10-master.conf
-/etc/rc.d/init.d/dovecot start
-chkconfig dovecot on
-useradd mail
-passwd -s mail
-passwd -S mail
-Passwd -S mail
-passwd mail
-reboot
-dig -t txt mail.ewinjade.com
-nslookup
-alternatives --display mta
-yum install opendkim
-vi /etc/opendkim.conf
-mkdir /etc/opendkim/keys/YourDomain.com
-opendkim-genkey -D /etc/opendkim/keys/mail.ewinjade.com/ -d mail.ewinjade.com -s default 
-default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.private
-default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
-cd /etc/opendkim/keys/
-ls
-rm -r YourDomain.com/
-ls
-mkdir /etc/opendkim/keys/mail.ewinjade.com
-default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
-ls
-opendkim-genkey -D /etc/opendkim/keys/mail.ewinjade.com/ -d mail.ewinjade.com -s default 
-default._domainkey.mail.ewinjade.com mail.ewinjade.com:default:/etc/opendkim/keys/mail.ewinjade.com/default.privatecd /etc/opendkim/keys
-ls
-wpd
-pwd
-cd ..
-ls
-cd KeyTable 
-vi KeyTable 
-vi SigningTable 
-vi TrustedHosts 
-cd keys/
-ls
-cd mail.ewinjade.com/
-ls
-vi default.txt 
-cd /etc/
-cd postfix/
-ls
-vi main.cf 
-service opendkim start
-postfix reload
-reboot
-nslookup
-ls
-cd
-tail -f /var/log/maillog
-vi /etc/dovecot/conf.d/10-mail.conf 
-tail -f /var/log/maillog
-reboot
-Passwd -S mail
-passwd -s mail
-passwd -S mail
-passwd mail
-tail -f /var/log/maillog
 nslookup -qt=txt ewinjade.com
 dig -t txt ewinjade.com
 dig -t txt mail.ewinjade.com
@@ -997,4 +913,88 @@ mysql -u root -p
 ls
 php api.php 
 ls
+mysql -u root -p
+pwd
+git add .
+git commit -m "1，修复合同删除时，扫描件删除逻辑错误导致无法执行删除合同的操作；2，修复修改客户时，数据验证不合理的问题；3，若干小问题；"
+git push origin dev
+mysql -u root -p
+cd ..
+ls
+cd advanced
+git pull
+ls
+cd ..
+ls
+vi index.php 
+vi index.html 
+vi 50x.html 
+crontab -e
+cd
+yii check-contracts/collect
+./yii check-contracts/collect
+yii migrate/create create_access_token_table;
+./yii migrate/create create_access_token_table;
+./yii migrate/up
+mysql -u root -p
+wpd
+pwd
+./yii migrate/create "create_table_user_wx"
+mysql -u root -p
+./yii migrate/up
+mysql -u root -p
+./yii migrate/create create_wx_user_table
+mysql -u root -p
+cd
+./yii migrate/up
+mysql -u root -p
+last reboot
+sar -u -f /var/log/sa/sa16 | more
+free -m
+vmstat
+iostat
+lspci | grep -i Fibre
+uptime
+df -h
+ps –ef | grep 
+view /var/log/messages
+dmesg
+view /var/log/messages
+view /var/log/secure
+rpm -q -a
+ps
+ps -a
+ps a
+ps -e
+top
+cd /
+ls
+cd usr
+ls
+cd ..
+cd var/
+ls
+cd run/
+cd ..
+cd root
+cd ..
+cd root/
+ls
+wget  http://jaist.dl.sourceforge.net/project/rkhunter/rkhunter/1.4.2/rkhunter-1.4.2.tar.gz
+tar -zxf rkhunter-1.4.2.tar.gz 
+top
+mysql -u root -p
+cd
+./yii migrate/create create_advice_table
+./yii migrate/up
+mysql -u root -p
+cd
+./yii migrate/create add_openid_column_for_table_advice
+./yii migrate/up
+mysql -u root -p
+top
+mysql -u root -p
+top
+ll
+top
 mysql -u root -p

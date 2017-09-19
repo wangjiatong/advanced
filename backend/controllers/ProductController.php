@@ -79,7 +79,7 @@ class ProductController extends BaseController
         $model = new ProductColumn();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['product-column-view', 'id' => $model->id]);
+            return $this->redirect(['product-column-index']);
         } else {
             return $this->render('createProductColumn', [
                 'model' => $model,
