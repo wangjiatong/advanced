@@ -1,0 +1,83 @@
+Return-Path: <PostMaster@qq.com>
+X-Original-To: mail@ewinjade.com
+Delivered-To: mail@ewinjade.com
+Received: from smtpbg175.qq.com (SMTPBG175.QQ.COM [119.147.194.226])
+	by mail.ewinjade.com (Postfix) with ESMTP id B4A05E249F
+	for <mail@ewinjade.com>; Tue, 19 Sep 2017 09:00:10 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1505782855; bh=AFdB58z2PvXBJnebG5EWayqFCPpzHJ4vVc6UVrwxwbA=;
+	h=Message-Id:From:To:Date:Subject:Content-type;
+	b=J98UuE0RDcbhx4O1BzgqbEjnilTnsDLos71Uw7CHKkIjAiYLdd/bQXSY1zdr7Xbio
+	 8G2uPTld8YA028uruQLQCBKyG+ir7gxkmJHkLuTdzC1HPlIMn93jqmTXs4iHnB23dj
+	 ZLjjp0eSq4cShKgTr5NsOF1ev7rdrtmUD17cAx60=
+X-QQ-mid: @mx82t1505782851tlh2bvo9x
+Message-Id: <report.1505782853>
+From: "PostMaster" <PostMaster@qq.com>
+To: mail@ewinjade.com
+Date: Tue, 19 Sep 2017 09:00:53 +0800
+Subject: =?gb2312?B?wLTX1HFxLmNvbbXEzcvQxQ==?=
+Content-type: multipart/report; report-type=delivery-status; boundary=QQ_MAIL_RETURN
+Auto-Submitted: auto-generated
+X-QQ-MAIL-TYPE: bulletin
+X-QQ-STYLE: 5
+
+--QQ_MAIL_RETURN
+Content-type: text/html; charset="gb18030"
+
+<html>
+<head>
+<title>QQ邮箱退信</title>
+</head>
+<body>
+<p style="font-size:14px; font-family:verdana; margin:0 0 10px; line-height:22px; text-align:left">很抱歉您发送的邮件被退回，以下是该邮件的相关信息：</p>
+
+<table style="width:90%; border-collapse:collapse; margin:0 0 15px" cellpadding="0" cellspacing="0" border="0">
+<tr> <td style="width:120px; font-family:verdana; font-size:14px; font-weight:bold; text-align:center; background:#E0ECF9; border:1px solid #C1D9F3">被退回邮件</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">主 题：客户待付提醒：晁雪瑾 <br/>时 间：2017-09-19 09:00:02 </td> </tr> </table>
+
+<table style="width:90%; border-collapse:collapse; margin:0 0 10px" cellpadding="0" cellspacing="0" border="0"><tr><td colspan="2" style="font-size:14px;font-weight:bold;padding:5px 10px;border:1px solid #C1D9F3; background:#C1D9F3">无法发送到 375695609@qq.com</td>
+</tr><tr><td style="width:120px;  font-size:14px;text-align:center; background:#EFF5FB; border:1px solid #C1D9F3">退信原因</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">
+您的邮件被收件人（375695609@qq.com）的反垃圾设置拒收，邮件无法送达。 <br />  </td></tr>
+<tr><td style="width:120px;font-size:14px;text-align:center; background:#EFF5FB; border:1px solid #C1D9F3">解决方案</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">
+请避免您的邮件含有广告，欺诈，政治类信息，以及携带病毒。如您的邮件正常但仍被拒收，请联系收件人（375695609@qq.com）。 您也可以<a href="http://mail.qq.com/cgi-bin/help_feedback_person?sender=mail@ewinjade.com&receiver=375695609@qq.com&sendtime=2017-09-19 09:00:02&reason=BGRET_REJECTSPAM&subject=%BF%CD%BB%A7%B4%FD%B8%B6%CC%E1%D0%D1%A3%BA%EA%CB%D1%A9%E8%AA" style="background:#bfda9c; color:#000000;" target="_blank">向管理员报告此退信</a>。</td></tr></table>
+
+
+<p style="font-size:14px; font-family:verdana; margin:0 0 10px; line-height:22px; text-align:left">此外，您还可以 <a href="http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=29&&no=188" target="_blank">点击这里</a> 获取更多关于退信的帮助信息。</p>
+</body>
+</html>
+
+--QQ_MAIL_RETURN
+Content-type: message/rfc822; name="mail.eml";
+	charset="gb18030"
+Content-Transfer-Encoding: 8bit
+Content-Disposition: attachment; filename="mail.eml"
+
+Received: from mail.ewinjade.com (unknown [101.226.179.205])
+	by newmx82.qq.com (NewMx) with SMTP id 
+	for <375695609@qq.com>; Tue, 19 Sep 2017 09:00:50 +0800
+X-QQ-SPAM: true
+X-QQ-FEAT: GYi7NHxB6yG4Tvi8QUK9rwOIhQ+l7RaLWRzekvuFosbAEDXnsofZk6c+QOeI4
+	DcIX/0yKPNnPF/yfXa6g8rke9yk2LO5QQnCYJ0Ged6Q/DUhwdov52u6xgh4FwDUY9uJ3lir
+	+1670EkuhGJt1XkE9J4M9nJsbKLaVAXOkI0EXjKabU6Zh+fvWj8Io8VO9Q9xgLvlzF0gap6
+	0Qg0/bgKjE+yRukmFy/68i1e3iOeEXlVDw9yHOdVEdzSFxJIo1OwW
+X-QQ-MAILINFO: ODvMQTwIxEi3Z3ento87D+yxGHju4Ne+s7pMQcDr4epuez2t0a4ozWTtf
+	Grb6DcyHXfgHALY0G4IcxFX3rpHxJOqbvIvOiuMhg+G+ghk/3BFllnCJHkNlyYd2UMo2oqt
+	zfh1OqpCJ1QcgKmupn4qOaYMSe0WpNn/hQ==
+X-QQ-mid: mx82t1505782851tlh2bvo9x
+X-QQ-ORGSender: mail@ewinjade.com
+Received: from [127.0.0.1] (unknown [101.226.179.205])
+	by mail.ewinjade.com (Postfix) with ESMTPA id 1DAABE249F
+	for <375695609@qq.com>; Tue, 19 Sep 2017 09:00:04 +0800 (CST)
+Message-ID: <535ca133f9c6201b4cce6c72118d2599@swift.generated>
+Date: Tue, 19 Sep 2017 09:00:02 +0800
+Subject: =?UTF-8?Q?=E5=AE=A2=E6=88=B7=E5=BE=85=E4=BB=98?=
+ =?UTF-8?Q?=E6=8F=90=E9=86=92=EF=BC=9A=E6=99=81=E9=9B=AA=E7=91=BE?=
+From: =?UTF-8?Q?=E7=BF=8C=E9=93=B6=E7=8E=96=E5=BE=B7?= <mail@ewinjade.com>
+To: 375695609@qq.com
+MIME-Version: 1.0
+
+合同编号：812720170710092502
+--QQ_MAIL_RETURN--
+

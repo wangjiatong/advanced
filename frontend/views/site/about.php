@@ -24,7 +24,7 @@ $this->registerJs('$(document).ready(function(){$("#about").addClass("navactive"
 
 
             <aside class="grid col-one-quarter mq2-col-full">
-                    <p class="mbottom">上海翌银玖德资产管理有限公司，注册资本1亿元，并于2015年12月7日获得私募基金牌照。我们的首只股权投资基金产品——翌银玖德新兴成长壹号已顺利完成基金业协会的备案，目前正在运作中……
+                    <p class="mbottom">上海翌银玖德资产管理有限公司系经中国证券投资基金业协会审核认定的私募投资基金管理人，注册资本人民币10000万元，于 2015 年 12 月 7 日获得私募基金牌照（P1028651）。位于上海浦东新区陆家嘴金融圈。
                     </p>
                     <menu>
                             <ul>
@@ -41,14 +41,14 @@ $this->registerJs('$(document).ready(function(){$("#about").addClass("navactive"
 
                     <article id="navteam">
                     <h2>发展历程</h2>
-                    <p>上海翌银股权投资基金管理有限公司（翌银基金），是经国家批准成立的，专注于中国企业的股权投资和管理业务的公司，于2012年2月27日正式成立，注册资本人民币5000万元，位于上海浦东新区陆家嘴金融圈。公司自成立之日起，一直秉承着公司“让财富与梦想齐飞”的宏愿，以“与客户共成长”为使命，全力给客户创造价值并提供优质稳定的服务。</p>
-                    <p>随着业务发展，翌银基金已注册成立上海翌银玖德资产管理有限公司（翌银玖德），注册资本1亿元，并于2015年12月7日获得私募基金牌照。我们的首只股权投资基金产品——翌银玖德新兴成长壹号（基金编码为SL1400）已顺利完成基金业协会的备案，目前正在运作中。为了使业务规范化，将翌银基金旗下业务及销售团队全部转入翌银玖德，其中已有8名员工持有基金从业资格证书。</p>
-                    <p>翌银玖德累计管理资产规模超过55亿元，成功发行35个项目，截至目前，已完成兑付资金超过40亿元，无任何违约和损失，客户回报均达到预期收益，在行业内享有良好的声誉。</p>
+                    <p>公司始建于2012年，经国家批准，上海翌银股权投资基金（翌银基金）正式成立，注册资本5000万元，随着业务的发展，我公司现已注册为上海翌银玖德资产管理有限公司。上海翌银玖德资产管理有限公司系经中国证券投资基金业协会审核认定的私募投资基金管理人，注册资本人民币10000万元，于2015年12月7日获得私募基金牌照（P1028651）。位于上海浦东新区陆家嘴金融圈。</p>
+                    <p>公司管理团队均来自国内、国外知名银行并拥有10-20年的中高层管理经验。公司股东拥有在银行、信托、保险、PE(私募）机构等金融行业的资深背景。公司内部建立了清晰完整的组织架构，提供良好的职业培训和发展机会，让员工和公司共同成长。</p>
+                    <p>自公司于2012年建立以来，累计管理资产规模超过55亿元，产品线覆盖了固定收益类、股权投资基金以及FOF（母基金）等产品。截至目前，无任何违约和损失，客户回报均达到预期收益，在行业内声誉良好。</p>
                     </article>
 
                     <article id="navphilo">
                     <h2>组织架构</h2>
-                    <p style="text-align:center"><img src="/img/zuzhijiagou.png"></p>
+                    <p style="text-align:center"><img src="/img/zzjg.png"></p>
                     <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>-->
                     </article>
 

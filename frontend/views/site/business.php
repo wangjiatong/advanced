@@ -18,10 +18,11 @@ $this->registerJs('$(document).ready(function(){$("#business").addClass("navacti
 
 
         <aside class="grid col-one-quarter mq2-col-full">
-                <p class="mbottom">我们的项目主要来源于金融同业（VC/PE、券商投行、信托等）之间的合作，项目规模适中，兼具安全性和成长性。我们也会主动寻找一些优质项目，与产业资本一起，结合我们的投资理念，为投资人提供最佳的投融资解决方案，实现财富增值和社会效益的共同成长。
+                <p class="mbottom">我 们 的 项 目 主 要 来 源 于 金 融 同 业（VC/PE、券商投行、信托等）之间的合作， 项目规模适中， 兼具安全性和成长性。我们也会主动寻找一些优质项目，与产业资本一起，结合我们的投资理念，为投资人提供最佳的投融资解决方案，实现财富增值和社会效益的共同成长。
                 </p>
                 <menu>
                         <ul>
+                                <li><a href="#navtogg0" class="arrow">主要项目</a></li>
                                 <li><a href="#navtogg1" class="arrow">运营流程</a></li>
                                 <li><a href="#navtogg2" class="arrow">资金投向</a></li>
                         </ul>
@@ -30,14 +31,25 @@ $this->registerJs('$(document).ready(function(){$("#business").addClass("navacti
 
         <section class="grid col-three-quarters mq2-col-full">
             <div class="grid-wrap">
+                    <article id="navtogg0" class="grid col-full">
+                    <h2>主要项目</h2>
+                        <ul class="toggle-view">
+                            <li>
+                                <h5 class="toggle-title"><span class="toggle-title-detail">点击查看</span></h5>
+                                <div class="toggle">                     
+                                    <p style="text-align: center"><img src="/img/zyxm.png"</p>
+                                </div>       
+                            </li>
+                        </ul>
+                </article>
                 <article id="navtogg1" class="grid col-full">
                     <h2>运营流程</h2>
                     <ul class="toggle-view">
                         <li>
                             <h5 class="toggle-title"><span class="toggle-title-detail">点击查看</span></h5>
                             <div class="toggle">                     
-                                    <p>我们的项目主要来源于金融同业（VC/PE、券商投行、信托等）之间的合作，项目规模适中，兼具安全性和成长性。我们也会主动寻找一些优质项目，与产业资本一起，结合我们的投资理念，为投资人提供最佳的投融资解决方案，实现财富增值和社会效益的共同成长。</p>
-                                    <p style="text-align: center"><img src="/img/yunyingliucheng.png"</p>
+                                    <p></p>
+                                    <p style="text-align: center"><img src="/img/yylc.png"</p>
                             </div>       
                         </li>
                     </ul>
