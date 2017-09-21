@@ -1,0 +1,85 @@
+Return-Path: <PostMaster@qq.com>
+X-Original-To: mail@ewinjade.com
+Delivered-To: mail@ewinjade.com
+Received: from smtpbg165.qq.com (SMTPBG165.QQ.COM [119.147.194.220])
+	by mail.ewinjade.com (Postfix) with ESMTP id 705DCE15CF
+	for <mail@ewinjade.com>; Tue, 12 Sep 2017 15:27:16 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1505201270; bh=JSiQxNIypSNUzJG4toP7x0p67rVvWtG9FBDcjmdRgng=;
+	h=Message-Id:From:To:Date:Subject:Content-type;
+	b=AV/6cMKrviWJJ3ywq/JX7EVqMlAp8vwpWd7sFXDTjf9hfLBd0ocbPEov3dTx3oI1K
+	 zbQ863rL3ieK8Wv9rqcKbAYAYez5268DizkxIoNe2zcHTEdv1Pl1b/ES9I/nzz9aJK
+	 JX9a/bej7FkaPpDY8fMLL4aQ07VwNlg4NpAMMgik=
+X-QQ-mid: @mx18t1505201269t6h72yisd
+Message-Id: <report.1505201270>
+From: "PostMaster" <PostMaster@qq.com>
+To: mail@ewinjade.com
+Date: Tue, 12 Sep 2017 15:27:50 +0800
+Subject: =?gb2312?B?wLTX1HFxLmNvbbXEzcvQxQ==?=
+Content-type: multipart/report; report-type=delivery-status; boundary=QQ_MAIL_RETURN
+Auto-Submitted: auto-generated
+X-QQ-MAIL-TYPE: bulletin
+X-QQ-STYLE: 5
+
+--QQ_MAIL_RETURN
+Content-type: text/html; charset="gbk"
+
+<html>
+<head>
+<title>QQ邮箱退信</title>
+</head>
+<body>
+<p style="font-size:14px; font-family:verdana; margin:0 0 10px; line-height:22px; text-align:left">很抱歉您发送的邮件被退回，以下是该邮件的相关信息：</p>
+
+<table style="width:90%; border-collapse:collapse; margin:0 0 15px" cellpadding="0" cellspacing="0" border="0">
+<tr> <td style="width:120px; font-family:verdana; font-size:14px; font-weight:bold; text-align:center; background:#E0ECF9; border:1px solid #C1D9F3">被退回邮件</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">主 题：客户测试微信向您提出了意见建议 <br/>时 间：2017-09-12 15:27:12 </td> </tr> </table>
+
+<table style="width:90%; border-collapse:collapse; margin:0 0 10px" cellpadding="0" cellspacing="0" border="0"><tr><td colspan="2" style="font-size:14px;font-weight:bold;padding:5px 10px;border:1px solid #C1D9F3; background:#C1D9F3">无法发送到 11228463@qq.com</td>
+</tr><tr><td style="width:120px;  font-size:14px;text-align:center; background:#EFF5FB; border:1px solid #C1D9F3">退信原因</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">
+您的邮件被收件人（11228463@qq.com）的反垃圾设置拒收，邮件无法送达。 <br />  </td></tr>
+<tr><td style="width:120px;font-size:14px;text-align:center; background:#EFF5FB; border:1px solid #C1D9F3">解决方案</td>
+<td style="border:1px solid #C1D9F3; font-family:verdana; padding:5px 15px; line-height:20px; font-size:14px;">
+请避免您的邮件含有广告，欺诈，政治类信息，以及携带病毒。如您的邮件正常但仍被拒收，请联系收件人（11228463@qq.com）。 您也可以<a href="http://mail.qq.com/cgi-bin/help_feedback_person?sender=mail@ewinjade.com&receiver=11228463@qq.com&sendtime=2017-09-12 15:27:12&reason=BGRET_REJECTSPAM&subject=%BF%CD%BB%A7%B2%E2%CA%D4%CE%A2%D0%C5%CF%F2%C4%FA%CC%E1%B3%F6%C1%CB%D2%E2%BC%FB%BD%A8%D2%E9" style="background:#bfda9c; color:#000000;" target="_blank">向管理员报告此退信</a>。</td></tr></table>
+
+
+<p style="font-size:14px; font-family:verdana; margin:0 0 10px; line-height:22px; text-align:left">此外，您还可以 <a href="http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=29&&no=188" target="_blank">点击这里</a> 获取更多关于退信的帮助信息。</p>
+</body>
+</html>
+
+--QQ_MAIL_RETURN
+Content-type: message/rfc822; name="mail.eml";
+	charset="gbk"
+Content-Transfer-Encoding: 8bit
+Content-Disposition: attachment; filename="mail.eml"
+
+Received: from mail.ewinjade.com (unknown [101.226.179.205])
+	by newmx18.qq.com (NewMx) with SMTP id 
+	for <11228463@qq.com>; Tue, 12 Sep 2017 15:27:48 +0800
+X-QQ-SPAM: true
+X-QQ-FEAT: oHiIVEz9/LFfzQWrTDHkOj3t8Y7DZ6Hy9xSkhogbIwGd10aXlkJ/lgkbo/Sfb
+	dp0QRz0A1wd5nRJQUbsiKkxwF8UkotkMV4OGL9nEefpp+VNMs6yh/WWWQrrlGSlRBRn/kLE
+	RBaLVSZxB69KgoHk4Z2vBRUtuNwH6ATJOfmh1z4pIff+S1o2IhA+STINFzXsLYR/RYgPsDp
+	/mcZRFePemjbGgv+SJ/cvRF4XXhnzjzQ=
+X-QQ-MAILINFO: Nj4k/6lmmRCSqAOTmL7yiIiiNNrLpClzUGpv2hdU+ztUyowr2edLGZArk
+	VlOVETuJRDQAwtW+Fe00FW4v7701D75zBUIWcH0iaUKzwJHjD0SC+0LnFezTn73PYfBmdHm
+	2g==
+X-QQ-mid: mx18t1505201269t6h72yisd
+X-QQ-ORGSender: mail@ewinjade.com
+Received: from frontend.test.ewinjade.com (unknown [101.226.179.205])
+	by mail.ewinjade.com (Postfix) with ESMTPA id 3A1DDE15CF
+	for <11228463@qq.com>; Tue, 12 Sep 2017 15:27:14 +0800 (CST)
+Message-ID: <ba43a26bc6b051bd67be715477cbfe0c@frontend.test.ewinjade.com>
+Date: Tue, 12 Sep 2017 15:27:12 +0800
+Subject: =?UTF-8?Q?=E5=AE=A2=E6=88=B7=E6=B5=8B=E8=AF=95?=
+ =?UTF-8?Q?=E5=BE=AE=E4=BF=A1=E5=90=91=E6=82=A8?=
+ =?UTF-8?Q?=E6=8F=90=E5=87=BA=E4=BA=86=E6=84=8F?=
+ =?UTF-8?Q?=E8=A7=81=E5=BB=BA=E8=AE=AE?=
+From: =?UTF-8?Q?=E7=BF=8C=E9=93=B6=E7=8E=96=E5=BE=B7?= <mail@ewinjade.com>
+To: 11228463@qq.com
+MIME-Version: 1.0
+
+我我
+--QQ_MAIL_RETURN--
+

@@ -22,6 +22,7 @@ use common\models\NewsColumn;
 //提示信息
 use yii\bootstrap\Alert;
 use common\models\ChangeUserPasswd;
+use yii\web\NotFoundHttpException;
 /**
  * Site controller
  */
@@ -283,11 +284,15 @@ class SiteController extends Controller
     //新闻详情页
     public function actionArticle($id)
     {
-        $model = News::findOne($id);
-        return $this->render('article',
-                [
+        if($model = $this->findNews($id))
+        {
+            return $this->render('article', [
                     'model' => $model,
-                ]);
+            ]);
+        }else{
+            throw new NotFoundHttpException();
+        }
+
     }
     //新闻详情页按栏目显示新闻
     public function actionNewsColumn($id)
@@ -344,7 +349,16 @@ class SiteController extends Controller
         ]);
     }
     
-    
+    //获取新闻模型
+    private function findNews($id)
+    {
+        if(($news = News::findOne($id)) !== 'null')
+        {
+            return $news;
+        }else{
+            return false;
+        }
+    }
     
     
     
