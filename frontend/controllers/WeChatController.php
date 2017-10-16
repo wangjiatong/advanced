@@ -60,7 +60,7 @@ class WeChatController extends Controller
     }
     
     //获取网页授权access_token
-    public function actionAuth()
+    public function actionAuth($code)
     {
 //        $this->layout = 'wx';
         $code = Yii::$app->request->get('code');
