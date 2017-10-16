@@ -177,7 +177,7 @@ class ContractForm extends Model
         
         switch ($contract->term)
         {
-        case 3 || 6 || 1:
+        case 3 || 6 || 1 || 12:
             
             $y = $contract->term_month / $contract->term;
             

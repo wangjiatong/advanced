@@ -1,211 +1,3 @@
-nslookup -qt=txt ewinjade.com
-dig -t txt ewinjade.com
-dig -t txt mail.ewinjade.com
-host ewinjade.com
-dig txt hotmal.com
-dig txt ewinjade.com
-dig txt  dkim._domainkey.mail.ewinjade.com
-chkconfig --list
-php yii /check-contracts collect
-php yii check-contracts/collect
-cd
-ls
-cd uploads/
-ls
-ls -l
-cd ..
-ls -l
-cd uploads/
-ls
-cd ..
-rm -r uploads/
-ls
-git add .
-git commit -m "完成了到期前提醒demo，接下来将做RBAC"
-git push origin dev
-mysql -u root -p
-cd
-php yii migrate/create add_name_column_for_table_admin
-php yii migrate/up
-php yii migrate/create create_table_role
-php yii migrate/up
-php yii migrate/create create_table_user_role
-yii migrate/up
-php yii migrate/up
-php yii migrate/create create_table_access
-php yii migrate/up
-php yii migrate/create create_table_role_access
-php yii migrate/up
-php yii migrate/create create_table_user_access_log
-php yii migrate/up
-mysql -u root -p
-cd backend/
-ls -l
-pwd
-cd views/
-ls -l
-chmod 777 role/
-ls -l
-rm -rf role/
-ls
-mysql -u root -p
-cd
-php yii/migrate create add_source_column_for_table_user;
-yii/migrate create add_source_column_for_table_user;
-yii migrate create add_source_column_for_table_user;
-php yii migrate create add_source_column_for_table_user;
-php yii migrate/create add_source_column_for_table_user;
-php yii migrate/up
-select * from user;
-mysql -u root -p
-php yii migrate/create change_column_source_and_phone_for_table_user
-./yii migrate/up
-mysql -u root -p
-cd
-./yii migrate/create fix_table_user;
-./yii migrate/up1
-./yii migrate/up
-mysql -u root -p
-git add .
-git commit -m "完成RBAC"
-git push origin dev
-git add .
-git commit -m "设置了默认后台用户权限，接下来跟正式环境同步"
-git push origin dev
-cd..
-cd ..
-cd advanced
-ls
-git pull
-./yii migrate/up
-cd frontend/
-cd config/
-ls
-vi main-local.php 
-cd ..
-cd console/
-ls
-cd config/
-ls
-vi main-local.php 
-mysql -u root -p
-cd ..
-pwd
-./yii migrate/up
-./yii migrate/up 11
-./yii migrate/up 10
-mysql -u root -p
-./yii migrate/up
-cd frontend/
-cd web/
-vi index.php 
-cd /
-cd etc/
-cd nginx/
-ls
-cd conf.d/
-ls
-vi yii.conf 
-cd
-cd ..
-cd advanced
-cd frontend/
-cd web/
-vi index.php 
-cd ..
-cd backend/
-cd web/
-vi index.php 
-cd ..
-cd controllers/
-ls
-cd common/
-vi BaseController.php 
-mysql -u root -p
-git add .
-git commit -m "日志功能有点问题，准备在本地同步"
-git push origin dev
-cd ..
-cd advanced
-ls
-cd backend/
-ls
-cd web/
-ls
-cd uploads/
-ls
-mkdir contracts
-ls
-chmod 777 contracts/
-ls
-cd
-cd ..
-cd advanced
-ls
-./yii migrate/up
-mysql -u root -p
-cd backend/
-cd co
-cd controllers/
-ls
-vi ContractController.php 
-cd ..
-cd common/
-ls
-cd models/
-ls
-cd ..
-ls
-cd backend/
-cd models/
-ls
-vi ContractForm.php 
-cd
-cd ..
-cd advanced
-./yii migrate/up
-./yii migrate/up m170315_030429
-mysql -u root -p
-cd common/
-cd config/
-vi main-local.php 
-vi test-local.php 
-cd ..
-cd console/
-ls
-cd config/
-vi main-local.php 
-cd ..
-cd frontend/
-ls
-cd config/
-ls
-vi main-local.php 
-vi test-local.php 
-reboot
-mysql -u root -p
-cd
-git add .
-git commit -m "合同视图文件写错为大写"
-git push origin dev
-cd ..
-cd advanced
-ls
-git pull
-cd backend/
-ls
-cd web/
-ls
-cd uploads/
-ls
-cd contracts/
-ls
-mysql -u root -p
-cd
-cd ..
- cd advanced
-cd backend/
-ls
 cd controllers/
 ls
 pwd
@@ -998,3 +790,211 @@ top
 ll
 top
 mysql -u root -p
+ls
+pwd
+git add .
+git commit -m "准备进行数据迁移"
+git push origin dev
+cd /etc/nginx/conf.d/
+ls
+vvi yii.conf 
+vi yii.conf 
+ls
+vi yii.conf 
+cd frontend/web/
+ll
+cd ..
+ll
+cd web/
+ls
+vi index.php 
+ls
+mysqldump -u root -p Ww070101 advanced > advanced.sql
+mysqldump -u root -p advanced > advanced.sql
+ls
+ll
+ls
+cd frontend/
+cd web/
+ls
+vi index.php 
+cd ..
+cd backend/
+cd web/
+vi index.php 
+cd /etc/nginx/conf.d/
+ls
+vi yii.conf 
+pwd
+cd 
+pwd
+cd ..
+cd advanced
+cd backend/
+cd web/
+ls
+ll -a
+vi .gitignore 
+pwd
+cd ..
+cd frontend/
+ls
+cd web/
+ll -a
+vi .gitignore 
+cd ..
+pwd
+git add .
+git commit -m "将backend/uploads文件夹中文件补传
+"
+git push
+git push origin
+git push origin master
+git pull
+git push
+pwd
+ls
+pwd
+ls
+cd ..
+pwd
+ls
+ cd advanced-test/
+ls
+cd ..
+ls
+cd /etc/nginx/conf.d/
+ls
+mv progress.conf progress.conf.bak
+mv yii.conf yii.conf.bak
+mv yii-test.conf yii-test.conf.bak
+ls
+vi yii.conf.bak 
+ls
+pwd
+ls
+vi progress.conf.bak 
+vi yii-test.conf.bak 
+reboot
+vi /etc/hosts
+cd /etc/nginx/conf.d/
+ls
+vi yii.conf.bak 
+ls
+vi yii.conf.bak 
+ls
+vi yii.conf.bak 
+cd /etc/nginx/conf.d/
+ls
+vi yii.conf.bak 
+vi yii-test.conf.bak 
+ls
+cd ..
+ls
+vi nginx.conf
+ls
+cd
+ls
+pwd
+cd ..
+ls
+cd advanced
+ls
+reboot
+vi /etc/hosts
+cd /etc/nginx/conf.d/
+ls
+vi yii.conf.bak 
+vi progress.conf.bak 
+pwd
+ls
+vi yii.conf.bak 
+ls
+mysql -u root -p
+cd
+pwd
+ls
+cd ..
+ls
+cd advanced
+git pull
+ll -a
+vi .gitignore 
+vi .git
+cd .git
+ls
+cd ..
+ls
+pwd
+cd ..
+ls
+cd advanced
+ls
+cd frontend/
+ls
+pwd
+ls
+cd web/
+ls
+pwd
+ls
+cd img/
+ls
+cd ..
+ls
+cd img/
+ls
+pwd
+ls
+cd ..
+ls
+cd uploads/
+ls
+cd ..
+ls
+cd ..
+ls
+pwd
+ls
+cd ..
+ls
+pwd
+cd console/
+ls
+cd config/
+ls
+cd ..
+ls
+cd ..
+ls
+cd common/
+ls
+cd ..
+ls
+cd backend/
+ls
+cd models/
+ls
+cd ..
+ls
+cd models/
+ls
+cd ..
+ls
+cd web/
+ls
+cd img/
+ls
+cd ..
+cd uploads/
+ls
+cd temp/
+ls
+cd ..
+ls
+cd advanced
+cd frontend/
+cd web/
+cd uploads/
+cd ..
+ls -l
