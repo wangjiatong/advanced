@@ -30,23 +30,24 @@ class WeChatController extends Controller
     {
         parent::beforeAction($action);
         $this->layout = 'wx';
-        if($action->uniqueId === 'we-chat/index')
-        {
-            if(isset($_GET['echostr']))
-            {
-                $this->ValidateUrl();
-            }else{
-                return true;
-            }
-        }elseif($action->uniqueId === 'we-chat/auth'){
-            return true;
-        }
+//        if($action->uniqueId === 'we-chat/index')
+//        {
+//            if(isset($_GET['echostr']))
+//            {
+//                $this->ValidateUrl();
+//            }else{
+//                return true;
+//            }
+//        }elseif($action->uniqueId === 'we-chat/auth'){
+//            return true;
+//        }
         return true;
     }
     
     //index
     public function actionIndex()
     {
+        $this->ValidateUrl();
         $this->createMenu();
         $url = 'https://api.weixin.qq.com/cgi-bin/token';
         $data = [
