@@ -1,0 +1,41 @@
+Return-Path: <root@ewinjade.com>
+X-Original-To: root
+Delivered-To: root@ewinjade.com
+Received: by mail.ewinjade.com (Postfix, from userid 0)
+	id 19EECE27B6; Mon, 16 Oct 2017 09:00:03 +0800 (CST)
+From: root@ewinjade.com (Cron Daemon)
+To: root@ewinjade.com
+Subject: Cron <root@S519988> /usr/share/nginx/html/advanced/yii check-contracts/collect
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/usr/share/nginx/html/advanced-test>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+Message-Id: <20171016010003.19EECE27B6@mail.ewinjade.com>
+Date: Mon, 16 Oct 2017 09:00:03 +0800 (CST)
+
+Exception 'Swift_TransportException' with message 'Connection could not be established with host mail.ewinjade.com [php_network_getaddresses: getaddrinfo failed: Name or service not known #0]'
+
+in /usr/share/nginx/html/advanced/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php:268
+
+Stack trace:
+#0 /usr/share/nginx/html/advanced/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php(62): Swift_Transport_StreamBuffer->_establishSocketConnection()
+#1 /usr/share/nginx/html/advanced/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/AbstractSmtpTransport.php(113): Swift_Transport_StreamBuffer->initialize(Array)
+#2 /usr/share/nginx/html/advanced/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()
+#3 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2-swiftmailer/Mailer.php(146): Swift_Mailer->send(Object(Swift_Message))
+#4 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/mail/BaseMailer.php(262): yii\swiftmailer\Mailer->sendMessage(Object(yii\swiftmailer\Message))
+#5 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/mail/BaseMessage.php(48): yii\mail\BaseMailer->send(Object(yii\swiftmailer\Message))
+#6 /usr/share/nginx/html/advanced/console/controllers/CheckContractsController.php(78): yii\mail\BaseMessage->send()
+#7 [internal function]: console\controllers\CheckContractsController->actionCollect()
+#8 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#9 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/base/Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#10 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/console/Controller.php(128): yii\base\Controller->runAction('collect', Array)
+#11 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/base/Module.php(523): yii\console\Controller->runAction('collect', Array)
+#12 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('check-contracts...', Array)
+#13 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('check-contracts...', Array)
+#14 /usr/share/nginx/html/advanced/vendor/yiisoft/yii2/base/Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#15 /usr/share/nginx/html/advanced/yii(27): yii\base\Application->run()
+#16 {main}
