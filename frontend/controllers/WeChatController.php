@@ -48,14 +48,14 @@ class WeChatController extends Controller
     public function actionIndex()
     {
         $this->ValidateUrl();
-        $this->createMenu();
-        $url = 'https://api.weixin.qq.com/cgi-bin/token';
-        $data = [
-            'grant_type' => 'client_credential',
-            'appid' => 'wxf637ffef0c489df9',
-            'secret' => '02ee3eff9b5a5454c49b914841760f11',
-        ];
-        $this->getAccessToken($url, $data);
+//        $this->createMenu();
+//        $url = 'https://api.weixin.qq.com/cgi-bin/token';
+//        $data = [
+//            'grant_type' => 'client_credential',
+//            'appid' => 'wxf637ffef0c489df9',
+//            'secret' => '02ee3eff9b5a5454c49b914841760f11',
+//        ];
+//        $this->getAccessToken($url, $data);
 //        var_dump($this->generateGetCodeUrl());
     }
     
