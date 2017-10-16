@@ -24,21 +24,21 @@ use yii\helpers\Html;
                     <?= $content ?>
                 </div>
                 <div class="weui-tabbar" style="position: fixed;">
-                    <a href="http://frontend.test.ewinjade.com/we-chat/about-us" class="weui-tabbar__item">
+                    <a href="http://www.ewinjade.com/we-chat/about-us" class="weui-tabbar__item">
                         <span style="display: inline-block;position: relative;">
                             <img src="/img/wx/company.png" alt="" class="weui-tabbar__icon">
                             <!--<span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">99</span>-->
                         </span>
                         <p class="weui-tabbar__label">关于我们</p>
                     </a>
-                    <a href="http://frontend.test.ewinjade.com/we-chat/news" class="weui-tabbar__item">
+                    <a href="http://www.ewinjade.com/we-chat/news" class="weui-tabbar__item">
                         <span style="display: inline-block;position: relative;">
                             <img src="/img/wx/news.png" alt="" class="weui-tabbar__icon">
                             <!--<span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>-->
                         </span>
                         <p class="weui-tabbar__label">新闻动态</p>
                     </a>
-                    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2ffrontend.test.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect" class="weui-tabbar__item">
+                    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2fwww.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect" class="weui-tabbar__item">
                         <img src="/img/wx/me.png" alt="" class="weui-tabbar__icon">
                         <p class="weui-tabbar__label">个人中心</p>
                     </a>
