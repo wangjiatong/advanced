@@ -80,7 +80,7 @@ class WeChatController extends Controller
         {
             return $this->redirect(['we-chat/member', 'openid' => $openid]);
         }else{
-            $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2ffrontend.test.ewinjade.com%2fwe-chat%2fbind-wx&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+            $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2fwww.ewinjade.com%2fwe-chat%2fbind-wx&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
         }    
     }
     
@@ -116,8 +116,8 @@ class WeChatController extends Controller
                 }
                 return $this->redirect(['we-chat/member', 'openid' => $openid]);
             }
-//            return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2ffrontend.test.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
-            return $this->redirect(['error', 'msg' => '请检查您的用户名及密码是否输入正确，或该账号已绑定过微信。如有问题请与我们取得联系。', 'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2ffrontend.test.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect']);
+//            return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2fwww.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+            return $this->redirect(['error', 'msg' => '请检查您的用户名及密码是否输入正确，或该账号已绑定过微信。如有问题请与我们取得联系。', 'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf637ffef0c489df9&redirect_uri=http%3a%2f%2fwww.ewinjade.com%2fwe-chat%2fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect']);
         }
         return $this->render('auth', [
             'model' => $model,
@@ -452,12 +452,12 @@ class WeChatController extends Controller
                 [
                     'name' => '关于我们',
                     'type' => 'view',
-                    'url' => 'http://frontend.test.ewinjade.com/we-chat/about-us',
+                    'url' => 'http://www.ewinjade.com/we-chat/about-us',
                 ],
                 [
                     'name' => '新闻动态',
                     'type' => 'view',
-                    'url' => 'http://frontend.test.ewinjade.com/we-chat/news',
+                    'url' => 'http://www.ewinjade.com/we-chat/news',
                 ],
                 [
                     'name' => '个人中心',
@@ -490,7 +490,7 @@ class WeChatController extends Controller
         $url = 'https://open.weixin.qq.com/connect/oauth2/authorize';
         $arr = [
             'appid' => 'wxf637ffef0c489df9',
-            'redirect_uri' => 'http%3a%2f%2ffrontend.test.ewinjade.com%2fwe-chat%2fauth',
+            'redirect_uri' => 'http%3a%2f%2fwww.ewinjade.com%2fwe-chat%2fauth',
             'response_type' => 'code',
             'scope' => 'snsapi_userinfo',
             'state' => 'STATE',
