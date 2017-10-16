@@ -477,8 +477,6 @@ class WeChatController extends Controller
     {
         //获取AT
         $res = $this->getCurl($url, $data);
-        var_dump($res);
-        exit();
         //向数据库中存入
         $access_token = new AccessToken();
         $access_token->access_token = $res['access_token'];
