@@ -1,8 +1,3 @@
-cd controllers/
-ls
-pwd
-vi ContractController.php 
-cd ..
  cd views/
 ls
 cd contract/
@@ -998,3 +993,8 @@ cd web/
 cd uploads/
 cd ..
 ls -l
+pwd
+git add .
+git commit -m "合同付款频率加入按年"
+pwd
+git push origin dev
