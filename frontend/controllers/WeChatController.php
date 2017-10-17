@@ -196,7 +196,11 @@ class WeChatController extends Controller
     {
         $model = new Advice();
         $user_id = UserWx::findUserByOpenid($openid)->user_id;
-        $manager_id = Contract::findOne(['user_id' => $user_id])->source;
+        if(!$contract = Contract::findOne(['user_id' => $user_id]))
+        {
+            throw new NotFoundHttpException;
+        }
+        $manager_id = $contract->source;
         $ceo_id = 1;
         if($model->load(Yii::$app->request->post()))
         {
