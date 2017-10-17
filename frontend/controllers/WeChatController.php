@@ -14,6 +14,7 @@ use common\models\Advice;
 use frontend\models\WxValidateOldPassword;
 use frontend\models\WxSetNewPassword;
 use backend\models\Admin;
+use yii\web\NotFoundHttpException;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -288,11 +289,16 @@ class WeChatController extends Controller
     public function actionCall($openid)
     {
         $user_id = UserWx::findUserByOpenid($openid)->user_id;
-        $source = Contract::findOne(['user_id' => $user_id])->source;
-        $admin = Admin::findOne($source);
-        return $this->render('call', [
-            'admin' => $admin,
-        ]);
+        if($contract = Contract::findOne(['user_id' => $user_id]))
+        {
+            $source = $contract->source;
+            $admin = Admin::findOne($source);
+            return $this->render('call', [
+                'admin' => $admin,
+            ]);
+        }else{
+            throw new NotFoundHttpException;
+        }
     }
     
     //合同详情页
