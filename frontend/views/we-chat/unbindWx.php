@@ -14,7 +14,7 @@ use yii\helpers\Url;
     </div>
     <div class="weui-msg__opr-area">
         <p class="weui-btn-area">
-            <a href="<?= Url::to(['we-chat/unbind-wx-relation', 'openid' => $openid]) ?>" class="weui-btn weui-btn_primary" onload="javascript:WeixinJSBridge.call('closeWindow');">确定</a>
+            <a href="<?= Url::to(['we-chat/unbind-wx-relation', 'openid' => $openid]) ?>" class="weui-btn weui-btn_primary" onload="WeixinJSBridge.call('closeWindow')">确定</a>
             <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
         </p>
     </div>
