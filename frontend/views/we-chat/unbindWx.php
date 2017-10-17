@@ -14,16 +14,35 @@ use yii\helpers\Url;
     </div>
     <div class="weui-msg__opr-area">
         <p class="weui-btn-area">
-            <a href="<?= Url::to(['we-chat/unbind-wx-relation', 'openid' => $openid]) ?>" class="weui-btn weui-btn_primary" onclick="close_window()">确定</a>
+            <a href="<?= Url::to(['we-chat/unbind-wx-relation', 'openid' => $openid]) ?>" class="weui-btn weui-btn_primary">确定</a>
             <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
         </p>
     </div>
 </div>
 <script>
-function close_window()
-{
-    window.opener=null;
-    window.open('','_self');
-    window.close();
-}
+$(function(){ 
+    pushHistory(); 
+    window.addEventListener("popstate", function(e) { 
+        pushHistory(); 
+        var ua = navigator.userAgent.toLowerCase(); 
+        if(ua.match(/MicroMessenger/i)=="micromessenger") 
+        { 
+            WeixinJSBridge.call('closeWindow'); 
+        } else if(ua.indexOf("alipay")!=-1){ 
+            AlipayJSBridge.call('closeWebview'); 
+        }else if(ua.indexOf("baidu")!=-1){ 
+            BLightApp.closeWindow(); 
+        } 
+        else{ 
+            window.close(); 
+        } 
+    }, false); 
+    function pushHistory() { 
+        var state = { 
+            title: "title", 
+            url: "#" 
+        }; 
+        window.history.pushState(state, "title", "#"); 
+    } 
+});
 </script>

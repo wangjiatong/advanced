@@ -279,9 +279,7 @@ class WeChatController extends Controller
             {
                 if($this->findWxUser($openid)->delete())
                 {
-//                    echo "解绑成功！";
-//                    return true;
-                    exit();
+                    echo "<p>解绑成功！请点击左上角返回或关闭以离开此页面。</p>";
                 }
             }
             return null;
