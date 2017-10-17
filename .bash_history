@@ -1,41 +1,3 @@
- cd views/
-ls
-cd contract/
-ls
-vi view.php 
-ls
-cd ..
-cd m
-cd ..
-cd models/
-ls
-pwd
-ls
-cd ..
-ls
-cd ..
-pwd
-ls
-cd backend/
-ls
-cd views/
-cd contract/
-ls
-vi view.php 
-ls
-cd ..
-cd controllers/
-ls
-cd common/
-ls
-vi BaseController.php 
-ls
-cd ..
-cd web/
-ls
-cd uploads/
-ls -l
-cd contracts/
 ls
 rm c3-2017-05-23-70.pdf 
 rm c3-2017-05-23-80.pdf 
@@ -997,4 +959,42 @@ pwd
 git add .
 git commit -m "合同付款频率加入按年"
 pwd
+git push origin dev
+pwd
+cd frontend/
+ls
+cd controllers/
+ls
+cd ..
+cd
+git add .
+git commit -m "在we-chat/中重新开启验证微信公众号url"
+git push origin dev
+git add .
+git commit -m "在we-chat/中重新开启验证微信公众号url"
+git push origin dev
+git add .
+git commit -m "在we-chat/中重新开启验证微信公众号url"
+git push origin dev
+git add .
+git commit -m "url验证成功"
+git push origin dev
+git add .
+git commit -m "修改we-chat/内为阿里云正式环境地址"
+git push origin dev
+pwd
+git add .
+git commit -m "测试获取at"
+git push origin dev
+git add .
+git commit -m "测试获取at"
+git push origin dev
+git add .
+git commit -m "测试菜单"
+git push origin dev
+git add .
+git commit -m "个人中心有问题"
+git push origin dev
+git add .
+git commit -m "个人中心有问题"
 git push origin dev
