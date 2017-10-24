@@ -59,7 +59,7 @@ $this->title = '合同详情：'.$model->contract_number;
                     <th>成立期利息</th>
                     <td><?= $model->interest ?></td>
                     <th>付息频率</th>
-                    <td colspan="3">
+                    <td>
                         <?php
                         switch($model->term)
                         {
@@ -69,7 +69,31 @@ $this->title = '合同详情：'.$model->contract_number;
                             case 0: echo '一次性';                          break;
                         }
                         ?>
-                    </td>   
+                    </td>  
+                    <th>是否含有浮动利率</th>
+                    <td>
+                    <?= $model->if_float == 0 ? "否" : "是" ?>
+                    <?php
+                        if($model->if_float == 0)
+                        {
+                            echo Html::a('改为浮动利率', ['contract/set-float', 'id' => $model->id, 'status' => 1], [
+                                'class' => 'btn btn-success', 
+                                'data' => [
+                                    'confirm' => '你确定要改变吗？',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }else{
+                            echo Html::a('取消', ['contract/set-float', 'id' => $model->id, 'status' => 0], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => '你确定要改变吗？',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }
+                    ?>
+                    </td> 
                 </tr>
                 <tr>
                     <th>每期到期时间</th>
@@ -78,6 +102,25 @@ $this->title = '合同详情：'.$model->contract_number;
                 <tr>
                     <th>每期应付利息</th>
                     <td colspan="5"><?= $model->every_interest ?></td>
+                </tr>
+                <tr>
+                    <th>浮动利息</th>
+                    <td colspan="5">
+                    <?= $model->float_interest == 0 ? "尚未追加" : $model->float_interest ?>
+                    <?php
+                        if($model->if_float == 0)
+                        {
+                            echo Html::a('改为浮动利率', ['contract/set-float', 'id' => $model->id, 'status' => 1], ['class' => 'btn btn-success']);
+                        }else{
+                            if($model->float_interest == 0)
+                            {
+                                echo Html::a('追加', ['contract/set-float-interest', 'id' => $model->id], ['class' => 'btn btn-success']);
+                            }else{
+                                echo Html::a('修改', ['contract/set-float-interest', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                            }
+                        }
+                    ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>应付利息总额</th>

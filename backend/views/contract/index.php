@@ -85,6 +85,20 @@ $this->title = '合同列表';
                 }
             ],
             [
+                'label' => '浮动利率',
+                'value' => function($data){
+                    if($data->if_float == 0 && $data->float_interest == 0)
+                    {
+                        return "不含";
+                    }elseif($data->if_float == 1 && $data->float_interest == 0)
+                    {
+                        return "尚未追加";
+                    }else{
+                        return $data->float_interest;
+                    }
+                }    
+            ],
+            [
                 'label' => '操作',
                 'format' => 'raw',
                 'value' => function($data){

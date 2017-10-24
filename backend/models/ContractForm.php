@@ -27,6 +27,8 @@ class ContractForm extends Model
     public $interest_year;//新增年利率
     public $pdf;//合同扫描件
     public $bank_user;//开户名
+    public $if_float;//是否含有浮动利率
+    public $float_interest;//浮动利率金额
 
     /**
      * @inheritdoc
@@ -34,7 +36,7 @@ class ContractForm extends Model
     public function rules()
     {
         return [
-            [['capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user'], 'required'],
+            [['capital', 'transfered_time', 'found_time', 'cash_time', 'term_month', 'term', 'bank', 'bank_number', 'product_id', 'user_id', 'raise_interest_year', 'interest_year', 'bank_user', 'if_float'], 'required'],
             ['contract_number', 'safe'],
             [['capital', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
             [['transfered_time', 'found_time', 'cash_time'], 'safe'],
@@ -78,6 +80,8 @@ class ContractForm extends Model
             'interest_year' => '年利率（单位：%）',
             'pdf' => '合同扫描件（*可补传）',
             'bank_user' => '开户名',
+            'if_float' => '是否含有浮动利率',
+            'float_interest' => '浮动利率金额（单位：元）',
         ];
     }
 
@@ -140,6 +144,8 @@ class ContractForm extends Model
         $contract->term_month = $this->term_month;//期限（按月）
         
         $contract->interest_year = $this->interest_year;//年利率
+        
+        $contract->if_float = $this->if_float;//是否含有浮动利率
         
         $contract->interest = round($contract->capital * $contract->interest_year / 100 * $contract->term_month / 12, 2);//成立期利息
         

@@ -185,6 +185,52 @@ class ContractController extends BaseController
 //            echo '删除失败！';
 //        }
 //    }
+
+    /*
+     * 将不存在的浮动利率设置的合同
+     * 改为存在
+     */
+    public function actionSetFloat($id, $status)
+    {
+         if($contract = $this->findModel($id))
+         {
+             $contract->if_float = $status;
+             if($status == 0)
+             {
+                 $contract->float_interest = 0;
+             }
+             if($contract->update())
+             {
+                return $this->redirect(Yii::$app->request->referrer);
+             }
+         }else{
+            throw new NotFoundHttpException('该合同不存在！');
+         }
+    }
+
+    /*
+     * 执行设置浮动利息的操作
+     */
+    public function actionSetFloatInterest($id)
+    {
+        if($contract = $this->findModel($id))
+        {
+            if($contract->load(Yii::$app->request->post()))
+            {
+                $contract->float_interest = Yii::$app->request->post()['Contract']['float_interest'];
+                if($contract->update())
+                {
+                    return $this->redirect(['contract/view', 'id' => $contract->id]);
+                }
+            }
+            return $this->render('setFloatInterest', [
+                'model' => $contract,
+            ]);
+        }else{
+            throw new NotFoundHttpException('该合同不存在！');
+        }        
+    }
+    
     public function actionMyDelete($id)
     {
         $contract = $this->findMyModel($id);
@@ -202,6 +248,7 @@ class ContractController extends BaseController
 
         }       
     }
+    
     //按产品和时间范围导出合同excel
     public function actionExcel()
     {
@@ -236,11 +283,11 @@ class ContractController extends BaseController
             $res =[];
             foreach ($ids as $id)
             {
-                $res[] = Contract::find()->select('id, user_id, source, product_id, capital, every_time, every_interest, bank, bank_user, bank_number, transfered_time, found_time, cash_time, raise_interest_year, raise_day, raise_interest, interest_year, interest, term_month, term, total_interest, total')->asArray()->where(['id' => $id])->one();
+                $res[] = Contract::find()->select('id, user_id, source, product_id, capital, every_time, every_interest, bank, bank_user, bank_number, transfered_time, found_time, cash_time, raise_interest_year, raise_day, raise_interest, interest_year, interest, term_month, term, total_interest, total, float_interest')->asArray()->where(['id' => $id])->one();
             }
             if($res)
             {
-            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）' ];
+            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）', '浮动利息（元）'];
             //对数组的键值进行处理从而输出中文
             $i = 0;
             foreach($res as $r)

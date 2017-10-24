@@ -35,15 +35,22 @@ $my_id = Yii::$app->user->identity->id;
     
     <?= $form->field($model, 'interest_year')->textInput() ?>
     
+    <?= $form->field($model, 'if_float')->dropDownList([0 => '否', 1 => '是'], ['prompt' => '请选择是否含有浮动利率']) ?>
+    
     <?= $form->field($model, 'term_month')->textInput() ?>
 
-    <?= $form->field($model, 'term')->dropDownList([
-        '1' => '按月',
-        '3' => '季度',
-        '6' => '半年',
-        '12' => '按年',
-        '0' => '一次性兑付',
-    ]) ?>
+    <?= $form->field($model, 'term')->dropDownList(
+            [
+                '1' => '按月',
+                '3' => '季度',
+                '6' => '半年',
+                '12' => '按年',
+                '0' => '一次性兑付',
+            ],
+            [
+                'prompt' => '请选择付款方式',
+            ]
+        ) ?>
 
     <?= $form->field($model, 'bank')->textInput(['maxlength' => true]) ?>
     
