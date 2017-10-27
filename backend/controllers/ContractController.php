@@ -187,8 +187,7 @@ class ContractController extends BaseController
 //    }
 
     /*
-     * 将不存在的浮动利率设置的合同
-     * 改为存在
+     * 改变合同是否含有浮动利率的状态
      */
     public function actionSetFloat($id, $status)
     {
@@ -231,21 +230,20 @@ class ContractController extends BaseController
         }        
     }
     
+    /*
+     * 删除属于某销售自己的合同
+     */
     public function actionMyDelete($id)
     {
         $contract = $this->findMyModel($id);
-
         $pdf = $contract->pdf; 
-
         if($contract->delete())
         {
             if(is_file($pdf))
             {
                 unlink($pdf);
             }
-
             return $this->redirect([parent::checkUrlAccess('contract/my-contract', 'contract/index')]);
-
         }       
     }
     

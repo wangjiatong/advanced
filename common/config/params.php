@@ -1,6 +1,6 @@
 <?php
 return [
-    'adminEmail' => '11228463@qq.com',
-    'supportEmail' => '11228463@qq.com',
+    'adminEmail' => 'wangjiatong@ewinjade.com',
+    'supportEmail' => 'mail@ewinjade.com',
     'user.passwordResetTokenExpire' => 3600,
 ];
