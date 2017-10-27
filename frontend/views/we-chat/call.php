@@ -19,7 +19,9 @@
     </div>
     <div class="weui-cell weui-cell_access">
         <div class="weui-cell__bd">
-            <span style="vertical-align: middle"><a href="tel:18603815425" style="display:inline-block;"></a></span>
+            <a href="tel:18603815425" style="display:inline-block;">
+                <span style="vertical-align: middle"></span>
+            </a>
         </div>
         <div class="weui-cell__ft">拨打电话</div>
     </div>
