@@ -12,7 +12,6 @@ $this->registerCss("div.info{background: url(/img/wx/personal-bg.jpg) ; width: 1
 ?>
 <div class="info">
     <img src="<?= WxUser::findOne(['openid' => $openid])->headimgurl ?>" />
-    <span><?= UserModel::findOne(UserWx::findUserByOpenid($openid)->user_id)->name ?></span>
 </div>
 <div class="weui-cells__title" style="background: #F0EFF5; padding-top: 5px; padding-bottom: 5px; margin: 0px;">服务</div>
 <div class="weui-grids">
