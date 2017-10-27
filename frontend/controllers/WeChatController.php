@@ -175,7 +175,7 @@ class WeChatController extends Controller
     //在售产品
     public function actionProduct($openid)
     {
-        $product = Product::find()->asArray()->all();
+        $product = Product::find()->asArray()->orderBy('id desc')->all();
         return $this->render('product', [
             'product' => $product,
             'openid' => $openid,
@@ -201,7 +201,7 @@ class WeChatController extends Controller
             throw new NotFoundHttpException;
         }
         $manager_id = $contract->source;
-        $ceo_id = 1;
+        $ceo_id = 9;//朱总用户id
         if($model->load(Yii::$app->request->post()))
         {
             $model->openid = $openid;
