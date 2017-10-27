@@ -28,7 +28,7 @@ use common\models\Product;
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">业绩比较基准</label>
-            <span class="weui-form-preview__value">%<?= $model->interest_year ?></span>
+            <span class="weui-form-preview__value"><?= $model->interest_year ?>%</span>
         </div>
     </div>
     <div class="weui-form-preview__ft">
