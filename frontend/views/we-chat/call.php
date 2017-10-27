@@ -23,7 +23,7 @@
         <div class="weui-media-box weui-media-box_small-appmsg">
             <div class="weui-cells">
                 <a class="weui-cell weui-cell_access" href="tel:18603815425">
-                    <div class="weui-cell__hd"><img src="img/wx/dianhua.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__hd"><img src="/img/wx/dianhua.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
                     <div class="weui-cell__bd weui-cell_primary">
                         <p>拨打电话</p>
                     </div>
