@@ -8,7 +8,7 @@ use yii\helpers\Url;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$this->registerCss("div.info{background: url(/img/wx/personal-bg.jpg) ; width: 100%; float:left; } div.info img{width: 70px; height: 70px; padding: 20px; float:left; } div.info span{padding: 20px; float: left; }");
+$this->registerCss("div.info{background: url(/img/wx/personal-bg.jpg) ; width: 100%; float:left; } div.info img{width: 70px; height: 70px; padding: 20px; float:left; } div.info span{padding: 10px; float: left; }");
 ?>
 <div class="info">
     <img src="<?= WxUser::findOne(['openid' => $openid])->headimgurl ?>" />
