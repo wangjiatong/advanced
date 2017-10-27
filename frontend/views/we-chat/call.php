@@ -17,12 +17,19 @@
             <p style="font-size: 13px;color: #888888;"><?= $admin->name ?></p>
         </div>
     </div>
-    <div class="weui-cell weui-cell_access">
-        <div class="weui-cell__bd">
-            <a href="tel:18603815425" style="display:inline-block;">
-                <span style="vertical-align: middle"></span>
-            </a>
+</div>
+<div class="weui-panel">
+    <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access" href="<?=tel:18603815425?>">
+                    <div class="weui-cell__hd"><img src="<?=/img/wx/dianhua.png?>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd weui-cell_primary">
+                        <p><?=拨打电话?></p>
+                    </div>
+                    <span class="weui-cell__ft"></span>
+                </a>
+            </div>
         </div>
-        <div class="weui-cell__ft">拨打电话</div>
     </div>
 </div>
