@@ -79,7 +79,7 @@ $this->title = '合同详情：'.$model->contract_number;
                             echo Html::a('改为浮动利率', ['contract/set-float', 'id' => $model->id, 'status' => 1], [
                                 'class' => 'btn btn-success', 
                                 'data' => [
-                                    'confirm' => '你确定要改变吗？',
+                                    'confirm' => '你确定要改为含浮动利率吗？',
                                     'method' => 'post',
                                 ],
                             ]);
@@ -87,7 +87,7 @@ $this->title = '合同详情：'.$model->contract_number;
                             echo Html::a('取消', ['contract/set-float', 'id' => $model->id, 'status' => 0], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
-                                    'confirm' => '你确定要改变吗？',
+                                    'confirm' => '你确定要取消浮动利率吗？',
                                     'method' => 'post',
                                 ],
                             ]);
@@ -110,13 +110,31 @@ $this->title = '合同详情：'.$model->contract_number;
                     <?php
                         if($model->if_float == 0)
                         {
-                            echo Html::a('改为浮动利率', ['contract/set-float', 'id' => $model->id, 'status' => 1], ['class' => 'btn btn-success']);
+                            echo Html::a('改为浮动利率', ['contract/set-float', 'id' => $model->id, 'status' => 1], [
+                                'class' => 'btn btn-success',
+                                'data' => [
+                                    'confirm' => '你确定要改为含浮动利率吗？',
+                                    'method' => 'post',
+                                ],
+                            ]);
                         }else{
                             if($model->float_interest == 0)
                             {
-                                echo Html::a('追加', ['contract/set-float-interest', 'id' => $model->id], ['class' => 'btn btn-success']);
+                                echo Html::a('追加', ['contract/set-float-interest', 'id' => $model->id], [
+                                    'class' => 'btn btn-success',
+                                    'data' => [
+                                        'confirm' => '你确定要追加浮动利息吗？',
+                                        'method' => 'post',
+                                    ],
+                                ]);
                             }else{
-                                echo Html::a('修改', ['contract/set-float-interest', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                                echo Html::a('修改', ['contract/set-float-interest', 'id' => $model->id], [
+                                    'class' => 'btn btn-primary',
+                                    'data' => [
+                                        'confirm' => '你确定要修改浮动利息吗？',
+                                        'method' => 'post',
+                                    ],
+                                ]);
                             }
                         }
                     ?>

@@ -1,5 +1,5 @@
 <?php
 return [
-    'adminEmail' => '11228463@qq.com',
+    'adminEmail' => 'wangjiatong@ewinjade.com',
     'supportEmail' => 'mail@ewinjade.com',
 ];
