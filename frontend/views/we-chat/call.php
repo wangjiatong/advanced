@@ -19,7 +19,7 @@
     </div>
     <div class="weui-cell weui-cell_access">
         <div class="weui-cell__bd">
-            <span style="vertical-align: middle">电话     18603815425</span>
+            <span style="vertical-align: middle"><a href="tel:18603815425">电话</a></span>
         </div>
         <div class="weui-cell__ft">点击拨打</div>
     </div>
