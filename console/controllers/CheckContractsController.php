@@ -76,6 +76,8 @@ class CheckContractsController extends Controller
                     $mail->setHtmlBody('合同编号：'.Contract::findOne($r['id'])->contract_number);
 
                     $mail->send();
+                    
+                    sleep(5);
 
                 }
                         
