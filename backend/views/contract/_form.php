@@ -71,3 +71,63 @@ $my_id = Yii::$app->user->identity->id;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php 
+$propertyId = 'contractform-capital';
+//将输入的数字转换为以千分位分割
+$numbersFormater = <<<numberFormater
+    //格式化输入数字为以千分位分割
+    $('#$propertyId').bind('keyup', function(){
+        var before = $('#$propertyId').val();
+        var after = seprateByThousand(before);
+        var originalLabel = $('label[for=$propertyId]').text();
+        $('label[for=$propertyId]').text('本金：' + after + ' （单位：元）' + ' 人民币大写金额：' + upperNum(before));
+    });
+    //JS千分位分割函数
+    function seprateByThousand(num) 
+    {
+        var num = (num || 0).toString(), result = '';
+        while (num.length > 3) 
+        {
+            result = ',' + num.slice(-3) + result;
+            num = num.slice(0, num.length - 3);
+        }
+        if (num) { result = num + result; }
+        return result;
+    }
+numberFormater;
+//金额转大写
+$upperNum = <<<upperNum
+    function upperNum(n)   
+    {  
+        var fraction = ['角', '分'];  
+        var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];  
+        var unit = [ ['元', '万', '亿'], ['', '拾', '佰', '仟']  ];  
+        var head = n < 0? '欠': '';  
+        n = Math.abs(n);  
+    
+        var s = '';  
+    
+        for (var i = 0; i < fraction.length; i++)   
+        {  
+            s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');  
+        }  
+        s = s || '整';  
+        n = Math.floor(n);  
+    
+        for (var i = 0; i < unit[0].length && n > 0; i++)   
+        {  
+            var p = '';  
+            for (var j = 0; j < unit[1].length && n > 0; j++)   
+            {  
+                p = digit[n % 10] + unit[1][j] + p;  
+                n = Math.floor(n / 10);  
+            }  
+            s = p.replace(/(零.)*零$/, '').replace(/^$/, '零')  + unit[0][i] + s;  
+        }  
+        return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');  
+    } 
+upperNum;
+$this->registerJs($numbersFormater);
+$this->registerJs($upperNum);
+?>
