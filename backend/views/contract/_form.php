@@ -17,6 +17,8 @@ $my_id = Yii::$app->user->identity->id;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'contract_number')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->where(['source' => $my_id])->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
 
     <?= $form->field($model, 'capital')->textInput() ?>
     
@@ -59,8 +61,6 @@ $my_id = Yii::$app->user->identity->id;
     <?= $form->field($model, 'bank_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'product_id')->dropDownList(Product::find()->select('product_name')->indexBy('id')->column(), ['prompt' => '请选择产品名称']) ?>
-
-    <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->where(['source' => $my_id])->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
     
     <?= $form->field($model, 'pdf')->fileInput() ?>
 
