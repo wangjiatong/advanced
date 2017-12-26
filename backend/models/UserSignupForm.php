@@ -39,9 +39,11 @@ class UserSignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6, 'max' => 20],
             
-            [['name', 'sex', 'birthday'], 'required'],
+            [['name', 'sex'], 'required'],
             
-            [['phone_number'], 'safe'],
+            ['sex', 'integer', 'message' => '性别不能为空！'],
+            
+            [['phone_number', 'birthday'], 'safe'],
         ];
     }
 
@@ -52,13 +54,13 @@ class UserSignupForm extends Model
      */
     public function attributeLabels() {
         return [
-            'username' => '用户账户（*用户名不可存在相同的）',
-            'email' => '电子邮箱（*输入必须为正确的邮箱格式，如AAAA@BB.CC）',
-            'password' => '用户密码（*建议默认与用户名相同，客户可自行修改。否则请做好登记。）',
-            'name' => '客户姓名',
-            'sex' => '性别',
-            'birthday' => '生日（*格式：AAAA-BB-CC，个位数则用0补齐到两位）',
-            'phone_number' => '电话号码（*非必填）',
+            'username' => '*用户名',
+            'email' => '*电子邮箱',
+            'password' => '*密码',
+            'name' => '*客户姓名',
+            'sex' => '*性别',
+            'birthday' => '生日',
+            'phone_number' => '电话号码',
         ];
     }
     public function signup()
@@ -75,7 +77,7 @@ class UserSignupForm extends Model
         $user->name = $this->name;
         $user->sex = $this->sex;
         $user->birthday = $this->birthday;
-        $user->phone_number = isset($this->phone_number) ? $this->phone_number : null;
+        $user->phone_number = isset($this->phone_number) ? $this->phone_number : 0;
         $user->source = Yii::$app->user->identity->id;
 
         return $user->save() ? $user : null;
