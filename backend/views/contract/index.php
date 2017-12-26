@@ -33,7 +33,7 @@ $this->title = '合同列表';
             'contract_number',
 //            'capital',
 //            'transfered_time:date',
-            'found_time:date',
+            'found_time',
             // 'raise_day',
             // 'raise_interest',
 //             'cash_time:date',

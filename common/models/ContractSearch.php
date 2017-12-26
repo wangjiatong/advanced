@@ -62,7 +62,7 @@ class ContractSearch extends Contract
             'id' => $this->id,
             'capital' => $this->capital,
             'transfered_time' => $this->transfered_time,
-            'found_time' => $this->found_time,
+//             'found_time' => $this->found_time,
             'raise_day' => $this->raise_day,
             'raise_interest' => $this->raise_interest,
             'cash_time' => $this->cash_time,
@@ -79,6 +79,7 @@ class ContractSearch extends Contract
         ]);
 
         $query->andFilterWhere(['like', 'contract_number', $this->contract_number])
+            ->andFilterWhere(['like', 'found_time', $this->found_time])//将成立时间改为模糊查询
             ->andFilterWhere(['like', 'every_time', $this->every_time])
             ->andFilterWhere(['like', 'every_interest', $this->every_interest])
             ->andFilterWhere(['like', 'bank', $this->bank])
