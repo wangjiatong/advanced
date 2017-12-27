@@ -10,7 +10,7 @@ use common\models\Contract;
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '客户列表';
+$this->title = '客户管理';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-model-index">

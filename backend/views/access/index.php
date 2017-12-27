@@ -8,7 +8,7 @@ use backend\models\Role;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$this->title = '权限列表';
+$this->title = '权限管理';
 ?>
 <div class="acess-index">
     <h1><?= Html::encode($this->title); ?></h1>

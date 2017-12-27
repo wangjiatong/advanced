@@ -24,7 +24,7 @@ $this->title = $model->name;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('修改密码', ['reset-passwd', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
+        <?= Html::a('修改密码', ['reset-passwd', 'id' => $model->id], ['class' => 'btn btn-info disabled']) ?>
     </p>
 
     <?= DetailView::widget([

@@ -11,7 +11,7 @@ use backend\models\Admin;
 /* @var $searchModel common\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '合同列表';
+$this->title = '合同管理';
 
 ?>
 <div class="contract-index">
