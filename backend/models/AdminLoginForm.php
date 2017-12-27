@@ -11,7 +11,7 @@ class AdminLoginForm extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
     private $_user;
 
@@ -28,6 +28,17 @@ class AdminLoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+        ];
+    }
+    
+    /*
+     * 标签中文
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'password' => '密码',    
         ];
     }
 

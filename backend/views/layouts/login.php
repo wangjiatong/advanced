@@ -5,7 +5,7 @@ LoginAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <head>
-	<title>Login Two</title>
+	<title><?= $this->title ?></title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta charset="UTF-8">
