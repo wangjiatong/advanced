@@ -123,7 +123,8 @@ class ContractController extends BaseController
 
             if($model->save())
             {
-                return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+//                 return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+                return $this->redirect(['contract/my-view', 'id' => Yii::$app->db->getLastInsertID()]);
             }
         } else {
             return $this->render('create', [

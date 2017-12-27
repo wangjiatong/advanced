@@ -8,27 +8,53 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = '网站管理后台';
-//$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
 
-    <!--<p>Please fill out the following fields to login:</p>-->
+<?php $form = ActiveForm::begin(['id' => 'login-form',
+    'options' => ['class' => 'form-horizontal templatemo-login-form-2'],
+    'fieldConfig' => [
+        'template' => '	<div class="form-group">
+				          <div class="col-md-6 col-md-offset-3">		          	
+				            {label}
+				            <div class="templatemo-input-icon-container">
+				            	{input}
+				            </div>
+                            {error}		            		            		            
+				          </div>              
+				        </div>',
+        'labelOptions' => ['class' => 'control-label'],
+        'inputOptions' => ['class' => 'form-control'],
+        'errorOptions' => '',    
+    ],
+]); ?>
 
-    <div class="row row-centered">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <div class="col-lg-2 col-centered">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+    <div class="row">
+    	<div class="col-md-12">
+    		<h1><?= $this->title ?></h1>
+    	</div>
+    </div>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('用户名') ?>
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('用户名') ?>
 
-                <?= $form->field($model, 'password')->passwordInput()->label('密码') ?>
+    <?= $form->field($model, 'password')->passwordInput()->label('密码') ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox()->label('记住登录') ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-            <?php ActiveForm::end(); ?>
+    <?= $form->field($model, 'rememberMe')->checkbox([
+        'template' => '<div class="form-group">
+				          <div class="col-md-12 col-md-offset-3">
+				            <div class="checkbox">
+				                <label>
+				                  <input type="checkbox"> 记住我
+				                </label>
+				            </div>
+				          </div>
+				        </div>',
+    ])->label('保持登录') ?>
+    
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <?= Html::submitButton('登录', ['class' => 'btn btn-warning', 'name' => 'login-button']) ?>
         </div>
     </div>
-</div>
+
+<?php ActiveForm::end(); ?>
+

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
 use common\models\Product;
 use common\models\UserModel;
+use kartik\select2\Select2;
 
 $my_id = Yii::$app->user->identity->id;
 /* @var $this yii\web\View */
@@ -17,8 +18,14 @@ $my_id = Yii::$app->user->identity->id;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'contract_number')->textInput(['maxlength' => true]) ?>
-    
-    <?= $form->field($model, 'user_id')->dropDownList(UserModel::find()->where(['source' => $my_id])->select('name')->indexBy('id')->column(), ['prompt' => '请选择客户姓名']) ?>
+        
+    <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
+        'data' => UserModel::find()->select('name, id')->where(['source' => Yii::$app->user->identity->id])->indexBy('id')->column(),
+        'options' => [
+            'prompt' => '请选择',
+            'multiple' => false,
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'capital')->textInput() ?>
     
@@ -30,14 +37,11 @@ $my_id = Yii::$app->user->identity->id;
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'cash_time')->widget(DatePicker::className(), [
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
     <?= $form->field($model, 'raise_interest_year')->textInput() ?>
     
     <?= $form->field($model, 'interest_year')->textInput() ?>
     
-    <?= $form->field($model, 'if_float')->dropDownList([0 => '否', 1 => '是'], ['prompt' => '请选择是否含有浮动利率']) ?>
+    <?= $form->field($model, 'if_float')->dropDownList([0 => '否', 1 => '是'], ['prompt' => '请选择']) ?>
     
     <?= $form->field($model, 'term_month')->textInput() ?>
 
@@ -50,7 +54,7 @@ $my_id = Yii::$app->user->identity->id;
                 '0' => '一次性兑付',
             ],
             [
-                'prompt' => '请选择付款方式',
+                'prompt' => '请选择',
             ]
         ) ?>
 
@@ -60,7 +64,13 @@ $my_id = Yii::$app->user->identity->id;
 
     <?= $form->field($model, 'bank_number')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'product_id')->dropDownList(Product::find()->select('product_name')->indexBy('id')->column(), ['prompt' => '请选择产品名称']) ?>
+    <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
+        'data' => Product::find()->select('product_name, id')->indexBy('id')->column(),
+        'options' => [
+            'prompt' => '请选择',
+            'multiple' => false,
+        ],
+    ]) ?>
     
     <?= $form->field($model, 'pdf')->fileInput() ?>
 
