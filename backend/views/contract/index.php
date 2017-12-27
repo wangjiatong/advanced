@@ -51,6 +51,7 @@ $this->title = '合同列表';
             // 'updated_at',
             [
                 'label' => '产品名称',
+                'attribute' => 'product_id',
                 'value' => function($data){
                     if($data->product_id){
                         return Product::findOne($data->product_id)->product_name;
@@ -61,6 +62,7 @@ $this->title = '合同列表';
             ],
             [
                 'label' => '客户姓名',
+                'attribute' => 'user_id',
                 'value' => function($data){
                    if($data){
                        return UserModel::findOne($data->user_id)->name;
@@ -80,6 +82,7 @@ $this->title = '合同列表';
 //            ['class' => 'yii\grid\ActionColumn'],
             [
                 'label' => '客户经理',
+                'attribute' => 'source',
                 'value' => function($data){
                     return Admin::findOne($data->source)->name;
                 }

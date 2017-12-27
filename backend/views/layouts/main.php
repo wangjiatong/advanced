@@ -76,7 +76,7 @@ $my_id = Yii::$app->user->identity->id;
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span1">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header"><i class="icon-wrench"></i> 管理员功能</li>
@@ -96,18 +96,18 @@ $my_id = Yii::$app->user->identity->id;
                 <li class=""><a href="/user/my-user">我的客户</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 旗下产品</li>
                 <!--<li><a href="#">添加分类</a></li>-->
-                <li><a href="/product/product-column-index">产品分类列表</a></li>
+                <li><a href="/product/product-column-index">分类列表</a></li>
                 <!--<li><a href="#">添加产品</a></li>-->
-                <li><a href="/product/index">产品列表</a></li>
+                <li><a href="/product/index">列 表</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 合同管理</li>
                 <!--<li><a href="#">添加分类</a></li>-->
                 <li><a href="/contract/index">合同列表</a></li>
                 <li><a href="/contract/my-contract">我的合同</a></li>
                 <li class="nav-header"><i class="icon-signal"></i> 新闻动态</li>
-                <li><a href="/news/add-column">新增新闻分类</a></li>
-                <li><a href="/news/manage-news-columns">新闻分类列表</a></li>
-                <li><a href="/news/post">发布新闻</a></li>
-                <li><a href="/news/index">新闻列表</a></li>
+                <li><a href="/news/add-column">新增分类</a></li>
+                <li><a href="/news/manage-news-columns">分类列表</a></li>
+                <li><a href="/news/post">发 布</a></li>
+                <li><a href="/news/index">列 表</a></li>
                 <!--<li class="nav-header"><i class="icon-signal"></i> 联系我们</li>-->
                 <!--<li><a href="#">查看邮件</a></li>-->
             </ul>
@@ -120,7 +120,7 @@ $my_id = Yii::$app->user->identity->id;
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-    <div class="span9">
+    <div class="span11">
         <?= $content ?>
     </div>
     <!--</div>-->
