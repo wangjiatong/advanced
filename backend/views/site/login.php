@@ -23,10 +23,10 @@ $this->title = '网站管理后台';
 				          </div>              
 				        </div>',
         'labelOptions' => ['class' => 'control-label'],
-        'inputOptions' => ['class' => 'form-control'],
-        'errorOptions' => '',    
+        'inputOptions' => ['class' => 'form-control'],  
     ],
-]); ?>
+]); 
+?>
 
     <div class="row">
     	<div class="col-md-12">
