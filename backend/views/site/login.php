@@ -25,8 +25,7 @@ $this->title = '网站管理后台';
         'labelOptions' => ['class' => 'control-label'],
         'inputOptions' => ['class' => 'form-control'],  
     ],
-]); 
-?>
+]); ?>
 
     <div class="row">
     	<div class="col-md-12">
@@ -43,12 +42,12 @@ $this->title = '网站管理后台';
 				          <div class="col-md-12 col-md-offset-3">
 				            <div class="checkbox">
 				                <label>
-				                  <input type="checkbox"> 记住我
+			                        <input type="checkbox"> 记住我
 				                </label>
 				            </div>
 				          </div>
 				        </div>',
-    ])->label('保持登录') ?>
+    ]) ?>
     
     <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
