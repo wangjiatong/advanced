@@ -28,37 +28,37 @@ $this->title = '合同详情：'.$model->contract_number;
         ]) ?>
     </h1>
     <p></p>
-    <div class='table-responsive'>
+    <div class='table-responsive table-hover table-condensed'>
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th>本金</th>
+                    <td class="info">本金</td>
                     <td><?= $model->capital ?></td>
-                    <th>到账时间</th>
+                    <td class="info">到账时间</td>
                     <td><?= $model->transfered_time ?></td>
-                    <th>成立时间</th>
+                    <td class="info">成立时间</td>
                     <td><?= $model->found_time ?></td>
                 </tr>
                 <tr>
-                    <th>募集天数</th>
+                    <td>募集天数</td>
                     <td><?= $model->raise_day ?>天</td>
-                    <th>募集期年利率</th>
+                    <td>募集期年利率</td>
                     <td><?= $model->raise_interest_year ?>%</td>
-                    <th>募集期利息</th>
+                    <td>募集期利息</td>
                     <td><?= $model->raise_interest ?>元</td>
                 </tr>
                 <tr>
-                    <th>兑付时间</th>
+                    <td class="info">兑付时间</td>
                     <td><?= $model->cash_time ?></td>
-                    <th>期限</th>
+                    <td class="info">期限</td>
                     <td><?= $model->term_month ?>个月</td>
-                    <th>年利率</th>
+                    <td class="info">年利率</td>
                     <td><?= $model->interest_year ?>%</td>
                 </tr>
                 <tr>
-                    <th>成立期利息</th>
+                    <td>成立期利息</td>
                     <td><?= $model->interest ?></td>
-                    <th>付息频率</th>
+                    <td>付息频率</td>
                     <td>
                         <?php
                         switch($model->term)
@@ -70,7 +70,7 @@ $this->title = '合同详情：'.$model->contract_number;
                         }
                         ?>
                     </td>  
-                    <th>是否含有浮动利率</th>
+                    <td>是否含有浮动利率</td>
                     <td>
                     <?= $model->if_float == 0 ? "否" : "是" ?>
                     <?php
@@ -94,17 +94,28 @@ $this->title = '合同详情：'.$model->contract_number;
                         }
                     ?>
                     </td> 
+                </tr>       
+                <tr>
+                    <td class="info">每期到期时间</td>
+                    <?php
+                        $eve_time = explode(', ', $model->every_time);
+                        $eve_int = explode(', ', $model->every_interest);
+                        $eve_time_int = array_combine($eve_time, $eve_int);
+                        foreach($eve_time_int as $key => $val):
+                    ?>
+                    <td><?= $key ?></td>
+                    <?php endforeach; ?>
                 </tr>
                 <tr>
-                    <th>每期到期时间</th>
-                    <td colspan="5"><?= $model->every_time ?></td>
-                </tr>
+                    <td>每期应付利息</td>
+                    <?php
+                        foreach($eve_time_int as $key => $val):
+                    ?>
+                    <td><?= $val ?></td>
+                    <?php endforeach; ?>
+                </tr>      
                 <tr>
-                    <th>每期应付利息</th>
-                    <td colspan="5"><?= $model->every_interest ?></td>
-                </tr>
-                <tr>
-                    <th>浮动利息</th>
+                    <td class="info">浮动利息</td>
                     <td colspan="5">
                     <?= $model->float_interest == 0 ? "尚未追加" : $model->float_interest ?>
                     <?php
@@ -141,31 +152,31 @@ $this->title = '合同详情：'.$model->contract_number;
                     </td>
                 </tr>
                 <tr>
-                    <th>应付利息总额</th>
+                    <td>应付利息总额</td>
                     <td><?= $model->total_interest ?></td>
-                    <th>兑付总额</th>
+                    <td>兑付总额</td>
                     <td><?= $model->total ?></td>
-                    <th>开户行</th>
+                    <td>开户行</td>
                     <td><?= $model->bank ?></td>
                 </tr>
                 <tr>
-                    <th>开户名</th>
+                    <td class="info">开户名</td>
                     <td><?= $model->bank_user ?></td>
-                    <th>银行账号</th>
+                    <td class="info">银行账号</td>
                     <td><?= $model->bank_number ?></td>
-                    <th>客户经理</th>
+                    <td class="info">客户经理</td>
                     <td><?= Admin::findOne($model->source)->name ?></td>
                 </tr>
                 <tr>
-                    <th>客户姓名</th>
+                    <td>客户姓名</td>
                     <td><?= UserModel::findOne($model->user_id)->name ?></td>
-                    <th>产品名称</th>
+                    <td>产品名称</td>
                     <td><?= Product::findOne($model->product_id)->product_name ?></td>
-                    <th>创建时间</th>
+                    <td>创建时间</td>
                     <td><?= $model->created_at ?></td>
                 </tr>
                 <tr>
-                    <th>合同状态</th>
+                    <td class="info">合同状态</td>
                     <td colspan="5">
                         <?php 
                             if($model->status)

@@ -9,7 +9,7 @@ use backend\models\Access;
 /* @var $searchModel backend\models\RoleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '角色列表';
+$this->title = '角色管理';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="role-index">

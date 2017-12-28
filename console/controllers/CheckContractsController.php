@@ -77,7 +77,7 @@ class CheckContractsController extends Controller
 
                     $mail->send();
                     
-                    sleep(5);
+                    sleep(rand(10, 20));
 
                 }
                         

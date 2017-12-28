@@ -8,7 +8,7 @@ use backend\models\UserRole;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$this->title = '管理员列表';
+$this->title = '管理员管理';
 ?>
 <div class="admin-index">
     <h1><?= Html::encode($this->title) ?></h1>
