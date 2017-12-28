@@ -86,16 +86,16 @@ $my_id = Yii::$app->user->identity->id;
                 <li class=""><a href="/role/set">设置角色</a></li>
                 <li class=""><a href="/access">权限管理</a></li>
                 <li class=""><a href="/access/set">设置权限</a></li>
-                <li class="nav-header"><i class="icon-user"></i> 个 人</li>
+                <li class="nav-header"><i class="icon-cog"></i> 个 人</li>
                 <li class=""><a href="/admin/reset-passwd">修改密码</a></li>
                 <li class=""><a href="/site/request-password-reset">忘记密码</a></li>
                 <li class=""><a href="/admin/my-update">修改信息</a></li>
-                <li class="nav-header"><i class="icon-signal"></i> 新 闻</li>
+                <li class="nav-header"><i class="icon-list-alt"></i> 新 闻</li>
                 <li><a href="/news/add-column">增加分类</a></li>
                 <li><a href="/news/manage-news-columns">分类管理</a></li>
                 <li><a href="/news/post">发布新闻</a></li>
                 <li><a href="/news/index">新闻管理</a></li>
-                <li class="nav-header"><i class="icon-signal"></i> 产 品</li>
+                <li class="nav-header"><i class="icon-gift"></i> 产 品</li>
                 <!--<li><a href="#">添加分类</a></li>-->
                 <li><a href="/product/product-column-index">分类列表</a></li>
                 <!--<li><a href="#">添加产品</a></li>-->
@@ -104,7 +104,7 @@ $my_id = Yii::$app->user->identity->id;
                 <!--<li class=""><a href="#">添加会员</a></li>-->
                 <li class=""><a href="/user/index">客户管理</a></li>
                 <li class=""><a href="/user/my-user">我的客户</a></li>
-                <li class="nav-header"><i class="icon-signal"></i> 合 同</li>
+                <li class="nav-header"><i class="icon-briefcase"></i> 合 同</li>
                 <!--<li><a href="#">添加分类</a></li>-->
                 <li><a href="/contract/index">合同管理</a></li>
                 <li><a href="/contract/my-contract">我的合同</a></li>

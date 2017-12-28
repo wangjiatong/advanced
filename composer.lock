@@ -500,7 +500,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-06-21 11:33:04"
+            "time": "2017-06-21T11:33:04+00:00"
         },
         {
             "name": "kucha/ueditor",
@@ -636,7 +636,7 @@
                 "scott huang",
                 "yii2"
             ],
-            "time": "2015-07-15 06:18:01"
+            "time": "2015-07-15T06:18:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
