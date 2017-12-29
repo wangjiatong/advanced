@@ -12,9 +12,9 @@ use yii\bootstrap\Html;
 <p>*不建议您修改账户</p>
 <?php $form = ActiveForm::begin()?>
 
-<?=$form->field($model, 'username')->textInput(['value' => $old->username])?>
+<?=$form->field($model, 'username')->textInput(['value' => $old->username, 'readonly' => true]) ?>
 
-<?=$form->field($model, 'email')->textInput(['value' => $old->email])?>
+<?=$form->field($model, 'email')->textInput(['value' => $old->email]) ?>
 
 <?=$form->field($model, 'name')->textInput(['value' => $old->name]) ?>
 
