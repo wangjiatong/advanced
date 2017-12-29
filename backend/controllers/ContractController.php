@@ -248,7 +248,9 @@ class ContractController extends BaseController
         }       
     }
     
-    //按产品和时间范围导出合同excel
+    
+    
+    //按产品名称、客户姓名和时间范围导出合同excel
     public function actionExcel()
     {
         $excel_form = new ExcelForm();
@@ -259,78 +261,102 @@ class ContractController extends BaseController
             $user_id = $model['user_id'];
             $start_time = $model['start_time'];
             $end_time = $model['end_time'];
-            //将查询条件组成数组
+            
+            //将查询条件组成数组；如果产品名称和客户姓名的查询条件输入为空，则赋值为true代表所有。
+            if($product_id == null)
+            {
+                $product_id = true;
+            }
+            if($user_id == null)
+            {
+                $user_id = true;
+            }
             $searchArr = ['product_id' => $product_id, 'user_id' => $user_id];
-            $search = $this->excelSearchArr($searchArr);//获取查询条件数组
-            $ids = [];
-            $by_product = Contract::find()->select(['id', 'every_time'])->where($search)->all();
-            foreach ($by_product as $b)
+            
+            var_dump($searchArr);
+            
+            $by_product_and_name = Contract::find()->select(['id', 'user_id', 'source', 
+                'product_id', 'capital', 'every_time', 'every_interest', 'bank', 'bank_user', 
+                'bank_number', 'transfered_time', 'found_time', 'cash_time', 
+                'raise_interest_year', 'raise_day', 'raise_interest', 'interest_year', 
+                'interest', 'term_month', 'term', 'total_interest', 'total',  
+                'float_interest'])
+            ->where($searchArr)->all();
+            
+            var_dump($by_product_and_name);
+//             exit();
+            
+            //接下来再按时间段进行筛选
+            $res = array();//筛选过时间并经翻译的符合条件的合同数组
+            
+            foreach ($by_product_and_name as $b)
             {
                 $every_time = $b['every_time'];
                 $every_time_arr = explode(', ', $every_time);
+                $countDate = 0;//符合时间段的日期所在数组位置
+                
                 foreach ($every_time_arr as $e)
                 {
                     $e = strtotime($e);
                     $start_time_str = strtotime($start_time);
                     $end_time_str = strtotime($end_time);
+                    
                     if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
                     {
-                        $ids[] = $b['id'];
-                    }
-                }                  
-            }
-            $res =[];
-            foreach ($ids as $id)
-            {
-                $res[] = Contract::find()->select('id, user_id, source, product_id, capital, every_time, every_interest, bank, bank_user, bank_number, transfered_time, found_time, cash_time, raise_interest_year, raise_day, raise_interest, interest_year, interest, term_month, term, total_interest, total, float_interest')->asArray()->where(['id' => $id])->one();
-            }
-            if($res)
-            {
-            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）', '浮动利息（元）'];
-            //对数组的键值进行处理从而输出中文
-            $i = 0;
-            foreach($res as $r)
-            {
-                $x = 0;
-                foreach($r as $k => $v)
-                {
-                    switch ($k)
-                    {
-                        case 'user_id': $new_res[$i][$res_key[$x]] = UserModel::findOne($v)->name; break;
-                        case 'source': $new_res[$i][$res_key[$x]] = Admin::findOne($v)->name; break;
-                        case 'product_id': $new_res[$i][$res_key[$x]] = Product::findOne($v)->product_name; break;
-                        default : $new_res[$i][$res_key[$x]] = $v; break;
-                   
-                    }                       
-                    $x++;
+                        $b['every_time'] = $every_time_arr[$countDate];
+                            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）', '浮动利息（元）'];
+                            //对数组的键值进行处理从而输出中文
+                            $i = 0;
+                            foreach($b as $r)
+                            {
+                                $x = 0;
+                                foreach($r as $k => $v)
+                                {
+                                    switch ($k)
+                                    {
+                                        case 'user_id': $res[$i][$res_key[$x]] = UserModel::findOne($v)->name; break;
+                                        case 'source': $res[$i][$res_key[$x]] = Admin::findOne($v)->name; break;
+                                        case 'product_id': $res[$i][$res_key[$x]] = Product::findOne($v)->product_name; break;
+                                        default : $res[$i][$res_key[$x]] = $v; break;
+                                    }
+                                    $x++;
+                                }
+                                $i++;
+                            }
+                            $res[] = $b;
+                            $countDate = 0;
+                    } 
+                    $countDate++;
                 }
-                $i++;
             }
-            $excel_data = Export2ExcelBehavior::excelDataFormat($new_res);
-            $excel_title = $excel_data['excel_title'];
-            $excel_ceils = $excel_data['excel_ceils'];
-            $excel_content = [
-                [
-                    'sheet_name' => '待付合同信息',
-                    'sheet_title' => $excel_title,
-                    'ceils' => $excel_ceils,
-                    'freezePane' => 'B2',
-                    'headerColor' => Export2ExcelBehavior::getCssClass('header'),
-                    'headerColumnCssClass' => [
-                        'id' => Export2ExcelBehavior::getCssClass('blue'),
-                        'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+            
+            //将数据传递给excel插件
+            if($res){
+                $excel_data = Export2ExcelBehavior::excelDataFormat($res);
+                $excel_title = $excel_data['excel_title'];
+                $excel_ceils = $excel_data['excel_ceils'];
+                $excel_content = [
+                    [
+                        'sheet_name' => '待付合同信息',
+                        'sheet_title' => $excel_title,
+                        'ceils' => $excel_ceils,
+                        'freezePane' => 'B2',
+                        'headerColor' => Export2ExcelBehavior::getCssClass('header'),
+                        'headerColumnCssClass' => [
+                            'id' => Export2ExcelBehavior::getCssClass('blue'),
+                            'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+                        ],
+                        'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
+                        'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
                     ],
-                    'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
-                    'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
-                ],
-            ];
-            $excel_file = ($product_id ? Product::findOne($product_id)->product_name . '-' : '所有产品-').
-                    ($user_id ? UserModel::findOne($user_id)->name . '-' : '所有客户-').
-                    $start_time.
-                    '至'.
-                    $end_time.
-                    '待付合同';
-            $this->export2excel($excel_content, $excel_file);         
+                ];
+                $excel_file = ($product_id ? Product::findOne($product_id)->product_name . '-' : '所有产品-').
+                        ($user_id ? UserModel::findOne($user_id)->name . '-' : '所有客户-').
+                        $start_time.
+                        '至'.
+                        $end_time.
+                        '待付合同';
+                $this->export2excel($excel_content, $excel_file);         
             }else{
                 print_r('无符合查询条件的合同！');
                 echo \yii\helpers\Html::a('点击返回', ['contract/excel']);
@@ -341,6 +367,11 @@ class ContractController extends BaseController
             ]);
         }
     }
+    
+    
+    
+    
+    
     //上传确认函扫描件
     public function actionUploadConfirmation($id)
     {
@@ -420,23 +451,5 @@ class ContractController extends BaseController
         }else{
             throw new NotFoundHttpException('该合同不属于您，您无权操作！');
         }
-    }
-    
-    //处理excel筛选条件数组
-    protected function excelSearchArr($arr)
-    {
-        $res = [];
-        foreach($arr as $k => $v)
-        {
-            if($v !== '')
-            {
-                $res[$k] = $v;
-            }
-        }
-        if($res == null)
-        {
-            return true;
-        }
-        return $res;
     }
 }

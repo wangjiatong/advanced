@@ -117,7 +117,7 @@ class BaseController extends Controller{
                 $urls_temp = explode(",", $urls);
                 $urls_arr = array_merge($urls_temp, $urls_arr);
             }
-            $urls_all = $urls_arr;
+            $urls_all = array_unique($urls_arr);
             if($urls_all !== null)
             {
                 return $urls_all;
