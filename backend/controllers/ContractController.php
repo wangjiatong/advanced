@@ -272,27 +272,25 @@ class ContractController extends BaseController
                 $user_id = true;
             }
             $searchArr = ['product_id' => $product_id, 'user_id' => $user_id];
-            
-            var_dump($searchArr);
-            
+
             $by_product_and_name = Contract::find()->select(['id', 'user_id', 'source', 
                 'product_id', 'capital', 'every_time', 'every_interest', 'bank', 'bank_user', 
                 'bank_number', 'transfered_time', 'found_time', 'cash_time', 
                 'raise_interest_year', 'raise_day', 'raise_interest', 'interest_year', 
                 'interest', 'term_month', 'term', 'total_interest', 'total',  
                 'float_interest'])
-            ->where($searchArr)->all();
-            
-            var_dump($by_product_and_name);
-//             exit();
-            
+            ->where($searchArr)->asArray()->all();
+      
             //接下来再按时间段进行筛选
             $res = array();//筛选过时间并经翻译的符合条件的合同数组
             
             foreach ($by_product_and_name as $b)
             {
                 $every_time = $b['every_time'];
+                $every_interest = $b['every_interest'];
                 $every_time_arr = explode(', ', $every_time);
+                $every_interest_arr = explode(', ', $every_interest);
+
                 $countDate = 0;//符合时间段的日期所在数组位置
                 
                 foreach ($every_time_arr as $e)
@@ -304,27 +302,11 @@ class ContractController extends BaseController
                     if($e > $start_time_str && $e < $end_time_str && $end_time_str > $start_time_str)
                     {
                         $b['every_time'] = $every_time_arr[$countDate];
-                            $res_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '每期付息日期', '每期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）', '浮动利息（元）'];
-                            //对数组的键值进行处理从而输出中文
-                            $i = 0;
-                            foreach($b as $r)
-                            {
-                                $x = 0;
-                                foreach($r as $k => $v)
-                                {
-                                    switch ($k)
-                                    {
-                                        case 'user_id': $res[$i][$res_key[$x]] = UserModel::findOne($v)->name; break;
-                                        case 'source': $res[$i][$res_key[$x]] = Admin::findOne($v)->name; break;
-                                        case 'product_id': $res[$i][$res_key[$x]] = Product::findOne($v)->product_name; break;
-                                        default : $res[$i][$res_key[$x]] = $v; break;
-                                    }
-                                    $x++;
-                                }
-                                $i++;
-                            }
-                            $res[] = $b;
-                            $countDate = 0;
+                        $b['every_interest'] = $every_interest_arr[$countDate];
+                        //对数组的键值进行处理从而输出中文
+                        $res[] = $this->transForExcel($b);
+
+                        $countDate = 0;
                     } 
                     $countDate++;
                 }
@@ -451,5 +433,25 @@ class ContractController extends BaseController
         }else{
             throw new NotFoundHttpException('该合同不属于您，您无权操作！');
         }
+    }
+    
+    //为excel翻译成中文
+    protected function transForExcel($untrans)
+    {
+        $trans_key = ['合同id', '客户姓名', '客户经理', '产品名称', '本金（元）', '当期付息日期', '当期付息金额（元）', '开户行', '开户名', '卡号', '到账日期', '成立日期', '兑付日期', '募集期利率（%）', '募集天数', '募集期利息', '年利率（%）', '成立期利息', '期限（月）', '付息频率（月）', '应付总利息（元）', '本息（元）', '浮动利息（元）'];
+        $ret_res = array();
+        $offset = 0;
+        foreach($untrans as $k => $v)
+        {
+            switch ($k)
+            {
+                case 'user_id': $ret_res[$trans_key[$offset]] = UserModel::findOne($v)->name; break;
+                case 'source': $ret_res[$trans_key[$offset]] = Admin::findOne($v)->name; break;
+                case 'product_id': $ret_res[$trans_key[$offset]] = Product::findOne($v)->product_name; break;
+                default : $ret_res[$trans_key[$offset]] = $v; break;
+            }
+            $offset++;
+        }
+        return $ret_res;
     }
 }
