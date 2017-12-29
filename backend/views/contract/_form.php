@@ -138,6 +138,19 @@ $upperNum = <<<upperNum
         return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');  
     } 
 upperNum;
+
+//银行卡号分割
+$bank_number_id = 'contractform-bank_number';
+$bankNumsFormater = <<<bankNumsFormater
+$('#$bank_number_id').bind('keyup', function(){
+    var before = $('#$bank_number_id').val();
+    var after = before.replace(/(\d{4})(?=\d)/g,"$1"+"-");
+    var originalLabel = $('label[for=$bank_number_id]').text;
+    $('label[for=$bank_number_id]').text('银行账号: ' + after);        
+});
+
+bankNumsFormater;
 $this->registerJs($numbersFormater);
 $this->registerJs($upperNum);
+$this->registerJs($bankNumsFormater);
 ?>
