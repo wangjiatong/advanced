@@ -50,16 +50,16 @@ class Contract extends ActiveRecord
     public function rules()
     {
         return [
-//            [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'product_id', 'user_id', 'interest_year', 'raise_interest_year', 'bank_user'], 'required'],
-//            [['capital', 'raise_day', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
-//            [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
-//            [['transfered_time', 'found_time', 'cash_time'], 'default', 'value' => null],//时间插件设置要求
-//            [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number'], 'string', 'max' => 255],
-//            [['contract_number'], 'unique'],
-//            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
-//            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
-//            ['source', 'required'],
-//            ['source', 'integer'],
+           [['contract_number', 'capital', 'transfered_time', 'found_time', 'raise_day', 'raise_interest', 'cash_time', 'term_month', 'interest', 'term', 'every_time', 'every_interest', 'total_interest', 'total', 'bank', 'bank_number', 'product_id', 'user_id', 'interest_year', 'raise_interest_year', 'bank_user'], 'required'],
+           [['capital', 'raise_day', 'term_month', 'term', 'product_id', 'user_id'], 'integer'],
+           [['transfered_time', 'found_time', 'cash_time', 'created_at', 'updated_at'], 'safe'],
+           [['transfered_time', 'found_time', 'cash_time'], 'default', 'value' => null],//时间插件设置要求
+           [['contract_number', 'every_time', 'every_interest', 'bank', 'bank_number'], 'string', 'max' => 255],
+           [['contract_number'], 'unique'],
+           [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
+           [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+           ['source', 'required'],
+           ['source', 'integer'],
         ];
     }
 
