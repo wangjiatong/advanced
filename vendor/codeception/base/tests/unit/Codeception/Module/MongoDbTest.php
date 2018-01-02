@@ -77,7 +77,7 @@ class MongoDbTest extends Unit
     public function testGrabFromCollection()
     {
         $user = $this->module->grabFromCollection('users', array('id' => 1));
-        $this->assertArrayHasKey('email', $user);
+        $this->assertTrue(isset($user['email']));
         $this->assertEquals('miles@davis.com', $user['email']);
     }
 

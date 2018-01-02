@@ -6,7 +6,6 @@ namespace backend\models;
  * and open the template in the editor.
  */
 use yii\base\Model;
-use common\widgets\Alert;
 
 class ExcelForm extends Model
 {
@@ -17,10 +16,9 @@ class ExcelForm extends Model
     
     public function rules() {
         return [
-            [['product_id', 'user_id', 'start_time', 'end_time'], 'required'],      
+            
         ];
     }
-    
     public function attributeLabels() {
         return [
             'product_id' => '产品名称',
@@ -28,15 +26,5 @@ class ExcelForm extends Model
             'start_time' => '查询起始时间',
             'end_time' => '查询结束时间',
         ];
-    }
-    
-    public function validate()
-    {
-        if($this->start_time > $this->end_time )
-        {
-            echo "<script>alert('查询起始时间不得大于结束时间！')</script>";
-            return false;
-        }
-        return true;
     }
 }

@@ -2,7 +2,6 @@
 
 use Codeception\Step;
 use Codeception\Util\Stub;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverKeys;
@@ -98,28 +97,6 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->amOnPage('/form/popup');
         $this->module->click('Alert');
         $this->module->seeInPopup('Different text');
-        $this->module->cancelPopup();
-    }
-
-    public function testDontSeeInPopup()
-    {
-        $this->notForPhantomJS();
-        $this->module->amOnPage('/form/popup');
-        $this->module->click('Alert');
-        $this->module->dontSeeInPopup('Different text');
-        $this->module->cancelPopup();
-    }
-
-    public function testFailedDontSeeInPopup()
-    {
-        $this->notForPhantomJS();
-        $this->setExpectedException(
-            'PHPUnit_Framework_AssertionFailedError',
-            'Failed asserting that \'Really?\' does not contain "Really?"'
-        );
-        $this->module->amOnPage('/form/popup');
-        $this->module->click('Alert');
-        $this->module->dontSeeInPopup('Really?');
         $this->module->cancelPopup();
     }
 
@@ -574,23 +551,6 @@ class WebDriverTest extends TestsForBrowsers
         $module->waitForElementNotVisible('//xpath');
     }
 
-    public function testWaitForElement()
-    {
-        $this->module->amOnPage('/form/timeout');
-        $this->module->waitForElement('#btn');
-        $this->module->click('Click');
-        $this->module->see('Hello');
-    }
-
-    public function testImplicitWait()
-    {
-        $this->module->_reconfigure(['wait' => 5]);
-        $this->module->amOnPage('/form/timeout');
-        $this->module->click('#btn');
-        $this->module->see('Hello');
-    }
-
-
     public function testBug1467()
     {
         $this->module->amOnPage('/form/bug1467');
@@ -834,13 +794,6 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->seeCurrentUrlEquals('/form/anchor#a');
     }
 
-    public function testSubmitHashButtonForm()
-    {
-        $this->module->amOnPage('/form/anchor');
-        $this->module->click('Hash Button Form');
-        $this->module->seeCurrentUrlEquals('/form/anchor#a');
-    }
-
     public function testJSErrorLoggingPositive()
     {
         // arrange
@@ -877,7 +830,7 @@ class WebDriverTest extends TestsForBrowsers
         // assert
         /* @var $steps Step[]  */
         $steps = $cept->getScenario()->getSteps();
-        $this->assertCount(0, $steps);
+        $this->assertEquals(0, count($steps));
     }
 
     public function testMoveMouseOver()
@@ -1080,19 +1033,5 @@ HTML
         // `Selenium` adds the `xmlns` attribute while `PhantomJS` does not do that.
         $sourceActual = str_replace('xmlns="http://www.w3.org/1999/xhtml"', '', $sourceActualRaw);
         $this->assertXmlStringEqualsXmlString($sourceExpected, $sourceActual);
-    }
-
-    public function testChangingCapabilities()
-    {
-        $this->notForPhantomJS();
-        $this->assertNotTrue($this->module->webDriver->getCapabilities()->getCapability('acceptInsecureCerts'));
-        $this->module->_closeSession();
-        $this->module->_capabilities(function($current) {
-            $current['acceptInsecureCerts'] = true;
-            return new DesiredCapabilities($current);
-        });
-        $this->assertNotTrue($this->module->webDriver->getCapabilities()->getCapability('acceptInsecureCerts'));
-        $this->module->_initializeSession();
-        $this->assertTrue(true, $this->module->webDriver->getCapabilities()->getCapability('acceptInsecureCerts'));
     }
 }

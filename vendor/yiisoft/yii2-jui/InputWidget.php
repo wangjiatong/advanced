@@ -58,7 +58,7 @@ class InputWidget extends Widget
     }
 
     /**
-     * @return bool whether this widget is associated with a data model.
+     * @return boolean whether this widget is associated with a data model.
      */
     protected function hasModel()
     {

@@ -130,7 +130,6 @@ class ScriptHandlerTest extends \PHPUnit_Framework_TestCase
     public function testDeleteIgnoreFiles($composerType)
     {
         $this->operation = $this->getMockBuilder('Composer\DependencyResolver\Operation\OperationInterface')->getMock();
-        $this->assertInstanceOf('Composer\DependencyResolver\Operation\OperationInterface', $this->operation);
 
         ScriptHandler::deleteIgnoredFiles($this->createEvent($composerType));
     }
@@ -145,7 +144,6 @@ class ScriptHandlerTest extends \PHPUnit_Framework_TestCase
         $this->operation = $this->getMockBuilder('Composer\DependencyResolver\Operation\InstallOperation')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->assertInstanceOf('Composer\DependencyResolver\Operation\OperationInterface', $this->operation);
 
         ScriptHandler::deleteIgnoredFiles($this->createEvent($composerType));
     }
@@ -160,7 +158,6 @@ class ScriptHandlerTest extends \PHPUnit_Framework_TestCase
         $this->operation = $this->getMockBuilder('Composer\DependencyResolver\Operation\UpdateOperation')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->assertInstanceOf('Composer\DependencyResolver\Operation\OperationInterface', $this->operation);
 
         ScriptHandler::deleteIgnoredFiles($this->createEvent($composerType));
     }

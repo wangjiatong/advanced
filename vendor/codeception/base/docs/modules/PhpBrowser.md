@@ -13,15 +13,17 @@ If test fails stores last shown page in 'output' dir.
 * Maintainer: **davert**
 * Stability: **stable**
 * Contact: codeception@codeception.com
+* Works with [Guzzle](http://guzzlephp.org/)
 
+*Please review the code of non-stable modules and provide patches if you have issues.*
 
 ## Configuration
 
 * url *required* - start url of your app
-* headers - default headers are set before each test.
 * handler (default: curl) -  Guzzle handler to use. By default curl is used, also possible to pass `stream`, or any valid class name as [Handler](http://docs.guzzlephp.org/en/latest/handlers-and-middleware.html#handlers).
 * middleware - Guzzle middlewares to add. An array of valid callables is required.
 * curl - curl options
+* headers - ...
 * cookies - ...
 * auth - ...
 * verify - ...
@@ -204,7 +206,7 @@ $I->amOnPage('/');
 $I->amOnPage('/register');
 ```
 
- * `param string` $page
+ * `param` $page
 
 
 ### amOnSubdomain
@@ -242,7 +244,7 @@ $I->amOnPage('/quickstart'); // moves to http://codeception.com/quickstart
 
 ### attachFile
  
-Attaches a file relative to the Codeception `_data` directory to the given file upload field.
+Attaches a file relative to the Codeception data directory to the given file upload field.
 
 ``` php
 <?php
@@ -347,8 +349,8 @@ But will ignore strings like:
 
 For checking the raw source code, use `seeInSource()`.
 
- * `param string` $text
- * `param string` $selector optional
+ * `param`      $text
+ * `param null` $selector
 
 
 ### dontSeeCheckboxIsChecked
@@ -387,7 +389,7 @@ $I->dontSeeCurrentUrlEquals('/');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### dontSeeCurrentUrlMatches
@@ -401,7 +403,7 @@ $I->dontSeeCurrentUrlMatches('~$/users/(\d+)~');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### dontSeeElement
@@ -432,7 +434,7 @@ $I->dontSeeInCurrentUrl('/users/');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### dontSeeInField
@@ -531,8 +533,8 @@ $I->dontSeeLink('Checkout now', '/store/cart.php');
 ?>
 ```
 
- * `param string` $text
- * `param string` $url optional
+ * `param` $text
+ * `param null` $url
 
 
 ### dontSeeOptionIsSelected
@@ -629,7 +631,7 @@ You can set additional cookie params like `domain`, `path` in array passed as la
 
 ### grabFromCurrentUrl
  
-Executes the given regular expression against the current URI and returns the first capturing group.
+Executes the given regular expression against the current URI and returns the first match.
 If no parameters are provided, the full URI is returned.
 
 ``` php
@@ -639,7 +641,7 @@ $uri = $I->grabFromCurrentUrl();
 ?>
 ```
 
- * `param string` $uri optional
+ * `param null` $uri
 
 
 
@@ -711,19 +713,8 @@ subsequent HTTP requests through PhpBrowser.
 Example:
 ```php
 <?php
-$I->haveHttpHeader('X-Requested-With', 'Codeception');
+$I->setHeader('X-Requested-With', 'Codeception');
 $I->amOnPage('test-headers.php');
-?>
-```
-
-To use special chars in Header Key use HTML Character Entities:
-Example:
-Header with underscore - 'Client_Id'
-should be represented as - 'Client&#x0005F;Id' or 'Client&#95;Id'
-
-```php
-<?php
-$I->haveHttpHeader('Client&#95;Id', 'Codeception');
 ?>
 ```
 
@@ -778,8 +769,8 @@ But will *not* be true for strings like:
 
 For checking the raw source code, use `seeInSource()`.
 
- * `param string` $text
- * `param string` $selector optional
+ * `param`      $text
+ * `param null` $selector
 
 
 ### seeCheckboxIsChecked
@@ -824,7 +815,7 @@ $I->seeCurrentUrlEquals('/');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### seeCurrentUrlMatches
@@ -838,7 +829,7 @@ $I->seeCurrentUrlMatches('~$/users/(\d+)~');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### seeElement
@@ -876,13 +867,13 @@ $I->seeInCurrentUrl('/users/');
 ?>
 ```
 
- * `param string` $uri
+ * `param` $uri
 
 
 ### seeInField
  
-Checks that the given input field or textarea *equals* (i.e. not just contains) the given value.
-Fields are matched by label text, the "name" attribute, CSS, or XPath.
+Checks that the given input field or textarea contains the given value.
+For fuzzy locators, fields are matched by label text, the "name" attribute, CSS, and XPath.
 
 ``` php
 <?php
@@ -1001,8 +992,8 @@ $I->seeLink('Logout','/logout'); // matches <a href="/logout">Logout</a>
 ?>
 ```
 
- * `param string` $text
- * `param string` $url optional
+ * `param`      $text
+ * `param null` $url
 
 
 ### seeNumberOfElements
@@ -1012,11 +1003,13 @@ Checks that there are a certain number of elements matched by the given locator 
 ``` php
 <?php
 $I->seeNumberOfElements('tr', 10);
-$I->seeNumberOfElements('tr', [0,10]); // between 0 and 10 elements
+$I->seeNumberOfElements('tr', [0,10]); //between 0 and 10 elements
 ?>
 ```
  * `param` $selector
- * `param mixed` $expected int or int[]
+ * `param mixed` $expected :
+- string: strict number
+- array: range of numbers [0,10]
 
 
 ### seeOptionIsSelected

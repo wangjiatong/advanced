@@ -27,7 +27,6 @@ class Suite extends \PHPUnit_Framework_TestSuite
         }
         $this->tests = $queue;
     }
-
     protected function getDependencies($test)
     {
         if (!$test instanceof Dependent) {
@@ -44,7 +43,6 @@ class Suite extends \PHPUnit_Framework_TestSuite
         $tests[] = $test;
         return $tests;
     }
-
     protected function findMatchedTest($testSignature)
     {
         foreach ($this->tests as $test) {
@@ -52,6 +50,9 @@ class Suite extends \PHPUnit_Framework_TestSuite
             if ($signature === $testSignature) {
                 return $test;
             }
+        }
+        if ($test instanceof TestInterface) {
+            $test->getMetadata()->setSkip("Dependent test for $testSignature not found");
         }
     }
 

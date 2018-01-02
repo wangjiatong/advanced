@@ -40,6 +40,13 @@ php codecept bootstrap --namespace frontend
 
 This will bootstrap a new project with the `namespace: frontend` parameter in the `codeception.yml` file.
 Helpers will be in the `frontend\Codeception\Module` namespace and Actor classes will be in the `frontend` namespace.
+The newly generated tests will look like this:
+
+```php
+<?php use frontend\AcceptanceTester;
+$I = new AcceptanceTester($scenario);
+//...
+```
 
 Once each of your applications (bundles) has its own namespace and different Helper or Actor classes,
 you can execute all the tests in a single runner. Run the Codeception tests as usual, using the meta-config we created earlier:
@@ -90,11 +97,10 @@ extensions:
 But what are extensions, anyway? Basically speaking, extensions are nothing more than event listeners
 based on the [Symfony Event Dispatcher](http://symfony.com/doc/current/components/event_dispatcher/introduction.html) component.
 
-### Events
-
 Here are the events and event classes. The events are listed in the order in which they happen during execution.
-All listed events are available as constants in `Codeception\Events` class.
+Each event has a corresponding class, which is passed to a listener, and contains specific objects.
 
+### Events
 
 |    Event             |    When?                                |    Triggered by
 |:--------------------:| --------------------------------------- | --------------------------:
@@ -115,10 +121,9 @@ All listed events are available as constants in `Codeception\Events` class.
 | `test.fail.print`    | When test fails are printed             | [Test, Fail](https://github.com/Codeception/Codeception/blob/master/src/Codeception/Event/FailEvent.php)
 | `result.print.after` | After result was printed                | [Result, Printer](https://github.com/Codeception/Codeception/blob/master/src/Codeception/Event/PrintResultEvent.php)
 
-
 There may be some confusion between `test.start`/`test.before` and `test.after`/`test.end`.
 The start and end events are triggered by PHPUnit, but the before and after events are triggered by Codeception.
-Thus, when you are using classical PHPUnit tests (extended from `PHPUnit\Framework\TestCase`),
+Thus, when you are using classical PHPUnit tests (extended from `PHPUnit_Framework_TestCase`),
 the before/after events won't be triggered for them. During the `test.before` event you can mark a test
 as skipped or incomplete, which is not possible in `test.start`. You can learn more from
 [Codeception internal event listeners](https://github.com/Codeception/Codeception/tree/master/src/Codeception/Subscriber).
@@ -127,19 +132,15 @@ The extension class itself is inherited from `Codeception\Extension`:
 
 ```php
 <?php
-use \Codeception\Events;
-
 class MyCustomExtension extends \Codeception\Extension
 {
     // list events to listen to
-    // Codeception\Events constants used to set the event
-    
     public static $events = array(
-        Events::SUITE_AFTER  => 'afterSuite',
-        Events::SUITE_BEFORE => 'beforeTest',
-        Events::STEP_BEFORE => 'beforeStep',
-        Events::TEST_FAIL => 'testFailed',
-        Events::RESULT_PRINT_AFTER => 'print',
+        'suite.after' => 'afterSuite',
+        'test.before' => 'beforeTest',
+        'step.before' => 'beforeStep',
+        'test.fail' => 'testFailed',
+        'result.print.after' => 'print',
     );
 
     // methods that handle events
@@ -231,7 +232,7 @@ extensions:
 If you want to activate the Command globally, because you are using more then one `codeception.yml` file,
 you have to register your command in the `codeception.dist.yml` in the root folder of your project.
 
-Please see the [complete example](https://github.com/Codeception/Codeception/blob/2.3/tests/data/register_command/examples/MyCustomCommand.php)
+Please see a [complete example](https://gist.github.com/sd-tm/37d5f9bca871c72648cb)
 
 ## Group Objects
 
@@ -240,12 +241,8 @@ When a test is added to a group:
 
 ```php
 <?php
-/**
- * @group admin 
- */
-public function testAdminCreatingNewBlogPost(\AcceptanceTester $I)
-{    
-}
+$scenario->group('admin');
+$I = new AcceptanceTester($scenario);
 ```
 
 This test will trigger the following events:
@@ -259,6 +256,7 @@ This test will trigger the following events:
 
 A group object is built to listen for these events. It is useful when an additional setup is required
 for some of your tests. Let's say you want to load fixtures for tests that belong to the `admin` group:
+
 ```php
 <?php
 namespace Group;
@@ -283,19 +281,6 @@ class Admin extends \Codeception\GroupObject
         // ...
     }
 }
-```
-
-GroupObjects can also be used to update the module configuration before running a test.
-For instance, for `nocleanup` group we prevent Doctrine2 module from wrapping test into transaction: 
-
-```php
-<?php
-    public static $group = 'nocleanup';
-
-    public function _before(\Codeception\Event\TestEvent $e)
-    {
-        $this->getModule('Doctrine2')->_reconfigure(['cleanup' => false]);
-    }
 ```
 
 A group class can be created with `php codecept generate:group groupname` command.

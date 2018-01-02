@@ -319,7 +319,6 @@ class FxpAssetPluginTest extends \PHPUnit_Framework_TestCase
                     ),
                 ),
             )));
-        $this->assertInstanceOf('Composer\Package\RootPackageInterface', $this->package);
 
         $this->plugin->activate($this->composer, $this->io);
     }

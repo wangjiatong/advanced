@@ -22,8 +22,7 @@ use yii\db\ActiveRecordInterface;
  * * `configFile` *required* - the path to the application config file. File should be configured for test environment and return configuration array.
  * * `entryUrl` - initial application url (default: http://localhost/index-test.php).
  * * `entryScript` - front script title (like: index-test.php). If not set - taken from entryUrl.
- * * `transaction` - (default: true) wrap all database connection inside a transaction and roll it back after the test. Should be disabled for acceptance testing..
- * * `cleanup` - (default: true) cleanup fixtures after the test
+ * * `cleanup` - (default: true) wrap all database connection inside a transaction and roll it back after the test. Should be disabled for acceptance testing..
  *
  * You can use this module by setting params in your functional.suite.yml:
  *
@@ -78,8 +77,7 @@ use yii\db\ActiveRecordInterface;
  *         - Yii2:
  *             configFile: 'config/test.php'
  *             part: ORM # allow to use AR methods
- *             transaction: false # don't wrap test in transaction
- *             cleanup: false # don't cleanup the fixtures
+ *             cleanup: false # don't wrap test in transaction
  *             entryScript: index-test.php
  * ```
  *
@@ -93,7 +91,7 @@ use yii\db\ActiveRecordInterface;
  * $I->haveFixtures(['posts' => PostsFixture::className()]);
  * ```
  *
- * or, if you need to load fixtures before the test, you
+ * or, if you need to load fixtures before the test (probably before the cleanup transaction is started), you
  * can specify fixtures with `_fixtures` method of a testcase:
  *
  * ```php
@@ -133,7 +131,6 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
      */
     protected $config = [
         'cleanup'     => true,
-        'transaction' => null,
         'entryScript' => '',
         'entryUrl'    => 'http://localhost/index-test.php',
     ];
@@ -153,10 +150,6 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
 
     public function _initialize()
     {
-        if ($this->config['transaction'] === null) {
-            $this->config['transaction'] = $this->backupConfig['transaction'] = $this->config['cleanup'];
-        }
-
         if (!is_file(Configuration::projectDir() . $this->config['configFile'])) {
             throw new ModuleConfigException(
                 __CLASS__,
@@ -191,12 +184,11 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
             $this->loadFixtures($test);
         }
 
-        if ($this->config['transaction']
+        if ($this->config['cleanup']
             && $this->app->has('db')
             && $this->app->db instanceof \yii\db\Connection
         ) {
             $this->transaction = $this->app->db->beginTransaction();
-            $this->debugSection('Database', 'Transaction started');
         }
     }
 
@@ -223,17 +215,17 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
         $_COOKIE = [];
         $_REQUEST = [];
 
-        if ($this->config['transaction'] && $this->transaction) {
-            $this->transaction->rollBack();
-            $this->debugSection('Database', 'Transaction cancelled; all changes reverted.');
-        }
-
         if ($this->config['cleanup']) {
             foreach ($this->loadedFixtures as $fixture) {
                 $fixture->unloadFixtures();
             }
             $this->loadedFixtures = [];
+
+            if ($this->transaction) {
+                $this->transaction->rollback();
+            }
         }
+        
 
         if ($this->client) {
             $this->client->resetPersistentVars();
@@ -387,7 +379,7 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
         if ($fixture instanceof \yii\test\BaseActiveFixture) {
             return $fixture->getModel($index);
         }
-        throw new ModuleException($this, "Fixture $name is not an instance of ActiveFixture and can't be loaded with second parameter");
+        throw new ModuleException($this, "Fixture $name is not an instance of ActiveFixture and can't be loaded with scond parameter");
     }
 
     /**
@@ -477,7 +469,7 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
     {
         $this->getModelRecord($model);
         return call_user_func([$model, 'find'])
-            ->andWhere($attributes)
+            ->where($attributes)
             ->one();
     }
 
@@ -542,7 +534,7 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule
     public function grabComponent($component)
     {
         if (!Yii::$app->has($component)) {
-            throw new ModuleException($this, "Component $component is not available in current application");
+            throw new ModuleException($this, "Component $component is not avilable in current application");
         }
         return Yii::$app->get($component);
     }
