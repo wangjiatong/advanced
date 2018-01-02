@@ -83,15 +83,15 @@ $my_id = Yii::$app->user->identity->id;
 </div>
 
 <?php 
-$propertyId = 'contractform-capital';
+$capital_id = 'contractform-capital';
 //将输入的数字转换为以千分位分割
 $numbersFormater = <<<numberFormater
     //格式化输入数字为以千分位分割
-    $('#$propertyId').bind('keyup', function(){
-        var before = $('#$propertyId').val();
+    $('#$capital_id').bind('keyup', function(){
+        var before = $('#$capital_id').val();
         var after = seprateByThousand(before);
-        var originalLabel = $('label[for=$propertyId]').text();
-        $('label[for=$propertyId]').text('本金：' + after + ' （单位：元）' + ' 人民币大写金额：' + upperNum(before));
+        var originalLabel = $('label[for=$capital_id]').text();
+        $('label[for=$capital_id]').text('本金：' + after + ' （单位：元）' + ' 人民币大写金额：' + upperNum(before));
     });
     //JS千分位分割函数
     function seprateByThousand(num) 
@@ -106,6 +106,7 @@ $numbersFormater = <<<numberFormater
         return result;
     }
 numberFormater;
+
 //金额转大写
 $upperNum = <<<upperNum
     function upperNum(n)   
@@ -148,8 +149,8 @@ $('#$bank_number_id').bind('keyup', function(){
     var originalLabel = $('label[for=$bank_number_id]').text;
     $('label[for=$bank_number_id]').text('银行账号: ' + after);        
 });
-
 bankNumsFormater;
+
 $this->registerJs($numbersFormater);
 $this->registerJs($upperNum);
 $this->registerJs($bankNumsFormater);

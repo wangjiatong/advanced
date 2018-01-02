@@ -20,7 +20,7 @@ $this->title = '导出Excel';
     'data' => Product::find()->select('product_name, id')->indexBy('id')->column(),
     'options' => [
         'multiple' => true,
-       'placeholder' => '请选择，不选则默认所有产品',
+       'placeholder' => '请选择',
     ],
 ]) ?>
 
@@ -28,7 +28,7 @@ $this->title = '导出Excel';
     'data' => UserModel::find()->select('name, id')->indexBy('id')->column(),
     'options' => [
         'multiple' => true,
-       'placeholder' => '请选择，不选则默认所有客户',
+       'placeholder' => '请选择',
     ],
 ]) ?>
 
