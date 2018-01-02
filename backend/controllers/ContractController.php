@@ -262,15 +262,7 @@ class ContractController extends BaseController
             $start_time = $model['start_time'];
             $end_time = $model['end_time'];
             
-            //将查询条件组成数组；如果产品名称和客户姓名的查询条件输入为空，则赋值为true代表所有。
-            if($product_id == null)
-            {
-                $product_id = true;
-            }
-            if($user_id == null)
-            {
-                $user_id = true;
-            }
+            //将查询条件组成数组
             $searchArr = ['product_id' => $product_id, 'user_id' => $user_id];
 
             $by_product_and_name = Contract::find()->select(['id', 'user_id', 'source', 
@@ -448,7 +440,16 @@ class ContractController extends BaseController
                 case 'user_id': $ret_res[$trans_key[$offset]] = UserModel::findOne($v)->name; break;
                 case 'source': $ret_res[$trans_key[$offset]] = Admin::findOne($v)->name; break;
                 case 'product_id': $ret_res[$trans_key[$offset]] = Product::findOne($v)->product_name; break;
+                //再银行卡号前加入空格防止被科学计数
                 case 'bank_number': $ret_res[$trans_key[$offset]] = " " . $v; break;
+                //对金额数字进行格式化
+                case 'capital': $ret_res[$trans_key[$offset]] = number_format($v); break;
+                case 'every_interest': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
+                case 'raise_interest': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
+                case 'interest': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
+                case 'total_interest': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
+                case 'total': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
+                case 'float_interest': $ret_res[$trans_key[$offset]] = number_format($v, 2); break;
                 default : $ret_res[$trans_key[$offset]] = $v; break;
             }
             $offset++;
