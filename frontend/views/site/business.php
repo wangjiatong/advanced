@@ -37,7 +37,7 @@ $this->registerJs('$(document).ready(function(){$("#business").addClass("navacti
                             <li>
                                 <h5 class="toggle-title"><span class="toggle-title-detail">点击查看</span></h5>
                                 <div class="toggle">                     
-                                    <p style="text-align: center"><img src="/img/zyxm.png"</p>
+                                    <p style="text-align: center"><img src="/img/zyxm.png"></p>
                                 </div>       
                             </li>
                         </ul>
@@ -49,7 +49,7 @@ $this->registerJs('$(document).ready(function(){$("#business").addClass("navacti
                             <h5 class="toggle-title"><span class="toggle-title-detail">点击查看</span></h5>
                             <div class="toggle">                     
                                     <p></p>
-                                    <p style="text-align: center"><img src="/img/yylc.png"</p>
+                                    <p style="text-align: center"><img src="/img/yylc.png"></p>
                             </div>       
                         </li>
                     </ul>
@@ -60,7 +60,7 @@ $this->registerJs('$(document).ready(function(){$("#business").addClass("navacti
                             <li>
                                 <h5 class="toggle-title"><span class="toggle-title-detail">点击查看</span></h5>
                                 <div class="toggle">                     
-                                    <p style="text-align: center"><img src="/img/zijinliuxiang.png"</p>
+                                    <p style="text-align: center"><img src="/img/zijinliuxiang.png"></p>
                                 </div>       
                             </li>
                         </ul>

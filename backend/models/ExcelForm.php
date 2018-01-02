@@ -29,7 +29,7 @@ class ExcelForm extends Model
         ];
     }
     
-    public function validate()
+    public function valTime()
     {
         if($this->start_time > $this->end_time)
         {

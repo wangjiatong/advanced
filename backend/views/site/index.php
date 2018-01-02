@@ -37,7 +37,7 @@ use common\models\Contract;
 		  <br />
 		  <div class="row-fluid">
 			<div class="page-header">
-				<h1>最近待付合同 <small></small</h1>
+				<h1>最近待付合同 <small></small></h1>
 			</div>
 			<table class="table table-bordered">
                                 <?php if(isset($models)){ ?>
