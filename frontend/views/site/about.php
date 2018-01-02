@@ -65,7 +65,7 @@ $this->registerJs('$(document).ready(function(){$("#about").addClass("navactive"
                     <p>最快捷的决策速度：翌银玖德项目的资金以自行募集为主，决策团队专业高效。项目初审答复期在一周之内，尽职调查也在两周左右完成。</p>
                     <p>运营机制与创设能力：翌银玖德通知项目立案并安排资金的，融资失败率目前为0%。项目资金不能解决的，会在一周内给予明确回复；可以解决资金的，会在最短的时间内给予资金安排并正式通知，无须到处询价与分销。</p>
                     <p>成本和效率：我们或许不是最低的报价者，但我们是最直接的资金方。我们成本构成透明，专业财务能力可以帮您最大限度地提升资金使用效率。我们不收取额外费用，您支付的成本是一次性打包成本，透明清晰，易于控制。</p>
-                    <p style="text-align: center"><img src="/img/qiyeyoushi.png"</p>
+                    <p style="text-align: center"><img src="/img/qiyeyoushi.png"></p>
                     </article>
 
             </section>

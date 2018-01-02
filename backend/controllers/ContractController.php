@@ -254,7 +254,7 @@ class ContractController extends BaseController
     public function actionExcel()
     {
         $excel_form = new ExcelForm();
-        if($excel_form->load(Yii::$app->request->post()) && $excel_form->validate())
+        if($excel_form->load(Yii::$app->request->post()) && $excel_form->valTime())
         {
             $model = Yii::$app->request->post()['ExcelForm'];
             $product_id = $model['product_id'];
