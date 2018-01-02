@@ -448,7 +448,7 @@ class ContractController extends BaseController
                 case 'user_id': $ret_res[$trans_key[$offset]] = UserModel::findOne($v)->name; break;
                 case 'source': $ret_res[$trans_key[$offset]] = Admin::findOne($v)->name; break;
                 case 'product_id': $ret_res[$trans_key[$offset]] = Product::findOne($v)->product_name; break;
-                case 'bank_number': $ret_res[$trans_key[$offset]] = (string) $v;
+                case 'bank_number': $ret_res[$trans_key[$offset]] = strval($v);
                 default : $ret_res[$trans_key[$offset]] = $v; break;
             }
             $offset++;
