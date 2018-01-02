@@ -41,14 +41,15 @@ $my_id = Yii::$app->user->identity->id;
           <a class="brand" href="/">网站管理后台</a>
           <div class="btn-group pull-right">
               <a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?>(<?= Admin::findOne($my_id)->name ?>)</a>
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-			  <!--<li><a href="#">个人资料</a></li>-->
-              <!--<li class="divider"></li>-->
-              <li><a href="/site/logout">注销</a></li>
-            </ul>
+              <a class="btn" href="/site/logout">注销</a>
+<!--             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> -->
+<!--               <span class="caret"></span> -->
+<!--             </a> -->
+<!--             <ul class="dropdown-menu"> -->
+<!-- 			  <li><a href="#">个人资料</a></li> -->
+<!--               <li class="divider"></li> -->
+<!--               <li><a href="/site/logout">注销</a></li> -->
+<!--             </ul> -->
           </div>
 <!--          <div class="nav-collapse">
             <ul class="nav">
