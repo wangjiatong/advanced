@@ -141,7 +141,7 @@ class ContractForm extends Model
         
         $contract->raise_interest = round($contract->capital * $contract->raise_day / 365 * $contract->raise_interest_year / 100, 2);//募集期利息
         
-        $contract->cash_time = date($this->found_time, +$this->term_month."months");//兑付时间
+        
         
         $contract->term_month = $this->term_month;//期限（按月）
         
@@ -173,8 +173,6 @@ class ContractForm extends Model
         
         $contract->created_at = date('Y-m-d');
         
-        $date = new \DateTime(".$contract->found_time.");
-        
         $every_time = [];//每期到期时间
         
         $_every_interest = [];//每期应付利息
@@ -183,60 +181,56 @@ class ContractForm extends Model
         
         $contract->bank_user = $this->bank_user;
         
-        switch ($contract->term)
+        if($contract->term == 3 || $contract->term == 6 || $contract->term == 1 || $contract->term == 12)
         {
-            case 3 || 6 || 1 || 12:
-                
-                $y = $contract->term_month / $contract->term;
                 
                 $x = ceil($y);
                 
-                for($i = 0; $i < $x; $i++)
+                if($i == 0)
                 {
-                    $every_time[$i] = $date->modify(+$contract->term.' months')->format("Y-m-d");
-                    
-                    if($i == 0)
-                    {
-                        $_every_interest[$i] = $first_interest;
-                    }elseif($i == ($x - 1)){
-                        $_every_interest[$i] = round($every_interest + $contract->capital, 2);
-                    }else{
-                        $_every_interest[$i] = $every_interest;
-                    }
+                    $_every_interest[$i] = $first_interest;
+                }elseif($i == ($x - 1)){
+                    $_every_interest[$i] = round($every_interest + $contract->capital, 2);
+                }else{
+                    $_every_interest[$i] = $every_interest;
                 }
+            }
+            
+            $mod = $contract->term_month % $contract->term;
+            
+            if($mod)
+            {
+                array_pop($_every_interest);
                 
-                $mod = $contract->term_month % $contract->term;
+                array_pop($every_time);
                 
-                if($mod)
-                {
-                    array_pop($_every_interest);
-                    
-                    array_pop($every_time);
-                    
-                    $l = count($every_time);
-                    
-                    $c = $l -1;
-                    
-                    $ls = new \DateTime(".$every_time[$c].");
-                    
-                    $end = $ls->modify(+$mod." months")->format('Y-m-d');
-                    
-                    $every_time[$l] = $end;
-                    
-                    $_every_interest[$l] = round($mod / $contract->term_month * $contract->interest + $contract->capital, 2);
-                }     
+                $l = count($every_time);
                 
-                $contract->every_time = $this->arrtostr($every_time);
+                $c = $l -1;
                 
-                $contract->every_interest = $this->arrtostr($_every_interest);
-            break;
-        
-            case 0:
-                $contract->every_time = $contract->cash_time;
+                $ls = new \DateTime(".$every_time[$c].");
+                
+                $end = $ls->modify(+$mod." months")->format('Y-m-d');
                 
                 $contract->every_interest = round($contract->total, 2);
             break;
+                $_every_interest[$l] = round($mod / $contract->term_month * $contract->interest + $contract->capital, 2);
+            }     
+            
+            $contract->every_time = $this->arrtostr($every_time);
+            
+            $contract->every_interest = $this->arrtostr($_every_interest);
+            
+        }elseif($contract->term == 0){
+            
+            $contract->every_time = $contract->cash_time;
+            
+            $contract->every_interest = strval(round($contract->total, 2));
+
         }
+        
+//         var_dump($contract);
+//         exit();
         
         return $contract->save() ? $contract : null;
    
