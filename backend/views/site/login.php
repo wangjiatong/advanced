@@ -13,7 +13,7 @@ $this->title = '网站管理后台';
 <?php $form = ActiveForm::begin(['id' => 'login-form',
     'options' => ['class' => 'form-horizontal templatemo-login-form-2'],
     'fieldConfig' => [
-        'template' => '	<div class="form-group">
+        'template' => '<div class="form-group">
 				          <div class="col-md-6 col-md-offset-3">		          	
 				            {label}
 				            <div class="templatemo-input-icon-container">
