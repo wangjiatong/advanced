@@ -143,7 +143,7 @@ class ContractForm extends Model
         
         $date = new \DateTime($contract->found_time);
         
-        $contract->cash_time = $date->modify(+$this->term_month.' months')->format("Y-m-d");//兑付时间
+        $contract->cash_time = $date->modify(+$this->term_month.'months')->format("Y-m-d");//兑付时间
         
         $contract->term_month = $this->term_month;//期限（按月）
         
@@ -183,6 +183,8 @@ class ContractForm extends Model
         
         $contract->bank_user = $this->bank_user;
         
+        $date = new \DateTime($contract->found_time);
+        
         if($contract->term == 3 || $contract->term == 6 || $contract->term == 1 || $contract->term == 12)
         {
             
@@ -192,7 +194,7 @@ class ContractForm extends Model
             
             for($i = 0; $i < $x; $i++)
             {
-                $every_time[$i] = $date->modify(+$contract->term.' months')->format("Y-m-d");
+                $every_time[$i] = $date->modify(+$contract->term.'months')->format("Y-m-d");
                 
                 if($i == 0)
                 {
@@ -236,9 +238,6 @@ class ContractForm extends Model
             $contract->every_interest = strval(round($contract->total, 2));
 
         }
-        
-//         var_dump($contract);
-//         exit();
         
         return $contract->save() ? $contract : null;
    
