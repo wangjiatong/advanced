@@ -141,7 +141,9 @@ class ContractForm extends Model
         
         $contract->raise_interest = round($contract->capital * $contract->raise_day / 365 * $contract->raise_interest_year / 100, 2);//募集期利息
         
+        $date = new \DateTime($contract->found_time);
         
+        $contract->cash_time = $date->modify(+$this->term_month.' months')->format("Y-m-d");//兑付时间
         
         $contract->term_month = $this->term_month;//期限（按月）
         
@@ -183,8 +185,14 @@ class ContractForm extends Model
         
         if($contract->term == 3 || $contract->term == 6 || $contract->term == 1 || $contract->term == 12)
         {
-                
-                $x = ceil($y);
+            
+            $y = $contract->term_month / $contract->term;
+            
+            $x = ceil($y);
+            
+            for($i = 0; $i < $x; $i++)
+            {
+                $every_time[$i] = $date->modify(+$contract->term.' months')->format("Y-m-d");
                 
                 if($i == 0)
                 {
@@ -212,8 +220,8 @@ class ContractForm extends Model
                 
                 $end = $ls->modify(+$mod." months")->format('Y-m-d');
                 
-                $contract->every_interest = round($contract->total, 2);
-            break;
+                $every_time[$l] = $end;
+                
                 $_every_interest[$l] = round($mod / $contract->term_month * $contract->interest + $contract->capital, 2);
             }     
             
