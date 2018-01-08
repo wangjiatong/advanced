@@ -33,10 +33,16 @@ $this->title = '导出Excel';
 ]) ?>
 
 <?= $form->field($model, 'start_time')->widget(DatePicker::className(), [
+    'options' => [
+        'class' => 'form-control',
+    ],
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 
 <?= $form->field($model, 'end_time')->widget(DatePicker::className(), [
+    'options' => [
+        'class' => 'form-control',
+    ],
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 

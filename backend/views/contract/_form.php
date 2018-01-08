@@ -30,10 +30,16 @@ $my_id = Yii::$app->user->identity->id;
     <?= $form->field($model, 'capital')->textInput() ?>
     
     <?= $form->field($model, 'transfered_time')->widget(DatePicker::className(), [
+        'options' => [
+            'class' => 'form-control',
+        ],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
     <?= $form->field($model, 'found_time')->widget(DatePicker::className(), [
+        'options' => [
+            'class' => 'form-control',
+        ],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
