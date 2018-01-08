@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 use common\models\Contract;
 use yii\db\ActiveRecord;
+use backend\models\Admin;
 
 /**
  * This is the model class for table "user".
@@ -249,6 +250,11 @@ class UserModel extends ActiveRecord implements IdentityInterface
     public function getCustomerName()
     {
         return $this->name;
+    }
+    //获取客户经理
+    public function getAdmin()
+    {
+        return $this->hasOne(Admin::className(), ['id' => 'source']);
     }
 
 }

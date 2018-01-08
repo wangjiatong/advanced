@@ -12,6 +12,7 @@ use common\models\UserModel;
  */
 class UserSearch extends UserModel
 {
+    public $admin_name;
     /**
      * @inheritdoc
      */
@@ -19,6 +20,7 @@ class UserSearch extends UserModel
     {
         return [
             [['id', 'status', 'created_at', 'updated_at'], 'integer'],
+            ['admin_name', 'safe'],
             [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'name', 'sex', 'birthday', 'phone_number'], 'safe'],
         ];
     }
@@ -41,7 +43,7 @@ class UserSearch extends UserModel
      */
     public function search($params)
     {
-        $query = UserModel::find();
+        $query = UserModel::find()->joinWith(['admin']);
 
         // add conditions that should always apply here
 
@@ -70,10 +72,11 @@ class UserSearch extends UserModel
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'user.name', $this->name])
             ->andFilterWhere(['like', 'sex', $this->sex])
             ->andFilterWhere(['like', 'birthday', $this->birthday])
-            ->andFilterWhere(['like', 'phone_number', $this->phone_number]);
+            ->andFilterWhere(['like', 'phone_number', $this->phone_number])
+            ->andFilterWhere(['like', 'admin.name', $this->admin_name]);
 
         return $dataProvider;
     }

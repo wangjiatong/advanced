@@ -12,13 +12,19 @@ use common\models\Contract;
  */
 class ContractSearch extends Contract
 {
+    public $user_name;//根据客户姓名查询的字段
+    public $product_name;//根据产品名称查询的字段
+    public $admin_name;//根据销售姓名查询的字段
+
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'capital', 'raise_day', 'raise_interest', 'term_month', 'interest', 'term', 'total_interest', 'total', 'product_id', 'user_id', 'status'], 'integer'],
+            [['id', 'capital', 'raise_day', 'raise_interest', 'term_month', 'interest', 'term', 'total_interest', 'total', 'user_id', 'product_id', 'status'], 'integer'],
+            [['user_name', 'product_name', 'admin_name'], 'safe'],
             [['contract_number', 'transfered_time', 'found_time', 'cash_time', 'every_time', 'every_interest', 'bank', 'bank_number', 'source', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -41,7 +47,7 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find();
+        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('created_at desc');
 
         // add conditions that should always apply here
 
@@ -53,7 +59,7 @@ class ContractSearch extends Contract
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            $query->where('0=1');
             return $dataProvider;
         }
 
@@ -84,8 +90,9 @@ class ContractSearch extends Contract
             ->andFilterWhere(['like', 'every_interest', $this->every_interest])
             ->andFilterWhere(['like', 'bank', $this->bank])
             ->andFilterWhere(['like', 'bank_number', $this->bank_number])
-            ->andFilterWhere(['like', 'source', $this->source]);
-
+            ->andFilterWhere(['like', 'user.name', $this->user_name])
+            ->andFilterWhere(['like', 'product.product_name', $this->product_name])
+            ->andFilterWhere(['like', 'admin.name', $this->admin_name]);
         return $dataProvider;
     }
 }

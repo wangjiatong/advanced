@@ -6,11 +6,23 @@ use yii\widgets\Pjax;
 use backend\controllers\common\BaseController;
 use backend\models\Admin;
 use common\models\Contract;
+use common\models\UserModel;
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = '客户管理';
+$uri = Yii::$app->controller->id.'/'.Yii::$app->controller->action->id;
+switch ($uri)
+{
+    case 'user/index': 
+        $user_list = UserModel::find()->select('name')->indexBy('name')->column(); 
+        $this->title = '客户管理';
+        break;
+    case 'user/my-user': 
+        $user_list = UserModel::find()->select('name')->where(['source' => Yii::$app->user->identity->id])->indexBy('name')->column(); 
+        $this->title = '我的客户';
+        break;     
+}
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-model-index">
@@ -36,7 +48,19 @@ $this->title = '客户管理';
             // 'status',
             // 'created_at',
             // 'updated_at',
-             'name',
+//              'name',
+                [
+                    'attribute' => 'name',
+                    'label' => '姓名',
+                    'filter' => Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'name',
+                        'data' => $user_list,
+                        'options' => [
+                            'placeholder' => '',
+                        ],
+                    ]),
+                ],
 //             'sex',
 //            [
 //                'label' => '性别',
@@ -48,16 +72,31 @@ $this->title = '客户管理';
 //             'birthday',
 //             'phone_number',
 //            'source',
+//             [
+//                 'label' => '客户经理',
+//                 'value' => function($data){
+//                     if($data->source)
+//                     {
+//                         return Admin::find()->where(['id' => $data->source])->one()->name;
+//                     }else{
+//                         return null;
+//                     }
+//                 },
+//                 'visible' => $uri == 'user/index',
+//             ],
             [
+                'attribute' => 'admin_name',
+                'value' => 'admin.name',
                 'label' => '客户经理',
-                'value' => function($data){
-                    if($data->source)
-                    {
-                        return Admin::find()->where(['id' => $data->source])->one()->name;
-                    }else{
-                        return null;
-                    }
-                }
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'admin_name',
+                    'data' => Admin::find()->select('name')->indexBy('name')->column(),
+                    'options' => [
+                        'placeholder' => '',
+                    ],
+                ]),
+                'visible' => $uri == 'user/index',
             ],
             [
                 'label' => '操作',

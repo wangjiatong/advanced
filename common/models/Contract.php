@@ -3,6 +3,7 @@ namespace common\models;
 
 use Yii;
 use \yii\db\ActiveRecord;
+use backend\models\Admin;
 
 /**
  * This is the model class for table "contract".
@@ -102,6 +103,7 @@ class Contract extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    //关联客户表
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -110,11 +112,13 @@ class Contract extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    //关联产品表
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
     
+    //判断合同状态
     public function contractValidation($status)
     {
         switch ($status)
@@ -125,6 +129,13 @@ class Contract extends ActiveRecord
         }
     }
     
+    //关联销售表
+    public function getAdmin()
+    {
+        return $this->hasOne(Admin::className(), ['id' => 'source']);
+    }
+    
+    //？？
     public function getStatus()
     {
         switch ($this->status)
