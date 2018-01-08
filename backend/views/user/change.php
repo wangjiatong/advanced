@@ -11,7 +11,7 @@ $this->title = '客户修改';
 <h1>客户修改</h1>
 <?php $form = ActiveForm::begin()?>
 
-<?=$form->field($model, 'username')->textInput(['value' => $old->username])?>
+<?=$form->field($model, 'username')->textInput(['value' => $old->username, 'disabled' => true])?>
 
 <?=$form->field($model, 'email')->textInput(['value' => $old->email])?>
 

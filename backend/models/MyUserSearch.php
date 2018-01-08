@@ -11,6 +11,7 @@ use common\models\UserModel;
  */
 class MyUserSearch extends UserModel
 {
+    public $admin_name;
     /**
      * @inheritdoc
      */
