@@ -27,13 +27,12 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_name'], 'required'],
-            [['product_column_id'], 'integer'],
-            [['product_name'], 'string', 'max' => 255],
-            [['product_name'], 'unique'],
-            [['content'], 'required'],
-            [['img'], 'safe'],
-
+//             [['product_name'], 'required'],
+//             [['product_column_id'], 'integer'],
+//             [['product_name'], 'string', 'max' => 255],
+//             [['product_name'], 'unique'],
+//             [['content'], 'required'],
+//             [['img'], 'safe'],
         ];
     }
 
@@ -48,6 +47,7 @@ class Product extends \yii\db\ActiveRecord
             'content' => '产品内容',
             'product_column_id' => '产品分类',
             'img' => '产品图片',
+            'status' => '产品状态',
         ];
     }
 
@@ -67,5 +67,10 @@ class Product extends \yii\db\ActiveRecord
     public function getImg()
     {
         return $this->img;
+    }
+    
+    public function getStatus()
+    {
+        return $this->status ? '在售' : '停售';
     }
 }

@@ -140,9 +140,8 @@ class Contract extends ActiveRecord
     {
         switch ($this->status)
         {
-            case 1: return '生效中';                break;
-            case 0: return '已过期';                break;
-            default : return '不存在的';
+            case 1: return '运行中';                break;
+            case 0: return '已兑付';                break;
         }
     }
 }

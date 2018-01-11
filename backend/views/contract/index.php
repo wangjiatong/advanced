@@ -42,7 +42,9 @@ switch ($uri)
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
+                
                 'contract_number',
+                
                 [
                     'attribute' => 'user_name',
                     'value' => 'user.name',
@@ -56,6 +58,7 @@ switch ($uri)
                         ],
                     ]),
                 ],
+                
                 [
                     'attribute' => 'product_name',
                     'value' => 'product.product_name',
@@ -69,6 +72,7 @@ switch ($uri)
                         ],
                     ]),
                 ],
+                
                 [
                     'attribute' => 'admin_name',
                     'value' => 'admin.name',
@@ -83,7 +87,9 @@ switch ($uri)
                     ]),
                     'visible' => $uri == 'contract/index',
                 ],
+                
                 'found_time',
+                
                 [
                     'label' => '浮动利率',
                     'value' => function($data){
@@ -98,6 +104,15 @@ switch ($uri)
                         }
                     }    
                 ],
+                
+                [
+                    'label' => '状态',
+                    'value' => function($data)
+                    {
+                        return $data->getStatus();
+                    }    
+                ],
+                
                 [
                     'label' => '操作',
                     'format' => 'raw',
@@ -108,4 +123,6 @@ switch ($uri)
                 ],
             ],
         ]); ?>
-    <?php Pjax::end(); ?></div>
+    <?php Pjax::end(); ?>
+    
+</div>

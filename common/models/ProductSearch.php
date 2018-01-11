@@ -18,8 +18,8 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'product_column_id'], 'integer'],
-            [['product_name'], 'safe'],
+            ['id', 'integer'],
+            [['product_name', 'product_column_id'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = Product::find()->joinWith('productColumn')->orderBy('id desc');
 
         // add conditions that should always apply here
 

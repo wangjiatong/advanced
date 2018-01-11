@@ -47,7 +47,7 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('created_at desc');
+        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('id desc');
 
         // add conditions that should always apply here
 

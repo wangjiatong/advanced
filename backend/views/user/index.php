@@ -33,22 +33,14 @@ switch ($uri)
     <p>
         <?= Html::a('新增客户', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    
+    <?php Pjax::begin(); ?>    
+    <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-//            'username',
-//            'auth_key',
-//            'password_hash',
-//            'password_reset_token',
-//             'email:email',
-            // 'status',
-            // 'created_at',
-            // 'updated_at',
-//              'name',
                 [
                     'attribute' => 'name',
                     'label' => '姓名',
@@ -61,60 +53,50 @@ switch ($uri)
                         ],
                     ]),
                 ],
-//             'sex',
-//            [
-//                'label' => '性别',
-//                'attribute' => 'sex',
-//                'value' => function($data){
-//                    return common\models\UserModel::getSex($data->id);
-//                }
-//            ],
-//             'birthday',
-//             'phone_number',
-//            'source',
-//             [
-//                 'label' => '客户经理',
-//                 'value' => function($data){
-//                     if($data->source)
-//                     {
-//                         return Admin::find()->where(['id' => $data->source])->one()->name;
-//                     }else{
-//                         return null;
-//                     }
-//                 },
-//                 'visible' => $uri == 'user/index',
-//             ],
-            [
-                'attribute' => 'admin_name',
-                'value' => 'admin.name',
-                'label' => '客户经理',
-                'filter' => Select2::widget([
-                    'model' => $searchModel,
+
+                [
                     'attribute' => 'admin_name',
-                    'data' => Admin::find()->select('name')->indexBy('name')->column(),
-                    'options' => [
-                        'placeholder' => '',
-                    ],
-                ]),
-                'visible' => $uri == 'user/index',
+                    'value' => 'admin.name',
+                    'label' => '客户经理',
+                    'filter' => Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'admin_name',
+                        'data' => Admin::find()->select('name')->indexBy('name')->column(),
+                        'options' => [
+                            'placeholder' => '',
+                        ],
+                    ]),
+                    'visible' => $uri == 'user/index',
+                ],
+                
+//                 [
+//                     'label' => '性别',
+//                     'attribute' => 'sex',
+//                     'value' => function($data){
+//                         return common\models\UserModel::getSex($data->id);
+//                     }
+//                 ],
+                
+                [
+                    'label' => '操作',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
+                        return Html::a('详情', [$url, 'id' => $data->id], ['class' => 'btn btn-info']);
+                    },
+                ],
+                
+                [
+                    'label' => '查看名下合同',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        $count = Contract::find()->where(['user_id' => $data->id])->count();
+                        $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
+                        return Html::a('查看', [$url, 'id' => $data->id], ['class' => 'btn btn-success']) . "(共{$count}条记录）";
+                    },
+                ],
             ],
-            [
-                'label' => '操作',
-                'format' => 'raw',
-                'value' => function($data){
-                    $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
-                    return Html::a('详情', [$url, 'id' => $data->id], ['class' => 'btn btn-info']);
-                },
-            ],
-            [
-                'label' => '查看名下合同',
-                'format' => 'raw',
-                'value' => function($data){
-                    $count = Contract::find()->where(['user_id' => $data->id])->count();
-                    $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
-                    return Html::a('查看', [$url, 'id' => $data->id], ['class' => 'btn btn-success']) . "(共{$count}条记录）";
-                },
-            ],
-        ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
+        ]); ?>
+    <?php Pjax::end(); ?>
+
+</div>
