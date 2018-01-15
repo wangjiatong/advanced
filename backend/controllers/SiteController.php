@@ -92,7 +92,7 @@ class SiteController extends BaseController
             
                 }
             }
-            $models = array();
+            
             if(isset($id_arr))
             {
                 foreach ($id_arr as $i)
@@ -101,6 +101,7 @@ class SiteController extends BaseController
                     $models = $model;
                 }
             }
+            
             Yii::$app->view->params['models'] = $models;
             
             return $this->render('index', [
