@@ -2,6 +2,8 @@
 $this->title = '管理后台-主页';
 use yii\helpers\Json;
 ?>
+<?php if(in_array('contract/index', Yii::$app->session['allowed_urls']) 
+    || in_array('contract/my-contract', Yii::$app->session['allowed_urls'])): ?>
 <div class="col_3">
 	<div class="col-md-3 widget widget1">
 		<div class="r3_counter_box">
@@ -279,4 +281,5 @@ use yii\helpers\Json;
 		<div class="clearfix"></div>
 	</div>
 </div>
+<?php endif; ?>
 <!-- //switches -->
