@@ -12,80 +12,103 @@ $my_id = Yii::$app->user->identity->id;
 /* @var $model common\models\Contract */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="contract-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'contract_number')->textInput(['maxlength' => true]) ?>
-        
-    <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
-        'data' => UserModel::find()->select('name, id')->where(['source' => Yii::$app->user->identity->id])->indexBy('id')->column(),
-        'options' => [
-            'prompt' => '请选择',
-            'multiple' => false,
-        ],
-    ]) ?>
-
-    <?= $form->field($model, 'capital')->textInput() ?>
+<h3 class="blank1"><?= $this->title ?></h3>
+<div class="tab-content">
+    <div class="tab-pane active" id="horizontal-form">
     
-    <?= $form->field($model, 'transfered_time')->widget(DatePicker::className(), [
-        'options' => [
-            'class' => 'form-control',
-        ],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
-
-    <?= $form->field($model, 'found_time')->widget(DatePicker::className(), [
-        'options' => [
-            'class' => 'form-control',
-        ],
-        'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
-
-    <?= $form->field($model, 'raise_interest_year')->textInput() ?>
-    
-    <?= $form->field($model, 'interest_year')->textInput() ?>
-    
-    <?= $form->field($model, 'if_float')->dropDownList([0 => '否', 1 => '是'], ['prompt' => '请选择']) ?>
-    
-    <?= $form->field($model, 'term_month')->textInput() ?>
-
-    <?= $form->field($model, 'term')->dropDownList(
-            [
-                '1' => '按月',
-                '3' => '季度',
-                '6' => '半年',
-                '12' => '按年',
-                '0' => '一次性兑付',
+        <?php $form = ActiveForm::begin([
+            'options' => ['class' => 'form-horizontal'],
+            'fieldConfig' => [
+                'template' => "<div class='form-group'>{label}<div class='col-sm-4'>{input}</div><div class='col-sm-2'>{error}</div></div>",
+                'labelOptions' => ['class' => 'col-sm-2 control-label'],
+                'inputOptions' => ['class' => 'form-control1'],
             ],
-            [
-                'prompt' => '请选择',
-            ]
-        ) ?>
-
-    <?= $form->field($model, 'bank')->textInput(['maxlength' => true]) ?>
+        ]); ?>
     
-    <?= $form->field($model, 'bank_user')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'bank_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
-        'data' => Product::find()->select('product_name, id')->indexBy('id')->column(),
-        'options' => [
-            'prompt' => '请选择',
-            'multiple' => false,
-        ],
-    ]) ?>
+        <?= $form->field($model, 'contract_number')->textInput(['maxlength' => true, 'placeholder' => '如果不填则会自动生成']) ?>
+            
+        <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
+            'data' => UserModel::find()->select('name, id')->where(['source' => Yii::$app->user->identity->id])->indexBy('id')->column(),
+            'options' => [
+                'prompt' => '请选择客户姓名',
+                'multiple' => false,
+            ],
+        ]) ?>
     
-    <?= $form->field($model, 'pdf')->fileInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+        <?= $form->field($model, 'capital', [
+                'template' => "<div class='form-group'>{label}<div class='col-sm-4'>{input}</div><div class='col-sm-4' id='div_capital' style='display: none;'><p id='p_capital'></p></div><div class='col-sm-2'>{error}</div></div>",
+                'labelOptions' => ['class' => 'col-sm-2 control-label'],
+                'inputOptions' => ['class' => 'form-control1'],
+            ])->textInput(['placeholder' => '单位：元']) ?>
+        
+        <?= $form->field($model, 'transfered_time')->widget(DatePicker::className(), [
+            'options' => [
+                'class' => 'form-control1',
+            ],
+            'dateFormat' => 'yyyy-MM-dd',
+        ]) ?>
+    
+        <?= $form->field($model, 'found_time')->widget(DatePicker::className(), [
+            'options' => [
+                'class' => 'form-control1',
+            ],
+            'dateFormat' => 'yyyy-MM-dd',
+        ]) ?>
+    
+        <?= $form->field($model, 'raise_interest_year')->textInput(['placeholder' => '单位：%']) ?>
+        
+        <?= $form->field($model, 'interest_year')->textInput(['placeholder' => '单位：%']) ?>
+        
+        <?= $form->field($model, 'if_float')->dropDownList([0 => '否', 1 => '是'], ['prompt' => '请选择是否含有浮动利率']) ?>
+        
+        <?= $form->field($model, 'term_month')->textInput(['placeholder' => '单位：月']) ?>
+    
+        <?= $form->field($model, 'term')->dropDownList(
+                [
+                    '1' => '按月',
+                    '3' => '季度',
+                    '6' => '半年',
+                    '12' => '按年',
+                    '0' => '一次性兑付',
+                ],
+                [
+                    'prompt' => '请选择付款方式',
+                ]
+            ) ?>
+    
+        <?= $form->field($model, 'bank')->textInput(['maxlength' => true]) ?>
+        
+        <?= $form->field($model, 'bank_user')->textInput(['maxlength' => true]) ?>
+    
+        <?= $form->field($model, 'bank_number', [
+                'template' => "<div class='form-group'>{label}<div class='col-sm-4'>{input}</div><div class='col-sm-4' id='div_bank_number' style='display: none;'><p id='p_bank_number'></p></div><div class='col-sm-2'>{error}</div></div>",
+                'labelOptions' => ['class' => 'col-sm-2 control-label'],
+                'inputOptions' => ['class' => 'form-control1'],
+            ])->textInput(['maxlength' => true]) ?>
+    
+        <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
+            'data' => Product::find()->select('product_name, id')->where(['status' => 1])->indexBy('id')->column(),
+            'options' => [
+                'prompt' => '请选择产品名称',
+                'multiple' => false,
+            ],
+        ]) ?>
+        
+        <?= $form->field($model, 'pdf')->fileInput() ?>
+    
+        <div class="form-group">
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php ActiveForm::end(); ?>
+        
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
 
 <?php 
@@ -96,8 +119,8 @@ $numbersFormater = <<<numberFormater
     $('#$capital_id').bind('keyup', function(){
         var before = $('#$capital_id').val();
         var after = seprateByThousand(before);
-        var originalLabel = $('label[for=$capital_id]').text();
-        $('label[for=$capital_id]').text('本金：' + after + ' （单位：元）' + ' 人民币大写金额：' + upperNum(before));
+        $('#div_capital').show();
+        $('#p_capital').html('数额：' + after + "<br />" + ' 大写金额：' + upperNum(before));    
     });
     //JS千分位分割函数
     function seprateByThousand(num) 
@@ -152,8 +175,8 @@ $bankNumsFormater = <<<bankNumsFormater
 $('#$bank_number_id').bind('keyup', function(){
     var before = $('#$bank_number_id').val();
     var after = before.replace(/(\d{4})(?=\d)/g,"$1"+"-");
-    var originalLabel = $('label[for=$bank_number_id]').text;
-    $('label[for=$bank_number_id]').text('银行账号: ' + after);        
+    $('#div_bank_number').show();
+    $('#p_bank_number').html('银行账号：' + after);       
 });
 bankNumsFormater;
 

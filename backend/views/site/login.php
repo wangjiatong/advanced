@@ -51,7 +51,7 @@ $this->title = '网站管理后台';
     
     <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-            <?= Html::submitButton('登录', ['class' => 'btn btn-warning', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('登录', ['class' => 'btn btn-info', 'name' => 'login-button']) ?>
         </div>
     </div>
 

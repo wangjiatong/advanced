@@ -8,6 +8,7 @@ use yii\web\IdentityInterface;
 use common\models\Contract;
 use yii\db\ActiveRecord;
 use backend\models\Admin;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "user".
@@ -91,6 +92,7 @@ class UserModel extends ActiveRecord implements IdentityInterface
             'source' => '客户来源',
         ];
     }
+    
      /**
      * @inheritdoc
      */
@@ -221,6 +223,7 @@ class UserModel extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
     //获取客户姓名
     public function getName($id)
     {
@@ -228,6 +231,7 @@ class UserModel extends ActiveRecord implements IdentityInterface
         $name = $arr['name'];
         return $name;
     }
+    
     //获取客户性别
     public function getSex($id)
     {
@@ -246,15 +250,77 @@ class UserModel extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Contract::className(), ['user_id' => 'id']);
     }
+    
     //获取客户姓名
     public function getCustomerName()
     {
         return $this->name;
     }
+    
     //获取客户经理
     public function getAdmin()
     {
         return $this->hasOne(Admin::className(), ['id' => 'source']);
     }
+    
+    /*  通过当前用户在session中所拥有的访问权限判断
+     *  是获取销售个人客户总数or公司客户总数
+     */
+    public static function getUserNumByAccess()
+    {
+        $sql = static::find();
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $userNum = $sql->where(['source' => Yii::$app->user->identity->id])->count();
+        }else{
+            $userNum = $sql->count();
+        }
+        return $userNum;
+    }
+    
+    /*
+     * 获取最近几个月的每个月的客户数
+     */
+    public static function getUserNumByMonth($months)
+    {
+//         $months = 5;//查询六个月内的
+        $sql = static::find();//用户模型
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            $wherefunc = 'andWhere';
+            return static::searchByMonth($data, $months, $wherefunc);
+        }else{
+            return static::searchByMonth($sql, $months);
+        }
+    }
+    
+    /*
+     * 查询距今 $months 个月里，每个月内符合某字段条件下的记录数量
+     * @param object $data 所要查询的模型对象
+     * @param integer $months 查询月数
+     * @param string $wherefunc 默认使用的查询条件，默认使用where()
+     * @return json object 按月份从小到大的顺序排列的每月的数量
+     */
+    public static function searchByMonth($data, $months, $wherefunc = "where")
+    {
+        for($i = $months; $i >= 0; $i--)
+        {
+            $date = new \DateTime();//实例化当前日期对象
+//             $date->format('YmtHis');
+            //计算时间范围内每个月的起始及终止时间
+            $start = strtotime($date->modify('-' . $i . 'months')->format('Y-m-01'));
+            $end = strtotime($date->format('Y-m-t'));
+            $whereCondition = ['between', 'created_at', $start, $end];
+            $num = $data->$wherefunc($whereCondition)->count();
+            $num_arr[] = [$date->format('Y-n'), $num];
+        }
+        return Json::encode($num_arr);
+    }
+        
+        
+        
+        
+
 
 }

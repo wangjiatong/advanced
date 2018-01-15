@@ -13,6 +13,7 @@ $this->title = '产品详情——'. $model->product_name;
 //$this->params['breadcrumbs'][] = $this->title;
 //print_r($model->productColumn);
 $imgUrl = constant('FRONTEND') . '/' . $model->img;
+$status = $model->status;
 ?>
 <div class="product-view">
 
@@ -20,6 +21,13 @@ $imgUrl = constant('FRONTEND') . '/' . $model->img;
 
     <p>
         <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a($status ? '停售' : '开售', [$status ? 'stop-selling' : 'start-selling', 'id' => $model->id], [
+            'class' => $status ? 'btn btn-danger' : 'btn btn-warning',
+            'data' => [
+                'confirm' => $status ? '你确定要停售该产品吗？' : '你确定要恢复销售该产品吗？',
+                'method' => 'post',
+            ],
+        ]) ?>
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -34,6 +42,10 @@ $imgUrl = constant('FRONTEND') . '/' . $model->img;
         'attributes' => [
             'id',
             'product_name',
+            [
+                'label' => '产品状态',
+                'value' => $model->getStatus(),  
+            ],
             'content:html',
 //            'img:html',
 //            'product_column_id', 

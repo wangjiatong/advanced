@@ -42,7 +42,7 @@ class MyUserSearch extends UserModel
     public function search($params)
     {
         $my_id = Yii::$app->user->identity->id;
-        $query = UserModel::find()->where(['source' => $my_id]);
+        $query = UserModel::find()->where(['source' => $my_id])->orderBy('id desc');
 
         // add conditions that should always apply here
 
