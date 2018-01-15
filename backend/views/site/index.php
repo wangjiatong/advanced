@@ -1,14 +1,15 @@
-<?php 
+<?php
 $this->title = '管理后台-主页';
+use yii\helpers\Json;
 ?>
 <div class="col_3">
 	<div class="col-md-3 widget widget1">
 		<div class="r3_counter_box">
 			<i class="fa fa-mail-forward"></i>
 			<div class="stats">
-			  <h5>45 <span>%</span></h5>
+			  <h5>0 <span></span></h5>
 			  <div class="grow">
-				<p>Growth</p>
+				<p>增长</p>
 			  </div>
 			</div>
 		</div>
@@ -17,9 +18,9 @@ $this->title = '管理后台-主页';
 		<div class="r3_counter_box">
 			<i class="fa fa-users"></i>
 			<div class="stats">
-			  <h5>50 <span>%</span></h5>
+			  <h5><?= $userNum ?> <span></span></h5>
 			  <div class="grow grow1">
-				<p>New Users</p>
+				<p>客户</p>
 			  </div>
 			</div>
 		</div>
@@ -28,9 +29,9 @@ $this->title = '管理后台-主页';
 		<div class="r3_counter_box">
 			<i class="fa fa-eye"></i>
 			<div class="stats">
-			  <h5>70 <span>%</span></h5>
+			  <h5><?= $contractNum ?> <span></span></h5>
 			  <div class="grow grow3">
-				<p>Visitors</p>
+				<p>合同</p>
 			  </div>
 			</div>
 		</div>
@@ -39,9 +40,9 @@ $this->title = '管理后台-主页';
 		<div class="r3_counter_box">
 			<i class="fa fa-usd"></i>
 			<div class="stats">
-			  <h5>70 <span>%</span></h5>
+			  <h5><?= number_format($capitalSum) ?> <span></span></h5>
 			  <div class="grow grow2">
-				<p>Profit</p>
+				<p>销售量</p>
 			  </div>
 			</div>
 		</div>
@@ -55,327 +56,227 @@ $this->title = '管理后台-主页';
 		<div class="col-md-4 switch-right">
 			<div class="switch-right-grid">
 				<div class="switch-right-grid1">
-					<h3>TODAY'S STATS</h3>
-					<p>Duis aute irure dolor in reprehenderit.</p>
+					<h3>客户统计</h3>
+					<p>最近六个月中每个月的客户增长数量</p>
 					<ul>
-						<li>Earning: $400 USD</li>
-						<li>Items Sold: 20 Items</li>
-						<li>Last Hour Sales: $34 USD</li>
+                        <?php 
+                            foreach (Json::decode($userNumByMonth) as $value)
+                            {
+                                $uNum[] = $value[1];
+                            }
+                        ?>
+						<li>最高：<?= max($uNum) ?></li>
+						<li>平均：<?= array_sum($uNum)/6 ?></li>
+		                <li>最低：<?= min($uNum) ?></li>
 					</ul>
 				</div>
 			</div>
 			<div class="sparkline">
-				<canvas id="line" height="150" width="480" style="width: 480px; height: 150px;"></canvas>
-		<script>
-				var lineChartData = {
-					labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon"],
-					datasets : [
-						{
-							fillColor : "#fff",
-							strokeColor : "#F44336",
-							pointColor : "#fbfbfb",
-							pointStrokeColor : "#F44336",
-							data : [20,35,45,30,10,65,40]
-						}
-					]
-					
-				};
-				new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-		</script>
-	</div>
-</div>
-<div class="col-md-4 switch-right">
-	<div class="switch-right-grid">
-		<div class="switch-right-grid1">
-			<h3>MONTHLY STATS</h3>
-			<p>Duis aute irure dolor in reprehenderit.</p>
-			<ul>
-				<li>Earning: $5,000 USD</li>
-				<li>Items Sold: 400 Items</li>
-				<li>Last Hour Sales: $2,434 USD</li>
-			</ul>
-		</div>
-	</div>
-	<div class="sparkline">
-		<canvas id="bar" height="150" width="480" style="width: 480px; height: 150px;"></canvas>
-		<script>
-			var barChartData = {
-				labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon","Tue","Wed","Thu"],
-				datasets : [
-					{
-						fillColor : "#8BC34A",
-						strokeColor : "#8BC34A",
-						data : [25,40,50,65,55,30,20,10,6,4]
-					},
-					{
-						fillColor : "#8BC34A",
-						strokeColor : "#8BC34A",
-						data : [30,45,55,70,40,25,15,8,5,2]
-					}
-				]
-				
-			};
-				new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
-		</script>
-	</div>
-</div>
-<div class="col-md-4 switch-right">
-	<div class="switch-right-grid">
-		<div class="switch-right-grid1">
-			<h3>ALLTIME STATS</h3>
-			<p>Duis aute irure dolor in reprehenderit.</p>
-			<ul>
-				<li>Earning: $80,000 USD</li>
-				<li>Items Sold: 8,000 Items</li>
-				<li>Last Hour Sales: $75,434 USD</li>
-			</ul>
-		</div>
-	</div>
-	<div class="sparkline">
-		<!--graph-->
-	<link rel="stylesheet" href="css/new/graph.css">
-	<script src="js/new/jquery.flot.min.js"></script>
-<!--//graph-->
-		<script>
-			$(document).ready(function () {
-			
-				// Graph Data ##############################################
-				var graphData = [{
-						// Returning Visits
-						data: [ [4, 4500], [5,3500], [6, 6550], [7, 7600],[8, 4500], [9,3500], [10, 6550], ],
-						color: '#FFCA28',
-						points: { radius: 7, fillColor: '#fff' }
-					}
-				];
-			
-				// Lines Graph #############################################
-				$.plot($('#graph-lines'), graphData, {
-					series: {
-						points: {
-							show: true,
-							radius: 1
-						},
-						lines: {
-							show: true
-						},
-						shadowSize: 0
-					},
-					grid: {
-						color: '#fff',
-						borderColor: 'transparent',
-						borderWidth: 10,
-						hoverable: true
-					},
-					xaxis: {
-						tickColor: 'transparent',
-						tickDecimals: false
-					},
-					yaxis: {
-						tickSize: 1200
-					}
-				});
-			
-				// Graph Toggle ############################################
-				$('#graph-bars').hide();
-			
-				$('#lines').on('click', function (e) {
-					$('#bars').removeClass('active');
-					$('#graph-bars').fadeOut();
-					$(this).addClass('active');
-					$('#graph-lines').fadeIn();
-					e.preventDefault();
-				});
-			
-				$('#bars').on('click', function (e) {
-					$('#lines').removeClass('active');
-					$('#graph-lines').fadeOut();
-					$(this).addClass('active');
-					$('#graph-bars').fadeIn().removeClass('hidden');
-					e.preventDefault();
-				});
-			
-			});
-		</script>
-					<div id="graph-wrapper">
-						<div class="graph-container">
-							<div id="graph-lines"> </div>
-							<div id="graph-bars"> </div>
-						</div>
+				<div id="graph-wrapper">
+					<div class="graph-container" style='height: 300px;'>
+                        <div id='line' style='width: 100%; height: 600px;'></div>
 					</div>
+				</div>
+                <script>
+                    var myLine = echarts.init(document.getElementById('line'));   
+                    
+                    data = <?= $userNumByMonth ?>;
+        
+                    var dateList = data.map(function (item) {
+                        return item[0];
+                    });
+                    var valueList = data.map(function (item) {
+                        return item[1];
+                    });
+        
+                    option = {
+        
+                        // Make gradient line here
+                        visualMap: [{
+                            show: false,
+                            type: 'continuous',
+                            seriesIndex: 0,
+                            min: 0,
+                            max: 400
+                        }],
+        
+        
+                        title: [{
+                            left: 'center',
+                            text: ''
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {show: false}
+                        }],
+                        grid: [{
+                            bottom: '60%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: valueList
+                        }]
+                    };
+    
+                    myLine.setOption(option);
+                </script>
+			</div>
+		</div>
+		<div class="col-md-4 switch-right">
+			<div class="switch-right-grid">
+				<div class="switch-right-grid1">
+					<h3>合同统计</h3>
+					<p>最近六个月中每个月的成立合同的数量</p>
+					<ul>
+						<li>最高：<?= max($conNumByMonth) ?></li>
+						<li>平均：<?= round(array_sum($conNumByMonth)/6, 2) ?></li>
+						<li>最低：<?= min($conNumByMonth) ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="sparkline">
+				<div id="graph-wrapper">
+					<div class="graph-container" style='height: 300px;'>
+                        <div id='bar' style='width: 100%; height: 280px;'></div>
+					</div>
+				</div>
+                <script>
+                    var myBar = echarts.init(document.getElementById('bar'));   
+                    
+                    myBar.title = '';
+
+                    option = {
+                        color: ['#3398DB'],
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : <?= Json::encode(array_keys($conNumByMonth)) ?>,
+                                axisTick: {
+                                    alignWithLabel: true
+                                }
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'数量',
+                                type:'bar',
+                                barWidth: '60%',
+                                data:<?= Json::encode(array_values($conNumByMonth)) ?>
+                            }
+                        ]
+                    };
+    
+                    myBar.setOption(option);
+                </script>
+			 </div>
+		  </div>
+		  <div class="col-md-4 switch-right">
+			<div class="switch-right-grid">
+				<div class="switch-right-grid1">
+					<h3>销售统计</h3>
+					<p>最近六个月中每个月的销售额</p>
+					<ul>
+					   <?php $capitalByMonthArrVal = array_values($capitalByMonth) ?>
+						<li>最高：<?= number_format(max($capitalByMonthArrVal)) ?></li>
+						<li>平均：<?= number_format(array_sum($capitalByMonthArrVal)/6, 2) ?></li>
+						<li>最低：<?= number_format(min($capitalByMonthArrVal)) ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="sparkline">
+				<div id="graph-wrapper">
+					<div class="graph-container" style='height: 300px;'>
+                        <div id='weather' style='width: 100%; height: 310px;'></div>
+					</div>
+				</div>
+				<script>
+    			     var myWeather = echarts.init(document.getElementById('weather'));
+    			     
+    			     option = {
+    			    		    title: {
+    			    		        text: '',
+    			    		        subtext: ''
+    			    		    },
+    			    		    tooltip: {
+    			    		        trigger: 'axis'
+    			    		    },
+    			    		    legend: {
+    			    		        data:['','']
+    			    		    },
+    			    		    toolbox: {
+    			    		        show: false,
+    			    		        feature: {
+    			    		            dataZoom: {
+    			    		                yAxisIndex: 'none'
+    			    		            },
+    			    		            dataView: {readOnly: false},
+    			    		            magicType: {type: ['line', 'bar']},
+    			    		            restore: {},
+    			    		            saveAsImage: {}
+    			    		        }
+    			    		    },
+    			    		    xAxis:  {
+    			    		        type: 'category',
+    			    		        boundaryGap: false,
+    			    		        data: <?= Json_encode(array_keys($capitalByMonth)) ?>
+    			    		    },
+    			    		    yAxis: {
+    			    		        type: 'value',
+    			    		        axisLabel: {
+    			    		            formatter: function(value)
+    			    		            {
+    			    		                return value/10000 + '万元';
+    			    		            }
+    			    		        }
+    			    		    },
+    			    		    series: [
+    			    		        {
+    			    		            name:'',
+    			    		            type:'line',
+    			    		            data: <?= Json::encode($capitalByMonthArrVal) ?>,
+    			    		            markPoint: {
+    			    		                data: [
+    			    		                    {type: 'max', name: '最大值'},
+    			    		                    {type: 'min', name: '最小值'}
+    			    		                ]
+    			    		            },
+    			    		            markLine: {
+    			    		                data: [
+    			    		                    {type: 'average', name: '平均值'}
+    			    		                ]
+    			    		            }
+    			    		        },
+    			    		    ]
+    			    		};
+    		    		
+    			     myWeather.setOption(option);
+				</script>
 			</div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
 <!-- //switches -->
-<div class="col_1">
-	<div class="col-md-4 span_8">
-		<div class="activity_box">
-			<h3>Inbox</h3>
-			<div class="scrollbar scrollbar1" id="style-2">
-				<div class="activity-row">
-					<div class="col-xs-3 activity-img"><img src='img/new/1.png' class="img-responsive" alt=""/></div>
-					<div class="col-xs-7 activity-desc">
-						<h5><a href="#">John Smith</a></h5>
-						<p>Hey ! There I'm available.</p>
-					</div>
-					<div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row">
-					<div class="col-xs-3 activity-img"><img src='img/new/5.png' class="img-responsive" alt=""/></div>
-					<div class="col-xs-7 activity-desc">
-						<h5><a href="#">Andrew Jos</a></h5>
-						<p>Hey ! There I'm available.</p>
-					</div>
-					<div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row">
-					<div class="col-xs-3 activity-img"><img src='img/new/3.png' class="img-responsive" alt=""/></div>
-					<div class="col-xs-7 activity-desc">
-						<h5><a href="#">Adom Smith</a></h5>
-						<p>Hey ! There I'm available.</p>
-					</div>
-					<div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row">
-					<div class="col-xs-3 activity-img"><img src='img/new/4.png' class="img-responsive" alt=""/></div>
-					<div class="col-xs-7 activity-desc">
-						<h5><a href="#">Peter Carl</a></h5>
-						<p>Hey ! There I'm available.</p>
-					</div>
-					<div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row">
-					<div class="col-xs-3 activity-img"><img src='img/new/1.png' class="img-responsive" alt=""/></div>
-					<div class="col-xs-7 activity-desc">
-						<h5><a href="#">John Smith</a></h5>
-						<p>Hey ! There I'm available.</p>
-					</div>
-					<div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4 span_8">
-		<div class="activity_box activity_box1">
-			<h3>chat</h3>
-			<div class="scrollbar" id="style-2">
-				<div class="activity-row activity-row1">
-					<div class="col-xs-3 activity-img"><img src='img/new/1.png' class="img-responsive" alt=""/><span>10:00 PM</span></div>
-					<div class="col-xs-5 activity-img1">
-						<div class="activity-desc-sub">
-							<h5>John Smith</h5>
-							<p>Hello !</p>
-						</div>
-					</div>
-					<div class="col-xs-4 activity-desc1"></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row activity-row1">
-					<div class="col-xs-2 activity-desc1"></div>
-					<div class="col-xs-7 activity-img2">
-						<div class="activity-desc-sub1">
-							<h5>Adom Smith</h5>
-							<p>Hi,How are you ? What about our next meeting?</p>
-						</div>
-					</div>
-					<div class="col-xs-3 activity-img"><img src='img/new/3.png' class="img-responsive" alt=""/><span>10:02 PM</span></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row activity-row1">
-					<div class="col-xs-3 activity-img"><img src='img/new/1.png' class="img-responsive" alt=""/><span>10:00 PM</span></div>
-					<div class="col-xs-5 activity-img1">
-						<div class="activity-desc-sub">
-							<h5>John Smith</h5>
-							<p>Yeah fine</p>
-						</div>
-					</div>
-					<div class="col-xs-4 activity-desc1"></div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="activity-row activity-row1">
-					<div class="col-xs-2 activity-desc1"></div>
-					<div class="col-xs-7 activity-img2">
-						<div class="activity-desc-sub1">
-							<h5>Adom Smith</h5>
-							<p>Wow that's great</p>
-						</div>
-					</div>
-					<div class="col-xs-3 activity-img"><img src='img/new/3.png' class="img-responsive" alt=""/><span>10:02 PM</span></div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<form>
-				<input type="text" value="Enter your text" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Enter your text';}" required="">
-			<input type="submit" value="Send" required=""/>		
-		</form>
-	</div>
-</div>
-<div class="col-md-4 span_8">
-	<div class="activity_box activity_box2">
-		<h3>todo</h3>
-		<div class="scrollbar" id="style-2">
-			<div class="activity-row activity-row1">
-				<div class="single-bottom">
-					<ul>
-						<li>
-							<input type="checkbox"  id="brand" value="">
-							<label for="brand"><span></span> Sunt in culpa qui officia.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand1" value="">
-							<label for="brand1"><span></span> Fugiat quo voluptas nulla.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand2" value="">
-							<label for="brand2"><span></span> Dolorem eum.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand9" value="">
-							<label for="brand9"><span></span> Pain that produces no resultant.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand8" value="">
-							<label for="brand8"><span></span> Cupidatat non proident.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand7" value="">
-							<label for="brand7"><span></span> Praising pain was born.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand3" value="">
-							<label for="brand3"><span></span> Computer & Electronics</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand4" value="">
-							<label for="brand4"><span></span> Dolorem ipsum quia.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand5" value="">
-							<label for="brand5"><span></span> Consequatur aut perferendis.</label>
-						</li>
-						<li>
-							<input type="checkbox"  id="brand6" value="">
-							<label for="brand6"><span></span> Dolorem ipsum quia.</label>
-						</li>
-						
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-		<form>
-			<input type="text" value="Enter your text" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Enter your text';}" required="">
-				<input type="submit" value="Submit" required=""/>		
-			</form>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-	<div class="clearfix"> </div>
-	
-</div>

@@ -33,7 +33,6 @@ switch ($uri)
 
     <p>
         <?= Html::a('新增合同', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('导出Excel', ['excel'], ['class' => 'btn btn-success']) ?>
     </p>
     
     <?php Pjax::begin(); ?>    

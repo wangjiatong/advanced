@@ -93,6 +93,7 @@ class ContractSearch extends Contract
             ->andFilterWhere(['like', 'user.name', $this->user_name])
             ->andFilterWhere(['like', 'product.product_name', $this->product_name])
             ->andFilterWhere(['like', 'admin.name', $this->admin_name]);
+        
         return $dataProvider;
     }
 }

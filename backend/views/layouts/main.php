@@ -2,6 +2,8 @@
 use backend\assets\NewAsset;
 use yii\helpers\Html;
 use backend\models\Admin;
+use common\models\UserModel;
+use backend\controllers\common\BaseController;
 NewAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -91,8 +93,8 @@ NewAsset::register($this);
 					<li class="menu-list">
 					    <a href="#"><i class="lnr lnr-list"></i> <span>统计</span></a>  
 						<ul class="sub-menu-list">
-							<li><a href="">全局统计</a> </li>
-							<li><a href="">我的统计</a> </li>
+							<li><a href="/statistic/overall">全局统计</a> </li>
+							<li><a href="/statistic/personal">我的统计</a> </li>
 						</ul>
 					</li>
 				</ul>
@@ -116,41 +118,25 @@ NewAsset::register($this);
 				<div class="profile_details_left">
 					<ul class="nofitications-dropdown">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge"></span></a>
 								
 									<ul class="dropdown-menu">
 										<li>
 											<div class="notification_header">
-												<h3>You have 3 new messages</h3>
+												<h3></h3>
 											</div>
 										</li>
-										<li><a href="#">
-										   <div class="user_img"><img src="img/new/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet</p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										   <div class="clearfix"></div>	
-										 </a></li>
-										 <li class="odd"><a href="#">
-											<div class="user_img"><img src="img/new/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet </p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										  <div class="clearfix"></div>	
-										 </a></li>
-										<li><a href="#">
-										   <div class="user_img"><img src="img/new/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet </p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										   <div class="clearfix"></div>	
-										</a></li>
+<!-- 										<li><a href="#"> -->
+<!-- 										   <div class="user_img"><img src="img/new/1.png" alt=""></div> -->
+<!-- 										   <div class="notification_desc"> -->
+<!-- 											<p>Lorem ipsum dolor sit amet</p> -->
+<!-- 											<p><span>1 hour ago</span></p> -->
+<!-- 											</div> -->
+<!-- 										   <div class="clearfix"></div>	 -->
+<!-- 										 </a></li> -->
 										<li>
 											<div class="notification_bottom">
-												<a href="#">See all messages</a>
+												<a href="#"></a>
 											</div> 
 										</li>
 									</ul>
@@ -174,92 +160,62 @@ NewAsset::register($this);
 									<!-- //search-scripts -->
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?= count(Yii::$app->view->params['models']) == 0 ? null : count(Yii::$app->view->params['models']) ?></span></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
-											<h3>You have 3 new notification</h3>
+											<h3>你有<?= count(Yii::$app->view->params['models']) ?>个待付</h3>
 										</div>
 									</li>
-									<li><a href="#">
-										<div class="user_img"><img src="img/new/1.png" alt=""></div>
+									<?php if(Yii::$app->view->params['models']){ 
+									foreach (Yii::$app->view->params['models'] as $model):
+									?>
+									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->id ?>">
+<!-- 										<div class="user_img"><img src="img/new/1.png" alt=""></div> -->
 									   <div class="notification_desc">
-										<p>Lorem ipsum dolor sit amet</p>
-										<p><span>1 hour ago</span></p>
+										<p><?= $model->contract_number ?></p>
+										<p><span><?= UserModel::getName($model->user_id) ?></span></p>
 										</div>
 									  <div class="clearfix"></div>	
 									 </a></li>
-									 <li class="odd"><a href="#">
-										<div class="user_img"><img src="img/new/1.png" alt=""></div>
-									   <div class="notification_desc">
-										<p>Lorem ipsum dolor sit amet </p>
-										<p><span>1 hour ago</span></p>
-										</div>
-									   <div class="clearfix"></div>	
-									 </a></li>
-									 <li><a href="#">
-										<div class="user_img"><img src="img/new/1.png" alt=""></div>
-									   <div class="notification_desc">
-										<p>Lorem ipsum dolor sit amet </p>
-										<p><span>1 hour ago</span></p>
-										</div>
-									   <div class="clearfix"></div>	
-									 </a></li>
+									 <?php endforeach; }?>
 									 <li>
 										<div class="notification_bottom">
-											<a href="#">See all notification</a>
+											<a href="#"></a>
 										</div> 
 									</li>
 								</ul>
 						</li>	
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">22</span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">2</span></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
-											<h3>You have 8 pending task</h3>
+											<h3>业绩进度</h3>
 										</div>
 									</li>
 									<li><a href="#">
 											<div class="task-info">
-											<span class="task-desc">Database update</span><span class="percentage">40%</span>
+											<span class="task-desc"><?= date('n') ?>月</span><span class="percentage"><?= Yii::$app->view->params['monTask']['per'] ?></span>
 											<div class="clearfix"></div>	
 										   </div>
 											<div class="progress progress-striped active">
-											 <div class="bar yellow" style="width:40%;"></div>
+											 <div class="bar <?= Yii::$app->view->params['monTask']['color'] ?>" style="width: <?= Yii::$app->view->params['monTask']['per'] ?>;"></div>
 										</div>
 									</a></li>
 									<li><a href="#">
 										<div class="task-info">
-											<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+											<span class="task-desc"><?= date('Y') ?>年</span><span class="percentage"><?= Yii::$app->view->params['yearTask']['per'] ?></span>
 										   <div class="clearfix"></div>	
 										</div>
 									   
 										<div class="progress progress-striped active">
-											 <div class="bar green" style="width:90%;"></div>
-										</div>
-									</a></li>
-									<li><a href="#">
-										<div class="task-info">
-											<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-											<div class="clearfix"></div>	
-										</div>
-									   <div class="progress progress-striped active">
-											 <div class="bar red" style="width: 33%;"></div>
-										</div>
-									</a></li>
-									<li><a href="#">
-										<div class="task-info">
-											<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-										   <div class="clearfix"></div>	
-										</div>
-										<div class="progress progress-striped active">
-											 <div class="bar  blue" style="width: 80%;"></div>
+											 <div class="bar <?= Yii::$app->view->params['yearTask']['color'] ?>" style="width: <?= Yii::$app->view->params['yearTask']['per'] ?>;"></div>
 										</div>
 									</a></li>
 									<li>
 										<div class="notification_bottom">
-											<a href="#">See all pending task</a>
+											<a href="#"></a>
 										</div> 
 									</li>
 								</ul>
