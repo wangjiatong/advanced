@@ -115,6 +115,8 @@ NewAsset::register($this);
 		<!--notification menu start -->
 		<div class="menu-right">
 			<div class="user-panel-top">  	
+			<?php if(in_array('contract/index', Yii::$app->session['allowed_urls'])
+            || in_array('contract/my-contract', Yii::$app->session['allowed_urls'])): ?>
 				<div class="profile_details_left">
 					<ul class="nofitications-dropdown">
 						<li class="dropdown">
@@ -168,7 +170,7 @@ NewAsset::register($this);
 										</div>
 									</li>
 									<?php if(Yii::$app->view->params['models']){ 
-									foreach (Yii::$app->view->params['models'] as $model):
+								           foreach (Yii::$app->view->params['models'] as $model):
 									?>
 									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->id ?>">
 <!-- 										<div class="user_img"><img src="img/new/1.png" alt=""></div> -->
@@ -223,6 +225,7 @@ NewAsset::register($this);
 						<div class="clearfix"></div>	
 					</ul>
 				</div>
+				<?php endif; ?>
 				<div class="profile_details">		
 					<ul>
 						<li class="dropdown profile_details_drop">

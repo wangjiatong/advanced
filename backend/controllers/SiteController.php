@@ -40,72 +40,70 @@ class SiteController extends BaseController
      * @return string
      */
     public function actionIndex()
-    {
-        //第一排
-        $userNum = UserModel::getUserNumByAccess();
-        $contractNum = Contract::getContractNumByAccess();
-        $capitalSum = Contract::getCapitalSumByAccess();
-//         $productProportion = Contract::getProductProportionByAccess();
-        //第二排
-        $userNumByMonth = UserModel::getUserNumByMonth(5);
-        $capitalByMonth = Contract::getCapitalByMonth(5);
-        $conNumByMonth = Contract::getContractNumByMonth(5);
-        //通知
-        $thisMonthCapital = array_values(Contract::getCapitalByMonth(0))[0];
-        in_array('contract/index', Yii::$app->session['allowed_urls']) ?
-        $monthTaskPercentage = round($thisMonthCapital/2000000, 2) :
-        $monthTaskPercentage = round($thisMonthCapital/2000000, 2);//当月
-        $monTask = $this->taskPercentage($monthTaskPercentage);
-//         var_dump($monTask);
-//         exit();
-        Yii::$app->view->params['monTask'] = $monTask;
-        
-        $monthsToThisYear = date('n') - 1;
-        $thisYearCapital = array_sum(array_values(Contract::getCapitalByMonth($monthsToThisYear)));
-        in_array('contract/index', Yii::$app->session['allowed_urls']) ?
-        $yearTaskPercentage = round($thisYearCapital/24000000, 2) :
-        $yearTaskPercentage = round($thisYearCapital/24000000, 2);//当年
-        $yearTask = $this->taskPercentage($yearTaskPercentage);
-        Yii::$app->view->params['yearTask'] = $yearTask;
-        
-        $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
-
-        foreach($contracts as $c)
+    {      
+        if(in_array('contract/index', Yii::$app->session['allowed_urls'])
+            || in_array('contract/my-contract', Yii::$app->session['allowed_urls']))
         {
-            $every_time_arr = explode(', ', $c['every_time']);//将每期到期时间数组化
+            //第一排
+            $userNum = UserModel::getUserNumByAccess();
+            $contractNum = Contract::getContractNumByAccess();
+            $capitalSum = Contract::getCapitalSumByAccess();
+    
+            //第二排
+            $userNumByMonth = UserModel::getUserNumByMonth(5);
+            $capitalByMonth = Contract::getCapitalByMonth(5);
+            $conNumByMonth = Contract::getContractNumByMonth(5);
             
-            $lengthOfArr = count($every_time_arr);//分期次数
+            //通知
+            $thisMonthCapital = array_values(Contract::getCapitalByMonth(0))[0];
+            in_array('contract/index', Yii::$app->session['allowed_urls']) ?
+            $monthTaskPercentage = round($thisMonthCapital/2000000, 2) :
+            $monthTaskPercentage = round($thisMonthCapital/2000000, 2);//当月
+            $monTask = $this->taskPercentage($monthTaskPercentage);
+            Yii::$app->view->params['monTask'] = $monTask;
             
-            $days = 5;//提前多久提醒
+            $monthsToThisYear = date('n') - 1;
+            $thisYearCapital = array_sum(array_values(Contract::getCapitalByMonth($monthsToThisYear)));
+            in_array('contract/index', Yii::$app->session['allowed_urls']) ?
+            $yearTaskPercentage = round($thisYearCapital/24000000, 2) :
+            $yearTaskPercentage = round($thisYearCapital/24000000, 2);//当年
+            $yearTask = $this->taskPercentage($yearTaskPercentage);
+            Yii::$app->view->params['yearTask'] = $yearTask;
             
-            $today = strtotime(date('Y-m-d H:i:s'));
+            $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
             
-            for($i = 0; $i < $lengthOfArr; $i++)
+            foreach($contracts as $c)
             {
-                $timeToCheck = strtotime($every_time_arr[$i]);               
+                $every_time_arr = explode(', ', $c['every_time']);//将每期到期时间数组化
+            
+                $lengthOfArr = count($every_time_arr);//分期次数
+            
+                $days = 5;//提前多久提醒
+            
+                $today = strtotime(date('Y-m-d H:i:s'));
+            
+                for($i = 0; $i < $lengthOfArr; $i++)
+                {
+                    $timeToCheck = strtotime($every_time_arr[$i]);
                 
-                if($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
-                    $id_arr[] = $c['id'];
+                    if($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
+                        $id_arr[] = $c['id'];
+                    }
+            
                 }
-
             }
-        }
-        
-        if(isset($id_arr))
-        {
-            foreach ($id_arr as $i)
+            
+            if(isset($id_arr))
             {
-                $model = Contract::findOne($i);
-                $models[] = $model;
+                foreach ($id_arr as $i)
+                {
+                    $model = Contract::findOne($i);
+                    $models[] = $model;
+                }
             }
-        }
         
-//         var_dump($models);
-//         exit();
-        
-        Yii::$app->view->params['models'] = $models;
-        
-        if(isset($models)){
+            Yii::$app->view->params['models'] = $models;
+            
             return $this->render('index', [
                 'userNum' => $userNum,
                 'contractNum' => $contractNum,
@@ -115,14 +113,7 @@ class SiteController extends BaseController
                 'conNumByMonth' => $conNumByMonth,
             ]);
         }else{
-            return $this->render('index', [
-                'userNum' => $userNum,
-                'contractNum' => $contractNum,
-                'capitalSum' => $capitalSum,
-                'userNumByMonth' => $userNumByMonth,
-                'capitalByMonth' => $capitalByMonth,
-                'conNumByMonth' => $conNumByMonth,
-            ]);
+            return $this->render('index');
         }
         
     }
