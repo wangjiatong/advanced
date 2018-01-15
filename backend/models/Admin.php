@@ -203,6 +203,10 @@ class Admin extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public static function getName($id)
+    {
+        return static::findOne($id)->name;
+    }
     
 
 }

@@ -156,6 +156,24 @@ class ProductController extends BaseController
                 'model'=>$this->findProductModel($id),
             ]);
         }
+    
+    //停售产品操作
+    public function actionStopSelling($id)
+    {
+        $model = $this->findProductModel($id);
+        $model->status = 0;
+        $model->update();
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    //恢复销售产品操作
+    public function actionStartSelling($id)
+    {
+        $model = $this->findProductModel($id);
+        $model->status = 1;
+        $model->update();
+        return $this->redirect(Yii::$app->request->referrer);
+    }    
 
         /**
      * Creates a new Product model.

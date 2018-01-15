@@ -12,9 +12,16 @@ use common\models\UserModel;
  */
 $this->title = '导出Excel';
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
+<h3 class="blank1"><?= Html::encode($this->title) ?></h3>
 
-<?php $form = ActiveForm::begin() ?>
+<?php $form = ActiveForm::begin([
+        'options' => ['class' => 'form-horizontal'],
+        'fieldConfig' => [
+            'template' => "<div class='form-group'>{label}<div class='col-sm-8'>{input}</div><div class='col-sm-2'>{error}</div></div>",
+            'labelOptions' => ['class' => 'col-sm-2 control-label'],
+            'inputOptions' => ['class' => 'form-control1'],
+        ],
+    ]) ?>
 
 <?= $form->field($model, 'product_id')->widget(Select2::classname(), [
     'data' => Product::find()->select('product_name, id')->indexBy('id')->column(),
@@ -34,19 +41,25 @@ $this->title = '导出Excel';
 
 <?= $form->field($model, 'start_time')->widget(DatePicker::className(), [
     'options' => [
-        'class' => 'form-control',
+        'class' => 'form-control1',
     ],
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 
 <?= $form->field($model, 'end_time')->widget(DatePicker::className(), [
     'options' => [
-        'class' => 'form-control',
+        'class' => 'form-control1',
     ],
     'dateFormat' => 'yyyy-MM-dd',
 ]) ?>
 
-<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+<div class="panel-footer">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
+</div>
 
 <?php ActiveForm::end() ?>
 

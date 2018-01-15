@@ -11,6 +11,7 @@ $this->title = '修改密码';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>请填写注册所用邮箱，修改密码的链接将会发送到那里。</p>
@@ -28,4 +29,5 @@ $this->title = '修改密码';
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+    
 </div>

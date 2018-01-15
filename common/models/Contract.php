@@ -135,14 +135,165 @@ class Contract extends ActiveRecord
         return $this->hasOne(Admin::className(), ['id' => 'source']);
     }
     
-    //？？
+    //获取合同状态
     public function getStatus()
     {
         switch ($this->status)
         {
-            case 1: return '生效中';                break;
-            case 0: return '已过期';                break;
-            default : return '不存在的';
+            case 1: return '运行中';                break;
+            case 0: return '已兑付';                break;
         }
     }
+    
+    /*  通过当前用户在session中所拥有的访问权限判断
+     *  是获取销售个人合同总数or公司合同总数
+     */
+    public static function getContractNumByAccess()
+    {
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $contractNum = static::find()
+                ->where(['source' => Yii::$app->user->identity->id])->count();
+        }else{
+            $contractNum = static::find()->count();
+        }
+        return $contractNum;
+    }
+    
+    /*  通过当前用户在session中所拥有的访问权限判断
+     *  是获取销售个人销售总额or公司销售总额
+     */
+    public static function getCapitalSumByAccess()
+    {
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $capitalSum = static::find()->select(['SUM(capital) as sum'])
+                ->where(['source' => Yii::$app->user->identity->id])
+                ->andWhere(['status' => 1])->asArray()->all();
+        }else{
+            $capitalSum = static::find()->select(['SUM(capital) as sum'])
+                ->andWhere(['status' => 1])->asArray()->all();            
+        }
+        return isset($capitalSum[0]['sum']) ? $capitalSum[0]['sum'] : 0;
+    }
+    
+    /*  通过当前用户在session中所拥有的访问权限判断
+     *  是获取销售个人销售产品占比or公司销售产品占比
+     */
+    public static function getProductProportionByAccess()
+    {
+        //将共用AR对象提出来
+        $sql = static::find()->select(['product_id'])
+            ->Where(['contract.status' => 1]);
+        
+        //根据权限判断获取结果
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $productProportion = $sql
+                ->andWhere(['source' => Yii::$app->user->identity->id])
+                ->asArray()->all();
+        }else{
+            $productProportion = $sql->asArray()->all();
+        }
+        
+        //从二维数组的结果中单独把product_id提出来
+        $arr = array_column($productProportion, 'product_id');
+        //统计每个产品出现的次数
+        $productProportion = array_count_values($arr);
+//         var_dump($arr);
+//         var_dump($productProportion);
+//         exit();
+        
+        return $productProportion;
+    }
+    
+    /*
+     * 获取最近六个月里，每个月成立的合同数量
+     */
+    public static function getContractNumByMonth($months)
+    {
+//         $months = 5;
+        $sql = static::find();
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            $wherefunc = 'andWhere';
+            return static::searchConNumByMonth($data, $months, $wherefunc);
+        }else{
+            return static::searchConNumByMonth($sql, $months);
+        }   
+    }
+
+    /*
+     * 查询距今 $months 个月里，每个月内符合某字段条件下的记录数量
+     * @param object $data 所要查询的模型对象
+     * @param integer $months 查询月数
+     * @param string $wherefunc 默认使用的查询条件，默认使用where()
+     * @return array 按月份从小到大的顺序排列的每月的数量
+     */
+    public static function searchConNumByMonth($data, $months, $wherefunc = 'where')
+    {
+        for($i = $months; $i >= 0; $i--)
+        {
+            $date = new \DateTime();//实例化当前日期对象
+            //计算时间范围内每个月的起始及终止时间
+            $start = $date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
+            $end = $date->format('Y-m-t');
+            $whereCondition = ['between', 'transfered_time', $start, $end];
+            $num = $data->$wherefunc($whereCondition)->count();
+            $num_arr[$date->format('Y-n')] = (int)$num;
+        }
+        return $num_arr;
+    }
+        
+    /*
+     * 获取最近二十个月的每个月的进账金额
+     */
+    public static function getCapitalByMonth($months)
+    {
+//         $months = 5;//查询二十个月内的
+        $sql = static::find()->select(['SUM(capital) as monCap']);//合同模型
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            $wherefunc = 'andWhere';
+            return static::searchCapByMonth($data, $months, $wherefunc);
+        }else{
+            return static::searchCapByMonth($sql, $months);
+        } 
+    }
+    
+    /*
+     * 查询距今 $months 个月里，每个月内符合某字段条件下的记录数量
+     * @param object $data 所要查询的模型对象
+     * @param integer $months 查询月数
+     * @param string $wherefunc 默认使用的查询条件，默认使用where()
+     * @return array 按月份从小到大的顺序排列的每月的数量
+     */
+    public static function searchCapByMonth($data, $months, $wherefunc = 'where')
+    {
+        for($i = $months; $i >= 0; $i--)
+        {
+            $date = new \DateTime();//实例化当前日期对象
+            //计算时间范围内每个月的起始及终止时间
+            $start = $date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
+            $end = $date->format('Y-m-t');
+            $whereCondition = ['between', 'transfered_time', $start, $end];
+            $num = $data->$wherefunc($whereCondition)->asArray()->all();
+            if(empty($num[0]['monCap']))
+            {
+                $num[0]['monCap'] = 0;
+            }
+            $num_arr[$date->format('Y-n')] = (int)$num[0]['monCap'];
+        }
+        return $num_arr;
+    }    
+
+    
+    
+    
+    
+    
+    
+    
 }

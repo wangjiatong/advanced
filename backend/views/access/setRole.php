@@ -14,14 +14,14 @@ $this->title = '权限设置';
     
     <h1><?= Html::encode($this->title) ?></h1>
 
-<?php $form = ActiveForm::begin() ?>
+    <?php $form = ActiveForm::begin() ?>
+    
+    <?= $form->field($model, 'role_id')->dropDownList(Role::find()->select(['role_name' , 'id'])->indexBy('id')->column(), ['prompt' => '请选择一个角色']) ?>
+    
+    <?= $form->field($model, 'access_id')->inline()->checkboxList(Access::find()->select(['access_name', 'id'])->indexBy('id')->column()) ?>
+    
+    <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+    
+    <?php ActiveForm::end() ?>
 
-<?= $form->field($model, 'role_id')->dropDownList(Role::find()->select(['role_name' , 'id'])->indexBy('id')->column(), ['prompt' => '请选择一个角色']) ?>
-
-<?= $form->field($model, 'access_id')->inline()->checkboxList(Access::find()->select(['access_name', 'id'])->indexBy('id')->column()) ?>
-
-<?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
-
-<?php ActiveForm::end() ?>
-
-    </div>
+</div>

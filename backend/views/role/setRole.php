@@ -18,4 +18,5 @@ $this->title = '角色设置';
     <?= $form->field($model, 'role_id')->inline()->checkboxList(Role::find()->select(['role_name', 'id'])->indexBy('id')->column())?>
     <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
     <?php ActiveForm::end()?>
+    
 </div>

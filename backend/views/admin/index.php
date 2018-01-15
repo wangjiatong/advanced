@@ -11,6 +11,7 @@ use backend\models\UserRole;
 $this->title = '管理员管理';
 ?>
 <div class="admin-index">
+
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

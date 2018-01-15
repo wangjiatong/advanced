@@ -8,12 +8,9 @@ use yii\helpers\Html;
 
 $this->title = '创建合同';
 ?>
-<div class="contract-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<?= $this->render('_form', [
+    'model' => $model,
+]) ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
-</div>

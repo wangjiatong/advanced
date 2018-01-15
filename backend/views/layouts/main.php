@@ -1,148 +1,274 @@
-<?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-use backend\assets\AppAsset;
+<?php 
+use backend\assets\NewAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
-use backend\controllers\common\BaseController;
 use backend\models\Admin;
-
-AppAsset::register($this);
-$my_id = Yii::$app->user->identity->id;
+use common\models\UserModel;
+use backend\controllers\common\BaseController;
+NewAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+<title><?= Html::encode($this->title) ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="<?= Yii::$app->charset ?>">
+<?= Html::csrfMetaTags() ?>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<?php $this->head() ?>
+<script>
+	 new WOW().init();
+</script>
+<link rel="shortcut icon" href=" /ewin.ico" />
 </head>
-<body>
+
+<body class="sticky-header left-side-collapsed"  onload="initMap()">
 <?php $this->beginBody() ?>
+<section>
+<!-- left side start-->
+	<div class="left-side sticky-left-side">
 
-<div class="wrap">
-    <?php if (!Yii::$app->user->isGuest) {?>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">网站管理后台</a>
-          <div class="btn-group pull-right">
-              <a class="btn" href="#"><i class="icon-user"></i><?= Yii::$app->user->identity->username ?>(<?= Admin::findOne($my_id)->name ?>)</a>
-              <a class="btn" href="/site/logout">注销</a>
-<!--             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> -->
-<!--               <span class="caret"></span> -->
-<!--             </a> -->
-<!--             <ul class="dropdown-menu"> -->
-<!-- 			  <li><a href="#">个人资料</a></li> -->
-<!--               <li class="divider"></li> -->
-<!--               <li><a href="/site/logout">注销</a></li> -->
-<!--             </ul> -->
-          </div>
-<!--          <div class="nav-collapse">
-            <ul class="nav">
-			<li><a href="http://246867.ichengyun.net:83/">后台首页</a></li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">用户 <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">管理员</a></li>
-					<li class="divider"></li>
-					<li><a href="#">会员</a></li>
+		<!--logo and iconic logo start-->
+		<div class="logo">
+			<h1><a href="/"> 翌银<span>玖德</span></a></h1>
+		</div>
+		<div class="logo-icon text-center">
+			<a href="/"><i class="lnr lnr-home"></i> </a>
+		</div>
+
+		<!--logo and iconic logo end-->
+		<div class="left-side-inner">
+
+			<!--sidebar nav start-->
+				<ul class="nav nav-pills nav-stacked custom-nav">
+					<li><a href="/"><i class="lnr lnr-flag"></i> <span>主页</span></a></li>
+					<li class="menu-list">
+						<a href="#"><i class="lnr lnr-cog"></i><span>管理员</span></a>
+						<ul class="sub-menu-list">
+							<li><a href="/admin">管理员管理</a> </li>
+							<li><a href="/role">角色管理</a></li>
+							<li><a href="/role/set">角色设置</a> </li>
+							<li><a href="/access">权限管理</a></li>
+							<li><a href="/access/set">权限设置</a> </li>
+						</ul>
+					</li>
+					<li class="menu-list">
+			            <a href="#"><i class="lnr lnr-file-empty"></i> <span>新闻</span></a>
+						<ul class="sub-menu-list">
+							<li><a href="/news/add-column">增加分类</a> </li>
+							<li><a href="/news/manage-news-columns">分类管理</a></li>
+							<li><a href="/news/post">发布新闻</a> </li>
+							<li><a href="/news">新闻管理</a></li>
+						</ul>
+					</li>
+					<li class="menu-list">
+						<a href="#"><i class="lnr lnr-user"></i> <span>个人</span></a>
+						<ul class="sub-menu-list">
+							<li><a href="/admin/reset-passwd">修改密码</a> </li>
+							<li><a href="/site/request-password-reset">忘记密码</a></li>
+							<li><a href="/admin/my-update">修改信息</a> </li>
+						</ul>
+					</li>             
+					<li class="menu-list">
+				      <a href="#"><i class="lnr lnr-gift"></i> <span>产品</span></a>
+				      <ul class="sub-menu-list">
+							<li><a href="/product/product-column-index">分类列表</a> </li>
+							<li><a href="/product/index">产品管理</a></li>
+				      </ul>
+					</li>      
+					<li class="menu-list">
+					    <a href="#"><i class="lnr lnr-users"></i> <span>客户</span></a>  
+						<ul class="sub-menu-list">
+							<li><a href="/user">客户管理</a> </li>
+							<li><a href="/user/my-user">我的客户</a> </li>
+						</ul>
+					</li>
+					<li class="menu-list">
+					    <a href="#"><i class="lnr lnr-license"></i> <span>合同</span></a>  
+						<ul class="sub-menu-list">
+							<li><a href="/contract">合同管理</a> </li>
+							<li><a href="/contract/my-contract">我的合同</a> </li>
+						</ul>
+					</li>
+					<li class="menu-list">
+					    <a href="#"><i class="lnr lnr-list"></i> <span>统计</span></a>  
+						<ul class="sub-menu-list">
+							<li><a href="/statistic/overall">全局统计</a> </li>
+							<li><a href="/statistic/personal">我的统计</a> </li>
+						</ul>
+					</li>
 				</ul>
-			  </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Roles <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="new-role.html">New Role</a></li>
-					<li class="divider"></li>
-					<li><a href="roles.html">Manage Roles</a></li>
-				</ul>
-			  </li>
-			  <li><a href="stats.html">Stats</a></li>
-            </ul>
-          </div>-->
-        </div>
-      </div>
-    </div>
+			<!--sidebar nav end-->
+		</div>
+	</div>
+	<!-- left side end-->
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span1">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                <li class="nav-header"><i class="icon-wrench"></i> 管理员</li>
-                <!--<li class="active"><a href="#">添加管理员</a></li>-->
-                <li class=""><a href="/admin">管理员管理</a></li>
-                <li class=""><a href="/role">角色管理</a></li>
-                <li class=""><a href="/role/set">设置角色</a></li>
-                <li class=""><a href="/access">权限管理</a></li>
-                <li class=""><a href="/access/set">设置权限</a></li>
-                <li class="nav-header"><i class="icon-cog"></i> 个 人</li>
-                <li class=""><a href="/admin/reset-passwd">修改密码</a></li>
-                <li class=""><a href="/site/request-password-reset">忘记密码</a></li>
-                <li class=""><a href="/admin/my-update">修改信息</a></li>
-                <li class="nav-header"><i class="icon-list-alt"></i> 新 闻</li>
-                <li><a href="/news/add-column">增加分类</a></li>
-                <li><a href="/news/manage-news-columns">分类管理</a></li>
-                <li><a href="/news/post">发布新闻</a></li>
-                <li><a href="/news/index">新闻管理</a></li>
-                <li class="nav-header"><i class="icon-gift"></i> 产 品</li>
-                <!--<li><a href="#">添加分类</a></li>-->
-                <li><a href="/product/product-column-index">分类列表</a></li>
-                <!--<li><a href="#">添加产品</a></li>-->
-                <li><a href="/product/index">产品管理</a></li>
-                <li class="nav-header"><i class="icon-user"></i> 客 户</li>
-                <!--<li class=""><a href="#">添加会员</a></li>-->
-                <li class=""><a href="/user/index">客户管理</a></li>
-                <li class=""><a href="/user/my-user">我的客户</a></li>
-                <li class="nav-header"><i class="icon-briefcase"></i> 合 同</li>
-                <!--<li><a href="#">添加分类</a></li>-->
-                <li><a href="/contract/index">合同管理</a></li>
-                <li><a href="/contract/my-contract">我的合同</a></li>
-                <!--<li class="nav-header"><i class="icon-signal"></i> 联系我们</li>-->
-                <!--<li><a href="#">查看邮件</a></li>-->
-            </ul>
-          </div>
-        </div>
-    <?php } ?>
-          
-    <!--<div class="container">-->
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-    <div class="span11">
-        <?= $content ?>
-    </div>
-    <!--</div>-->
-</div>
+	<!-- main content start-->
+	<div class="main-content">
+		<!-- header-starts -->
+		<div class="header-section">
+		 
+		<!--toggle button start-->
+		<a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+		<!--toggle button end-->
 
-<!--<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+		<!--notification menu start -->
+		<div class="menu-right">
+			<div class="user-panel-top">  	
+				<div class="profile_details_left">
+					<ul class="nofitications-dropdown">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge"></span></a>
+								
+									<ul class="dropdown-menu">
+										<li>
+											<div class="notification_header">
+												<h3></h3>
+											</div>
+										</li>
+<!-- 										<li><a href="#"> -->
+<!-- 										   <div class="user_img"><img src="img/new/1.png" alt=""></div> -->
+<!-- 										   <div class="notification_desc"> -->
+<!-- 											<p>Lorem ipsum dolor sit amet</p> -->
+<!-- 											<p><span>1 hour ago</span></p> -->
+<!-- 											</div> -->
+<!-- 										   <div class="clearfix"></div>	 -->
+<!-- 										 </a></li> -->
+										<li>
+											<div class="notification_bottom">
+												<a href="#"></a>
+											</div> 
+										</li>
+									</ul>
+						</li>
+						<li class="login_box" id="loginContainer">
+								<div class="search-box">
+									<div id="sb-search" class="sb-search">
+										<form>
+											<input class="sb-search-input" placeholder="" type="search" id="search">
+											<input class="sb-search-submit" type="submit" value="">
+											<span class="sb-icon-search"> </span>
+										</form>
+									</div>
+								</div>
+									<!-- search-scripts -->
+<!-- 										<script src="js/new/classie.js"></script> -->
+<!-- 										<script src="js/new/uisearch.js"></script> -->
+										<script>
+											new UISearch( document.getElementById( 'sb-search' ) );
+										</script>
+									<!-- //search-scripts -->
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?= count(Yii::$app->view->params['models']) == 0 ? null : count(Yii::$app->view->params['models']) ?></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<div class="notification_header">
+											<h3>你有<?= count(Yii::$app->view->params['models']) ?>个待付</h3>
+										</div>
+									</li>
+									<?php if(Yii::$app->view->params['models']){ 
+									foreach (Yii::$app->view->params['models'] as $model):
+									?>
+									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->id ?>">
+<!-- 										<div class="user_img"><img src="img/new/1.png" alt=""></div> -->
+									   <div class="notification_desc">
+										<p><?= $model->contract_number ?></p>
+										<p><span><?= UserModel::getName($model->user_id) ?></span></p>
+										</div>
+									  <div class="clearfix"></div>	
+									 </a></li>
+									 <?php endforeach; }?>
+									 <li>
+										<div class="notification_bottom">
+											<a href="#"></a>
+										</div> 
+									</li>
+								</ul>
+						</li>	
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">2</span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<div class="notification_header">
+											<h3>业绩进度</h3>
+										</div>
+									</li>
+									<li><a href="#">
+											<div class="task-info">
+											<span class="task-desc"><?= date('n') ?>月</span><span class="percentage"><?= Yii::$app->view->params['monTask']['per'] ?></span>
+											<div class="clearfix"></div>	
+										   </div>
+											<div class="progress progress-striped active">
+											 <div class="bar <?= Yii::$app->view->params['monTask']['color'] ?>" style="width: <?= Yii::$app->view->params['monTask']['per'] ?>;"></div>
+										</div>
+									</a></li>
+									<li><a href="#">
+										<div class="task-info">
+											<span class="task-desc"><?= date('Y') ?>年</span><span class="percentage"><?= Yii::$app->view->params['yearTask']['per'] ?></span>
+										   <div class="clearfix"></div>	
+										</div>
+									   
+										<div class="progress progress-striped active">
+											 <div class="bar <?= Yii::$app->view->params['yearTask']['color'] ?>" style="width: <?= Yii::$app->view->params['yearTask']['per'] ?>;"></div>
+										</div>
+									</a></li>
+									<li>
+										<div class="notification_bottom">
+											<a href="#"></a>
+										</div> 
+									</li>
+								</ul>
+						</li>		   							   		
+						<div class="clearfix"></div>	
+					</ul>
+				</div>
+				<div class="profile_details">		
+					<ul>
+						<li class="dropdown profile_details_drop">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<div class="profile_img">	
+									<span style="background:url(/img/new/1.jpg) no-repeat center"> </span> 
+									 <div class="user-name">
+										<p><?= Yii::$app->user->identity->username ?><span><?= Admin::getName(Yii::$app->user->identity->id) ?></span></p>
+									 </div>
+									 <i class="lnr lnr-chevron-down"></i>
+									 <i class="lnr lnr-chevron-up"></i>
+									<div class="clearfix"></div>	
+								</div>	
+							</a>
+							<ul class="dropdown-menu drp-mnu">
+<!-- 									<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>  -->
+<!-- 									<li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li>  -->
+								<li> <a href="/site/logout"><i class="fa fa-sign-out"></i> 注销</a> </li>
+							</ul>
+						</li>
+						<div class="clearfix"> </div>
+					</ul>
+				</div>		
+				<div class="clearfix"></div>
+			</div>
+		  </div>
+		<!--notification menu end -->
+		</div>
+	<!-- //header-ends -->
+		<div id="page-wrapper">
+			<div class="graphs">
+                <?= $content ?>
+			</div>
+		<!--body wrapper start-->
+		</div>
+		 <!--body wrapper end-->
+	</div>
+    <!--footer section start-->
+		<footer>
+		   <p>Copyright &copy; <?= date('Y') ?> 上海翌银玖德资产管理有限公司</p>
+		</footer>
+    <!--footer section end-->
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>-->
-    </div>
+  <!-- main content end-->
+</section>
 
-    <hr>
-
-    <footer class="well">
-      &copy; <?= date('Y');?> 上海翌银玖德资产管理有限公司
-    </footer>
-    
-</div>
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -9,7 +9,10 @@ use backend\models\AdminLoginForm;
 //为后端管理员添加引用
 use backend\models\AdminPasswordResetRequestForm;
 use backend\models\AdminResetPasswordForm;
+//index页所需数据模型
 use common\models\Contract;
+use common\models\UserModel;
+
 
 /**
  * Site controller
@@ -38,6 +41,33 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
+        //第一排
+        $userNum = UserModel::getUserNumByAccess();
+        $contractNum = Contract::getContractNumByAccess();
+        $capitalSum = Contract::getCapitalSumByAccess();
+//         $productProportion = Contract::getProductProportionByAccess();
+        //第二排
+        $userNumByMonth = UserModel::getUserNumByMonth(5);
+        $capitalByMonth = Contract::getCapitalByMonth(5);
+        $conNumByMonth = Contract::getContractNumByMonth(5);
+        //通知
+        $thisMonthCapital = array_values(Contract::getCapitalByMonth(0))[0];
+        in_array('contract/index', Yii::$app->session['allowed_urls']) ?
+        $monthTaskPercentage = round($thisMonthCapital/2000000, 2) :
+        $monthTaskPercentage = round($thisMonthCapital/2000000, 2);//当月
+        $monTask = $this->taskPercentage($monthTaskPercentage);
+//         var_dump($monTask);
+//         exit();
+        Yii::$app->view->params['monTask'] = $monTask;
+        
+        $monthsToThisYear = date('n') - 1;
+        $thisYearCapital = array_sum(array_values(Contract::getCapitalByMonth($monthsToThisYear)));
+        in_array('contract/index', Yii::$app->session['allowed_urls']) ?
+        $yearTaskPercentage = round($thisYearCapital/24000000, 2) :
+        $yearTaskPercentage = round($thisYearCapital/24000000, 2);//当年
+        $yearTask = $this->taskPercentage($yearTaskPercentage);
+        Yii::$app->view->params['yearTask'] = $yearTask;
+        
         $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
 
         foreach($contracts as $c)
@@ -70,12 +100,29 @@ class SiteController extends BaseController
             }
         }
         
+//         var_dump($models);
+//         exit();
+        
+        Yii::$app->view->params['models'] = $models;
+        
         if(isset($models)){
-            return $this->render('index',[
-                'models' => $models,
+            return $this->render('index', [
+                'userNum' => $userNum,
+                'contractNum' => $contractNum,
+                'capitalSum' => $capitalSum,
+                'userNumByMonth' => $userNumByMonth,
+                'capitalByMonth' => $capitalByMonth,
+                'conNumByMonth' => $conNumByMonth,
             ]);
         }else{
-            return $this->render('index');
+            return $this->render('index', [
+                'userNum' => $userNum,
+                'contractNum' => $contractNum,
+                'capitalSum' => $capitalSum,
+                'userNumByMonth' => $userNumByMonth,
+                'capitalByMonth' => $capitalByMonth,
+                'conNumByMonth' => $conNumByMonth,
+            ]);
         }
         
     }
@@ -182,4 +229,22 @@ class SiteController extends BaseController
             'model' => $model,
         ]);
     }  
+    
+    public function taskPercentage($per)
+    {
+        if(($per - 0.33) < 0.01)
+        {
+            $color = 'red';
+        }elseif(($per - 0.33) > 0.01 && ($per - 0.66) < 0.01)
+        {
+            $color = 'yellow';
+        }elseif(($per - 0.66) > 0.01 && ($per - 1) < 0.01)
+        {
+            $color = 'blue';
+        }else{
+            $color = 'green';
+        }
+        return ['color' => $color,
+                'per' => $per*100 . '%'];
+    }
 }
