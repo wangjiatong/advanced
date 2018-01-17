@@ -1,5 +1,6 @@
 <?php 
 use yii\helpers\Json;
+$this->title = '全局统计';
 ?>
 <h3 class="blank1">全局统计</h3>
 <div class="graph_box">
