@@ -2,65 +2,34 @@
 namespace backend\controllers;
 use backend\controllers\common\BaseController;
 use common\models\Contract;
+use backend\models\Pay;
 
 class StatisticController extends BaseController
 {
     //公司全局统计页面
     public function actionOverall()
     {
-        $byMonth = $this->incomeMonth();
-        $overrall = $this->incomeSum();
+        //产品占比
+        $prodProp = Contract::getProductProportionByAccess();
+        
+        //每个月的兑付
+        $paySumByMonth = Pay::getPaySumByMonth(10);
+        //每个月的进账
+        $capitalByMonth = Contract::getCapitalByMonth(10);
+        
+        //累计每个月的兑付
+        $paySumByDate = Pay::getPaySumByDate(10);
+        //累计每个月的进账
+        $capitalSumByDate = Contract::getCapitalSumByDate(10);
+        
         return $this->render('overall', [
-            'byMonth' => $byMonth,
-            'overall' => $overrall,
+            'prodProp' => $prodProp,
+            'paySumByMonth' => $paySumByMonth,
+            'capitalByMonth' => $capitalByMonth,
+            'paySumByDate' => $paySumByDate,
+            'capitalSumByDate' => $capitalSumByDate,
         ]);       
     }    
-    
-    //销售个人统计页面
-    public function actionPersonal()
-    {
-
-    }
-    
-    //当月进账
-    public function incomeMonth()
-    {
-        $start = date('Y-m') . '-01';
-        $end = date('Y-m-t');
-        $sumMonth = Contract::find()->select(['SUM(capital) as sum'])->where(['between', 'transfered_time', $start, $end])
-        ->asArray()->all();
-        return $sumMonth;
-    }
-    
-    //当年进账
-    public function incomeByYear()
-    {
-        
-    }
-    
-    //累计进账
-    public function incomeSum()
-    {
-        $sum = Contract::find()->select(['SUM(capital) as sum'])
-        ->asArray()->all();
-        return $sum;
-    }
-    
-    //当月出账
-    public function payMonth()
-    {
-        
-    }
-    
-    //累计出账
-    public function paySum()
-    {
-        
-    }
-    
-    
-    
-    
     
     
     

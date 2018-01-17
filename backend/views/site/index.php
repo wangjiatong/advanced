@@ -4,52 +4,54 @@ use yii\helpers\Json;
 ?>
 <?php if(in_array('contract/index', Yii::$app->session['allowed_urls']) 
     || in_array('contract/my-contract', Yii::$app->session['allowed_urls'])): ?>
-<div class="col_3">
-	<div class="col-md-3 widget widget1">
-		<div class="r3_counter_box">
-			<i class="fa fa-mail-forward"></i>
-			<div class="stats">
-			  <h5>0 <span></span></h5>
-			  <div class="grow">
-				<p>增长</p>
-			  </div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 widget widget1">
-		<div class="r3_counter_box">
-			<i class="fa fa-users"></i>
-			<div class="stats">
-			  <h5><?= $userNum ?> <span></span></h5>
-			  <div class="grow grow1">
-				<p>客户</p>
-			  </div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 widget widget1">
-		<div class="r3_counter_box">
-			<i class="fa fa-eye"></i>
-			<div class="stats">
-			  <h5><?= $contractNum ?> <span></span></h5>
-			  <div class="grow grow3">
-				<p>合同</p>
-			  </div>
-			</div>
-		</div>
-	 </div>
-	 <div class="col-md-3 widget">
-		<div class="r3_counter_box">
-			<i class="fa fa-usd"></i>
-			<div class="stats">
-			  <h5><?= number_format($capitalSum) ?> <span></span></h5>
-			  <div class="grow grow2">
-				<p>销售量</p>
-			  </div>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"> </div>
+<div class="widgets_top">
+    <div class="col_3">
+    <!-- 	<div class="col-md-3 widget widget1"> -->
+    <!-- 		<div class="r3_counter_box"> -->
+    <!-- 			<i class="fa fa-mail-forward"></i> -->
+    <!-- 			<div class="stats"> -->
+    <!-- 			  <h5>0 <span></span></h5> -->
+    <!-- 			  <div class="grow"> -->
+    <!-- 				<p>增长</p> -->
+    <!-- 			  </div> -->
+    <!-- 			</div> -->
+    <!-- 		</div> -->
+    <!-- 	</div> -->
+    	<div class="col-md-4 widget_middle_left">
+    		<div class="r3_counter_box">
+    			<i class="fa fa-users"></i>
+    			<div class="stats">
+    			  <h5><?= $userNum ?> <span></span></h5>
+    			  <div class="grow grow1">
+    				<p>客户</p>
+    			  </div>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="col-md-4 widget_middle_left">
+    		<div class="r3_counter_box">
+    			<i class="fa fa-eye"></i>
+    			<div class="stats">
+    			  <h5><?= $contractNum ?> <span></span></h5>
+    			  <div class="grow grow3">
+    				<p>合同</p>
+    			  </div>
+    			</div>
+    		</div>
+    	 </div>
+    	 <div class="col-md-4 widget_middle_left">
+    		<div class="r3_counter_box">
+    			<i class="fa fa-usd"></i>
+    			<div class="stats">
+    			  <h5><?= number_format($capitalSum) ?> <span></span></h5>
+    			  <div class="grow grow2">
+    				<p>销售量</p>
+    			  </div>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="clearfix"> </div>
+    </div>
 </div>
 
 <!-- switches -->

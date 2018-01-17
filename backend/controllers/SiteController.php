@@ -60,7 +60,7 @@ class SiteController extends BaseController
             $monthTaskPercentage = round($thisMonthCapital/2000000, 2) :
             $monthTaskPercentage = round($thisMonthCapital/2000000, 2);//当月
             $monTask = $this->taskPercentage($monthTaskPercentage);
-            Yii::$app->view->params['monTask'] = $monTask;
+            Yii::$app->session['monTask'] = $monTask;
             
             $monthsToThisYear = date('n') - 1;
             $thisYearCapital = array_sum(array_values(Contract::getCapitalByMonth($monthsToThisYear)));
@@ -68,7 +68,7 @@ class SiteController extends BaseController
             $yearTaskPercentage = round($thisYearCapital/24000000, 2) :
             $yearTaskPercentage = round($thisYearCapital/24000000, 2);//当年
             $yearTask = $this->taskPercentage($yearTaskPercentage);
-            Yii::$app->view->params['yearTask'] = $yearTask;
+            Yii::$app->session['yearTask'] = $yearTask;
             
             $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
             
@@ -93,6 +93,7 @@ class SiteController extends BaseController
                 }
             }
             
+            $models = array();//待付合同结果集
             if(isset($id_arr))
             {
                 foreach ($id_arr as $i)
@@ -102,7 +103,7 @@ class SiteController extends BaseController
                 }
             }
             
-            Yii::$app->view->params['models'] = $models;
+            Yii::$app->session['contractToPay'] = $models;
             
             return $this->render('index', [
                 'userNum' => $userNum,

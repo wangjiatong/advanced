@@ -196,19 +196,48 @@ class Contract extends ActiveRecord
             $productProportion = $sql->asArray()->all();
         }
         
-        //从二维数组的结果中单独把product_id提出来
+        /* 从数组的结果中单独把product_id提出来
+         * 
+         */
         $arr = array_column($productProportion, 'product_id');
-        //统计每个产品出现的次数
-        $productProportion = array_count_values($arr);
-//         var_dump($arr);
-//         var_dump($productProportion);
-//         exit();
         
+        /* 统计每个产品出现的次数
+         * $productProportion array [产品id => 出现次数]
+         */
+        $arr = array_count_values($arr);
+        $prod_count_sum = array_sum($arr);
+
+        //根据键值排序
+        arsort($arr);
+        
+        //取出前五
+        $productProportion = array_slice($arr, 0, 5, true);
+        
+        $product_id_arr = array_keys($productProportion);
+        $product_count_arr = array_values($productProportion);
+        
+        //前五产品次数和
+        $prod_top5_count_sum = array_sum($product_count_arr);
+
+        $productProportion = array();//最终结果集
+        for($i = 0; $i < 5; $i++)
+        {
+            $name = Product::findOne($product_id_arr[$i])->product_name;
+            $productProportion[] = array(
+                'value' => $product_count_arr[$i],
+                'name' => $name,
+            );
+        }
+        $productProportion[] = [
+            'value' => $prod_count_sum - $prod_top5_count_sum,
+            'name' => '其他',
+        ];
+
         return $productProportion;
     }
     
     /*
-     * 获取最近六个月里，每个月成立的合同数量
+     * 获取最近$months个月里，每个月成立的合同数量
      */
     public static function getContractNumByMonth($months)
     {
@@ -229,7 +258,7 @@ class Contract extends ActiveRecord
      * @param object $data 所要查询的模型对象
      * @param integer $months 查询月数
      * @param string $wherefunc 默认使用的查询条件，默认使用where()
-     * @return array 按月份从小到大的顺序排列的每月的数量
+     * @return array 按月份从小到大的顺序排列的每月的数量 e.g: ['date' => 'num']
      */
     public static function searchConNumByMonth($data, $months, $wherefunc = 'where')
     {
@@ -247,7 +276,7 @@ class Contract extends ActiveRecord
     }
         
     /*
-     * 获取最近二十个月的每个月的进账金额
+     * 获取最近$months个月的每个月的进账金额
      */
     public static function getCapitalByMonth($months)
     {
@@ -268,7 +297,7 @@ class Contract extends ActiveRecord
      * @param object $data 所要查询的模型对象
      * @param integer $months 查询月数
      * @param string $wherefunc 默认使用的查询条件，默认使用where()
-     * @return array 按月份从小到大的顺序排列的每月的数量
+     * @return array 按月份从小到大的顺序排列的每月的数量 e.g: ['date' => 'cap']
      */
     public static function searchCapByMonth($data, $months, $wherefunc = 'where')
     {
@@ -288,12 +317,36 @@ class Contract extends ActiveRecord
         }
         return $num_arr;
     }    
-
     
+    /*
+     * 最近$months个月中，按月累计进账
+     */
+    public static function getCapitalSumByDate($months)
+    {
+        $sql = static::find()->select(['SUM(capital) as sum']);
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            //销售
+            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            $wherefunc = 'andWhere';
+            return static::searchCapitalSumByDate($data, $months, $wherefunc);
+        }else{
+            //销售总监
+            return static::searchCapitalSumByDate($sql, $months);
+        }        
+    } 
     
-    
-    
-    
-    
-    
-}
+    /*
+     * $months个月中，累计到某月的付息总和
+     */
+    private function searchCapitalSumByDate($data, $months, $wherefunc = 'where')
+    {
+        for($m = $months; $m >= 0; $m--)
+        {
+            $thisMonth = new \DateTime();
+            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-01');
+            $paySumByDate[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['<', 'transfered_time', $date])->asArray()->one()['sum'];
+        }
+            return $paySumByDate;
+        }    
+    }
