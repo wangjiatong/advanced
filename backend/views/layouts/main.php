@@ -94,7 +94,6 @@ NewAsset::register($this);
 					    <a href="#"><i class="lnr lnr-list"></i> <span>统计</span></a>  
 						<ul class="sub-menu-list">
 							<li><a href="/statistic/overall">全局统计</a> </li>
-							<li><a href="/statistic/personal">我的统计</a> </li>
 						</ul>
 					</li>
 				</ul>
@@ -162,15 +161,15 @@ NewAsset::register($this);
 									<!-- //search-scripts -->
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?= count(Yii::$app->view->params['models']) == 0 ? null : count(Yii::$app->view->params['models']) ?></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?= count(Yii::$app->session['contractToPay']) == 0 ? null : count(Yii::$app->session['contractToPay']) ?></span></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
-											<h3>你有<?= count(Yii::$app->view->params['models']) ?>个待付</h3>
+											<h3>你有<?= count(Yii::$app->session['contractToPay']) ?>个待付</h3>
 										</div>
 									</li>
-									<?php if(Yii::$app->view->params['models']){ 
-								           foreach (Yii::$app->view->params['models'] as $model):
+									<?php if(Yii::$app->session['contractToPay']){ 
+								           foreach (Yii::$app->session['contractToPay'] as $model):
 									?>
 									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->id ?>">
 <!-- 										<div class="user_img"><img src="img/new/1.png" alt=""></div> -->
@@ -189,7 +188,7 @@ NewAsset::register($this);
 								</ul>
 						</li>	
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">2</span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1"></span></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
@@ -198,21 +197,21 @@ NewAsset::register($this);
 									</li>
 									<li><a href="#">
 											<div class="task-info">
-											<span class="task-desc"><?= date('n') ?>月</span><span class="percentage"><?= Yii::$app->view->params['monTask']['per'] ?></span>
+											<span class="task-desc"><?= date('n') ?>月</span><span class="percentage"><?= Yii::$app->session['monTask']['per'] ?></span>
 											<div class="clearfix"></div>	
 										   </div>
 											<div class="progress progress-striped active">
-											 <div class="bar <?= Yii::$app->view->params['monTask']['color'] ?>" style="width: <?= Yii::$app->view->params['monTask']['per'] ?>;"></div>
+											 <div class="bar <?= Yii::$app->session['monTask']['color'] ?>" style="width: <?= Yii::$app->session['monTask']['per'] ?>;"></div>
 										</div>
 									</a></li>
 									<li><a href="#">
 										<div class="task-info">
-											<span class="task-desc"><?= date('Y') ?>年</span><span class="percentage"><?= Yii::$app->view->params['yearTask']['per'] ?></span>
+											<span class="task-desc"><?= date('Y') ?>年</span><span class="percentage"><?= Yii::$app->session['yearTask']['per'] ?></span>
 										   <div class="clearfix"></div>	
 										</div>
 									   
 										<div class="progress progress-striped active">
-											 <div class="bar <?= Yii::$app->view->params['yearTask']['color'] ?>" style="width: <?= Yii::$app->view->params['yearTask']['per'] ?>;"></div>
+											 <div class="bar <?= Yii::$app->session['yearTask']['color'] ?>" style="width: <?= Yii::$app->session['yearTask']['per'] ?>;"></div>
 										</div>
 									</a></li>
 									<li>
@@ -268,7 +267,6 @@ NewAsset::register($this);
 		   <p>Copyright &copy; <?= date('Y') ?> 上海翌银玖德资产管理有限公司</p>
 		</footer>
     <!--footer section end-->
-
   <!-- main content end-->
 </section>
 

@@ -1934,7 +1934,7 @@ i.pull-left.fa.fa-bolt.icon-rounded {
     background: #F44336;
 }
 .grow1,.grow3,.grow2 {
-    left: 36%;
+    left: 42%; /* 36% */
 }
 .switch-right-grid h3{
 	color:#000;
@@ -5262,7 +5262,7 @@ div#container-rpm1{
     font-size: 3em;
 }
 .grow {
-    left:32%;
+    left:32%; /* 32% */
 }
 .r3_counter_box h5 {
     font-size: 2.2em;
