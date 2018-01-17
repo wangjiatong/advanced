@@ -283,7 +283,6 @@ class UserModel extends ActiveRecord implements IdentityInterface
      */
     public static function getUserNumByMonth($months)
     {
-//         $months = 5;//查询六个月内的
         $sql = static::find();//用户模型
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
@@ -307,11 +306,13 @@ class UserModel extends ActiveRecord implements IdentityInterface
         for($i = $months; $i >= 0; $i--)
         {
             $date = new \DateTime();//实例化当前日期对象
-//             $date->format('YmtHis');
+            
             //计算时间范围内每个月的起始及终止时间
             $start = strtotime($date->modify('-' . $i . 'months')->format('Y-m-01'));
             $end = strtotime($date->format('Y-m-t'));
+            
             $whereCondition = ['between', 'created_at', $start, $end];
+            
             $num = $data->$wherefunc($whereCondition)->count();
             $num_arr[] = [$date->format('Y-n'), $num];
         }

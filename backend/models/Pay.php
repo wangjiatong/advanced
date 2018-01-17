@@ -106,7 +106,7 @@ class Pay extends \yii\db\ActiveRecord
         for($m = $months; $m >= 0; $m--)
         {
             $thisMonth = new \DateTime();
-            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-01');
+            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
             $paySumByDate[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['<', 'time', $date])->asArray()->one()['sum'];
         }
         return $paySumByDate;        
