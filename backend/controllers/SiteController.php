@@ -93,7 +93,7 @@ class SiteController extends BaseController
                 }
             }
             
-            $models = array();//待付合同结果集
+            $models = [];//待付合同结果集
             if(isset($id_arr))
             {
                 foreach ($id_arr as $i)

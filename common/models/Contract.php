@@ -219,14 +219,14 @@ class Contract extends ActiveRecord
         //前五产品次数和
         $prod_top5_count_sum = array_sum($product_count_arr);
 
-        $productProportion = array();//最终结果集
+        $productProportion = [];//最终结果集
         for($i = 0; $i < 5; $i++)
         {
             $name = Product::findOne($product_id_arr[$i])->product_name;
-            $productProportion[] = array(
+            $productProportion[] = [
                 'value' => $product_count_arr[$i],
                 'name' => $name,
-            );
+            ];
         }
         $productProportion[] = [
             'value' => $prod_count_sum - $prod_top5_count_sum,
@@ -241,7 +241,6 @@ class Contract extends ActiveRecord
      */
     public static function getContractNumByMonth($months)
     {
-//         $months = 5;
         $sql = static::find();
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
@@ -280,7 +279,6 @@ class Contract extends ActiveRecord
      */
     public static function getCapitalByMonth($months)
     {
-//         $months = 5;//查询二十个月内的
         $sql = static::find()->select(['SUM(capital) as monCap']);//合同模型
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
@@ -344,7 +342,7 @@ class Contract extends ActiveRecord
         for($m = $months; $m >= 0; $m--)
         {
             $thisMonth = new \DateTime();
-            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-01');
+            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
             $paySumByDate[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['<', 'transfered_time', $date])->asArray()->one()['sum'];
         }
             return $paySumByDate;
