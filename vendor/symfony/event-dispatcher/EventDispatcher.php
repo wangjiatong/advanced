@@ -104,9 +104,6 @@ class EventDispatcher implements EventDispatcherInterface
      */
     public function hasListeners($eventName = null)
     {
-<<<<<<< HEAD
-        return (bool) $this->getListeners($eventName);
-=======
         if (null !== $eventName) {
             return !empty($this->listeners[$eventName]);
         }
@@ -118,7 +115,6 @@ class EventDispatcher implements EventDispatcherInterface
         }
 
         return false;
->>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
     }
 
     /**
@@ -213,7 +209,7 @@ class EventDispatcher implements EventDispatcherInterface
             if ($event->isPropagationStopped()) {
                 break;
             }
-            call_user_func($listener, $event, $eventName, $this);
+            \call_user_func($listener, $event, $eventName, $this);
         }
     }
 
@@ -229,7 +225,7 @@ class EventDispatcher implements EventDispatcherInterface
 
         foreach ($this->listeners[$eventName] as $priority => $listeners) {
             foreach ($listeners as $k => $listener) {
-                if (is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure) {
+                if (\is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure) {
                     $listener[0] = $listener[0]();
                     $this->listeners[$eventName][$priority][$k] = $listener;
                 }

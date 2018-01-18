@@ -111,6 +111,7 @@ EOF;
         $this->retrieveEntityManager();
         if ($this->config['cleanup']) {
             $this->em->getConnection()->beginTransaction();
+            $this->debugSection('Database', 'Transaction started');
         }
     }
 
@@ -155,6 +156,7 @@ EOF;
         if ($this->config['cleanup'] && $this->em->getConnection()->isTransactionActive()) {
             try {
                 $this->em->getConnection()->rollback();
+                $this->debugSection('Database', 'Transaction cancelled; all changes reverted.');
             } catch (\PDOException $e) {
             }
         }
@@ -461,11 +463,7 @@ EOF;
      * @version 1.1
      * @param $entity
      * @param array $params
-<<<<<<< HEAD
-     * @return array
-=======
      * @return object
->>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
      */
     public function grabEntityFromRepository($entity, $params = [])
     {
@@ -523,6 +521,9 @@ EOF;
 
     public function _getEntityManager()
     {
+        if (is_null($this->em)) {
+            $this->retrieveEntityManager();
+        }
         return $this->em;
     }
 }

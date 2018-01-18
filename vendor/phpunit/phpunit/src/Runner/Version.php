@@ -8,12 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use SebastianBergmann\Version;
+namespace PHPUnit\Runner;
+
+use SebastianBergmann\Version as VersionId;
 
 /**
  * This class defines the current version of PHPUnit.
  */
-class PHPUnit_Runner_Version
+class Version
 {
     private static $pharVersion;
     private static $version;
@@ -30,11 +32,7 @@ class PHPUnit_Runner_Version
         }
 
         if (self::$version === null) {
-<<<<<<< HEAD
-            $version       = new Version('5.7.20', dirname(dirname(__DIR__)));
-=======
-            $version       = new Version('5.7.21', dirname(dirname(__DIR__)));
->>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
+            $version       = new VersionId('6.4.4', \dirname(\dirname(__DIR__)));
             self::$version = $version->getVersion();
         }
 
@@ -46,13 +44,13 @@ class PHPUnit_Runner_Version
      */
     public static function series()
     {
-        if (strpos(self::id(), '-')) {
-            $version = explode('-', self::id())[0];
+        if (\strpos(self::id(), '-')) {
+            $version = \explode('-', self::id())[0];
         } else {
             $version = self::id();
         }
 
-        return implode('.', array_slice(explode('.', $version), 0, 2));
+        return \implode('.', \array_slice(\explode('.', $version), 0, 2));
     }
 
     /**
@@ -68,7 +66,7 @@ class PHPUnit_Runner_Version
      */
     public static function getReleaseChannel()
     {
-        if (strpos(self::$pharVersion, '-') !== false) {
+        if (\strpos(self::$pharVersion, '-') !== false) {
             return '-nightly';
         }
 

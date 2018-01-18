@@ -12,10 +12,12 @@
 namespace Fxp\Composer\AssetPlugin\Repository;
 
 use Composer\DependencyResolver\Pool;
+use Composer\IO\IOInterface;
 use Composer\Package\CompletePackageInterface;
 use Composer\Package\Loader\ArrayLoader;
 use Composer\Repository\ArrayRepository;
 use Fxp\Composer\AssetPlugin\Converter\NpmPackageUtil;
+use Fxp\Composer\AssetPlugin\Converter\PackageUtil;
 use Fxp\Composer\AssetPlugin\Exception\InvalidCreateRepositoryException;
 
 /**
@@ -83,6 +85,14 @@ class NpmRepository extends AbstractAssetsRepository
     {
         $type = isset($data['repository']['type']) ? $data['repository']['type'] : 'vcs';
 
+        // Add release date in $packageConfigs
+        if (isset($data['versions']) && isset($data['time'])) {
+            $time = $data['time'];
+            array_walk($data['versions'], function (&$packageConfigs, $version) use ($time) {
+                PackageUtil::convertStringKey($time, $version, $packageConfigs, 'time');
+            });
+        }
+
         return array(
             'type' => $this->assetType->getName().'-'.$type,
             'url' => $this->getVcsRepositoryUrl($data, $registryName),
@@ -128,6 +138,10 @@ class NpmRepository extends AbstractAssetsRepository
     /**
      * Create the array repository with the asset configs.
      *
+     * A warning message is displayed if the constraint versions of packages
+     * are broken. These versions are skipped and the plugin hope that other
+     * versions will be OK.
+     *
      * @param array $packageConfigs The configs of assets package versions
      *
      * @return CompletePackageInterface[]
@@ -138,10 +152,14 @@ class NpmRepository extends AbstractAssetsRepository
         $loader = new ArrayLoader();
 
         foreach ($packageConfigs as $version => $config) {
-            $config['version'] = $version;
-            $config = $this->assetType->getPackageConverter()->convert($config);
-            $config = $this->assetRepositoryManager->solveResolutions($config);
-            $packages[] = $loader->load($config);
+            try {
+                $config['version'] = $version;
+                $config = $this->assetType->getPackageConverter()->convert($config);
+                $config = $this->assetRepositoryManager->solveResolutions($config);
+                $packages[] = $loader->load($config);
+            } catch (\UnexpectedValueException $exception) {
+                $this->io->write("<warning>Skipped {$config['name']} version {$version}: {$exception->getMessage()}</warning>", IOInterface::VERBOSE);
+            }
         }
 
         return $packages;

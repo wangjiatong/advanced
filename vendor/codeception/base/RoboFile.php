@@ -17,10 +17,6 @@ class RoboFile extends \Robo\Tasks
         $this->publishDocs();
         $this->buildPhar();
         $this->buildPhar5();
-<<<<<<< HEAD
-        $this->revertComposerJsonChanges();
-=======
->>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
         $this->publishPhar();
         $this->publishGit();
         $this->publishBase(null, \Codeception\Codecept::VERSION);
@@ -199,10 +195,7 @@ class RoboFile extends \Robo\Tasks
         }
         $this->installDependenciesForPhp54();
         $this->packPhar('package/php54/codecept.phar');
-<<<<<<< HEAD
-=======
         $this->revertComposerJsonChanges();
->>>>>>> 2a24286d4af4b85133ad7c96a0b36855a1b31b73
     }
 
     private function packPhar($pharFileName)
