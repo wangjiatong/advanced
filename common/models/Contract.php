@@ -4,6 +4,7 @@ namespace common\models;
 use Yii;
 use \yii\db\ActiveRecord;
 use backend\models\Admin;
+use common\models\UserModel;
 
 /**
  * This is the model class for table "contract".
@@ -106,7 +107,7 @@ class Contract extends ActiveRecord
     //关联客户表
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(UserModel::className(), ['id' => 'user_id']);
     }
 
     /**
