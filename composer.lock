@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fa323fb630310de0c9a74b251a6fa50",
+    "content-hash": "bc8591f98bb9ee9c3acc56114c2125e8",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -537,6 +537,43 @@
             ],
             "description": "desc",
             "time": "2017-01-15T06:29:37+00:00"
+        },
+        {
+            "name": "light/yii2-lock-form",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lichunqiang/yii2-lock-form.git",
+                "reference": "a66dfe2bf9d3da0c38ae59d5e76e70c0aea5e4f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/lichunqiang/yii2-lock-form/a66dfe2bf9d3da0c38ae59d5e76e70c0aea5e4f3.zip",
+                "reference": "a66dfe2bf9d3da0c38ae59d5e76e70c0aea5e4f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "^2.0.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "light\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "lichunqiang",
+                    "email": "light-li@hotmail.com"
+                }
+            ],
+            "description": "yii2 activeform ActiveForm bootstrap loading",
+            "time": "2017-05-10T10:09:08+00:00"
         },
         {
             "name": "phpoffice/phpexcel",
