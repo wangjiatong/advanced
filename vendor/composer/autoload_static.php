@@ -34,6 +34,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'l' => 
+        array (
+            'light\\widgets\\' => 14,
+        ),
         'k' => 
         array (
             'kucha\\ueditor\\' => 14,
@@ -129,6 +133,10 @@ class ComposerStaticInitece7de1a5c19a97d3834906ac7fff413
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'light\\widgets\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/light/yii2-lock-form',
         ),
         'kucha\\ueditor\\' => 
         array (

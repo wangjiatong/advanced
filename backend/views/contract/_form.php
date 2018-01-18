@@ -100,7 +100,10 @@ $my_id = Yii::$app->user->identity->id;
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <?= Html::submitButton('确定', ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton('确定', [
+                            'class' => 'btn btn-success',
+                            'data-loading-text' => '合同创建中...',
+                        ]) ?>
                     </div>
                 </div>
             </div>
