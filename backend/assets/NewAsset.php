@@ -33,6 +33,8 @@ class NewAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'light\widgets\LockBsFormAsset',
+        'light\widgets\LockFormAsset',
     ];
 }
 ?>
