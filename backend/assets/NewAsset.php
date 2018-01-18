@@ -17,7 +17,6 @@ class NewAsset extends AssetBundle
         'css/new/graph.css',
     ];
     public $js = [
-//         ['js/new/Chart.js', 'position' => View::POS_HEAD],
         ['js/new/echarts.js', 'position' => View::POS_HEAD],
         ['js/new/wow.min.js', 'position' => View::POS_HEAD],
         ['js/new/jquery-1.10.2.min.js', 'position' => View::POS_HEAD],
@@ -33,8 +32,6 @@ class NewAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'light\widgets\LockBsFormAsset',
-        'light\widgets\LockFormAsset',
     ];
 }
 ?>
