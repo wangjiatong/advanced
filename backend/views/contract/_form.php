@@ -6,6 +6,7 @@ use yii\jui\DatePicker;
 use common\models\Product;
 use common\models\UserModel;
 use kartik\select2\Select2;
+use light\widgets\LockBsFormAsset;
 
 $my_id = Yii::$app->user->identity->id;
 /* @var $this yii\web\View */
@@ -186,4 +187,5 @@ bankNumsFormater;
 $this->registerJs($numbersFormater);
 $this->registerJs($upperNum);
 $this->registerJs($bankNumsFormater);
+LockBsFormAsset::register($this);
 ?>

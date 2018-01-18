@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use light\widgets\LockBsFormAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UserModel */
@@ -55,3 +56,4 @@ use yii\widgets\ActiveForm;
     
     </div>
 </div>
+<?php LockBsFormAsset::register($this) ?>
