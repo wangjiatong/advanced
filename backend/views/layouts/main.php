@@ -118,15 +118,15 @@ NewAsset::register($this);
             || in_array('contract/my-contract', Yii::$app->session['allowed_urls'])): ?>
 				<div class="profile_details_left">
 					<ul class="nofitications-dropdown">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge"></span></a>
+<!-- 						<li class="dropdown"> -->
+<!-- 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge"></span></a> -->
 								
-									<ul class="dropdown-menu">
-										<li>
-											<div class="notification_header">
-												<h3></h3>
-											</div>
-										</li>
+<!-- 									<ul class="dropdown-menu"> -->
+<!-- 										<li> -->
+<!-- 											<div class="notification_header"> -->
+<!-- 												<h3></h3> -->
+<!-- 											</div> -->
+<!-- 										</li> -->
 <!-- 										<li><a href="#"> -->
 <!-- 										   <div class="user_img"><img src="img/new/1.png" alt=""></div> -->
 <!-- 										   <div class="notification_desc"> -->
@@ -135,31 +135,24 @@ NewAsset::register($this);
 <!-- 											</div> -->
 <!-- 										   <div class="clearfix"></div>	 -->
 <!-- 										 </a></li> -->
-										<li>
-											<div class="notification_bottom">
-												<a href="#"></a>
-											</div> 
-										</li>
-									</ul>
-						</li>
-						<li class="login_box" id="loginContainer">
-								<div class="search-box">
-									<div id="sb-search" class="sb-search">
-										<form>
-											<input class="sb-search-input" placeholder="" type="search" id="search">
-											<input class="sb-search-submit" type="submit" value="">
-											<span class="sb-icon-search"> </span>
-										</form>
-									</div>
-								</div>
-									<!-- search-scripts -->
-<!-- 										<script src="js/new/classie.js"></script> -->
-<!-- 										<script src="js/new/uisearch.js"></script> -->
-										<script>
-											new UISearch( document.getElementById( 'sb-search' ) );
-										</script>
-									<!-- //search-scripts -->
-						</li>
+<!-- 										<li> -->
+<!-- 											<div class="notification_bottom"> -->
+<!-- 												<a href="#"></a> -->
+<!-- 											</div>  -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 						</li> -->
+<!-- 						<li class="login_box" id="loginContainer"> -->
+<!-- 								<div class="search-box"> -->
+<!-- 									<div id="sb-search" class="sb-search"> -->
+<!-- 										<form> -->
+<!-- 											<input class="sb-search-input" placeholder="" type="search" id="search"> -->
+<!-- 											<input class="sb-search-submit" type="submit" value=""> -->
+<!-- 											<span class="sb-icon-search"> </span> -->
+<!-- 										</form> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 						</li> -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?= count(Yii::$app->session['contractToPay']) == 0 ? null : count(Yii::$app->session['contractToPay']) ?></span></a>
 								<ul class="dropdown-menu">
@@ -171,11 +164,11 @@ NewAsset::register($this);
 									<?php if(Yii::$app->session['contractToPay']){ 
 								           foreach (Yii::$app->session['contractToPay'] as $model):
 									?>
-									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->id ?>">
+									<li><a href="<?= BaseController::checkUrlAccess('contract/view', 'contract/my-view') ?>?id=<?= $model->cid ?>">
 <!-- 										<div class="user_img"><img src="img/new/1.png" alt=""></div> -->
 									   <div class="notification_desc">
-										<p><?= $model->contract_number ?></p>
-										<p><span><?= UserModel::getName($model->user_id) ?></span></p>
+										<p><?= '【' . $model->time . '】' . number_format($model->interest, 2) . '元' ?></p>
+										<p><span><?= '【' . Admin::findOne($model->source)->name . '】' . UserModel::getName($model->uid) ?></span></p>
 										</div>
 									  <div class="clearfix"></div>	
 									 </a></li>
@@ -197,7 +190,7 @@ NewAsset::register($this);
 									</li>
 									<li><a href="#">
 											<div class="task-info">
-											<span class="task-desc"><?= date('n') ?>月</span><span class="percentage"><?= Yii::$app->session['monTask']['per'] ?></span>
+											<span class="task-desc"><?= date('n') ?>月<?= '（' . number_format(Yii::$app->session['monTask']['val']) .'元）' ?></span><span class="percentage"><?= Yii::$app->session['monTask']['per'] ?></span>
 											<div class="clearfix"></div>	
 										   </div>
 											<div class="progress progress-striped active">
@@ -206,7 +199,7 @@ NewAsset::register($this);
 									</a></li>
 									<li><a href="#">
 										<div class="task-info">
-											<span class="task-desc"><?= date('Y') ?>年</span><span class="percentage"><?= Yii::$app->session['yearTask']['per'] ?></span>
+											<span class="task-desc"><?= date('Y') ?>年<?= '（' . number_format(Yii::$app->session['monTask']['val']) .'元）' ?></span><span class="percentage"><?= Yii::$app->session['yearTask']['per'] ?></span>
 										   <div class="clearfix"></div>	
 										</div>
 									   
