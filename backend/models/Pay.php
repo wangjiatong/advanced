@@ -117,10 +117,10 @@ class Pay extends \yii\db\ActiveRecord
      */
     public static function searchToPay($days = 10)
     {
-        $start = (new \DateTime())->modify('-' . $days . 'days')->format('Y-m-d');
-        $end = date('Y-m-d');
-        $sql = static::find()->where(['>', 'time', $start])
-            ->andWhere(['<=', 'time', $end]);
+        $start = date('Y-m-d');
+        $end = (new \DateTime())->modify('+' . $days . 'days')->format('Y-m-d');
+        $sql = static::find()->where(['>=', 'time', $start])
+            ->andWhere(['<', 'time', $end]);
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
             return $sql->andWhere(['source' => Yii::$app->user->identity->id])
