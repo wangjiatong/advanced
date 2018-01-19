@@ -158,7 +158,7 @@ NewAsset::register($this);
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
-											<h3>你有<?= count(Yii::$app->session['contractToPay']) ?>个待付</h3>
+											<h3>近15天你有<?= count(Yii::$app->session['contractToPay']) ?>个待付合同</h3>
 										</div>
 									</li>
 									<?php if(Yii::$app->session['contractToPay']){ 
