@@ -70,7 +70,7 @@ use yii\helpers\Json;
                             }
                         ?>
 						<li>最高：<?= max($uNum) ?></li>
-						<li>平均：<?= array_sum($uNum)/6 ?></li>
+						<li>平均：<?= round(array_sum($uNum)/6, 2) ?></li>
 		                <li>最低：<?= min($uNum) ?></li>
 					</ul>
 				</div>

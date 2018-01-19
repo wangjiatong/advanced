@@ -28,7 +28,7 @@ class AdminSignupForm extends Model
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\backend\models\Admin', 'message' => '该用户名已被占用！'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 6, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
