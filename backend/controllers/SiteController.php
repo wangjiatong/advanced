@@ -12,6 +12,8 @@ use backend\models\AdminResetPasswordForm;
 //index页所需数据模型
 use common\models\Contract;
 use common\models\UserModel;
+use backend\models\Pay;
+use backend\models\UserRole;
 
 
 /**
@@ -44,66 +46,38 @@ class SiteController extends BaseController
         if(in_array('contract/index', Yii::$app->session['allowed_urls'])
             || in_array('contract/my-contract', Yii::$app->session['allowed_urls']))
         {
-            //第一排
+            //页面-第一排（客户、合同、销售量）
             $userNum = UserModel::getUserNumByAccess();
             $contractNum = Contract::getContractNumByAccess();
             $capitalSum = Contract::getCapitalSumByAccess();
     
-            //第二排
+            //页面-第二排（图标）
             $userNumByMonth = UserModel::getUserNumByMonth(5);
             $capitalByMonth = Contract::getCapitalByMonth(5);
             $conNumByMonth = Contract::getContractNumByMonth(5);
             
-            //通知
+            //顶部-通知----开始
+            $saleNum = UserRole::find()->where(['role_id' => 3])->orWhere(['role_id' => 5])->count();
+            //当月业绩
             $thisMonthCapital = array_values(Contract::getCapitalByMonth(0))[0];
             in_array('contract/index', Yii::$app->session['allowed_urls']) ?
-            $monthTaskPercentage = round($thisMonthCapital/2000000, 2) :
-            $monthTaskPercentage = round($thisMonthCapital/2000000, 2);//当月
-            $monTask = $this->taskPercentage($monthTaskPercentage);
+            $monthTaskPercentage = round($thisMonthCapital/(2000000*$saleNum), 3) :
+            $monthTaskPercentage = round($thisMonthCapital/2000000, 3);
+            $monTask = $this->taskPercentage($monthTaskPercentage, $thisMonthCapital);
             Yii::$app->session['monTask'] = $monTask;
             
+            //当年业绩
             $monthsToThisYear = date('n') - 1;
             $thisYearCapital = array_sum(array_values(Contract::getCapitalByMonth($monthsToThisYear)));
             in_array('contract/index', Yii::$app->session['allowed_urls']) ?
-            $yearTaskPercentage = round($thisYearCapital/24000000, 2) :
-            $yearTaskPercentage = round($thisYearCapital/24000000, 2);//当年
-            $yearTask = $this->taskPercentage($yearTaskPercentage);
+            $yearTaskPercentage = round($thisYearCapital/(24000000*$saleNum), 3) :
+            $yearTaskPercentage = round($thisYearCapital/24000000, 3);
+            $yearTask = $this->taskPercentage($yearTaskPercentage, $monthsToThisYear);
             Yii::$app->session['yearTask'] = $yearTask;
             
-            $contracts = Contract::find()->select(['id', 'every_time'])->where(['source' => parent::getUserId()])->all();
-            
-            foreach($contracts as $c)
-            {
-                $every_time_arr = explode(', ', $c['every_time']);//将每期到期时间数组化
-            
-                $lengthOfArr = count($every_time_arr);//分期次数
-            
-                $days = 5;//提前多久提醒
-            
-                $today = strtotime(date('Y-m-d H:i:s'));
-            
-                for($i = 0; $i < $lengthOfArr; $i++)
-                {
-                    $timeToCheck = strtotime($every_time_arr[$i]);
-                
-                    if($today < $timeToCheck && ($timeToCheck - $today)/86400 < $days){
-                        $id_arr[] = $c['id'];
-                    }
-            
-                }
-            }
-            
-            $models = [];//待付合同结果集
-            if(isset($id_arr))
-            {
-                foreach ($id_arr as $i)
-                {
-                    $model = Contract::findOne($i);
-                    $models = $model;
-                }
-            }
-            
-            Yii::$app->session['contractToPay'] = $models;
+            //待付信息
+            Yii::$app->session['contractToPay'] = Pay::searchToPay();
+            //顶部-通知----结束
             
             return $this->render('index', [
                 'userNum' => $userNum,
@@ -222,7 +196,7 @@ class SiteController extends BaseController
         ]);
     }  
     
-    public function taskPercentage($per)
+    public function taskPercentage($per, $monCap)
     {
         if(($per - 0.33) < 0.01)
         {
@@ -236,7 +210,10 @@ class SiteController extends BaseController
         }else{
             $color = 'green';
         }
-        return ['color' => $color,
-                'per' => $per*100 . '%'];
+        return [
+            'color' => $color,
+            'per' => $per*100 . '%',
+            'val' => $monCap,
+        ];
     }
 }

@@ -112,6 +112,23 @@ class Pay extends \yii\db\ActiveRecord
         return $paySumByDate;        
     }
     
+    /*
+     * 查询某个时间段内的待付合同
+     */
+    public static function searchToPay($days = 10)
+    {
+        $start = (new \DateTime())->modify('-' . $days . 'days')->format('Y-m-d');
+        $end = date('Y-m-d');
+        $sql = static::find()->where(['>', 'time', $start])
+            ->andWhere(['<=', 'time', $end]);
+        if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
+        {
+            return $sql->andWhere(['source' => Yii::$app->user->identity->id])
+                ->orderBy('time asc')->all();
+        }else{
+            return $sql->orderBy('time asc')->all();
+        }
+    }
     
     
     
