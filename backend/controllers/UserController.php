@@ -164,9 +164,15 @@ class UserController extends BaseController
 //    }
     public function actionMyDelete($id)
     {
-        $this->findMyModel($id)->delete();
-
-        return $this->redirect(['index']);
+        {
+            echo "<script>
+                    alert('如果必须要删除该客户，则必须先删除该客户名下所有合同！');
+                    window.location.href=history.back();
+                  </script>";
+        }else{
+            $this->findMyModel($id)->delete();
+            return $this->redirect(['index']);
+        }
     }
     //查看所有用户名下的合同
     public function actionAllContractByUser($id)

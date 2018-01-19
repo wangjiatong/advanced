@@ -24,6 +24,7 @@ use common\models\Product;
             <th>兑付时间</th>
             <th>客户经理</th>
             <th>合同状态</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
