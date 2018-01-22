@@ -115,7 +115,7 @@ class Pay extends \yii\db\ActiveRecord
     /*
      * 查询某个时间段内的待付合同
      */
-    public static function searchToPay($days = 10)
+    public static function searchToPay($days = 15)
     {
         $start = date('Y-m-d');
         $end = (new \DateTime())->modify('+' . $days . 'days')->format('Y-m-d');

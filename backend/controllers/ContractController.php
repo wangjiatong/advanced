@@ -18,6 +18,7 @@ use scotthuangzl\export2excel\Export2ExcelBehavior;
 use common\models\UserModel;
 use backend\models\Admin;
 use common\models\Product;
+use backend\models\Pay;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
@@ -237,19 +238,33 @@ class ContractController extends BaseController
     public function actionMyDelete($id)
     {
         $contract = $this->findMyModel($id);
-        $pdf = $contract->pdf; 
-        if($contract->delete())
-        {
-            if(is_file($pdf))
+        $pdf = $contract->pdf;
+        $transaction = Yii::$app->db->beginTransaction();
+        try{
+            if(!$contract->delete())
+            {
+                throw new \Exception('合同删除失败');
+            }
+            
+            if(!Pay::deleteAll(['cid' => $contract->id]))
+            {
+                throw new \Exception('待付信息删除失败');
+            }
+            
+            $transaction->commit();
+            
+            if(!empty($pdf) && is_file($pdf))
             {
                 unlink($pdf);
             }
+            
             return $this->redirect([parent::checkUrlAccess('contract/my-contract', 'contract/index')]);
-        }       
+        }catch (\Exception $e){
+            $transaction->rollBack();
+            return $this->redirect(Yii::$app->request->referrer);
+        }     
     }
-    
-    
-    
+
     //按产品名称、客户姓名和时间范围导出合同excel
     public function actionExcel()
     {
