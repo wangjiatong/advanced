@@ -11,6 +11,7 @@ LoginAsset::register($this);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php $this->head() ?>
+	<link rel="shortcut icon" href=" /ewin.ico" />
 </head>
 <body class="templatemo-bg-image-1">
     <?php $this->beginBody() ?>
