@@ -68,19 +68,20 @@ class AdminController extends BaseController
     }
     //更新管理员用户信息（不包括密码）
     //缺陷是更新是不能检查唯一性
-     public function actionUpdate($id)
-    {
-        $model = new ChangeAdminInfo();
-        $old = $this->findModel($id);
-        if($model->load(Yii::$app->request->post()) && $model->change($id))
-        {
-            return $this->redirect(['view', 'id' => $id]);
-        }
-        return $this->render('change', [
-            'model' => $model,
-            'old' => $old,
-        ]);
-    }
+//      public function actionUpdate($id)
+//     {
+//         $model = new ChangeAdminInfo();
+//         $old = $this->findModel($id);
+//         if($model->load(Yii::$app->request->post()) && $model->change($id))
+//         {
+//             return $this->redirect(['view', 'id' => $id]);
+//         }
+//         return $this->render('change', [
+//             'model' => $model,
+//             'old' => $old,
+//         ]);
+//     }
+    
     //删除管理员用户
     public function actionDelete($id)
     {
