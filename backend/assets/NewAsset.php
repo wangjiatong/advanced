@@ -17,7 +17,8 @@ class NewAsset extends AssetBundle
         'css/new/graph.css',
     ];
     public $js = [
-        ['js/new/echarts.js', 'position' => View::POS_HEAD],
+//         ['js/new/echarts.js', 'position' => View::POS_HEAD],
+        ['https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts.min.js', 'position' => View::POS_HEAD],
         ['js/new/wow.min.js', 'position' => View::POS_HEAD],
         ['js/new/jquery-1.10.2.min.js', 'position' => View::POS_HEAD],
         ['js/new/classie.js', 'position' => View::POS_BEGIN],

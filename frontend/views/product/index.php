@@ -42,7 +42,7 @@ $this->registerJs('$(document).ready(function(){$("#products").addClass("navacti
                                 <span class="zoom"></span>
                                 </a>
                                 <figcaption>
-                                        <a href="/product/view/<?=$m->id?>" class="arrow"><?=$m->product_name?></a>
+                                        <a href="/product/view?id=<?=$m->id?>&product_column_id=<?=$m->product_column_id?>" class="arrow"><?=$m->product_name?></a>
                                         <!--<p>Lorem ipsum dolor set amet</p>-->
                                 </figcaption>
                         </figure>

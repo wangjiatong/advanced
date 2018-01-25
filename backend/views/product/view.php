@@ -55,7 +55,7 @@ $status = $model->status;
                 ],
                 [
                 'label' => '产品图片',
-                'value' => "<img src='$imgUrl' width='320px' height='100px'>",
+                'value' => "<img src='$imgUrl' width='320px' height='200px'>",
                 'format' => 'html',
                 ],
         ],

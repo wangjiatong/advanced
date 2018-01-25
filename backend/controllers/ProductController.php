@@ -183,29 +183,10 @@ class ProductController extends BaseController
         public function actionCreate()
         {
             $model = new ProductForm();
-            
-            if($model->load(Yii::$app->request->post()))
+
+            if($model->load(Yii::$app->request->post()) && $model->upload())
             {
-                $model->img = UploadedFile::getInstance($model, 'img');
-                
-                $name = 'p-' . date('Y-m-d') . '-' . rand(0, 9999);
-        
-                $ext = $model->img->extension;
-                
-                $file = $name . '.' . $ext;
-        
-                $uploadPath = '../../frontend/web/uploads/' . $file;
-                
-                $model->img->saveAs($uploadPath);
-                
-                $path = 'uploads/' . $file;
-                
-                $model->img = $path;
-        
-                $model->upload();
-
                 return $this->redirect(['index']);
-
             }else{
                 return $this->render('create', [
                     'model' => $model,
@@ -224,9 +205,12 @@ class ProductController extends BaseController
             $model = $this->findProductModel($id);
             
             $old_img = $model->img;
+            
+            $model->img = '';
 
             if($model->load(Yii::$app->request->post()))
             {
+
                 $model->img = UploadedFile::getInstance($model, 'img');
                 
                 if($model->img !== null)
