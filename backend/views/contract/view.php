@@ -179,10 +179,7 @@ $this->title = '合同详情：'.$model->contract_number;
                     <td class="info">合同状态</td>
                     <td colspan="5">
                         <?php 
-                            if($model->status)
-                            {
-                                echo Contract::contractValidation($model->status);
-                            }
+                            echo Contract::contractValidation($model->status);
                         ?>
                     </td>
                 </tr>

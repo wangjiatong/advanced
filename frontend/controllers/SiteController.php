@@ -10,10 +10,10 @@ use yii\filters\AccessControl;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
+// use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 //数据提供器
-use yii\data\ActiveDataProvider;
+// use yii\data\ActiveDataProvider;
 use common\models\News;
 //分页
 use yii\data\Pagination;
@@ -21,8 +21,11 @@ use yii\data\Pagination;
 use common\models\NewsColumn;
 //提示信息
 use yii\bootstrap\Alert;
-use common\models\ChangeUserPasswd;
+// use common\models\ChangeUserPasswd;
 use yii\web\NotFoundHttpException;
+use yii\filters\HttpCache;
+use yii\filters\PageCache;
+use yii\caching\DbDependency;
 /**
  * Site controller
  */
@@ -54,6 +57,35 @@ class SiteController extends Controller
                     'logout' => ['post', 'get'],
                 ],
             ],
+//             'newsHttpCache' => [
+//                 'class' => HttpCache::className(),
+//                 'only' => ['news'],
+//                 'cacheControlHeader' => 'no-cache',
+//                 'lastModified' => function($action, $params){
+//                     $time = strtotime(News::find()->max('created_at'));
+//                     return $time;    
+//                 },
+//             ],
+//             'staticHttpCache' => [
+//                 'class' => HttpCache::className(),
+//                 'only' => ['about', 'business', 'join'],
+//                 'cacheControlHeader' => 'no-cache',
+//                 'lastModified' => function($action, $params){
+//                     if(!Yii::$app->user->isGuest)
+//                     {
+//                         return time() - 10;
+//                     }else{
+//                         return 0;
+//                     }   
+//                 },
+//             ],
+//             'pageCache' => [
+//                 'class' => PageCache::className(),
+//                 'dependency' => [
+//                     'class' => DbDependency::className(),
+//                     'sql' => 'SELECT COUNT(*) FROM news',
+//                 ],            
+//             ],
         ];
     }
 
@@ -337,18 +369,18 @@ class SiteController extends Controller
     }
 
     //修改客户的密码
-    public function actionResetPasswd()
-    {
-        $id = Yii::$app->user->identity->id;
-        $model = new ChangeUserPasswd();
-        if($model->load(Yii::$app->request->post()) && $model->resetPasswdLogout($id))
-        {   
-            return $this->redirect(['site/login']);            
-        }
-        return $this->render('resetPasswd', [
-            'model' => $model,
-        ]);
-    }
+//     public function actionResetPasswd()
+//     {
+//         $id = Yii::$app->user->identity->id;
+//         $model = new ChangeUserPasswd();
+//         if($model->load(Yii::$app->request->post()) && $model->resetPasswdLogout($id))
+//         {   
+//             return $this->redirect(['site/login']);            
+//         }
+//         return $this->render('resetPasswd', [
+//             'model' => $model,
+//         ]);
+//     }
     
     //获取新闻模型
     private function findNews($id)
