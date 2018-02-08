@@ -5,7 +5,6 @@ use backend\models\Admin;
 use common\models\Contract;
 use yii\widgets\LinkPager;
 use backend\controllers\common\BaseController;
-use Yii;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
