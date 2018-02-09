@@ -1,5 +1,10 @@
 <?php 
 use yii\helpers\Json;
+use kartik\select2\Select2;
+use backend\models\Admin;
+use yii\helpers\Url;
+use yii\web\JsExpression;
+use yii\helpers\Html;
 $this->title = '全局统计';
 ?>
 <h3 class="blank1">全局统计</h3>
@@ -7,7 +12,7 @@ $this->title = '全局统计';
 	<div class="col-md-6 grid_2">
 		<div class="grid_1">
 			<h4>产品统计</h4>
-			<div id="product" style="width: 100%; height: 500px;"></div>
+			<div id="product" style="width: 100%; height: 526px;"></div>
 			<?php $name_json = Json::encode(array_column($prodProp, 'name'))?>
 			<script>
 		    var myProduct = echarts.init(document.getElementById('product'));
@@ -51,8 +56,83 @@ $this->title = '全局统计';
 	</div>
 	<div class="col-md-6 grid_2">
 		<div class="grid_1">
-			<h4></h4>
-			
+			<h4>销售按月进账统计</h4>
+			<?php
+    			$sales = Admin::find()->select('name, admin.id')->joinWith('userRole', false)
+    			    ->where(['user_role.role_id' => 3])
+    			    ->asArray()->all();
+    // 			    var_dump($sales);
+    		    $names = array_column($sales, 'name');
+    		    $ids = array_column($sales, 'id');
+    		    $res = array_combine($ids, $names);
+    // 			    var_dump($res);
+                $url = Url::to(['search-sales'], true);
+//                 var_dump($url);
+                echo '&nbsp;&nbsp;销售姓名：' . Html::dropDownList('source', null, $res, ['id' => 'source', 'prompt' => '']);
+			?>
+			<div id='sales' style="width: 100%; height: 500px;"></div>
+			<script>
+			    $('#source').change(function(){
+			        $.ajax({
+			             url: '<?= $url ?>?source=' + $(this).val(),
+			             type: 'get',
+			             dataType: 'json',
+			             success: function(data){
+				             
+    			             var dates = new Array();
+    			             var caps = new Array();
+    			             $.each(data, function(date, cap){
+ 			            	    dates.push(date);
+ 			            	    caps.push(cap);
+    			             });
+    			             
+ 			                var sales = echarts.init(document.getElementById('sales'));   
+			                
+			                sales.title = '';
+
+			                option = {
+			                    color: ['#3398DB'],
+			                    tooltip : {
+			                        trigger: 'axis',
+			                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+			                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+			                        }
+			                    },
+			                    grid: {
+			                        left: '3%',
+			                        right: '4%',
+			                        bottom: '3%',
+			                        containLabel: true
+			                    },
+			                    xAxis : [
+			                        {
+			                            type : 'category',
+			                            data : dates,
+			                            axisTick: {
+			                                alignWithLabel: true
+			                            }
+			                        }
+			                    ],
+			                    yAxis : [
+			                        {
+			                            type : 'value'
+			                        }
+			                    ],
+			                    series : [
+			                        {
+			                            name: '数量',
+			                            type: 'bar',
+			                            barWidth: '60%',
+			                            data: caps
+			                        }
+			                    ]
+			                };
+
+			                sales.setOption(option);
+			             }
+			        });
+			    });
+			</script>
 		</div>
 	</div>
 	<div class="clearfix"> </div>

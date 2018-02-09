@@ -279,15 +279,34 @@ class Contract extends ActiveRecord
     /*
      * 获取最近$months个月的每个月的进账金额
      */
-    public static function getCapitalByMonth($months)
+    public static function getCapitalByMonth($months, $source = null)
     {
+        
         $sql = static::find()->select(['SUM(capital) as monCap']);//合同模型
+        
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
-            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            
+            if($source == null)
+            {
+                $source = Yii::$app->user->identity->id;
+            }
+            
+            $data = $sql->where(['source' => $source]);
             $wherefunc = 'andWhere';
+            
             return static::searchCapByMonth($data, $months, $wherefunc);
         }else{
+            
+            if($source !== null)
+            {
+                
+                $sql = $sql->where(['source' => $source]);
+                $wherefunc = 'andWhere';
+                
+                return static::searchCapByMonth($sql, $months, $wherefunc);
+            }
+            
             return static::searchCapByMonth($sql, $months);
         } 
     }
