@@ -6,6 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use backend\models\UserRole;
 
 /**
  * User model
@@ -206,6 +207,11 @@ class Admin extends ActiveRecord implements IdentityInterface
     public static function getName($id)
     {
         return static::findOne($id)->name;
+    }
+    
+    public function getUserRole()
+    {
+        return static::hasMany(UserRole::className(), ['user_id' => 'id']);
     }
     
 

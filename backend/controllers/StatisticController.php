@@ -29,7 +29,14 @@ class StatisticController extends BaseController
             'paySumByDate' => $paySumByDate,
             'capitalSumByDate' => $capitalSumByDate,
         ]);       
-    }    
+    }   
+
+    //ajax获取某销售数据
+    public function actionSearchSales($source)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return Contract::getCapitalByMonth(6, $source);
+    }
     
     
     
