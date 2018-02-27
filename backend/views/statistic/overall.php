@@ -55,6 +55,7 @@ $this->title = '全局统计';
 		</div>
 	</div>
 	<div class="col-md-6 grid_2">
+	<?php if(in_array('contract/index', Yii::$app->session['allowed_urls'])): ?>
 		<div class="grid_1">
 			<h4>销售按月进账统计</h4>
 			<?php
@@ -78,13 +79,15 @@ $this->title = '全局统计';
 			             type: 'get',
 			             dataType: 'json',
 			             success: function(data){
-				             
+// 				             alert(JSON.stringify(data));
     			             var dates = new Array();
     			             var caps = new Array();
     			             $.each(data, function(date, cap){
  			            	    dates.push(date);
  			            	    caps.push(cap);
+ 			            	    
     			             });
+//     			             alert(caps);
     			             
  			                var sales = echarts.init(document.getElementById('sales'));   
 			                
@@ -134,6 +137,7 @@ $this->title = '全局统计';
 			    });
 			</script>
 		</div>
+	<?php endif; ?>
 	</div>
 	<div class="clearfix"> </div>
 </div>

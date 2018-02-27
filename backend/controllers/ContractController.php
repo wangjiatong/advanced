@@ -98,8 +98,13 @@ class ContractController extends BaseController
      * @return mixed
      */
     public function actionCreate()
-    {
+    {      
         $model = new ContractForm();
+        
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            $model->scenario = 'create-all';
+        }
 
         if ($model->load(Yii::$app->request->post())) 
         {       
@@ -124,8 +129,7 @@ class ContractController extends BaseController
 
             if($model->save())
             {
-//                 return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
-                return $this->redirect(['contract/my-view', 'id' => Yii::$app->db->getLastInsertID()]);
+                return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
             }
         } else {
             return $this->render('create', [
@@ -246,7 +250,7 @@ class ContractController extends BaseController
                 throw new \Exception('合同删除失败');
             }
             
-            if(!Pay::deleteAll(['cid' => $contract->id]))
+            if(Pay::findOne(['cid' => $contract->id]) && !Pay::deleteAll(['cid' => $contract->id]))
             {
                 throw new \Exception('待付信息删除失败');
             }
@@ -258,7 +262,7 @@ class ContractController extends BaseController
                 unlink($pdf);
             }
             
-            return $this->redirect([parent::checkUrlAccess('contract/my-contract', 'contract/index')]);
+            return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
         }catch (\Exception $e){
             $transaction->rollBack();
             return $this->redirect(Yii::$app->request->referrer);
@@ -470,5 +474,12 @@ class ContractController extends BaseController
             $offset++;
         }
         return $ret_res;
+    }
+    
+    public function actionGetUsersBySource($source)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $users = UserModel::find()->select('name, id')->where(['source' => $source])->indexBy('id')->column();
+        return $users;
     }
 }

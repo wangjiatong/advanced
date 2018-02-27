@@ -29,6 +29,7 @@ class ContractForm extends Model
     public $bank_user;//开户名
     public $if_float;//是否含有浮动利率
     public $float_interest;//浮动利率金额
+    public $source;//录别人信息的权限
 
     /**
      * @inheritdoc
@@ -46,6 +47,8 @@ class ContractForm extends Model
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserModel::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['pdf'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
+            ['source', 'required', 'on' => ['create-all']],
+            ['source', 'integer', 'on' => ['create-all']],
         ];
     }
 
@@ -83,6 +86,7 @@ class ContractForm extends Model
             'pdf' => '合同扫描件',
             'if_float' => '*是否含有浮动利率',
             'float_interest' => '浮动利率金额',
+            'source' => '*销售姓名',
         ];
     }
 
@@ -115,6 +119,11 @@ class ContractForm extends Model
     //合同表单保存方法
     public function save()
     {       
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            $this->scenario = 'create-all';
+        }
+        
         if(!$this->validate())
         {
             return null;
@@ -167,7 +176,7 @@ class ContractForm extends Model
         
         $contract->bank_number = $this->bank_number;//银行账号
         
-        $contract->source = Yii::$app->user->identity->id;//合同来源
+        $contract->source = empty($this->source) ? Yii::$app->user->identity->id : $this->source;//合同来源
         
         $contract->user_id = $this->user_id;//用户id
         

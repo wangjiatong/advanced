@@ -51,10 +51,10 @@ class SiteController extends BaseController
             $contractNum = Contract::getContractNumByAccess();
             $capitalSum = Contract::getCapitalSumByAccess();
     
-            //页面-第二排（图标）
+            //页面-第二排（图表）
             $userNumByMonth = UserModel::getUserNumByMonth(5);
-            $capitalByMonth = Contract::getCapitalByMonth(5);
             $conNumByMonth = Contract::getContractNumByMonth(5);
+            $capitalByMonth = Contract::getCapitalByMonth(5);
             
             //顶部-通知----开始
             $saleNum = UserRole::find()->where(['role_id' => 3])->orWhere(['role_id' => 5])->count();

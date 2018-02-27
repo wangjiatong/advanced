@@ -7,6 +7,8 @@ use common\models\Product;
 use common\models\UserModel;
 use kartik\select2\Select2;
 use light\widgets\LockBsFormAsset;
+use backend\models\Admin;
+use yii\helpers\Url;
 
 $my_id = Yii::$app->user->identity->id;
 /* @var $this yii\web\View */
@@ -28,8 +30,31 @@ $my_id = Yii::$app->user->identity->id;
     
         <?= $form->field($model, 'contract_number')->textInput(['maxlength' => true, 'placeholder' => '如果不填则会自动生成']) ?>
             
+        <?php 
+//             var_dump(Admin::find()->select('name, admin.id')->indexBy('id')
+//                 ->joinWith('userRole', false)
+// 			    ->where(['user_role.role_id' => 3])
+// 			    ->column());
+            if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+            {
+                echo $form->field($model, 'source')->widget(Select2::classname(), [
+                    'data' => Admin::find()->select('name, admin.id')->indexBy('id')->joinWith('userRole', false)
+            			    ->where(['user_role.role_id' => 3])
+            			    ->column(),
+                    'options' => [
+                        'prompt' => '请选择销售姓名',
+                        'multiple' => false,
+                    ],
+                ]);
+            }
+        ?>
+            
         <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
-            'data' => UserModel::find()->select('name, id')->where(['source' => Yii::$app->user->identity->id])->indexBy('id')->column(),
+            'data' => in_array('contract/create-all', Yii::$app->session['allowed_urls']) ? 
+                []
+                : UserModel::find()->select('name, id')
+                ->where(['source' => Yii::$app->user->identity->id])
+                ->indexBy('id')->column(),
             'options' => [
                 'prompt' => '请选择客户姓名',
                 'multiple' => false,
@@ -188,4 +213,41 @@ $this->registerJs($numbersFormater);
 $this->registerJs($upperNum);
 $this->registerJs($bankNumsFormater);
 LockBsFormAsset::register($this);
+
+$url = Url::to(['get-users-by-source'], true);
 ?>
+
+<script>
+// 当有为所有人录合同的权限时，ajax加载客户姓名
+$(document).ready(function(){
+	
+    var source = $('#contractform-source');//销售姓名
+    var user_id = $('#contractform-user_id');//客户姓名
+    var users = [];//根据销售获取的对应客户返回集
+    
+    //当选择销售姓名后执行ajax获取客户姓名列表
+    source.on('select2:select', function(e){
+        user_id.empty();//当重新选择销售姓名，清空客户姓名，防止出错
+        user_id.append("<option value=''>请选择客户姓名</option>");//添加未选时的prompt
+        $.ajax({
+            method: 'get',
+            url: '<?= $url ?>?source=' + source.val(),
+            dataType: 'json',
+            success: function(data){
+                $.each(data, function(name,value){
+                    user_id.append("<option value=" + name +">" + value + "</option>");
+                });
+            }
+        });  
+    }); 
+
+    //当没有选择销售姓名就选择客户姓名时提醒
+    user_id.on('select2:opening', function(e){
+        if(source.val() == "")
+        {
+            alert('您还未选择销售姓名！');
+        }
+    });
+    
+});
+</script>

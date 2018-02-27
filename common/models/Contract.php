@@ -174,7 +174,7 @@ class Contract extends ActiveRecord
                 ->andWhere(['status' => 1])->asArray()->all();
         }else{
             $capitalSum = static::find()->select(['SUM(capital) as sum'])
-                ->andWhere(['status' => 1])->asArray()->all();            
+                ->where(['status' => 1])->asArray()->all();            
         }
         return isset($capitalSum[0]['sum']) ? $capitalSum[0]['sum'] : 0;
     }
@@ -263,15 +263,19 @@ class Contract extends ActiveRecord
      */
     public static function searchConNumByMonth($data, $months, $wherefunc = 'where')
     {
+        $date = new \DateTime();//实例化当前日期对象
+        
         for($i = $months; $i >= 0; $i--)
         {
-            $date = new \DateTime();//实例化当前日期对象
+            $_data = clone $data;//克隆数据对象
+            $_date = clone $date;//克隆当前日期对象
+            
             //计算时间范围内每个月的起始及终止时间
-            $start = $date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
-            $end = $date->format('Y-m-t');
+            $start = $_date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
+            $end = $_date->format('Y-m-t');
             $whereCondition = ['between', 'transfered_time', $start, $end];
-            $num = $data->$wherefunc($whereCondition)->count();
-            $num_arr[$date->format('Y-n')] = (int)$num;
+            $num = $_data->$wherefunc($whereCondition)->count();
+            $num_arr[$_date->format('Y-n')] = (int)$num;
         }
         return $num_arr;
     }
@@ -290,24 +294,24 @@ class Contract extends ActiveRecord
             if($source == null)
             {
                 $source = Yii::$app->user->identity->id;
+                $data = $sql->where(['source' => $source]);
+                $wherefunc = 'andWhere';
+                
+                return static::searchCapByMonth($data, $months, $wherefunc);
             }
-            
-            $data = $sql->where(['source' => $source]);
-            $wherefunc = 'andWhere';
-            
-            return static::searchCapByMonth($data, $months, $wherefunc);
         }else{
             
             if($source !== null)
             {
                 
-                $sql = $sql->where(['source' => $source]);
+                $data = $sql->where(['source' => $source]);
                 $wherefunc = 'andWhere';
                 
-                return static::searchCapByMonth($sql, $months, $wherefunc);
-            }
+                return static::searchCapByMonth($data, $months, $wherefunc);
+            }else{
             
-            return static::searchCapByMonth($sql, $months);
+                return static::searchCapByMonth($sql, $months);
+            }
         } 
     }
     
@@ -320,19 +324,24 @@ class Contract extends ActiveRecord
      */
     public static function searchCapByMonth($data, $months, $wherefunc = 'where')
     {
+        $date = new \DateTime();//实例化当前日期对象
+        
         for($i = $months; $i >= 0; $i--)
         {
-            $date = new \DateTime();//实例化当前日期对象
+            $_data = clone $data;//克隆数据对象
+            $_date = clone $date;//克隆当前日期对象
+            
             //计算时间范围内每个月的起始及终止时间
-            $start = $date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
-            $end = $date->format('Y-m-t');
+            $start = $_date->modify('-' . $i . 'months')->format('Y-m-01');//再次转换为字符串
+            $end = $_date->format('Y-m-t');
             $whereCondition = ['between', 'transfered_time', $start, $end];
-            $num = $data->$wherefunc($whereCondition)->asArray()->all();
+            $num = $_data->$wherefunc($whereCondition)->asArray()->all();
+
             if(empty($num[0]['monCap']))
             {
                 $num[0]['monCap'] = 0;
             }
-            $num_arr[$date->format('Y-n')] = (int)$num[0]['monCap'];
+            $num_arr[$_date->format('Y-n')] = (int)$num[0]['monCap'];
         }
         return $num_arr;
     }    

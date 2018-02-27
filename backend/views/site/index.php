@@ -1,6 +1,7 @@
 <?php
 $this->title = '管理后台-主页';
 use yii\helpers\Json;
+use backend\controllers\common\BaseController;
 ?>
 <?php if(in_array('contract/index', Yii::$app->session['allowed_urls']) 
     || in_array('contract/my-contract', Yii::$app->session['allowed_urls'])): ?>
@@ -18,6 +19,7 @@ use yii\helpers\Json;
     <!-- 		</div> -->
     <!-- 	</div> -->
     	<div class="col-md-4 widget_middle_left">
+    	<a href='<?= BaseController::checkUrlAccess('user/index', 'user/my-user') ?>'>
     		<div class="r3_counter_box">
     			<i class="fa fa-users"></i>
     			<div class="stats">
@@ -27,8 +29,10 @@ use yii\helpers\Json;
     			  </div>
     			</div>
     		</div>
+    	</a>
     	</div>
     	<div class="col-md-4 widget_middle_left">
+    	<a href='<?= BaseController::checkUrlAccess('contract/index', 'contract/my-contract') ?>'>
     		<div class="r3_counter_box">
     			<i class="fa fa-eye"></i>
     			<div class="stats">
@@ -38,8 +42,10 @@ use yii\helpers\Json;
     			  </div>
     			</div>
     		</div>
+    		</a>
     	 </div>
     	 <div class="col-md-4 widget_middle_left">
+    	 <a href='statistic/overall'>
     		<div class="r3_counter_box">
     			<i class="fa fa-usd"></i>
     			<div class="stats">
@@ -49,6 +55,7 @@ use yii\helpers\Json;
     			  </div>
     			</div>
     		</div>
+    		</a>
     	</div>
     	<div class="clearfix"> </div>
     </div>
