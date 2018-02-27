@@ -303,19 +303,28 @@ class UserModel extends ActiveRecord implements IdentityInterface
      */
     public static function searchByMonth($data, $months, $wherefunc = "where")
     {
+        $ymd = date('Y-m-01 00:00:00');//生成当前时间，按首日0点
+        
+        $date = new \DateTime($ymd);//通过$ymd实例化“开始”日期对象
+        
         for($i = $months; $i >= 0; $i--)
         {
-            $date = new \DateTime();//实例化当前日期对象
+            $_data = clone $data;//克隆数据对象
+            
+            $_date = clone $date;//克隆日期对象
             
             //计算时间范围内每个月的起始及终止时间
-            $start = strtotime($date->modify('-' . $i . 'months')->format('Y-m-01'));
-            $end = strtotime($date->format('Y-m-t'));
-            
+            $start = $_date->modify('-' . $i . 'months')->getTimestamp();
+
+            $end = strtotime($_date->format('Y-m-t 23:59:59.999999'));
+
             $whereCondition = ['between', 'created_at', $start, $end];
             
-            $num = $data->$wherefunc($whereCondition)->count();
-            $num_arr[] = [$date->format('Y-n'), $num];
+            $num = $_data->$wherefunc($whereCondition)->count();
+            
+            $num_arr[] = [$_date->format('Y-n'), $num];
         }
+
         return Json::encode($num_arr);
     }
         

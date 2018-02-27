@@ -34,8 +34,10 @@ class StatisticController extends BaseController
     //ajax获取某销售数据
     public function actionSearchSales($source)
     {
+//         var_dump(Contract::getCapitalByMonth(7, $source));
+//         exit();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return Contract::getCapitalByMonth(6, $source);
+        return Contract::getCapitalByMonth(8, $source);
     }
     
     
