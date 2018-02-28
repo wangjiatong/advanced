@@ -17,6 +17,7 @@ class UserSignupForm extends Model
     public $sex;
     public $birthday;
     public $phone_number;
+    public $source;
 
 
     /**
@@ -44,6 +45,9 @@ class UserSignupForm extends Model
             ['sex', 'integer', 'message' => '性别不能为空！'],
             
             [['phone_number', 'birthday'], 'safe'],
+            
+            ['source', 'integer', 'on' => ['create-all']],
+            ['source', 'required', 'on' => ['create-all']],
         ];
     }
 
@@ -61,6 +65,7 @@ class UserSignupForm extends Model
             'sex' => '*性别',
             'birthday' => '生日',
             'phone_number' => '电话号码',
+            'source' => '客户经理',
         ];
     }
     public function signup()
@@ -68,6 +73,10 @@ class UserSignupForm extends Model
 //        if (!$this->validate()) {
 //            return null;
 //        }
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            $this->scenario = 'create-all';
+        }
         
         $user = new UserModel();
         $user->username = $this->username;
@@ -78,7 +87,7 @@ class UserSignupForm extends Model
         $user->sex = $this->sex;
         $user->birthday = $this->birthday;
         $user->phone_number = isset($this->phone_number) ? $this->phone_number : 0;
-        $user->source = Yii::$app->user->identity->id;
+        $user->source = empty($this->source) ? Yii::$app->user->identity->id : $this->source;
 
         return $user->save() ? $user : null;
     }

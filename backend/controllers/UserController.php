@@ -76,6 +76,11 @@ class UserController extends BaseController
     public function actionCreate()
     {
         $model = new UserSignupForm();
+        
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            $model->scenario = 'create-all';
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->signup() ) {
             return $this->redirect([parent::checkUrlAccess('user/index', 'user/my-user')]);

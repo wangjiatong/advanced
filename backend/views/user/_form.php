@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use light\widgets\LockBsFormAsset;
+use kartik\select2\Select2;
+use backend\models\Admin;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UserModel */
@@ -20,6 +22,19 @@ use light\widgets\LockBsFormAsset;
                 'inputOptions' => ['class' => 'form-control1'],
             ],
         ]); ?>
+        
+        <?php 
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            echo $form->field($model, 'source')->widget(Select2::className(), [
+                'data' => Admin::find()->select('name, admin.id')->joinWith('userRole', false)
+    			    ->where(['user_role.role_id' => 3])->indexBy('id')->column(),
+                'options' => [
+                    'prompt' => '请选择销售姓名',
+                ],
+            ]);
+        }
+        ?>
     
         <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
     
