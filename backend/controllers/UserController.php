@@ -177,7 +177,7 @@ class UserController extends BaseController
                   </script>";
         }else{
             $this->findMyModel($id)->delete();
-            return $this->redirect(['index']);
+            return $this->redirect([parent::checkUrlAccess('user/index', 'user/my-user')]);
         }
     }
     //查看所有用户名下的合同
@@ -240,6 +240,8 @@ class UserController extends BaseController
         if(($model = UserModel::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
         {
             return $model;
+        }elseif(in_array('contract/create-all', Yii::$app->session['allowed_urls'])){
+            return UserModel::find()->where(['id' => $id])->one();
         }else{
             throw new NotFoundHttpException('该客户不属于您，您无权操作！');
         }
