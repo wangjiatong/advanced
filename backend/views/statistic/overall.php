@@ -8,11 +8,11 @@ use yii\helpers\Html;
 $this->title = '全局统计';
 ?>
 <!-- <h3 class="blank1">全局统计</h3> -->
-<div class="graph_box" style="height: 400px;">
+<div class="graph_box" style="height: 35%;">
 	<div class="col-md-6 grid_2">
 		<div class="grid_1">
 			<h4>产品统计</h4>
-			<div id="product" style="width: 100%; height: 336px;"></div>
+			<div id="product" style="width: 100%; height: 326px;"></div>
 			<?php $name_json = Json::encode(array_column($prodProp, 'name'))?>
 			<script>
 		    var myProduct = echarts.init(document.getElementById('product'));
@@ -72,7 +72,7 @@ $this->title = '全局统计';
 //                 var_dump($url);
                 echo '&nbsp;&nbsp;销售姓名：' . Html::dropDownList('source', null, $res, ['id' => 'source', 'prompt' => '']);
 			?>
-			<div id='sales' style="width: 100%; height: 310px;"></div>
+			<div id='sales' style="width: 100%; height: 300px;"></div>
 			<script>
 			    $('#source').change(function(){
 			        $.ajax({
@@ -142,11 +142,11 @@ $this->title = '全局统计';
 	</div>
 	<div class="clearfix"> </div>
 </div>
-<div class="graph_box1" style="height: 420px;">
+<div class="graph_box1" style="height: 35%;">
 	<div class="col-md-6 grid_2 grid_2_bot">
 		<div class="grid_1">
 			<h4>按月出入款统计</h4>
-			<div id="everyInOut" style="width: 100%; height: 370px;"></div>
+			<div id="everyInOut" style="width: 100%; height: 360px;"></div>
             <script>
             var everyInOut = echarts.init(document.getElementById('everyInOut'));
             
@@ -227,7 +227,7 @@ $this->title = '全局统计';
 	<div class="col-md-6 grid_2 grid_2_bot">
 		<div class="grid_1">
 			<h4>累积出入款统计</h4>
-			<div id="overall" style="width: 100%; height: 370px;"></div>
+			<div id="overall" style="width: 100%; height: 360px;"></div>
 			<script>
 			var overall = echarts.init(document.getElementById('overall'));
 			
