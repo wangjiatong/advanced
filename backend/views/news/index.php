@@ -58,5 +58,6 @@ $this->title = '新闻管理';
     ],
     'tableOptions' => [
         'class' =>'table table-hover table-bordered',
+        'style' => 'table-layout: fixed;',
     ],
 ]);?>

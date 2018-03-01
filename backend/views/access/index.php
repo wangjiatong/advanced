@@ -33,6 +33,7 @@ $this->title = '权限管理';
         ],
         'tableOptions' => [
             'class' =>'table table-hover table-bordered',
+            'style' => 'table-layout: fixed;',
         ],
     ]); ?>
 </div>

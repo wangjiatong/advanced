@@ -29,7 +29,7 @@ $this->title = '合同详情：'.$model->contract_number;
     </h3>
     <p></p>
     <div class='table table-condensed'>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="table-layout: fixed;">
             <tbody>
                 <tr>
                     <td class="info">客户姓名</td>
@@ -73,17 +73,17 @@ $this->title = '合同详情：'.$model->contract_number;
                 </tr>
                 <tr>
                     <td class="info">合同状态</td>
-                    <td>
+                    <td colspan="2">
                         <?php 
                             echo Contract::contractValidation($model->status);
                         ?>
                     </td>
                     <td class="info">创建时间</td>
-                    <td colspan="3"><?= $model->created_at ?></td>
+                    <td colspan="2"><?= $model->created_at ?></td>
                 </tr>
                 <tr>
                     <td class="info">是否含有浮动利率</td>
-                    <td>
+                    <td colspan="2">
                     <?= $model->if_float == 0 ? "否" : "是" ?>
                     <?php
                         if($model->if_float == 0)
@@ -107,7 +107,7 @@ $this->title = '合同详情：'.$model->contract_number;
                     ?>
                     </td> 
                     <td class="info">浮动利息</td>
-                    <td colspan="3">
+                    <td colspan="2">
                     <?= $model->float_interest == 0 ? "尚未追加" : $model->float_interest ?>
                     <?php
                         if($model->if_float == 0)
@@ -144,9 +144,9 @@ $this->title = '合同详情：'.$model->contract_number;
                 </tr>
                 <tr>
                     <td class="info">应付利息总额</td>
-                    <td><?= number_format($model->total_interest, 2) . ' (' . num2rmb($model->total_interest) .')' ?></td>
+                    <td colspan="2"><?= number_format($model->total_interest, 2) . ' (' . num2rmb($model->total_interest) .')' ?></td>
                     <td class="info">兑付总额</td>
-                    <td colspan="3"><?= number_format($model->total, 2) . ' (' .num2rmb($model->total) . ')' ?></td>
+                    <td colspan="2"><?= number_format($model->total, 2) . ' (' .num2rmb($model->total) . ')' ?></td>
                 </tr>
                 <tr>
                     <td class="info">付息频率</td>

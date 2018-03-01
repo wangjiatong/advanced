@@ -95,6 +95,7 @@ switch ($uri)
             ],
             'tableOptions' => [
                 'class' => 'table table-bordered table-condensed table-hover',
+                'style' => 'table-layout: fixed;',
             ],
             'options' => [
                 'class' => 'table',

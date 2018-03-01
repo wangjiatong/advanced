@@ -63,7 +63,8 @@ $this->title = '管理员管理';
             'class' => 'table',    
         ],
         'tableOptions' => [
-            'class' =>'table table-hover table-bordered',    
+            'class' =>'table table-hover table-bordered',
+            'style' => 'table-layout: fixed;',
         ],
     ])?>
 
