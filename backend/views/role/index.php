@@ -63,6 +63,7 @@ $this->title = '角色管理';
         ],
         'tableOptions' => [
             'class' =>'table table-hover table-bordered',
+            'style' => 'table-layout: fixed;',
         ],
     ]); ?>
 </div>
