@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Contract */
 
-$this->title = '创建合同';
+$this->title = '固定收益';
 ?>
 
 <?= $this->render('_form', [

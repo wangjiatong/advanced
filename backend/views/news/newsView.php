@@ -3,7 +3,7 @@ use yii\grid\GridView;
 use yii\widgets\DetailView;
 use yii\helpers\Html;
 use common\models\News;
-$this->title = '新闻详情——'. $model->title;
+$this->title = '新闻详情：'. $model->title;
 ?>
 <div class="row-fluid">
     <div class="page-header">

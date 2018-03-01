@@ -12,7 +12,7 @@ $this->title = '角色设置';
 ?>
 <div class="role-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
     <?php $form = ActiveForm::begin()?>
     <?= $form->field($model, 'user_id')->dropDownList(Admin::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '请选择一个用户'])?>
     <?= $form->field($model, 'role_id')->inline()->checkboxList(Role::find()->select(['role_name', 'id'])->indexBy('id')->column())?>

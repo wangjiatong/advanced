@@ -9,7 +9,7 @@ $this->title = '修改密码';
  * and open the template in the editor.
  */
 ?>
-<h1>修改密码</h1>
+<h3>修改密码</h3>
 <p>输入您的密码，并确认新的密码。</p>
 <?php 
     if(Yii::$app->getSession()->hasFlash('wrong_old_passwd'))

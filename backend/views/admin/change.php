@@ -8,7 +8,7 @@ $this->title = '修改信息'
  * and open the template in the editor.
  */
 ?>
-<h1><?= $this->title ?></h1>
+<h3><?= $this->title ?></h3>
 
 <?php $form = ActiveForm::begin()?>
 

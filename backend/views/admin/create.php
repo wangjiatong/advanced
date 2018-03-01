@@ -7,8 +7,9 @@ use yii\bootstrap\Html;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$this->title = '新增管理员';
 ?>
-<h1>新增管理员</h1>
+<h3><?= $this->title ?></h3>
 <?php $form = ActiveForm::begin()?>
 
 <?=$form->field($model, 'username') ?>

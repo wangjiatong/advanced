@@ -6,7 +6,9 @@ use yii\widgets\DetailView;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+ $this->title = '账户详情';
 ?>
+<h3><?= $this->title ?></h3>
 <?= DetailView::widget([
     'model' => $model,
     'attributes' => [

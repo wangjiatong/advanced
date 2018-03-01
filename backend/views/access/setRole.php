@@ -12,7 +12,7 @@ $this->title = '权限设置';
 ?>
 <div class="access-setRole">
     
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?php $form = ActiveForm::begin() ?>
     

@@ -18,7 +18,7 @@ $this->title = '合同详情：'.$model->contract_number;
 ?>
 <div class="contract-view">
 
-    <h1><?= Html::encode($this->title) ?>        
+    <h3><?= Html::encode($this->title) ?>        
         <?= Html::a('删除合同', ['my-delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -26,9 +26,9 @@ $this->title = '合同详情：'.$model->contract_number;
                 'method' => 'post',
             ],
         ]) ?>
-    </h1>
+    </h3>
     <p></p>
-    <div class='table-responsive table-hover table-condensed'>
+    <div class='table table-condensed'>
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -64,18 +64,26 @@ $this->title = '合同详情：'.$model->contract_number;
                     <td><?= number_format($model->interest, 2) . ' (' . num2rmb($model->interest) . ')' ?></td>
                 </tr>
                 <tr>
+                    <td class="info">开户行</td>
+                    <td><?= $model->bank ?></td>
+                    <td class="info">开户名</td>
+                    <td><?= $model->bank_user ?></td>
+                    <td class="info">银行账号</td>
+                    <td><?= $model->bank_number ?></td>
+                </tr>
+                <tr>
                     <td class="info">合同状态</td>
-                    <td colspan="2">
+                    <td>
                         <?php 
                             echo Contract::contractValidation($model->status);
                         ?>
                     </td>
                     <td class="info">创建时间</td>
-                    <td colspan="2"><?= $model->created_at ?></td>
+                    <td colspan="3"><?= $model->created_at ?></td>
                 </tr>
                 <tr>
                     <td class="info">是否含有浮动利率</td>
-                    <td colspan="2">
+                    <td>
                     <?= $model->if_float == 0 ? "否" : "是" ?>
                     <?php
                         if($model->if_float == 0)
@@ -99,7 +107,7 @@ $this->title = '合同详情：'.$model->contract_number;
                     ?>
                     </td> 
                     <td class="info">浮动利息</td>
-                    <td colspan="2">
+                    <td colspan="3">
                     <?= $model->float_interest == 0 ? "尚未追加" : $model->float_interest ?>
                     <?php
                         if($model->if_float == 0)
@@ -136,17 +144,9 @@ $this->title = '合同详情：'.$model->contract_number;
                 </tr>
                 <tr>
                     <td class="info">应付利息总额</td>
-                    <td colspan="2"><?= number_format($model->total_interest, 2) . ' (' . num2rmb($model->total_interest) .')' ?></td>
+                    <td><?= number_format($model->total_interest, 2) . ' (' . num2rmb($model->total_interest) .')' ?></td>
                     <td class="info">兑付总额</td>
-                    <td colspan="2"><?= number_format($model->total, 2) . ' (' .num2rmb($model->total) . ')' ?></td>
-                </tr>
-                <tr>
-                    <td class="info">开户行</td>
-                    <td><?= $model->bank ?></td>
-                    <td class="info">开户名</td>
-                    <td><?= $model->bank_user ?></td>
-                    <td class="info">银行账号</td>
-                    <td><?= $model->bank_number ?></td>
+                    <td colspan="3"><?= number_format($model->total, 2) . ' (' .num2rmb($model->total) . ')' ?></td>
                 </tr>
                 <tr>
                     <td class="info">付息频率</td>

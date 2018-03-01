@@ -7,8 +7,6 @@ use kucha\ueditor\UEditor;
 $this->title = '发布新闻';
 ?>
 
-<h1>新闻 <small>发布</small></h1>
-
 <?php $form = ActiveForm::begin();?>
     <div class="control-group">
             <div class="controls">

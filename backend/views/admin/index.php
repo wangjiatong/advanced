@@ -12,12 +12,12 @@ $this->title = '管理员管理';
 ?>
 <div class="admin-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3>
+        <?= Html::encode($this->title) ?>
+        <?= Html::a('新增管理员', ['create'], ['class' => 'btn btn-success']) ?>
+    </h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('新增管理员', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?=GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -58,6 +58,12 @@ $this->title = '管理员管理';
 //                    return Html::a('修改', ['admin/reset-passwd', 'id' => $data->id]);
 //                },
 //            ],
+        ],
+        'options' => [
+            'class' => 'table',    
+        ],
+        'tableOptions' => [
+            'class' =>'table table-hover table-bordered',    
         ],
     ])?>
 

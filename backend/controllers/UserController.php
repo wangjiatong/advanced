@@ -196,7 +196,7 @@ class UserController extends BaseController
     public function actionMyContractByUser($id)
     {
         $data = Contract::find()->where(['user_id' => $id, 'source' => Yii::$app->user->identity->id]);
-        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
+        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '25']);
         $model = $data->offset($pages->offset)->limit($pages->limit)->all();
         
         return $this->render('contractByUser', [

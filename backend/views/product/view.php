@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
 
-$this->title = '产品详情——'. $model->product_name;
+$this->title = '产品详情：'. $model->product_name;
 //$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 //print_r($model->productColumn);
@@ -17,7 +17,7 @@ $status = $model->status;
 ?>
 <div class="product-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <p>
         <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

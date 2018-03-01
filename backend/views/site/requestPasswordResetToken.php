@@ -12,7 +12,7 @@ $this->title = '忘记密码';
 ?>
 <div class="site-request-password-reset">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <p>请填写注册所用邮箱，修改密码的链接将会发送到那里。</p>
 

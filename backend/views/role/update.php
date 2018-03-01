@@ -12,7 +12,7 @@ $this->title = '编辑角色';
 ?>
 <div class="role-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

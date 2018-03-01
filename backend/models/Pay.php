@@ -70,12 +70,16 @@ class Pay extends \yii\db\ActiveRecord
      */
     private function searchPaySumByMonth($data, $months, $wherefunc = 'where')
     {
+        $thisMonth = new \DateTime();
+        
         for($m = $months; $m >= 0; $m--)
         {
-            $thisMonth = new \DateTime();
-            $start = $thisMonth->modify('-' . $m . 'months')->format('Y-m-01');
-            $end = $thisMonth->format('Y-m-t');
-            $paySumByMonth[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['between', 'time', $start, $end])->asArray()->one()['sum'];
+            $_data = clone $data;
+            $_thisMonth = clone $thisMonth;
+            
+            $start = $_thisMonth->modify('-' . $m . 'months')->format('Y-m-01');
+            $end = $_thisMonth->format('Y-m-t');
+            $paySumByMonth[$_thisMonth->format('Y-n')] = (float)$_data->$wherefunc(['between', 'time', $start, $end])->asArray()->one()['sum'];
         }
         return $paySumByMonth;
     }
@@ -103,11 +107,15 @@ class Pay extends \yii\db\ActiveRecord
      */
     private function searchPaySumByDate($data, $months, $wherefunc = 'where')
     {
+        $thisMonth = new \DateTime();
+        
         for($m = $months; $m >= 0; $m--)
         {
-            $thisMonth = new \DateTime();
-            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
-            $paySumByDate[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['<', 'time', $date])->asArray()->one()['sum'];
+            $_data = clone $data;
+            $_thisMonth = clone $thisMonth;
+            
+            $date = $_thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
+            $paySumByDate[$_thisMonth->format('Y-n')] = (float)$_data->$wherefunc(['<', 'time', $date])->asArray()->one()['sum'];
         }
         return $paySumByDate;        
     }

@@ -41,7 +41,7 @@ class NewsController extends BaseController
         $dataProvider = new ActiveDataProvider([
             'query' => News::find()->orderBy('created_at desc'),
             'pagination' =>[
-                'pageSize' => 8,
+                'pageSize' => 25,
                 ],
         ]);
         

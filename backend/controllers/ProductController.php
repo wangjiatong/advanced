@@ -275,7 +275,7 @@ class ProductController extends BaseController
             public function actionContractByProduct($id)
             {
                 $data = Contract::find()->where(['product_id' => $id])->orderBy('id desc');
-                $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
+                $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '25']);
                 $model = $data->offset($pages->offset)->limit($pages->limit)->all();
                 return $this->render('contractByProduct', [
                     'model' => $model,
