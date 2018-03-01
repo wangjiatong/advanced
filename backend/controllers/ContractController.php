@@ -19,7 +19,7 @@ use common\models\UserModel;
 use backend\models\Admin;
 use common\models\Product;
 use backend\models\Pay;
-
+use common\models\EquityContract;
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
@@ -136,6 +136,28 @@ class ContractController extends BaseController
                 'model' => $model,
             ]);
         }
+    }
+    
+    /**
+     * 创建股权投资合同
+     */
+    public function actionCreateEquity()
+    {
+        $model = new EquityContract();
+
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
+        {
+            $model->scenario = 'create-all';    
+        }
+        
+        if($model->load(Yii::$app->request->post()) &&  $model->create())
+        {
+            return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+        }
+        
+        return $this->render('createEquity', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -441,6 +463,8 @@ class ContractController extends BaseController
         if (($model = Contract::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
         {
             return $model;
+        }elseif(in_array('contract/create-all', Yii::$app->session['allowed_urls'])){
+            return Contract::find()->where(['id' => $id])->one();
         }else{
             throw new NotFoundHttpException('该合同不属于您，您无权操作！');
         }
@@ -476,6 +500,7 @@ class ContractController extends BaseController
         return $ret_res;
     }
     
+    //创建合同页面用于动态获取某销售对应的客户列表
     public function actionGetUsersBySource($source)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
