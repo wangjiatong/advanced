@@ -14,12 +14,12 @@ $this->title = '角色管理';
 ?>
 <div class="role-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3>
+        <?= Html::encode($this->title) ?>
+        <?= Html::a('新增角色', ['create'], ['class' => 'btn btn-success']) ?>
+    </h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('新增角色', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -57,6 +57,12 @@ $this->title = '角色管理';
 //            'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
+        ],
+        'options' => [
+            'class' => 'table',
+        ],
+        'tableOptions' => [
+            'class' =>'table table-hover table-bordered',
         ],
     ]); ?>
 </div>

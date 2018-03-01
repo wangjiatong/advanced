@@ -28,12 +28,14 @@ switch ($uri)
 ?>
 <div class="contract-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3>
+        <?= Html::encode($this->title) ?>
+        <?= Html::a('固定收益', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('股权投资', ['create-equity'], ['class' => 'btn btn-success']) ?>
+    </h3>
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('新增合同', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
     
     <?php Pjax::begin(); ?>    
     <?= GridView::widget([
@@ -120,6 +122,12 @@ switch ($uri)
                         return Html::a('详情', $url."?id=".$data->id, ['class' => 'btn btn-info']);
                     },
                 ],
+            ],
+            'tableOptions' => [
+                'class' => 'table table-bordered table-condensed table-hover',
+            ],
+            'options' => [
+                'class' => 'table',    
             ],
         ]); ?>
     <?php Pjax::end(); ?>

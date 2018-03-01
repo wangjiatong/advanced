@@ -41,7 +41,6 @@ NewAsset::register($this);
 
 			<!--sidebar nav start-->
 				<ul class="nav nav-pills nav-stacked custom-nav">
-					<li><a href="/"><i class="lnr lnr-flag"></i> <span>主页</span></a></li>
 					<li class="menu-list">
 						<a href="#"><i class="lnr lnr-cog"></i><span>管理员</span></a>
 						<ul class="sub-menu-list">
@@ -90,12 +89,7 @@ NewAsset::register($this);
 							<li><a href="/contract/my-contract">我的合同</a> </li>
 						</ul>
 					</li>
-					<li class="menu-list">
-					    <a href="#"><i class="lnr lnr-list"></i> <span>统计</span></a>  
-						<ul class="sub-menu-list">
-							<li><a href="/statistic/overall">全局统计</a> </li>
-						</ul>
-					</li>
+					<li><a href="/statistic/overall"><i class="lnr lnr-flag"></i> <span>统计</span></a></li>
 				</ul>
 			<!--sidebar nav end-->
 		</div>
@@ -256,9 +250,9 @@ NewAsset::register($this);
 		 <!--body wrapper end-->
 	</div>
     <!--footer section start-->
-		<footer>
-		   <p>Copyright &copy; <?= date('Y') ?> 上海翌银玖德资产管理有限公司</p>
-		</footer>
+<!-- 		<footer> -->
+<!-- 		   <p>Copyright &copy;  上海翌银玖德资产管理有限公司</p> -->
+<!-- 		</footer> -->
     <!--footer section end-->
   <!-- main content end-->
 </section>

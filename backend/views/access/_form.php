@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * and open the template in the editor.
  */
 ?>
-<h1>新增权限</h1>
+<h3><?= $this->title ?></h3>
 <?php $form = ActiveForm::begin() ?>
 
 <?= $form->field($model, 'access_name')->textInput() ?>

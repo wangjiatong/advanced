@@ -574,7 +574,7 @@ footer  p a:hover{
     display: none;
 }
 div#page-wrapper {
-    padding:2em 2em;
+    padding:1em 1em;/*2em 2em*/
 }
 .left-side-collapsed .logo-icon {
     height: 51px;
@@ -3429,14 +3429,16 @@ div.checker input {
   color:#b8c9f1;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  font-size: 0.85em;
+  font-size: 1em;/* 0.85em */
   color:#000;
 } 
 .mailbox-content table tbody tr:hover {
   background: #EFF0F4;
 }
 .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-  padding:15px !important;
+  padding:1px !important;/* 16px */
+  text-align: center;
+  vertical-align: middle;
 }
 .table > thead > tr > th {
   border-bottom:1px solid #ACACAC !important;
@@ -5319,7 +5321,9 @@ canvas#pie {
     padding: 1em 1.2em 2.5em 1.2em;
 }
 .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    padding: 16px !important;
+    padding:1px !important;/* 16px */
+    text-align: center;
+    vertical-align: middle;
 }
 .control2 {
     height: 272px;

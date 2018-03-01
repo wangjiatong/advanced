@@ -6,8 +6,10 @@ use yii\helpers\Html;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$this->title = '撤销角色';
 ?>
+
+<h3><?= $this->title ?></h3>
 
 <div>
     <?php foreach($model as $m): ?>

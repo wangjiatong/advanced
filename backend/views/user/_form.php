@@ -11,7 +11,6 @@ use backend\models\Admin;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<h3 class="blank1"><?= $this->title ?></h3>
 <div class="tab-content">
     <div class="tab-pane active" id="horizontal-form">
         <?php $form = ActiveForm::begin([

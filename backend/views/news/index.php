@@ -6,8 +6,6 @@ use common\models\News;
 $this->title = '新闻管理';
 ?>
 
-<h1>新闻 <small>管理</small></h1>
-
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
@@ -54,5 +52,11 @@ $this->title = '新闻管理';
                 },
             ]
         ],
+    ],
+    'options' => [
+        'class' => 'table',
+    ],
+    'tableOptions' => [
+        'class' =>'table table-hover table-bordered',
     ],
 ]);?>

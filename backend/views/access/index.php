@@ -11,9 +11,10 @@ use backend\models\Role;
 $this->title = '权限管理';
 ?>
 <div class="acess-index">
-    <h1><?= Html::encode($this->title); ?></h1>
-    
-    <p><?= Html::a('新增权限', ['access/create'], ['class' => 'btn btn-success']) ?></p>
+    <h3>
+        <?= Html::encode($this->title); ?>
+        <?= Html::a('新增权限', ['access/create'], ['class' => 'btn btn-success']) ?>
+    </h3>
     
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,6 +27,12 @@ $this->title = '权限管理';
 //            'created_time',
 //            'updated_time',
             ['class' => 'yii\grid\ActionColumn'],
+        ],
+        'options' => [
+            'class' => 'table',
+        ],
+        'tableOptions' => [
+            'class' =>'table table-hover table-bordered',
         ],
     ]); ?>
 </div>

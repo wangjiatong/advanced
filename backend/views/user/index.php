@@ -27,12 +27,11 @@ switch ($uri)
 ?>
 <div class="user-model-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
+    <h3>
+        <?= Html::encode($this->title) ?>
         <?= Html::a('新增客户', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </h3>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     <?php Pjax::begin(); ?>    
     <?= GridView::widget([
@@ -76,16 +75,6 @@ switch ($uri)
 //                         return common\models\UserModel::getSex($data->id);
 //                     }
 //                 ],
-                
-                [
-                    'label' => '操作',
-                    'format' => 'raw',
-                    'value' => function($data){
-                        $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
-                        return Html::a('详情', [$url, 'id' => $data->id], ['class' => 'btn btn-info']);
-                    },
-                ],
-                
                 [
                     'label' => '查看名下合同',
                     'format' => 'raw',
@@ -94,7 +83,21 @@ switch ($uri)
                         $url = BaseController::checkUrlAccess('user/all-contract-by-user', 'user/my-contract-by-user');
                         return Html::a('查看', [$url, 'id' => $data->id], ['class' => 'btn btn-success']) . "(共{$count}条记录）";
                     },
+                ],                
+                [
+                    'label' => '操作',
+                    'format' => 'raw',
+                    'value' => function($data){
+                        $url = BaseController::checkUrlAccess('user/view', 'user/my-view');
+                        return Html::a('详情', [$url, 'id' => $data->id], ['class' => 'btn btn-info']);
+                    },
                 ],
+            ],
+            'tableOptions' => [
+                'class' => 'table table-bordered table-condensed table-hover',
+            ],
+            'options' => [
+                'class' => 'table',
             ],
         ]); ?>
     <?php Pjax::end(); ?>
