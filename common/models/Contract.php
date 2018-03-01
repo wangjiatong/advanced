@@ -369,11 +369,15 @@ class Contract extends ActiveRecord
      */
     private function searchCapitalSumByDate($data, $months, $wherefunc = 'where')
     {
+        $thisMonth = new \DateTime();
+        
         for($m = $months; $m >= 0; $m--)
         {
-            $thisMonth = new \DateTime();
-            $date = $thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
-            $paySumByDate[$thisMonth->format('Y-n')] = (float)$data->$wherefunc(['<', 'transfered_time', $date])->asArray()->one()['sum'];
+            $_data = clone $data;
+            $_thisMonth = clone $thisMonth;
+            
+            $date = $_thisMonth->modify('-' . $m . 'months')->format('Y-m-t');
+            $paySumByDate[$_thisMonth->format('Y-n')] = (float)$_data->$wherefunc(['<', 'transfered_time', $date])->asArray()->one()['sum'];
         }
             return $paySumByDate;
         }    
