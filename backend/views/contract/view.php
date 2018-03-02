@@ -6,6 +6,8 @@ use backend\models\Admin;
 use common\models\Product;
 use common\models\UserModel;
 use common\models\Contract;
+use yii\helpers\Url;
+use backend\controllers\common\BaseController;
 
 $pdfUrl = "<embed width='1000' height='750' src='/$model->pdf'></embed>";
 
@@ -33,11 +35,11 @@ $this->title = '合同详情：'.$model->contract_number;
             <tbody>
                 <tr>
                     <td class="info">客户姓名</td>
-                    <td><?= UserModel::findOne($model->user_id)->name ?></td>
+                    <td><a href="<?= Url::to([BaseController::checkUrlAccess('user/view', 'user/my-view'), 'id' => $model->user_id]) ?>"><?= UserModel::findOne($model->user_id)->name ?></a></td>
                     <td class="info">客户经理</td>
                     <td><?= Admin::findOne($model->source)->name ?></td>
                     <td class="info">产品名称</td>
-                    <td><?= Product::findOne($model->product_id)->product_name ?></td>
+                    <td><a href="<?= Url::to(['product/view', 'id' => $model->product_id]) ?>"><?= Product::findOne($model->product_id)->product_name ?></a></td>
                 </tr>
                 <tr>
                 	<td class="info">本金</td>
