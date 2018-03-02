@@ -67,7 +67,7 @@ class MyContractSearch extends Contract
             'id' => $this->id,
             'capital' => $this->capital,
             'transfered_time' => $this->transfered_time,
-//             'found_time' => $this->found_time,
+            'found_time' => $this->found_time,
             'raise_day' => $this->raise_day,
             'raise_interest' => $this->raise_interest,
             'cash_time' => $this->cash_time,
