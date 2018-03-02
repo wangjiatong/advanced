@@ -47,7 +47,12 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('id desc');
+//         $query1 = Contract::find()->select('contract.contract_number, contract.user_id, contract.source, contract.product_id, contract.found_time, contract.status')->joinWith(['user', 'product', 'admin'])->orderBy('contract.id desc');
+//         $query2 = EquityContract::find()->select('equity_contract.contract_number, equity_contract.user_id, equity_contract.source, equity_contract.product_id, equity_contract.found_time, equity_contract.status')->joinWith(['user', 'product', 'admin'])->orderBy('equity_contract.id desc');
+        
+//         $query = $query1->union($query2);
+
+           $query = $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('found_time desc');
 
         // add conditions that should always apply here
 

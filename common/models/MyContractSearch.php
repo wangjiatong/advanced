@@ -46,7 +46,7 @@ class MyContractSearch extends Contract
     public function search($params)
     {
         $my_id = Yii::$app->user->identity->id;
-        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->where(['contract.source' => $my_id])->orderBy('id desc');
+        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->where(['contract.source' => $my_id])->orderBy('found_time desc');
 
         // add conditions that should always apply here
 
