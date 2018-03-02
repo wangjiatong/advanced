@@ -47,7 +47,12 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('id desc');
+//         $query1 = Contract::find()->select('contract.contract_number, contract.user_id, contract.source, contract.product_id, contract.found_time, contract.status')->joinWith(['user', 'product', 'admin'])->orderBy('contract.id desc');
+//         $query2 = EquityContract::find()->select('equity_contract.contract_number, equity_contract.user_id, equity_contract.source, equity_contract.product_id, equity_contract.found_time, equity_contract.status')->joinWith(['user', 'product', 'admin'])->orderBy('equity_contract.id desc');
+        
+//         $query = $query1->union($query2);
+
+           $query = $query = Contract::find()->joinWith(['user', 'product', 'admin'])->orderBy('found_time desc');
 
         // add conditions that should always apply here
 
@@ -66,9 +71,10 @@ class ContractSearch extends Contract
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'contract_number' => $this->contract_number,
             'capital' => $this->capital,
             'transfered_time' => $this->transfered_time,
-//             'found_time' => $this->found_time,
+            'found_time' => $this->found_time,
             'raise_day' => $this->raise_day,
             'raise_interest' => $this->raise_interest,
             'cash_time' => $this->cash_time,

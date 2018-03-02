@@ -193,7 +193,7 @@ NewAsset::register($this);
 									</a></li>
 									<li><a href="#">
 										<div class="task-info">
-											<span class="task-desc"><?= date('Y') ?>年<?= '（' . number_format(Yii::$app->session['monTask']['val']) .'元）' ?></span><span class="percentage"><?= Yii::$app->session['yearTask']['per'] ?></span>
+											<span class="task-desc"><?= date('Y') ?>年<?= '（' . number_format(Yii::$app->session['yearTask']['val']) .'元）' ?></span><span class="percentage"><?= Yii::$app->session['yearTask']['per'] ?></span>
 										   <div class="clearfix"></div>	
 										</div>
 									   
