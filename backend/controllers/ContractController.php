@@ -433,13 +433,12 @@ class ContractController extends BaseController
         if(is_file($pdf))
         {
             unlink($pdf);
-            
-            $contract->pdf = null;
-            $contract->save();
+        }
 
-            return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);
-
-        }          
+        $contract->pdf = null;
+        $contract->save();
+        
+        return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);
     }
     /**
      * Finds the Contract model based on its primary key value.
