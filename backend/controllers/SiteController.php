@@ -72,7 +72,7 @@ class SiteController extends BaseController
             in_array('contract/index', Yii::$app->session['allowed_urls']) ?
             $yearTaskPercentage = round($thisYearCapital/(24000000*$saleNum), 3) :
             $yearTaskPercentage = round($thisYearCapital/24000000, 3);
-            $yearTask = $this->taskPercentage($yearTaskPercentage, $monthsToThisYear);
+            $yearTask = $this->taskPercentage($yearTaskPercentage, $thisYearCapital);
             Yii::$app->session['yearTask'] = $yearTask;
             
             //待付信息
