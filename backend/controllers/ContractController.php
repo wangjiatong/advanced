@@ -430,6 +430,14 @@ class ContractController extends BaseController
 
         $pdf = $contract->pdf;
 
+        if(!file_exists($pdf))
+        {
+            $contract->pdf = null;
+            $contract->save();
+            
+            return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);            
+        }
+        
         if(is_file($pdf))
         {
             unlink($pdf);
