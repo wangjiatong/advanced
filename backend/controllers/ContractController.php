@@ -440,6 +440,12 @@ class ContractController extends BaseController
         
         return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);
     }
+    
+    //选择创建合同类型弹窗
+    public function actionSelectModal()
+    {
+        return $this->renderAjax('selectModal');
+    }
     /**
      * Finds the Contract model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
