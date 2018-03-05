@@ -29,116 +29,129 @@ switch ($uri)
 }
 ?>
 <div class="contract-index">
-
-    <h3>
-        <?= Html::encode($this->title) ?>
-        <?= Html::a('创建合同', '#', [
-            'id' => 'create',
-            'data-toggle' => 'modal',
-            'data-target' => '#create-modal',
-            'class' => 'btn btn-success',
-        ]) ?>
-    </h3>
-    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    
-    
-    <?php Pjax::begin(); ?>    
-    <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                
-                'contract_number',
-                
-                [
-                    'attribute' => 'user_name',
-                    'value' => 'user.name',
-                    'label' => '客户姓名',
-                    'filter' => Select2::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'user_name',
-                        'data' => $user_list,
-                        'options' => [
-                            'placeholder' => '',
+    <div class="grid_3 grid_5">    
+        <h3>
+            <?= Html::encode($this->title) ?>
+            <?= Html::a('创建合同', '#', [
+                'id' => 'create',
+                'data-toggle' => 'modal',
+                'data-target' => '#create-modal',
+                'class' => 'btn btn-success',
+            ]) ?>
+        </h3>
+    <div class="but-list">
+	   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+	       <ul id="myTab" class="nav nav-tabs" role="tablist">
+    	       <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">固定收益</a></li>
+    	       <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">股权投资</a></li>
+	       </ul>
+	       <div id="myTabContent" class="tab-content">
+		        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                <?php Pjax::begin(); ?>    
+                <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+                            
+                            'contract_number',
+                            
+                            [
+                                'attribute' => 'user_name',
+                                'value' => 'user.name',
+                                'label' => '客户姓名',
+                                'filter' => Select2::widget([
+                                    'model' => $searchModel,
+                                    'attribute' => 'user_name',
+                                    'data' => $user_list,
+                                    'options' => [
+                                        'placeholder' => '',
+                                    ],
+                                ]),
+                            ],
+                            
+                            [
+                                'attribute' => 'product_name',
+                                'value' => 'product.product_name',
+                                'label' => '产品名称', 
+                                'filter' => Select2::widget([
+                                    'model' => $searchModel,
+                                    'attribute' => 'product_name',
+                                    'data' => Product::find()->select('product_name')->indexBy('product_name')->column(),
+                                    'options' => [
+                                        'placeholder' => '',
+                                    ],
+                                ]),
+                            ],
+                            
+                            [
+                                'attribute' => 'admin_name',
+                                'value' => 'admin.name',
+                                'label' => '客户经理', 
+                                'filter' => Select2::widget([
+                                    'model' => $searchModel,
+                                    'attribute' => 'admin_name',
+                                    'data' => Admin::find()->select('name')->indexBy('name')->column(),
+                                    'options' => [
+                                        'placeholder' => '',
+                                    ],
+                                ]),
+                                'visible' => $uri == 'contract/index',
+                            ],
+                            
+                            'found_time',
+                            
+                            [
+                                'label' => '浮动利率',
+                                'value' => function($data){
+                                    if($data->if_float == 0 && $data->float_interest == 0)
+                                    {
+                                        return "不含";
+                                    }elseif($data->if_float == 1 && $data->float_interest == 0)
+                                    {
+                                        return "尚未追加";
+                                    }else{
+                                        return $data->float_interest;
+                                    }
+                                }    
+                            ],
+                            
+                            [
+                                'label' => '状态',
+                                'value' => function($data)
+                                {
+                                    return $data->getStatus();
+                                }    
+                            ],
+                            
+                            [
+                                'label' => '操作',
+                                'format' => 'raw',
+                                'value' => function($data){
+                                    $url = BaseController::checkUrlAccess('contract/view', 'contract/my-view');
+                                    return Html::a('详情', $url."?id=".$data->id, ['class' => 'btn btn-info']);
+                                },
+                            ],
                         ],
-                    ]),
-                ],
-                
-                [
-                    'attribute' => 'product_name',
-                    'value' => 'product.product_name',
-                    'label' => '产品名称', 
-                    'filter' => Select2::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'product_name',
-                        'data' => Product::find()->select('product_name')->indexBy('product_name')->column(),
-                        'options' => [
-                            'placeholder' => '',
+                        'tableOptions' => [
+                            'class' => 'table table-bordered table-condensed table-hover',
+                            'style' => 'table-layout: fixed;',
                         ],
-                    ]),
-                ],
-                
-                [
-                    'attribute' => 'admin_name',
-                    'value' => 'admin.name',
-                    'label' => '客户经理', 
-                    'filter' => Select2::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'admin_name',
-                        'data' => Admin::find()->select('name')->indexBy('name')->column(),
                         'options' => [
-                            'placeholder' => '',
+                            'class' => 'table',  
                         ],
-                    ]),
-                    'visible' => $uri == 'contract/index',
-                ],
+                    ]); ?>
+                <?php Pjax::end(); ?>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
                 
-                'found_time',
                 
-                [
-                    'label' => '浮动利率',
-                    'value' => function($data){
-                        if($data->if_float == 0 && $data->float_interest == 0)
-                        {
-                            return "不含";
-                        }elseif($data->if_float == 1 && $data->float_interest == 0)
-                        {
-                            return "尚未追加";
-                        }else{
-                            return $data->float_interest;
-                        }
-                    }    
-                ],
                 
-                [
-                    'label' => '状态',
-                    'value' => function($data)
-                    {
-                        return $data->getStatus();
-                    }    
-                ],
                 
-                [
-                    'label' => '操作',
-                    'format' => 'raw',
-                    'value' => function($data){
-                        $url = BaseController::checkUrlAccess('contract/view', 'contract/my-view');
-                        return Html::a('详情', $url."?id=".$data->id, ['class' => 'btn btn-info']);
-                    },
-                ],
-            ],
-            'tableOptions' => [
-                'class' => 'table table-bordered table-condensed table-hover',
-                'style' => 'table-layout: fixed;',
-            ],
-            'options' => [
-                'class' => 'table',  
-            ],
-        ]); ?>
-    <?php Pjax::end(); ?>
-    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php 

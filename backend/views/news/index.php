@@ -5,7 +5,7 @@ use common\models\News;
 
 $this->title = '新闻管理';
 ?>
-
+<div class="grid_3 grid_5">  
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
@@ -61,3 +61,4 @@ $this->title = '新闻管理';
         'style' => 'table-layout: fixed;',
     ],
 ]);?>
+</div>
