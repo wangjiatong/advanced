@@ -28,7 +28,7 @@ class NewAsset extends AssetBundle
         ['js/new/uisearch.js', 'position' => View::POS_BEGIN],
         'js/new/jquery.nicescroll.js',
         'js/new/scripts.js',
-        'js/new/bootstrap.min.js',
+//         'js/new/bootstrap.min.js',//引入会导致modal闪退
     ];
     public $depends = [
         'yii\web\YiiAsset',

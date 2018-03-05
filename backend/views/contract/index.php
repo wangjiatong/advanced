@@ -8,6 +8,8 @@ use common\models\UserModel;
 use backend\controllers\common\BaseController;
 use backend\models\Admin;
 use kartik\select2\Select2;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,8 +32,12 @@ switch ($uri)
 
     <h3>
         <?= Html::encode($this->title) ?>
-        <?= Html::a('固定收益', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('股权投资', ['create-equity'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('创建合同', '#', [
+            'id' => 'create',
+            'data-toggle' => 'modal',
+            'data-target' => '#create-modal',
+            'class' => 'btn btn-success',
+        ]) ?>
     </h3>
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -134,3 +140,27 @@ switch ($uri)
     <?php Pjax::end(); ?>
     
 </div>
+
+<?php 
+//选择创建合同类型弹窗
+Modal::begin([
+    'id' => 'create-modal',
+    'header' => '<h4 class="modal-title">创建合同</h4>',
+    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
+]);
+Modal::end();
+
+$selectModalUrl = Url::to('contract/select-modal');
+$selectModalJs = <<<selectModalJs
+$('#create').click(function(){
+    $.get(
+        '{$selectModalUrl}', 
+        {},
+        function (data) {
+            $('.modal-body').html(data);
+        }
+    );
+});
+selectModalJs;
+$this->registerJs($selectModalJs);
+?>
