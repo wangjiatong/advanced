@@ -13,7 +13,7 @@ $this->title = '角色管理';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="role-index">
-
+    <div class="grid_3 grid_5">  
     <h3>
         <?= Html::encode($this->title) ?>
         <?= Html::a('新增角色', ['create'], ['class' => 'btn btn-success']) ?>
@@ -66,4 +66,5 @@ $this->title = '角色管理';
             'style' => 'table-layout: fixed;',
         ],
     ]); ?>
+    </div>
 </div>

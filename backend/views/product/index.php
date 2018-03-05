@@ -15,13 +15,11 @@ $this->title = '产品管理';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-index">
-
+    <div class="grid_3 grid_5">  
     <h3>
         <?= Html::encode($this->title) ?>
         <?= Html::a('新增产品', ['create'], ['class' => 'btn btn-success']) ?>
     </h3>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?php Pjax::begin(); ?>    
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -85,5 +83,5 @@ $this->title = '产品管理';
             ],
         ]); ?>
     <?php Pjax::end(); ?>
-    
+    </div>
 </div>

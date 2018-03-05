@@ -11,6 +11,7 @@ use backend\models\Role;
 $this->title = '权限管理';
 ?>
 <div class="acess-index">
+    <div class="grid_3 grid_5">  
     <h3>
         <?= Html::encode($this->title); ?>
         <?= Html::a('新增权限', ['access/create'], ['class' => 'btn btn-success']) ?>
@@ -36,4 +37,5 @@ $this->title = '权限管理';
             'style' => 'table-layout: fixed;',
         ],
     ]); ?>
+    </div>
 </div>

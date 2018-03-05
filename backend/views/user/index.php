@@ -26,13 +26,11 @@ switch ($uri)
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-model-index">
-
+    <div class="grid_3 grid_5">  
     <h3>
         <?= Html::encode($this->title) ?>
         <?= Html::a('新增客户', ['create'], ['class' => 'btn btn-success']) ?>
     </h3>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    
     <?php Pjax::begin(); ?>    
     <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -102,5 +100,5 @@ switch ($uri)
             ],
         ]); ?>
     <?php Pjax::end(); ?>
-
+    </div>
 </div>

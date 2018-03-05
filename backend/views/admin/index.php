@@ -11,7 +11,7 @@ use backend\models\UserRole;
 $this->title = '管理员管理';
 ?>
 <div class="admin-index">
-
+    <div class="grid_3 grid_5">  
     <h3>
         <?= Html::encode($this->title) ?>
         <?= Html::a('新增管理员', ['create'], ['class' => 'btn btn-success']) ?>
@@ -67,5 +67,5 @@ $this->title = '管理员管理';
             'style' => 'table-layout: fixed;',
         ],
     ])?>
-
+    </div>
 </div>
