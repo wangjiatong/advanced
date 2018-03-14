@@ -85,7 +85,7 @@ NewAsset::register($this);
 					<li class="menu-list">
 					    <a href="#"><i class="lnr lnr-license"></i> <span>合同</span></a>  
 						<ul class="sub-menu-list">
-							<li><a href="/contract">合同管理</a> </li>
+							<li><a href="/contract/index">合同管理</a> </li>
 							<li><a href="/contract/my-contract">我的合同</a> </li>
 						</ul>
 					</li>

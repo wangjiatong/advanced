@@ -15,6 +15,7 @@ use common\models\ChangeUserInfo;
 use yii\data\Pagination;
 use common\models\Contract;
 use common\models\ChangeUserPasswd;
+use backend\models\Pay;
 
 /**
  * UserController implements the CRUD actions for UserModel model.
@@ -186,22 +187,28 @@ class UserController extends BaseController
         $data = Contract::find()->where(['user_id' => $id]);
         $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
         $model = $data->offset($pages->offset)->limit($pages->limit)->all();
-        
+        // 最近一次付息时间及应付利息
+        $pays = Pay::searchRecentPay($id);
+
         return $this->render('contractByUser', [
             'model' => $model,
             'pages' => $pages,
+            'pays' => $pays,
         ]);
     }
     //销售查看自己名下客户的合同
     public function actionMyContractByUser($id)
     {
         $data = Contract::find()->where(['user_id' => $id, 'source' => Yii::$app->user->identity->id]);
-        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '25']);
+        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => '10']);
         $model = $data->offset($pages->offset)->limit($pages->limit)->all();
-        
+        // 最近一次付息时间及应付利息
+        $pays = Pay::searchRecentPay($id);   
+             
         return $this->render('contractByUser', [
             'model' => $model,
             'pages' => $pages,
+            'pays' => $pays,
         ]);
     }
     //修改自己客户的密码
