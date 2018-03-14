@@ -20,6 +20,10 @@ use backend\models\Admin;
 use common\models\Product;
 use backend\models\Pay;
 use common\models\EquityContract;
+use common\models\EquityContractSearch;
+use common\models\MyEquityContractSearch;
+use yii\helpers\Json;
+use yii\web\yii\web;
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
@@ -54,22 +58,33 @@ class ContractController extends BaseController
      */
     public function actionIndex()
     {
-        $searchModel = new ContractSearch();
+        $searchModel = new ContractSearch();//固定收益
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $searchModel2 = new EquityContractSearch();//股权投资
+        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'searchModel2' => $searchModel2,
+            'dataProvider2' => $dataProvider2,
         ]);
     }
+    
     public function actionMyContract()
     {
-        $searchModel = new MyContractSearch();
+        $searchModel = new MyContractSearch();//固定收益
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $searchModel2 = new MyEquityContractSearch();//股权投资
+        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'searchModel2' => $searchModel2,
+            'dataProvider2' => $dataProvider2,           
         ]);        
     }
 
@@ -90,6 +105,45 @@ class ContractController extends BaseController
         return $this->render('view', [
             'model' => $this->findMyModel($id),
         ]);
+    }
+    
+    public function actionEquityView($id)
+    {
+        return $this->render('equityView', [
+            'model' => $this->findEquityModel($id),
+        ]);
+    }
+    
+    public function actionMyEquityView($id)
+    {
+        return $this->render('equityView', [
+            'model' => $this->findMyEquityModel($id),
+        ]);
+    }
+    
+    public function actionUpdatePartialEquity()
+    {
+        $id = Yii::$app->request->post()['id'];//待更新股权投资合同的id
+        
+        $model = EquityContract::findOne($id);
+        
+        //当具有全局编辑权限或者合同属于自己时允许修改
+        if(in_array('contract/create-all', Yii::$app->session['allowed_urls']) || $model->source == Yii::$app->user->identity->id)
+        {
+            if(Yii::$app->request->isAjax)
+            {
+                if($model->updatePartial($model))
+                {
+                    return 'success';
+                }else{
+                    return 'fail';
+                }
+            }else{
+                throw new NotFoundHttpException('无权直接访问！');
+            }
+        }else{
+            throw new NotFoundHttpException('您无权修改该合同！');
+        }
     }
 
     /**
@@ -383,7 +437,105 @@ class ContractController extends BaseController
         }
     }
     
+    /*
+     * 功能：生成当月进出账情况
+     * 使用范围：contract/index
+     * 
+     */
+    public function actionGenerateCurrentMonthExcel()
+    {
+        $startTime = date('Y-m-01');//当月第一天
+        $endTime = date('Y-m-t');//当月最后一天
+        
+        //当月所有需要付息的
+        $payThisMonth = Pay::find()->select('id, cid, time, interest')->where(['between', 'time', $startTime, $endTime])->asArray()->all();
+        
+        //分为<1.当月兑付>和<2.当月常规付息>
+        foreach($payThisMonth as $id)
+        {
+            $cashTimePay = Pay::find()->where(['cid' => $id['cid']])->max('id');
+            $contract = Contract::findOne($id['cid']);
+            $user = UserModel::findOne($contract->user_id);
+            $source = Admin::findOne($contract->source);
+            if($cashTimePay == $id['id'])
+            {
+                // 待兑付合同信息
+                $contractCashTime[] = [
+                    '兑付时间' => $id['time'], 
+                    '本息' => $id['interest'],
+                    '客户姓名' => $user->name,
+                    '客户经理' => $source->name,
+                    '开户行' => $contract->bank,
+                    '开户名' => $contract->bank_user,
+                    '银行账号' => $contract->bank_number, 
+                ];
+            }else{
+                // 当月常规付息的
+                $regularPay[] = [ 
+                    '付息时间' => $id['time'], 
+                    '付息金额' => $id['interest'],
+                    '客户姓名' => $user->name,
+                    '客户经理' => $source->name,
+                    '开户行' => $contract->bank,
+                    '开户名' => $contract->bank_user,
+                    '银行账号' => $contract->bank_number, 
+                ];
+            }
+        }
+        
+        //<3.当月进账的合同>
+        $contractThisMonth = Contract::find()->select('capital, transfered_time, source, product_id, user_id')->where(['between', 'transfered_time', $startTime, $endTime])->asArray()->all();
+        
+        //处理键名
+        foreach ($contractThisMonth as $val)
+        {
+            $contractThisMonthRes[] = [
+                '本金' => $val['capital'],
+                '到账时间' => $val['transfered_time'],
+                '客户经理' => Admin::findOne($val['source'])->name,
+                '产品名称' => Product::findOne($val['product_id'])->product_name,
+                '客户姓名' => UserModel::findOne($val['user_id'])->name,
+            ];
+        }
+        
+        //将数据传递给excel插件
+        if($contractCashTime || $regularPay || $contractThisMonth){
+            $this->createExcel($contractCashTime, date('Y') . '年' . date('n') . '月兑付合同');
+            $this->createExcel($regularPay, date('Y') . '年' . date('n') . '月常规付息');
+            $this->createExcel($contractThisMonthRes, date('Y') . '年' . date('n') . '月新进合同');
+            return $this->redirect(['contract/index']);
+        }else{
+            echo "<script>alert('当月无任何数据！')</script>";
+            return $this->redirect(['contract/idnex']);
+        }   
+    }
     
+    public function createExcel($data, $title)
+    {
+        if($data)
+        {
+            $excel_data = Export2ExcelBehavior::excelDataFormat($data);
+            $excel_title = $excel_data['excel_title'];
+            $excel_ceils = $excel_data['excel_ceils'];
+            $excel_content = [
+                [
+                    'sheet_name' => $title,
+                    'sheet_title' => $excel_title,
+                    'ceils' => $excel_ceils,
+                    'freezePane' => 'B2',
+                    'headerColor' => Export2ExcelBehavior::getCssClass('header'),
+                    'headerColumnCssClass' => [
+                        'id' => Export2ExcelBehavior::getCssClass('blue'),
+                        'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+                    ],
+                    'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
+                    'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
+                ],
+            ];
+            $excel_file = $title;
+            $this->export2excel($excel_content, $excel_file);   
+        }     
+    }
     
     
     
@@ -466,6 +618,28 @@ class ContractController extends BaseController
     {
         $my_id = Yii::$app->user->identity->id;
         if (($model = Contract::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
+        {
+            return $model;
+        }elseif(in_array('contract/create-all', Yii::$app->session['allowed_urls'])){
+            return Contract::find()->where(['id' => $id])->one();
+        }else{
+            throw new NotFoundHttpException('该合同不属于您，您无权操作！');
+        }
+    }
+    
+    protected function findEquityModel($id)
+    {
+        if (($model = EquityContract::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    protected function findMyEquityModel($id)
+    {
+        $my_id = Yii::$app->user->identity->id;
+        if (($model = EquityContract::find()->where(['id' => $id, 'source' => $my_id])->one()) !== null)
         {
             return $model;
         }elseif(in_array('contract/create-all', Yii::$app->session['allowed_urls'])){

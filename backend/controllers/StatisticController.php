@@ -37,7 +37,10 @@ class StatisticController extends BaseController
 //         var_dump(Contract::getCapitalByMonth(7, $source));
 //         exit();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return Contract::getCapitalByMonth(8, $source);
+        return [
+            'capital' => Contract::getCapitalByMonth(8, $source),
+            'pay' => Pay::getPaySumByMonth(8, $source),
+        ];
     }
     
     

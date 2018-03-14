@@ -50,18 +50,29 @@ class Pay extends \yii\db\ActiveRecord
     /*
      * $months个月中，每个月的付息总和
      */
-    public static function getPaySumByMonth($months)
+    public static function getPaySumByMonth($months, $source = null)
     {
         $sql = static::find()->select(['SUM(interest) as sum']);
         if(!in_array('contract/index', Yii::$app->session['allowed_urls']))
         {
+            if($source == null)
+            {
+                $source = Yii::$app->user->identity->id;
+            }
             //销售
-            $data = $sql->where(['source' => Yii::$app->user->identity->id]);
+            $data = $sql->where(['source' => $source]);
             $wherefunc = 'andWhere';
             return static::searchPaySumByMonth($data, $months, $wherefunc);         
         }else{
             //销售总监
-            return static::searchPaySumByMonth($sql, $months);
+            if($source !== null)
+            {
+                $wherefunc = 'andWhere';
+                $data = $sql->where(['source' => $source]);
+                return static::searchPaySumByMonth($data, $months, $wherefunc);                 
+            }else{
+                return static::searchPaySumByMonth($sql, $months);
+            }
         }
     } 
     
@@ -138,6 +149,18 @@ class Pay extends \yii\db\ActiveRecord
         }
     }
     
+    /*
+     * 功能：最近一次（对比当前时间）的付息时间及应付利息
+     * 使用范围：user/all(my)-contract-by-user
+     * @param int $user_id 客户id
+     */
+    public static function searchRecentPay($user_id)
+    {
+        $currentDate = date('Y-m-d');//当前时间
+        $pays = static::find()->select(['cid', 'time', 'interest'])->where(['uid' => $user_id])->andWhere(['>', 'time', $currentDate])
+            ->orderBy('time')->groupBy('cid')->indexBy('cid')->asArray()->all();
+        return $pays;
+    }
     
     
     

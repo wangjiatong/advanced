@@ -58,7 +58,7 @@ $this->title = '全局统计';
 	<div class="col-md-6 grid_2">
 	<?php if(in_array('contract/index', Yii::$app->session['allowed_urls'])): ?>
 		<div class="grid_1">
-			<h4>销售按月进账统计</h4>
+			<h4>销售按月进账及兑付统计</h4>
 			<?php
     			$sales = Admin::find()->select('name, admin.id')->joinWith('userRole', false)
     			    ->where(['user_role.role_id' => 3])
@@ -83,56 +83,91 @@ $this->title = '全局统计';
 // 				             alert(JSON.stringify(data));
     			             var dates = new Array();
     			             var caps = new Array();
-    			             $.each(data, function(date, cap){
+    			             var pays = new Array();
+    			             $.each(data['capital'], function(date, cap){
  			            	    dates.push(date);
  			            	    caps.push(cap);
  			            	    
     			             });
+    			             $.each(data['pay'], function(date, pay){
+   			            	    pays.push(pay);
+   			            	    
+      			             });
 //     			             alert(caps);
     			             
- 			                var sales = echarts.init(document.getElementById('sales'));   
-			                
-			                sales.title = '';
-
-			                option = {
-			                    color: ['#3398DB'],
-			                    tooltip : {
-			                        trigger: 'axis',
-			                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-			                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-			                        }
-			                    },
-			                    grid: {
-			                        left: '3%',
-			                        right: '4%',
-			                        bottom: '3%',
-			                        containLabel: true
-			                    },
-			                    xAxis : [
-			                        {
-			                            type : 'category',
-			                            data : dates,
-			                            axisTick: {
-			                                alignWithLabel: true
-			                            }
-			                        }
-			                    ],
-			                    yAxis : [
-			                        {
-			                            type : 'value'
-			                        }
-			                    ],
-			                    series : [
-			                        {
-			                            name: '数量',
-			                            type: 'bar',
-			                            barWidth: '60%',
-			                            data: caps
-			                        }
-			                    ]
-			                };
-
-			                sales.setOption(option);
+    			             var sales = echarts.init(document.getElementById('sales'));
+    			             
+    			             option = {
+    			             	    title : {
+    			             	        text: '',
+    			             	        subtext: ''
+    			             	    },
+    			             	    tooltip : {
+    			             	        trigger: 'axis'
+    			             	    },
+    			             	    legend: {
+    			             	        data:['兑付','进账']
+    			             	    },
+    			             	    toolbox: {
+    			             	        show : true,
+    			             	        feature : {
+    			             	            dataView : {show: true, readOnly: false},
+    			             	            magicType : {show: true, type: ['line', 'bar']},
+    			             	            restore : {show: true},
+    			             	            saveAsImage : {show: true}
+    			             	        }
+    			             	    },
+    			             	    calculable : true,
+    			             	    xAxis : [
+    			             	        {
+    			             	            type : 'category',
+    			             	            data : dates
+    			             	        }
+    			             	    ],
+    			             	    yAxis : [
+    			             	        {
+    			             	            type : 'value'
+    			             	        }
+    			             	    ],
+    			             	    series : [
+    			             	        {
+    			             	            name:'兑付',
+    			             	            type:'bar',
+    			             	            data:pays,
+    			             	            markPoint : {
+    			             	                data : [
+    			             	                    {type : 'max', name: '最大值'},
+    			             	                    {type : 'min', name: '最小值'}
+    			             	                ]
+    			             	            },
+    			             	            markLine : {
+    			             	                data : [
+    			             	                    {type : 'average', name: '平均值'}
+    			             	                ]
+    			             	            }
+    			             	        },
+    			             	        {
+    			             	            name:'进账',
+    			             	            type:'bar',
+    			             	            data:caps,
+    			             	            markPoint : {
+    			             	                data : [
+//    			              	                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+//    			              	                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+    			             	                    {type : 'max', name: '最大值'},
+    			             	                    {type : 'min', name: '最小值'}
+    			             	                ]
+    			             	            },
+    			             	            markLine : {
+    			             	                data : [
+    			             	                    {type : 'average', name : '平均值'}
+    			             	                ]
+    			             	            }
+    			             	        }
+    			             	    ]
+    			             };
+    			             
+    			             sales.setOption(option);
 			             }
 			        });
 			    });
