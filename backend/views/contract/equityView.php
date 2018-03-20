@@ -93,12 +93,12 @@ $this->title = '合同详情：'.$model->contract_number;
             [
                 'label' => '确认函扫描件',
                 'format' => 'raw',
-                'value' => $model->pdf == null ? Html::a('上传', ['contract/upload-confirmation', 'id' => $model->id], ['class' => 'btn btn-primary btn-xs']) : $pdfUrl,
+                'value' => $model->pdf == null ? Html::a('上传', ['contract/upload-confirmation', 'id' => $model->id, 'cat' => 'equity'], ['class' => 'btn btn-primary btn-xs']) : $pdfUrl,
             ],
             [
                 'label' => '删除确认函扫描件',
                 'format' => 'raw',
-                'value' => $model->pdf !== null ? Html::a('删除确认函', ['contract/delete-confirmation', 'id' => $model->id], [
+                'value' => $model->pdf !== null ? Html::a('删除确认函', ['contract/delete-confirmation', 'id' => $model->id, 'cat' => 'equity'], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => '您确定要删除该确认函吗？',
