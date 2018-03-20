@@ -487,7 +487,8 @@ class ContractController extends BaseController
                     '客户经理' => $source->name,
                     '开户行' => $contract->bank,
                     '开户名' => $contract->bank_user,
-                    '银行账号' => (string)$contract->bank_number, 
+                    '银行账号' => "'" . $contract->bank_number, 
+                    '手机号' => $user->phone_number,
                 ];
             }else{
                 // 当月常规付息的
@@ -498,7 +499,8 @@ class ContractController extends BaseController
                     '客户经理' => $source->name,
                     '开户行' => $contract->bank,
                     '开户名' => $contract->bank_user,
-                    '银行账号' => (string)$contract->bank_number, 
+                    '银行账号' => "'" . $contract->bank_number, 
+                    '手机号' => $user->phone_number,
                 ];
             }
         }
