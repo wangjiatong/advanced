@@ -59,7 +59,7 @@ class AdminController extends BaseController
         $old = $this->findModel($my_id);
         if($model->load(Yii::$app->request->post()) && $model->change($my_id))
         {
-            return $this->redirect(['view', 'id' => $my_id]);
+            return $this->redirect(Yii::$app->request->referrer);
         }
         return $this->render('change', [
             'model' => $model,

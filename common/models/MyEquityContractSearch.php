@@ -52,6 +52,7 @@ class MyEquityContractSearch extends EquityContract
         
 //         $query = $query1->union($query2);
 
+           $my_id = Yii::$app->user->identity->id;
            $query = $query = EquityContract::find()->joinWith(['user', 'product', 'admin'])->where(['equity_contract.source' => $my_id])->orderBy('found_time desc');
 
         // add conditions that should always apply here
