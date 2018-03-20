@@ -70,9 +70,10 @@ class UserSignupForm extends Model
     }
     public function signup()
     {
-//        if (!$this->validate()) {
-//            return null;
-//        }
+       if (!$this->validate()) {
+           return null;
+       }
+       
         if(in_array('contract/create-all', Yii::$app->session['allowed_urls']))
         {
             $this->scenario = 'create-all';

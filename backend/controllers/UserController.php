@@ -148,7 +148,7 @@ class UserController extends BaseController
         $old = $this->findMyModel($id);
         if($model->load(Yii::$app->request->post()) && $model->change($id))
         {
-            return $this->redirect(['view', 'id' => $id]);
+            return $this->redirect([parent::checkUrlAccess('user/view', 'user/my-view'), 'id' => $id]);
         }
         return $this->render('change', [
             'model' => $model,
