@@ -22,8 +22,7 @@ use backend\models\Pay;
 use common\models\EquityContract;
 use common\models\EquityContractSearch;
 use common\models\MyEquityContractSearch;
-use yii\helpers\Json;
-use yii\web\yii\web;
+
 /**
  * ContractController implements the CRUD actions for Contract model.
  */
@@ -204,11 +203,32 @@ class ContractController extends BaseController
             $model->scenario = 'create-all';    
         }
         
-        if($model->load(Yii::$app->request->post()) &&  $model->create())
-        {
-            return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+        if($model->load(Yii::$app->request->post()))
+        {                
+            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+            
+            if($model->pdf !== null)
+            {       
+                $name = 'c' . $model->user_id . '-' . date('Y-m-d') . '_' . rand(0, 9999);
+
+                $ext = $model->pdf->extension;
+
+                $file = $name . '.' . $ext;
+
+                $uploadPath = 'uploads/contracts/' . $file;
+
+                $model->pdf->saveAs($uploadPath);
+
+                $path = 'uploads/contracts/' . $file;
+
+                $model->pdf = $path;
+            }
+            
+            if($model->create())
+            {
+                return $this->redirect([parent::checkUrlAccess('contract/index', 'contract/my-contract')]);
+            }   
         }
-        
         return $this->render('createEquity', [
             'model' => $model,
         ]);
@@ -497,16 +517,22 @@ class ContractController extends BaseController
                 '客户姓名' => UserModel::findOne($val['user_id'])->name,
             ];
         }
-        
+
         //将数据传递给excel插件
-        if($contractCashTime || $regularPay || $contractThisMonth){
-            $this->createExcel($contractCashTime, date('Y') . '年' . date('n') . '月兑付合同');
-            $this->createExcel($regularPay, date('Y') . '年' . date('n') . '月常规付息');
-            $this->createExcel($contractThisMonthRes, date('Y') . '年' . date('n') . '月新进合同');
-            return $this->redirect(['contract/index']);
+        $data = [
+            'contractCashTime' => $contractCashTime, 
+            'regularPay' => $regularPay, 
+            'contractThisMonthRes' => $contractThisMonthRes
+        ];
+        
+        //如果$data不为空
+        if($data) {
+            if($this->createExcel($data, date('Y') . '年' . date('n') . '月待付兑付新进')) {
+                return $this->redirect(['contract/index']);
+            }
         }else{
-            echo "<script>alert('当月无任何数据！')</script>";
-            return $this->redirect(['contract/idnex']);
+            echo "<script>alert('当月暂无任何数据！')</script>";
+            return $this->redirect(['contract/index']);
         }   
     }
     
@@ -514,14 +540,49 @@ class ContractController extends BaseController
     {
         if($data)
         {
-            $excel_data = Export2ExcelBehavior::excelDataFormat($data);
-            $excel_title = $excel_data['excel_title'];
-            $excel_ceils = $excel_data['excel_ceils'];
+            $excel_data1 = Export2ExcelBehavior::excelDataFormat($data['contractCashTime']);
+            $excel_title1 = $excel_data1['excel_title'];
+            $excel_ceils1 = $excel_data1['excel_ceils'];
+            
+            $excel_data2 = Export2ExcelBehavior::excelDataFormat($data['regularPay']);
+            $excel_title2 = $excel_data2['excel_title'];
+            $excel_ceils2 = $excel_data2['excel_ceils'];
+            
+            $excel_data3 = Export2ExcelBehavior::excelDataFormat($data['contractThisMonthRes']);
+            $excel_title3 = $excel_data3['excel_title'];
+            $excel_ceils3 = $excel_data3['excel_ceils'];
+            
             $excel_content = [
                 [
-                    'sheet_name' => $title,
-                    'sheet_title' => $excel_title,
-                    'ceils' => $excel_ceils,
+                    'sheet_name' => date('Y') . '年' . date('n') . '月待兑付合同',
+                    'sheet_title' => $excel_title1,
+                    'ceils' => $excel_ceils1,
+                    'freezePane' => 'B2',
+                    'headerColor' => Export2ExcelBehavior::getCssClass('header'),
+                    'headerColumnCssClass' => [
+                        'id' => Export2ExcelBehavior::getCssClass('blue'),
+                        'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+                    ],
+                    'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
+                    'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),
+                ],
+                [
+                    'sheet_name' => date('Y') . '年' . date('n') . '月常规付息',
+                    'sheet_title' => $excel_title2,
+                    'ceils' => $excel_ceils2,
+                    'freezePane' => 'B2',
+                    'headerColor' => Export2ExcelBehavior::getCssClass('header'),
+                    'headerColumnCssClass' => [
+                        'id' => Export2ExcelBehavior::getCssClass('blue'),
+                        'Status_Description' => Export2ExcelBehavior::getCssClass('grey'),
+                    ],
+                    'oddCssClass' => Export2ExcelBehavior::getCssClass('odd'),
+                    'evenCssClass' => Export2ExcelBehavior::getCssClass('even'),                    
+                ],
+                [
+                    'sheet_name' => date('Y') . '年' . date('n') . '月新进合同',
+                    'sheet_title' => $excel_title3,
+                    'ceils' => $excel_ceils3,
                     'freezePane' => 'B2',
                     'headerColor' => Export2ExcelBehavior::getCssClass('header'),
                     'headerColumnCssClass' => [
@@ -537,12 +598,14 @@ class ContractController extends BaseController
         }     
     }
     
-    
-    
     //上传确认函扫描件
-    public function actionUploadConfirmation($id)
+    public function actionUploadConfirmation($id, $cat)
     {
-        $model = $this->findMyModel($id);
+        if($cat == 'fixed'){
+            $model = $this->findMyModel($id);
+        }elseif($cat == 'equity'){
+            $model = EquityContract::findOne($id);
+        }
         
         if ($model->load(Yii::$app->request->post())) 
         {       
@@ -565,9 +628,14 @@ class ContractController extends BaseController
                 $model->pdf = $path;
             }
 
-            if($model->save())
+            if($cat == 'fixed' ? $model->save() : $model->update())
             {
-                return $this->redirect([parent::checkUrlAccess('contract/view', 'contract/my-view'), 'id' => $model->id]);
+                return $this->redirect([
+                    $cat == 'fixed' ? 
+                    parent::checkUrlAccess('contract/view', 'contract/my-view') :
+                    parent::checkUrlAccess('contract/equity-view', 'contract/my-equity-view'),
+                    'id' => $id,
+                ]);
             }
         }
         return $this->render('uploadConfirmation', [
@@ -576,12 +644,16 @@ class ContractController extends BaseController
     }
     
     //删除确认函
-    public function actionDeleteConfirmation($id)
+    public function actionDeleteConfirmation($id, $cat)
     {
-        $contract = $this->findMyModel($id);
-
+        if($cat == 'fixed'){
+            $contract = $this->findMyModel($id);
+        }elseif($cat == 'equity'){
+            $contract = EquityContract::findOne($id);
+        }
+        
         $pdf = $contract->pdf;
-
+        
         if(is_file($pdf))
         {
             unlink($pdf);
@@ -590,7 +662,12 @@ class ContractController extends BaseController
         $contract->pdf = null;
         $contract->save();
         
-        return $this->redirect([parent::checkUrlAccess('contract/my-view', 'contract/view'), 'id' => $id]);
+        return $this->redirect([
+            $cat == 'fixed' ?
+            parent::checkUrlAccess('contract/my-view', 'contract/view') :
+            parent::checkUrlAccess('contract/equity-view', 'contract/my-equity-view'), 
+            'id' => $id
+        ]);
     }
     
     //选择创建合同类型弹窗
